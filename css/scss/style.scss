@@ -2,6 +2,8 @@
 $accent: #FF5733;
 
 
+/* Remove the navbar's default margin-bottom and rounded borders */ 
+
 .navbar {
     margin-bottom: 0;
     border-radius: 0;
@@ -13,4 +15,73 @@ $accent: #FF5733;
 
 .mainbody{
     height: 700px;
+}
+
+
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {height: 450px}
+
+.sidenav {
+    background-color: #f1f1f1;
+    height: 700px;
+}
+
+
+/* Set black background color, white text and some padding */
+footer {
+    background-color: #FF5733; 
+    color: white;
+    padding: 15px;
+    height: 80px;
+}
+
+@media screen and (max-width: 767px) {
+    .sidenav {
+        height: auto;
+        padding: 15px;
+    }
+    .row.content {
+        height: auto;
+    } 
+}
+
+.li{
+    color: white;
+}    /* Remove the navbar's default margin-bottom and rounded borders */ 
+
+
+
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {
+    height: 450px;
+}
+
+.sidenav {
+      background-color: #f1f1f1;
+      height: 700px;
+}
+
+
+/* Set black background color, white text and some padding */
+footer {
+      background-color: #FF5733; 
+      color: white;
+      padding: 15px;
+      height: 80px;
+}
+
+@media screen and (max-width: 767px) {
+    .sidenav {
+        height: auto;
+        padding: 15px;
+    }
+    .row.content {
+        height: auto;
+    } 
+}
+
+.li{
+    color: white;
 }
