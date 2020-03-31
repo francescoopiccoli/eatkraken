@@ -1,5 +1,7 @@
 body {
-  font-family: 'Khula', sans-serif; }
+  font-family: 'Khula', sans-serif; 
+  background-color: #F2D388;
+}
 
 /* Remove the navbar's default margin-bottom and rounded borders */
 .navbar {
@@ -7,7 +9,7 @@ body {
   border-radius: 0; }
 
 .navbar-custom {
-  background-color: #FF5733; }
+  background-color: #874C62; }
 
 .mainbody {
   height: 700px; }
@@ -52,7 +54,7 @@ footer {
 
 /* Set black background color, white text and some padding */
 footer {
-  background-color: #FF5733;
+  background-color: #874C62;
   color: white;
   padding: 15px;
   height: 80px; }
