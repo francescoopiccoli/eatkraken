@@ -1,10 +1,14 @@
 // main colors
-$accent: #FF5733;
-
+$clean: #A7D2CB;
+$butter: #F2D388;
+$salmon: #C98474;
+$eggplant: #874C62;
 
 
 body {
     font-family: 'Khula', sans-serif;
+    background-color:white;
+ 
 }
 
 /* Remove the navbar's default margin-bottom and rounded borders */ 
@@ -14,52 +18,17 @@ body {
 }
 
 .navbar-custom { 
-    background-color: $accent; 
+    background-color: $clean; 
 } 
 
 .mainbody{
-    height: 700px;
+    height: 630px;
+    margin: 0 auto !important;
 }
 .navbar-logo {
     font-weight: 900;
     margin-left: 10px;
 }
-
-
-/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-.row.content {height: 450px}
-
-.sidenav {
-    background-color: #f1f1f1;
-    height: 700px;
-}
-
-
-/* Set black background color, white text and some padding */
-footer {
-    background-color: #FF5733; 
-    color: white;
-    padding: 15px;
-    height: 80px;
-}
-
-@media screen and (max-width: 767px) {
-    .sidenav {
-        height: auto;
-        padding: 15px;
-    }
-    .row.content {
-        height: auto;
-    } 
-}
-
-.li{
-    color: white;
-}    /* Remove the navbar's default margin-bottom and rounded borders */ 
-
-
-
-
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
 .row.content {
     height: 450px;
@@ -73,7 +42,7 @@ footer {
 
 /* Set black background color, white text and some padding */
 footer {
-      background-color: #FF5733; 
+      background-color: $eggplant; 
       color: white;
       padding: 15px;
       height: 80px;
@@ -91,4 +60,38 @@ footer {
 
 .li{
     color: white;
+}
+
+
+.item{
+    min-height: 300px; 
+    height: 550px;
+    background-size: cover; 
+    background-position: center center; 
+    border-radius: 10px;
+    margin-top: 2%;
+}
+
+
+.btn-primary{
+    text-align: center;
+    border-color: $eggplant;
+    background-color: $salmon;
+    border-radius: 10px;
+    width: 250px;
+    max-width: 100%;
+    font-size: 20px;
+}
+
+.btn-primary:hover{
+    background-color: $clean;
+}
+
+.homepageAllergenes{
+    background-size: cover; 
+    background-position: center center; 
+    display: block;
+    min-height: 20px; 
+    height: 100px;
+    margin: 0 auto;
 }
