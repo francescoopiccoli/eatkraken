@@ -38,10 +38,24 @@
 
 
 <div class="container-fluid text-center mainbody">    
-  <div class="row content">
+  <div class="row content checkout-main">
     <div class="col-sm-12 text-left"> 
-      <div>
-        total
+
+      <div class="row checkout-total-row">
+        <div class="col-sm-8">
+          <b>Deliver to:</b>
+          <br>
+          <span id="address">AAA BBB CCC</span> (<a href="">edit</a>)
+        </div>
+        
+        <div class="col-sm-2">
+          Shipping
+          <h2>€5</h2>
+        </div>
+        <div class="col-sm-2">
+          Total
+          <h2>€55</h2>
+        </div>
       </div>
 
       <h2>Pizzeria Scarsa</h2>
@@ -56,8 +70,19 @@
           <small><i>message</i> (<a href="">edit</a>)</small>
         </div>
         <div class="col-sm-2">
-          Quantity <br>
-          Delivery
+          <select name="" id="" class="form-control">
+            <option value="">0 (remove)</option>
+            <option value="" selected>1x</option>
+            <option value="">2x</option>
+            <option value="">3x</option>
+            <option value="">4x</option>
+            <option value="">5x</option>
+          </select>
+          <br>
+          <select name="" id="" class="form-control">
+            <option value="">Home delivery (+€5)</option>
+            <option value="">Eat in (free)</option>
+          </select>
         </div>
         <div class="col-sm-2">
           <h3>€50</h3>

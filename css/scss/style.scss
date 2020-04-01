@@ -7,7 +7,6 @@ $eggplant: #874C62;
 
 body {
     font-family: 'Khula', sans-serif;
-    background-color:white;
  
 }
 
@@ -73,20 +72,22 @@ footer {
 }
 
 
-.btn-primary{
-    text-align: center;
+.btn-primary {
+    color: white !important;
+    /*text-align: center;
     border-color: $eggplant;
     background-color: $salmon;
     border-radius: 10px;
     width: 250px;
     max-width: 100%;
-    font-size: 20px;
+    font-size: 20px;*/
 }
 
 .btn-primary:hover{
     background-color: $clean;
 }
 
+/* Homepage items */
 .homepageAllergenes{
     background-size: cover; 
     background-position: center center; 
@@ -94,4 +95,20 @@ footer {
     min-height: 20px; 
     height: 100px;
     margin: 0 auto;
+}
+
+
+/* Checkout page */
+.checkout-main {
+    margin: 20px;
+}
+.checkout-main .row {
+    padding: 15px;
+}
+.checkout-main .row * {
+    vertical-align: middle;
+}
+.checkout-total-row {
+    background-color:$butter;
+    
 }
