@@ -7,7 +7,6 @@ $eggplant: #874C62;
 
 body {
     font-family: 'Khula', sans-serif;
- 
 }
 
 /* Remove the navbar's default margin-bottom and rounded borders */ 
@@ -102,13 +101,27 @@ footer {
 .checkout-main {
     margin: 20px;
 }
-.checkout-main .row {
-    padding: 15px;
+
+.checkout-button {
+    background-color: $eggplant;
 }
-.checkout-main .row * {
+
+.checkout-main .row {
+    padding: 10px;
+}
+.checkout-main .row .col* {
     vertical-align: middle;
 }
 .checkout-total-row {
     background-color:$butter;
-    
+    border: $salmon 2px solid;
+}
+.checkout-total-row h2 {
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+.thumbnail-small {
+    width: 100px;
+    height: 100px;
 }
