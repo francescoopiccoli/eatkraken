@@ -120,7 +120,6 @@ footer {
 }
 .checkout-total-row {
     background-color:$butter;
-<<<<<<< HEAD
     border: $salmon 2px solid;
 }
 .checkout-total-row h2 {
@@ -143,7 +142,10 @@ footer {
 /* list page */
 .food-card .panel:hover {
     border-color: #999;
-=======
     
->>>>>>> 2dac5ee9f9b354bd95e42575c32eab612ebc8053
 }
+
+.thumbnail-small {
+    width: 100px;
+    height: 100px; 
+}  
