@@ -1,54 +1,75 @@
 body {
-  font-family: 'Khula', sans-serif; }
+  font-family: "Khula", sans-serif;
+}
 
 /* Remove the navbar's default margin-bottom and rounded borders */
 .navbar {
   margin-bottom: 0;
-  border-radius: 0; }
+  border-radius: 0;
+  border: none;
+}
+
+.navbar-nav > li > a {
+  color: white !important;
+}
+
+.navbar-brand {
+  color: white !important;
+}
 
 .navbar-custom {
-  background-color: #A7D2CB; }
+  background-color: #A7D2CB;
+}
 
 .mainbody {
-  height: 630px;
-  margin: 0 auto !important; }
+  height: 80%;
+  width: 100%;
+}
 
 .navbar-logo {
   font-weight: 900;
-  margin-left: 10px; }
+  margin-left: 10px;
+}
 
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
 .row.content {
-  height: 450px; }
+  height: 450px;
+}
 
 .sidenav {
   background-color: #f1f1f1;
-  height: 700px; }
+  height: 100%;
+}
 
 /* Set black background color, white text and some padding */
 footer {
   background-color: #874C62;
   color: white;
   padding: 15px;
-  height: 80px; }
+  height: 80px;
+}
 
 @media screen and (max-width: 767px) {
   .sidenav {
     height: auto;
-    padding: 15px; }
+    padding: 15px;
+  }
 
   .row.content {
-    height: auto; } }
+    height: auto;
+  }
+}
 .li {
-  color: white; }
+  color: white;
+}
 
+/*carousel images homepage*/
 .item {
   min-height: 300px;
   height: 550px;
   background-size: cover;
   background-position: center center;
-  border-radius: 10px;
-  margin-top: 2%; }
+}
 
 .btn-primary {
   color: white !important;
@@ -58,10 +79,12 @@ footer {
   border-radius: 10px;
   width: 250px;
   max-width: 100%;
-  font-size: 20px;*/ }
+  font-size: 20px;*/
+}
 
 .btn-primary:hover {
-  background-color: #A7D2CB; }
+  background-color: #A7D2CB;
+}
 
 /* Homepage items */
 .homepageAllergenes {
@@ -70,32 +93,30 @@ footer {
   display: block;
   min-height: 20px;
   height: 100px;
-  margin: 0 auto; }
+  margin: 0 auto;
+}
+
+.threeColumnsHome {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
 
 /* Checkout page */
 .checkout-main {
-  margin: 20px; }
-
-.checkout-button {
-  background-color: #874C62; }
+  margin: 20px;
+}
 
 .checkout-main .row {
-  padding: 10px; }
+  padding: 15px;
+}
 
-.checkout-main .row .col* {
-  vertical-align: middle; }
+.checkout-main .row * {
+  vertical-align: middle;
+}
 
 .checkout-total-row {
   background-color: #F2D388;
-  border: #C98474 2px solid; }
-
-.checkout-total-row h2 {
-  margin-top: 5px;
-  margin-bottom: 0; }
-
-.thumbnail-small {
-  width: 100px;
-  height: 100px; }
+}
 
 .food-card * {
   color: #444; }
