@@ -125,3 +125,15 @@ footer {
     width: 100px;
     height: 100px;
 }
+
+.food-card * {
+    color: #444;
+}
+.food-card:hover {
+    text-decoration: none !important;
+}
+
+/* list page */
+.food-card .panel:hover {
+    border-color: #999;
+}
