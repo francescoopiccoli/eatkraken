@@ -13,6 +13,6 @@
         <li class="list-inline-item"><a href="#">Terms</a></li>
         <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
       </ul>
-      <p class="copyright">(C) Eatkraken 2020</p>
+      <p class="copyright">&copy Eatkraken 2020</p>
   </footer>
 </div>
