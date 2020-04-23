@@ -49,10 +49,10 @@ $results = array(
 
 <!DOCTYPE html>
 <html lang="en">
-<?php include("widgets/common_head.php"); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/common_head.php"); ?>
 <body>
 
-<?php include("widgets/navbar.php"); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/navbar.php"); ?>
 
 <div class="container-fluid text-center mainbody">    
   <div class="row content">
@@ -126,7 +126,7 @@ $results = array(
 </div>
 
 
-<?php include("widgets/footer.php"); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/footer.php"); ?>
 
 </body>
 </html>

@@ -3,9 +3,9 @@ $title = "EatKraken";
 ?>
 <!DOCTYPE html>
 <html lang="en">
-  <?php require_once("widgets/common_head.php"); ?>
+  <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/common_head.php"); ?>
   <body>
-  <?php require_once("widgets/navbar.php"); ?>
+  <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/navbar.php"); ?>
 
 
   <div class="mainbody"> 
@@ -52,7 +52,7 @@ $title = "EatKraken";
     </div>
   </div>
 
-  <?php require_once("widgets/footer.php"); ?>
+  <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/footer.php"); ?>
 
   </body>
 </html>

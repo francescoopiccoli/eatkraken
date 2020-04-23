@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include("widgets/common_head.php"); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/common_head.php"); ?>
 <body>
 
-<?php include("widgets/navbar.php"); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/navbar.php"); ?>
 
 <div class="mainbody"> 
     <div class="home-inner container">
@@ -33,7 +33,7 @@
   </div>
 </div>
 
-<?php include("widgets/footer.php"); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/footer.php"); ?>
 </body>
 </html>
 
