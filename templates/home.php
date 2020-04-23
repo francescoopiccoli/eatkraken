@@ -12,32 +12,32 @@ $title = "EatKraken";
     
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
-    <ol class="carousel-indicators">
+    <!-- <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
       <li data-target="#myCarousel" data-slide-to="1"></li>
       <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
+    </ol>-->
 
   <div class="carousel-inner">
 
       <div class="item active" style="background-image: url(https://images.unsplash.com/photo-1561760041-ca62af0d9047?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);">
         <div class="carousel-caption">
           <h2>You choose it, we bring it!</h2>
-          <button type="button" class="btn btn-primary">Check the list!</button>
+          <a href="index.html" class="homePageButton">Check the list!</a>
         </div>
       </div>
 
       <div class="item" style="background-image: url(https://video-images.vice.com/articles/59ca67cc3c5a224d52beeafc/lede/1506437421227-perche-non-ci-sono-donne-tra-i-kebabbari.jpeg?crop=0.999247554552295xw:1xh;center,center);">
         <div class="carousel-caption">
           <h2>Your favourite restaurant, at your door!</h2>
-          <button type="button" class="btn btn-primary">Check the list!</button>
+          <a href="index.html" class="homePageButton">Check the list!</a>
         </div>
       </div>
 
       <div class="item" style="background-image: url(https://www.larena.it/image/policy:1.4667048:1456192040/image.jpg?f=16x9&w=1200&$p$f$w=9b37ea6);">
         <div class="carousel-caption">
           <h2>Free delivery on order over 20$</h2>
-        <a href="index.html"><button type="button" class="btn btn-primary">Check the list!</button></a>
+          <a href="index.html" class="homePageButton">Check the list!</a>
         </div>
       </div>
     </div>
