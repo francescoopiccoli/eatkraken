@@ -17,7 +17,7 @@
         <li><a href="#"><b>ABOUT</b></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <?php require_once("checkout.php"); ?>
+        <?php include($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/checkout.php"); ?>
       </ul>
     </div>
   </div>
