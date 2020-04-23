@@ -10,10 +10,15 @@ $GLOBALS['db_pdo_data'] = "pgsql:host=".$GLOBALS['db_host']." port=5432 dbname="
 /* demo only for simple static queries,
  * perform other queries directly from pages with similar syntax
  */
-function simple_query($query) {
+
+// indices: simple_query(...)[row][column]
+function simple_query($query_text) {
     $connection = new PDO($GLOBALS['db_pdo_data']);
     try {
-        return $connection->query($query)->fetchAll();
+        if($query = $connection->query($query_text)) 
+            return $query->fetchAll();
+        else
+            return false;
     } catch (Exception $e) {
         print "Error!: " . $e->getMessage() . "<br/>";
         die();
@@ -21,6 +26,10 @@ function simple_query($query) {
     $connection = null;
 }
 
+function count_dishes() {
+    return simple_query("select count(*) from dishes")[0][0];
+}
+
 // test
-print_r(simple_query("select count(*) from users"));
+echo(count_dishes());
 ?>
