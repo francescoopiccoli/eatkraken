@@ -11,6 +11,8 @@ body {
 
 .navbar-nav > li > a {
   color: white !important;
+  font-family: "Acme";
+
 }
 
 .navbar-brand {
@@ -29,6 +31,8 @@ body {
 .navbar-logo {
   font-weight: 900;
   margin-left: 10px;
+  font-family: "Acme";
+
 }
 
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
