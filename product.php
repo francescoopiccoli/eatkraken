@@ -27,7 +27,7 @@ $product_flag_zero_waste = $product["flag_zero_waste"];
 $product_image_url = $product["image_url"];
 
 function allergenes($gluten_free, $lactose_free, $vegan, $fresh, $zero_waste){
-    $allergene = "<ul>";
+    $allergene = "<ul style=\"list-style-type: none;\">";
     if($gluten_free){
         $allergene .= "<li>Gluten free</li>";
     }
@@ -50,11 +50,10 @@ function allergenes($gluten_free, $lactose_free, $vegan, $fresh, $zero_waste){
     }
     return $allergene . "</ul>";
 }
-
 $product_allergenes = allergenes($product_flag_gluten_free, $product_flag_lactose_free, $product_flag_vegan, $product_flag_fresh, $product_flag_zero_waste);
 
 $product_nutri_facts = "
-<ul>
+<ul style= \"list-style-type: none;\">
 <li>Kcal: $product_nutri_kcal</li>
 <li>Carbs: $product_nutri_carbs</li>
 <li>Fats: $product_nutri_fats</li>
