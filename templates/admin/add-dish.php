@@ -6,11 +6,14 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/database.php");
 
 if(isset($_POST["submit"])){
 
+
+  $code = 10; // autoincrement??
   $productName = mysqli_real_escape_string($_POST["ProductName"]);
-  $ProductDescription = mysqli_real_escape_string($_POST["ProductDescription"]);
-  $ProductCategory = mysqli_real_escape_string($_POST["ProductCategory"]);
-  $ProductPrice = mysqli_real_escape_string($_POST["ProductPrice"]);
-  $ProductIngredients = mysqli_real_escape_string($_POST["ProductIngredients"]);
+  $productDescription = mysqli_real_escape_string($_POST["ProductDescription"]);
+  $productPrice = mysqli_real_escape_string($_POST["ProductPrice"]);
+  $restaurant = ""; //??
+  $productCategory = mysqli_real_escape_string($_POST["ProductCategory"]);
+  $productIngredients = mysqli_real_escape_string($_POST["ProductIngredients"]);
   $nutri_kcal = mysqli_real_escape_string($_POST["nutri_kcal"]);
   $nutri_carb = mysqli_real_escape_string($_POST["nutri_carbs"]);
   $nutri_fat = mysqli_real_escape_string($_POST["nutri_fat"]);
@@ -20,10 +23,32 @@ if(isset($_POST["submit"])){
   $vegan = mysqli_real_escape_string(isset($_POST['vegan']) ? $_POST['vegan'] : 'no');
   $fresh = mysqli_real_escape_string(isset($_POST['fresh']) ? $_POST['fresh'] : 'no');
   $zeroWaste = mysqli_real_escape_string(isset($_POST['zeroWaste']) ? $_POST['zeroWaste'] : 'no');
-  $ProductDescription = mysqli_real_escape_string($_POST["imageUrl"]);
-  $ProductCategory = mysqli_real_escape_string($_POST["deliveryTime"]);
+  $productImageURL = mysqli_real_escape_string($_POST["imageUrl"]);
+  $productDeliveryTime = mysqli_real_escape_string($_POST["deliveryTime"]);
 
-  $query = "INSERT INTO dishes";
+$stmt = $dbh->prepare("INSERT INTO dishes VALUES (:code, :productName, :productDescription, :productPrice, :restaurant, :productCategory,/* qui ci sarebbe allergeni che dobbiamo togliere la colonna
+* */ :productIngredients, :nutri_carb, :nutri_fat, :nutri_kcal, :nutri_protein, :glutenFree, :lactoseFree, :vegan, :fresh, :zeroWaste, :productImageURL, :productDeliveryTime");
+
+$stmt->bindParam(':code', $code);
+$stmt->bindParam(':productName', $productName);
+$stmt->bindParam(':productDescription', $productDescription);
+$stmt->bindParam(':productPrice', $productPrice);
+$stmt->bindParam(':restaurant', $restaurant);
+$stmt->bindParam(':productCategory', $productCategory);
+//allergenes?
+$stmt->bindParam(':productIngredients', $productIngredients);
+$stmt->bindParam(':nutri_carb', $nutri_carb);
+$stmt->bindParam(':nutri_fat', $nutri_fat);
+$stmt->bindParam(':nutri_kcal', $nutri_kcal);
+$stmt->bindParam(':nutri_protein', $nutri_protein);
+$stmt->bindParam(':glutenFree', $glutenFree);
+$stmt->bindParam(':lactoseFree', $lactoseFree);
+$stmt->bindParam(':vegan', $vegan);
+$stmt->bindParam(':zeroWaste', $zeroWaste);
+$stmt->bindParam(':productImageURL', $productImageURL);
+$stmt->bindParam(':productDeliveryTime', $productDeliveryTime);
+
+$stmt->execute();
 }
 
 
