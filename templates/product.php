@@ -4,9 +4,11 @@
 <body>
 
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/navbar.php"); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/product.php"); ?>
 
 <div class="mainbody"> 
-    <div class="home-inner container">
+    <div class="home-inner container" style= "background-image: url(https://images.lacucinaitaliana.it/wp-content/uploads/2018/08/27105330/migliore-pizzeria-pizza-trancio-milano-1600x800.jpg);">
+    <!-- once we will have the image urls in the DB <div class="home-inner container" style= "background-image: url(<?=$product_image_url?>);"> -->
       <div class="caption text-center">
         <h1><?= $product_name ?></h1>
         <p class="lead"><?= $product_desc ?></p>
