@@ -7,9 +7,7 @@ $GLOBALS['db_password'] = "vTdT4LC9LlOf_rgw6fA-Uz54Q-_xefB5";
 $GLOBALS['db_pdo_data'] = "pgsql:host=".$GLOBALS['db_host']." port=5432 dbname=".$GLOBALS['db_name']." user=".$GLOBALS['db_username']." password=".$GLOBALS['db_password'];
 
 
-/* demo only for simple static queries,
- * perform other queries directly from pages with similar syntax
- */
+/* demo for simple static queries */
 
 // indices: simple_query(...)[row][column]
 function db_simple_query($query_text) {
@@ -28,23 +26,16 @@ function db_simple_query($query_text) {
 
 
 function db_get_cities() {
-    $cities = db_simple_query("select * from cities");
-    return $cities;
+    return db_simple_query("select * from cities");
 }
 
 function db_get_categories() {
-    return array(
-        array("code" => 5, "name" => "Asian"),
-        array("code" => 6, "name" => "Asian > Chinese"),
-        array("code" => 7, "name" => "Asian > Sushi"),
-        array("code" => 1, "name" => "Buns"),
-        array("code" => 2, "name" => "Buns > Burgers"),
-        array("code" => 3, "name" => "Buns > Kebab"),
-        array("code" => 8, "name" => "Pizza"),
-      );
+    return db_simple_query("select * from categories order by name asc");
 }
 
 function db_get_dishes($city, $cat, $deadline, $flags) {
+    return db_simple_query("select * from dishes order by name asc");
+
     return array(
         array(
           "code" => 123,

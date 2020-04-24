@@ -6,11 +6,11 @@ $cities = db_get_cities();
 $categories = db_get_categories();
 
 $options = array(
-  array("id" => 1, "name" => "Fresh"),
-  array("id" => 2, "name" => "Gluten-free"),
-  array("id" => 3, "name" => "Lactose-free"),
-  array("id" => 4, "name" => "Vegan"),
-  array("id" => 5, "name" => "Zero-waste"),
+  array("code" => 1, "name" => "Fresh"),
+  array("code" => 2, "name" => "Gluten-free"),
+  array("code" => 3, "name" => "Lactose-free"),
+  array("code" => 4, "name" => "Vegan"),
+  array("code" => 5, "name" => "Zero-waste"),
 );
 
 $categories = db_get_categories();
