@@ -10,16 +10,13 @@
     <div class="col-sm-3 .bg-secondary sidenav text-left">
       <br><br>
       <h4>Deliverable to</h4>
-      <div class="form-group">
-        <select name="" id="" class="form-control">
-          <?php
-            foreach ($cities as $city) {
-              echo("<option value=\"{$city["id"]}\">{$city["name"]}</option>");
-            }
-          ?>
-        </select>
-        <input type="text" name="" id="" class="form-control" placeholder="Address">
-      </div>
+      <select name="" id="" class="form-control">
+        <?php
+          foreach ($cities as $city) {
+            echo("<option value=\"{$city["id"]}\">{$city["name"]}</option>");
+          }
+        ?>
+      </select>
       <br>
       <h4>Before (lo mettiamo?)</h4>
       <input type="datetime-local" name="" id="" class="form-control">

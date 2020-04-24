@@ -26,17 +26,10 @@ function db_simple_query($query_text) {
     $connection = null;
 }
 
-function db_count_dishes() {
-    return db_simple_query("select count(*) from dishes")[0][0];
-}
 
 function db_get_cities() {
-    return array(
-        array("id" => 1, "name" => "Bolzano"),
-        array("id" => 2, "name" => "Merano"),
-        array("id" => 3, "name" => "Rovereto"),
-        array("id" => 4, "name" => "Trento"),
-    );
+    $cities = db_simple_query("select * from cities");
+    return $cities;
 }
 
 function db_get_categories() {
