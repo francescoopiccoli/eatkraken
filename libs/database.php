@@ -60,6 +60,7 @@ function db_get_shipping_cost($order){
 	case 2:
 		$shipping_cost = db_get_cost_home_delivery();
 		break;
+	}
 	return $shipping_cost;
 }
 
