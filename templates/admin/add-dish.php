@@ -17,18 +17,56 @@ if(isset($_POST["submit"])){
   $nutri_carb = $_POST["nutri_carbs"];
   $nutri_fat = $_POST["nutri_fat"];
   $nutri_protein = $_POST["nutri_protein"];
-  $glutenFree = isset($_POST['glutenFree']) ? $_POST['glutenFree'] : 'no';
-  $lactoseFree = isset($_POST['lactoseFree']) ? $_POST['lactoseFree'] : 'no';
-  $vegan = isset($_POST['vegan']) ? $_POST['vegan'] : 'no';
-  $fresh = isset($_POST['fresh']) ? $_POST['fresh'] : 'no';
-  $zeroWaste = isset($_POST['zeroWaste']) ? $_POST['zeroWaste'] : 'no';
+
+
+  if(!isset($_POST['glutenFree'])){
+    $glutenFree = 'false';
+  }
+  else{
+    $glutenFree = $_POST['glutenFree'];
+  }
+
+  if(!isset($_POST['lactoseFree'])){
+    $lactoseFree = 'false';
+  }
+  else{
+    $lactoseFree = $_POST['lactoseFree'];
+  }
+
+  
+  if(!isset($_POST['vegan'])){
+    $vegan = 'false';
+  }
+  else{
+    $vegan = $_POST['vegan'];
+  }
+
+  
+  if(!isset($_POST['fresh'])){
+    $fresh = 'false';
+  }
+  else{
+    $fresh = $_POST['fresh'];
+  }
+
+  
+  if(!isset($_POST['zeroWaste'])){
+    $zeroWaste = 'false';
+  }
+  else{
+    $zeroWaste = $_POST['zeroWaste'];
+  }
+
   $productImageURL = $_POST["imageUrl"];
   $productDeliveryTime = $_POST["deliveryTime"];
 
+  $connection = new PDO($GLOBALS['db_pdo_data']);
+  print_r($_POST);
+
   try{
    
-    $connection = new PDO($GLOBALS['db_pdo_data']);
-    $stmt = $connection->prepare("INSERT INTO dishes VALUES (:productName, :productDescription, :productPrice, :restaurant, :productCategory, :productIngredients, :nutri_carb, :nutri_fat, :nutri_kcal, :nutri_protein, :glutenFree, :lactoseFree, :vegan, :fresh, :zeroWaste, :productImageURL, :productDeliveryTime");
+    $stmt = $connection->prepare("INSERT INTO 'dishes' (name, description, price, restaurant, category, ingredients, nutri_carbs, nutri_fats, nutri_kcal, nutri_proteins, flag_gluten_free, flag_lactose_free, flag_vegan, flag_fresh, flag_zero_waste, image_url, delivery_time)
+     VALUES (:productName, :productDescription, :productPrice, :restaurant, :productCategory, :productIngredients, :nutri_carb, :nutri_fat, :nutri_kcal, :nutri_protein, :glutenFree, :lactoseFree, :vegan, :fresh, :zeroWaste, :productImageURL, :productDeliveryTime)");
 
     $stmt->bindParam(':productName', $productName);
     $stmt->bindParam(':productDescription', $productDescription);
@@ -48,8 +86,10 @@ if(isset($_POST["submit"])){
     $stmt->bindParam(':productImageURL', $productImageURL);
     $stmt->bindParam(':productDeliveryTime', $productDeliveryTime);
     $inserted = $stmt->execute();
+    
     if($inserted){
       echo "New records created successfully";}
+
     else{
       echo "error";
     }
@@ -113,19 +153,19 @@ if(isset($_POST["submit"])){
 
 <label><h4>Allergenes:</h4></label>
 <div class="text-left">
-          <input type="checkbox" name="glutenFree" class="form-check-input" id="1">
+          <input type="checkbox" name="glutenFree" class="form-check-input" id="1" value="true">
           <label class="form-check-label" for="1">Gluten free</label><br>
 
-          <input type="checkbox" name="lactoseFree" class="form-check-input" id="2">
+          <input type="checkbox" name="lactoseFree" class="form-check-input" id="2" value="true">
           <label class="form-check-label" for="2">Lactose free</label><br>
 
-          <input type="checkbox" name="vegan" class="form-check-input" id="3">
+          <input type="checkbox" name="vegan" class="form-check-input" id="3" value="true">
           <label class="form-check-label" for="3">Vegan</label><br>
 
-          <input type="checkbox" name="fresh"class="form-check-input" id="4">
+          <input type="checkbox" name="fresh"class="form-check-input" id="4" value="true">
           <label class="form-check-label" for="4">Fresh</label><br>
 
-          <input type="checkbox" name="zeroWaste" class="form-check-input" id="5">
+          <input type="checkbox" name="zeroWaste" class="form-check-input" id="5" value="true">
           <label class="form-check-label" for="5">Zero waste</label><br>
       </div>
 
