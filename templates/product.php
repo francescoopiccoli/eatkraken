@@ -19,15 +19,15 @@
 <div class="container-fluid threeColumnsHome">
   <div class="row">
     <div class="col-xs-12 col-sm-4 text-center ">
-      <h2>Allergenes</h2>
+      <h2 style="margin-top: 15px;">Product info</h2>
       <?= $product_allergenes ?>
     </div>
     <div class="col-xs-12 col-sm-4 text-center ">
-      <h2>Ingredients</h2>
-      <?= $product_ingredients ?>
+      <h2 style="margin-top: 15px;">Ingredients</h2>
+      <div><?= $product_ingredients ?></div>
     </div>
     <div class="col-xs-12 col-sm-4 text-center ">
-      <h2>Nutritional facts</h2>
+      <h2 style="margin-top: 15px;">Nutritional facts  (x 100g)</h2>
       <?= $product_nutri_facts ?>
       </div>
   </div>
