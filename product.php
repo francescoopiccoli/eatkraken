@@ -29,7 +29,7 @@ $product_flag_zero_waste = $product["flag_zero_waste"];
 $product_image_url = $product["image_url"];
 
 function allergenes($gluten_free, $lactose_free, $vegan, $fresh, $zero_waste){
-    $allergene = "<ul style=\"list-style-type: none; margin: 10%;\">";
+    $allergene = "<ul style=\"list-style-type: none; margin: 10%; padding-left: 0\">";
     if($gluten_free){
         $allergene .= "<li style=\"border-bottom: 1px solid #e2e2e2; margin: 10px;\">Gluten free</li>";
     }
