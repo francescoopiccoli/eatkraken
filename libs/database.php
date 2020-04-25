@@ -46,7 +46,7 @@ function db_get_cost_eat_in($restaurant){
 }
 
 function db_get_items_cost($order){
-	return db_simple_query("SELECT COUNT(order_item)FROM table_name WHERE condition;");
+	return db_simple_query("SELECT sum(price) FROM dishes, order_items WHERE order_items.ord=$order and dishes.code=order_items.item;");
 }
 
 function db_get_dishes($city, $cat, $deadline, $flags) {
