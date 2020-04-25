@@ -16,7 +16,7 @@ $options = array(
 $categories = db_get_categories();
 
 
-$results = db_get_dishes($city, $cat, $deadline, $flags);
+$results = db_get_dishes($_GET['city'], $_GET['category'], $_GET['deadline'], 0);
 
 $title = "All products";
 

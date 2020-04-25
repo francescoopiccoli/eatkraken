@@ -36,19 +36,23 @@ function db_get_categories() {
 function db_get_dishes($city, $cat, $deadline, $flags) {
     $connection = new PDO($GLOBALS['db_pdo_data']);
 
-    $time = $deadline - 0; // todo: "0" must be current timestamp
+    $time = $deadline - 0; // todo: "0" must be current timestamp, $deadline desired timestamp
     
     $stmt = $connection->prepare(
-        "select dishes.code, dishes.name, dishes.price, dishes.picture_url, dishes.restaurant as restaurant_id, restaurants.name as restaurant_name".
+        "select dishes.code, dishes.name, dishes.price, dishes.image_url, dishes.restaurant as restaurant_id, restaurants.name as restaurant_name".
         " from dishes, restaurants, delivers_to".
-        " where dishes.code = delivers_to.dish".
+        " where restaurants.code = delivers_to.restaurant".
         " and delivers_to.city = :city".
         " and dishes.restaurant = restaurants.code".
-        " and dishes.category = :cat".
-        " and dishes.preparation_time < :time".
-        // todo: flags "and dishes.flag_vegan = 1".
-        "order by name asc");
-    $stmt->execute(['city' => $city, 'cat' => $cat, 'time' => $time]);
+        ($cat > 0 ? " and dishes.category = :cat" : "").
+        ($deadline > 0 ? " and dishes.preparation_time < :time" : "").
+        // todo: flags e.g. "and dishes.flag_vegan = 1".
+        " order by name asc");
+        
+    $options = ['city' => $city];
+    if($cat > 0) $options['cat'] = $cat;
+    if($deadline > 0) $options['time'] = $time;
+    $stmt->execute($options);
     $res = $stmt->fetchAll();
     $connection = null;
     return $res;
