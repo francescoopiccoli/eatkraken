@@ -1,7 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
 
-if(session_is_logged_in()) {
+if(is_logged_in()) {
 ?>
 
 <?php
