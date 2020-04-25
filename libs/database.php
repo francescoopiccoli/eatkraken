@@ -34,9 +34,26 @@ function db_get_categories() {
 }
 
 function db_get_dishes($city, $cat, $deadline, $flags) {
-    return db_simple_query("select * from dishes order by name asc");
+    $connection = new PDO($GLOBALS['db_pdo_data']);
 
-    return array(
+    $time = $deadline - 0; // todo: "0" must be current timestamp
+    
+    $stmt = $connection->prepare(
+        "select dishes.code, dishes.name, dishes.price, dishes.picture_url, dishes.restaurant as restaurant_id, restaurants.name as restaurant_name".
+        " from dishes, restaurants, delivers_to".
+        " where dishes.code = delivers_to.dish".
+        " and delivers_to.city = :city".
+        " and dishes.restaurant = restaurants.code".
+        " and dishes.category = :cat".
+        " and dishes.preparation_time < :time".
+        // todo: flags "and dishes.flag_vegan = 1".
+        "order by name asc");
+    $stmt->execute(['city' => $city, 'cat' => $cat, 'time' => $time]);
+    $res = $stmt->fetchAll();
+    $connection = null;
+    return $res;
+
+    /*return array(
         array(
           "code" => 123,
           "name" => "Pizza Margherita",
@@ -54,7 +71,7 @@ function db_get_dishes($city, $cat, $deadline, $flags) {
           "restaurant_id" => 2,
           "restaurant_name" => "KeBZ"
         )
-      );
+      );*()*/
 }
 
 

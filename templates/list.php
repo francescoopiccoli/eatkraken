@@ -6,7 +6,7 @@
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/navbar.php"); ?>
 
 <div class="container-fluid text-center mainbody">    
-  <div class="row content">
+  <div class="row">
     <div class="col-sm-3 .bg-secondary sidenav text-left">
       <br><br>
       <h4>Deliverable to</h4>
@@ -18,7 +18,7 @@
         ?>
       </select>
       <br>
-      <h4>Before (lo mettiamo?)</h4>
+      <h4>Deliver before</h4>
       <input type="datetime-local" name="" id="" class="form-control">
       <br>
       <h4>In category</h4>
@@ -71,6 +71,7 @@
       ?>
     </div>
   </div>
+</div>
 </div>
 
 
