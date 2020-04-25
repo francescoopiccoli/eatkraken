@@ -7,7 +7,6 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/database.php");
 if(isset($_POST["submit"])){
 
 
-  $code = 10; // autoincrement??
   $productName = mysqli_real_escape_string($_POST["ProductName"]);
   $productDescription = mysqli_real_escape_string($_POST["ProductDescription"]);
   $productPrice = mysqli_real_escape_string($_POST["ProductPrice"]);
@@ -45,10 +44,12 @@ if(isset($_POST["submit"])){
     $stmt->bindParam(':glutenFree', $glutenFree);
     $stmt->bindParam(':lactoseFree', $lactoseFree);
     $stmt->bindParam(':vegan', $vegan);
+    $stmt->bindParam(':fresh', $fresh);
     $stmt->bindParam(':zeroWaste', $zeroWaste);
     $stmt->bindParam(':productImageURL', $productImageURL);
     $stmt->bindParam(':productDeliveryTime', $productDeliveryTime);
     $stmt->execute();
+    echo "New records created successfully";
   }
   catch(PDOException $e){
     echo "Error: " . $e->getMessage();
