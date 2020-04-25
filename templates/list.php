@@ -36,7 +36,7 @@
       <div class="">
         <?php
           foreach($options as $option) {
-            echo("<input type=\"checkbox\" name=\"opt_{$option["id"]}\"> ".
+            echo("<input type=\"checkbox\" name=\"opt_{$option["code"]}\"> ".
             "<label for=\"opt_{$option["code"]}\">{$option["name"]}</label>".
             "<br>");
           }
@@ -44,7 +44,7 @@
       </div>
     </div>
     <div class="col-sm-9 text-left"> 
-      <h1><?= count($result); ?> results in your area</h1>
+      <h1><?= count($results); ?> results in your area</h1>
       <p>All of them can deliver to your address.</p>
       
       <hr>
@@ -52,7 +52,7 @@
         <?php
         foreach($results as $result) {
         ?>
-        <a class="col-md-2 col-sm-4 food-card" href="/product.php?id=<?= $result["code"] ?>">
+        <a class="col-md-2 col-sm-4 food-card" href="/product.php?code=<?= $result["code"] ?>">
           <div class="panel panel-default">
             <div class="panel-body list-thumb" style="background-image: url('<?= $result["picture_url"] ?>'); background-size: cover; min-width: 100px; min-height: 120px;">
             </div>

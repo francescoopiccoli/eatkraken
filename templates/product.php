@@ -4,7 +4,6 @@
 <body>
 
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/navbar.php"); ?>
-<?php include($_SERVER['DOCUMENT_ROOT'] . "/product.php"); ?>
 
 <div class="mainbody"> 
     <div class="home-inner container" style= "background-image: url(https://images.lacucinaitaliana.it/wp-content/uploads/2018/08/27105330/migliore-pizzeria-pizza-trancio-milano-1600x800.jpg);">

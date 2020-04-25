@@ -52,6 +52,7 @@ function allergenes($gluten_free, $lactose_free, $vegan, $fresh, $zero_waste){
     }
     return $allergene . "</ul>";
 }
+
 $product_allergenes = allergenes($product_flag_gluten_free, $product_flag_lactose_free, $product_flag_vegan, $product_flag_fresh, $product_flag_zero_waste);
 
 $product_nutri_facts = "
