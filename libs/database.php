@@ -123,8 +123,7 @@ function db_new_order($restaurant, $full_name, $address, $city, $phone, $shippin
 	$total_cost = db_get_items_cost($order)+db_get_shipping_cost($order);
 	$shipping_cost=db_get_shipping_cost($order);
 
-	db_simple_query("insert into orders (code, restaurant, full_name, address, city, phone, shipping_type, shipping_cost, total_cost, delivery_deadline, status) 
-				values (default, $restaurant, $full_name, $address, $city, $phone, $shipping_type, $shipping_cost, $total_cost, $delivery_deadline, $status);");
+	db_simple_query("insert into orders (code, restaurant, full_name, address, city, phone, shipping_type, shipping_cost, total_cost, delivery_deadline, status) values (default, $restaurant, $full_name, $address, $city, $phone, $shipping_type, $shipping_cost, $total_cost, $delivery_deadline, $status);");
 
 	$order = db_get_last_order_code();
 	return db_new_order_items($item,$order,$quantity,$note);
