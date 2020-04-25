@@ -5,9 +5,9 @@ if(!isset($_GET['code']) || !is_numeric($_GET['code'])) {
     header("Location: /404.php");
 }
 
-$product = db_get_product($productCode / 1); // make sure it's a number -> avoid SQLinj
+$product = db_get_product($_GET['code'] / 1); // make sure it's a number -> avoid SQLinj
 
-$title = "Order" . $product["name"] . "- EatKraken";
+$title = "Order" . $product["name"] . " - EatKraken";
 
 $product_name = $product["name"];
 $product_desc = $product["description"];;

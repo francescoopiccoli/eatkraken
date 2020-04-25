@@ -76,7 +76,7 @@ function db_get_dishes($city, $cat, $deadline, $flags) {
 
 
 function db_get_product($productCode){
-    $product = db_simple_query("select * from dishes where code = '$productCode'");
+    $product = db_simple_query("select * from dishes where code = '$productCode'")[0];
     return $product;
 }
 
