@@ -127,7 +127,7 @@ function db_new_order($restaurant, $full_name, $address, $city, $phone, $shippin
 				values (default, $restaurant, $full_name, $address, $city, $phone, $shipping_type, $shipping_cost, $total_cost, $delivery_deadline, $status);");
 
 	$order = db_get_last_order_code();
-	db_new_order_items($item,$order,$quantity,$note);
+	return db_new_order_items($item,$order,$quantity,$note);
 }
 
 function db_get_last_order_code(){
@@ -135,7 +135,7 @@ function db_get_last_order_code(){
 }
 
 function db_new_order_items($item,$order,$quantity,$note){
-	db_simple_query("insert into order_items (code, ord, item, quantity, note) values (default, $order, $itemCode, $quantity, $note);");
+	return db_simple_query("insert into order_items (code, ord, item, quantity, note) values (default, $order, $itemCode, $quantity, $note);");
 }
 
 ?>
