@@ -6,11 +6,11 @@
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/navbar.php"); ?>
 
 <div class="mainbody"> 
-    <div class="home-inner container" style= "background-image: url(<?=$product_image_url?>);">
+    <div class="home-inner container" style= "background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 1)), url(<?=$product_image_url?>);">
       <div class="caption text-center">
         <h1><?= $product_name ?></h1>
         <p class="lead"><?= $product_desc ?></p>
-        <h3><b>€<?= $product_price ?></b><small>/piece</small></h3>
+        <h3><b>€<?= $product_price ?></b><small style="color: #ccc; font-weight: 500;"> / piece</small></h3>
         <button class="homePageButton">Add to cart</button>
       </div>
     </div>
