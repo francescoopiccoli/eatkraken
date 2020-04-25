@@ -1,13 +1,12 @@
 <?php
 
+/* Simple library for database-related functions */
+
 $GLOBALS['db_name'] = "yhqbrujn";
 $GLOBALS['db_host'] = "balarama.db.elephantsql.com";
 $GLOBALS['db_username'] = "yhqbrujn"; 
 $GLOBALS['db_password'] = "vTdT4LC9LlOf_rgw6fA-Uz54Q-_xefB5";
 $GLOBALS['db_pdo_data'] = "pgsql:host=".$GLOBALS['db_host']." port=5432 dbname=".$GLOBALS['db_name']." user=".$GLOBALS['db_username']." password=".$GLOBALS['db_password'];
-
-
-/* demo for simple static queries */
 
 // indices: simple_query(...)[row][column]
 function db_simple_query($query_text) {
@@ -87,26 +86,6 @@ function db_get_dishes($city, $cat, $deadline, $flags) {
     $res = $stmt->fetchAll();
     $connection = null;
     return $res;
-
-    /*return array(
-        array(
-          "code" => 123,
-          "name" => "Pizza Margherita",
-          "price" => 15,
-          "picture_url" => "https://cdn-media.italiani.it/site-caserta/2019/01/pizza-con-ananas-caserta-2.jpg",
-          "restaurant_id" => 1,
-          "restaurant_name" => "Pizzeria Scarsa SNC"
-        ),
-
-        array(
-          "code" => 234,
-          "name" => "Durum Kebab",
-          "price" => 7,
-          "picture_url" => "https://tourismembassy.com/media/multimedia/images/45e1696726edab87cfec4dae6049d63e.jpg",
-          "restaurant_id" => 2,
-          "restaurant_name" => "KeBZ"
-        )
-      );*()*/
 }
 
 
@@ -136,6 +115,20 @@ function db_get_last_order_code(){
 
 function db_new_order_items($item,$order,$quantity,$note){
 	return db_simple_query("insert into order_items (code, ord, item, quantity, note) values (default, $order, $itemCode, $quantity, $note);");
+}
+
+function db_get_restaurant_by_token($token) {
+    $connection = new PDO($GLOBALS['db_pdo_data']);
+    
+    $stmt = $connection->prepare("select code from restaurants where token = ?");
+    $stmt->execute([$token]);
+    $row = $stmt->fetch();
+    if($row)
+        $res = $row['code'];
+    else
+        $res = -1;
+    $connection = null;
+    return $res;
 }
 
 ?>
