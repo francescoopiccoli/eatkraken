@@ -17,6 +17,7 @@
         <br><br>
         <h4>Deliverable to</h4>
         <select name="city" class="form-control">
+          <option value="">Select a city</option>
           <?php
             foreach ($cities as $city) {
               echo("<option value=\"{$city["code"]}\">{$city["name"]}</option>");
