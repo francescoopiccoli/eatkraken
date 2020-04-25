@@ -49,6 +49,19 @@ function db_get_items_cost($order){
 	return db_simple_query("SELECT sum(price) FROM dishes, order_items WHERE order_items.ord=$order and dishes.code=order_items.item;");
 }
 
+function db_get_shipping_cost($order){
+	switch ($shipping_type) {
+	case 0:
+		$shipping_cost = db_get_cost_eat_in();
+		break;
+	case 1:
+		$shipping_cost = db_get_cost_takeaway();
+		break;
+	case 2:
+		$shipping_cost = db_get_cost_home_delivery();
+		break;
+}
+
 function db_get_dishes($city, $cat, $deadline, $flags) {
     $connection = new PDO($GLOBALS['db_pdo_data']);
 
@@ -64,7 +77,7 @@ function db_get_dishes($city, $cat, $deadline, $flags) {
         ($deadline > 0 ? " and dishes.preparation_time < :time" : "").
         // todo: flags e.g. "and dishes.flag_vegan = 1".
         " order by name asc");
-        
+
     $options = ['city' => $city];
     if($cat > 0) $options['cat'] = $cat;
     if($deadline > 0) $options['time'] = $time;
@@ -82,7 +95,7 @@ function db_get_dishes($city, $cat, $deadline, $flags) {
           "restaurant_id" => 1,
           "restaurant_name" => "Pizzeria Scarsa SNC"
         ),
-      
+
         array(
           "code" => 234,
           "name" => "Durum Kebab",
@@ -104,18 +117,10 @@ function db_get_product($productCode){
 }
 
 /*make orders*/
-function db_new_order($restaurant, $full_name, $address, $city, $phone, $shipping_type, $shipping_cost, $total_cost, $delivery_deadline, $status){
-  
-	switch ($shipping_type) {
-	   case 0:
-	       $shipping_cost = db_get_cost_eat_in();
-	       break;
-	   case 1:
-	       $shipping_cost = db_get_cost_takeaway();
-	       break;
-	   case 2:
-	       $shipping_cost = db_get_cost_home_delivery();
-	       break;
+function db_new_order($restaurant, $full_name, $address, $city, $phone, $shipping_type, $delivery_deadline, $status){
+
+	$total_cost = db_get_items_cost($order)+db_get_shipping_cost($order);
+	$shipping_cost=db_get_shipping_cost($order);
 
 	db_simple_query("insert into orders (code, restaurant, full_name, address, city, phone, shipping_type, shipping_cost, total_cost, delivery_deadline, status) 
 				values (default, $restaurant, $full_name, $address, $city, $phone, $shipping_type, $shipping_cost, $total_cost, $delivery_deadline, $status);");
