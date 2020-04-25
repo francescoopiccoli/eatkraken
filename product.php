@@ -1,9 +1,11 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/database.php");
-// extract from DB -> https://phpdelusions.net/pdo#prepared
 
+if(!isset($_GET['code']) || !is_numeric($_GET['code'])) {
+    header("Location: /404.php");
+}
 
-$product = db_get_product($productCode);
+$product = db_get_product($productCode / 1); // make sure it's a number -> avoid SQLinj
 
 $title = "Order" . $product["name"] . "- EatKraken";
 
@@ -54,9 +56,10 @@ $product_allergenes = allergenes($product_flag_gluten_free, $product_flag_lactos
 
 $product_nutri_facts = "
 <ul style= \"list-style-type: none;\">
-<li>Kcal: $product_nutri_kcal</li>
-<li>Carbs: $product_nutri_carbs</li>
-<li>Fats: $product_nutri_fats</li>
+<i>Quantities per 100 grams</i>
+<li><b>Calories</b>: $product_nutri_kcal</li>
+<li><b>Carbs</b>: $product_nutri_carbs</li>
+<li><b>Fats</b>: $product_nutri_fats</li>
 <li>Proteins:  $product_nutri_proteins</li>
 </ul>";
 
