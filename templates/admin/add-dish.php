@@ -7,30 +7,29 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/database.php");
 if(isset($_POST["submit"])){
 
 
-  $productName = mysqli_real_escape_string($_POST["ProductName"]);
-  $productDescription = mysqli_real_escape_string($_POST["ProductDescription"]);
-  $productPrice = mysqli_real_escape_string($_POST["ProductPrice"]);
-  $restaurant = ""; //??
-  $productCategory = mysqli_real_escape_string($_POST["ProductCategory"]);
-  $productIngredients = mysqli_real_escape_string($_POST["ProductIngredients"]);
-  $nutri_kcal = mysqli_real_escape_string($_POST["nutri_kcal"]);
-  $nutri_carb = mysqli_real_escape_string($_POST["nutri_carbs"]);
-  $nutri_fat = mysqli_real_escape_string($_POST["nutri_fat"]);
-  $nutri_protein = mysqli_real_escape_string($_POST["nutri_protein"]);
-  $glutenFree = mysqli_real_escape_string(isset($_POST['glutenFree']) ? $_POST['glutenFree'] : 'no');
-  $lactoseFree = mysqli_real_escape_string(isset($_POST['lactoseFree']) ? $_POST['lactoseFree'] : 'no');
-  $vegan = mysqli_real_escape_string(isset($_POST['vegan']) ? $_POST['vegan'] : 'no');
-  $fresh = mysqli_real_escape_string(isset($_POST['fresh']) ? $_POST['fresh'] : 'no');
-  $zeroWaste = mysqli_real_escape_string(isset($_POST['zeroWaste']) ? $_POST['zeroWaste'] : 'no');
-  $productImageURL = mysqli_real_escape_string($_POST["imageUrl"]);
-  $productDeliveryTime = mysqli_real_escape_string($_POST["deliveryTime"]);
+  $productName = $_POST["ProductName"];
+  $productDescription = $_POST["ProductDescription"];
+  $productPrice = $_POST["ProductPrice"];
+  $restaurant = 2; //??
+  $productCategory = $_POST["ProductCategory"];
+  $productIngredients = $_POST["ProductIngredients"];
+  $nutri_kcal = $_POST["nutri_kcal"];
+  $nutri_carb = $_POST["nutri_carbs"];
+  $nutri_fat = $_POST["nutri_fat"];
+  $nutri_protein = $_POST["nutri_protein"];
+  $glutenFree = isset($_POST['glutenFree']) ? $_POST['glutenFree'] : 'no';
+  $lactoseFree = isset($_POST['lactoseFree']) ? $_POST['lactoseFree'] : 'no';
+  $vegan = isset($_POST['vegan']) ? $_POST['vegan'] : 'no';
+  $fresh = isset($_POST['fresh']) ? $_POST['fresh'] : 'no';
+  $zeroWaste = isset($_POST['zeroWaste']) ? $_POST['zeroWaste'] : 'no';
+  $productImageURL = $_POST["imageUrl"];
+  $productDeliveryTime = $_POST["deliveryTime"];
 
   try{
    
     $connection = new PDO($GLOBALS['db_pdo_data']);
-    $stmt = $connection->prepare("INSERT INTO dishes VALUES (:code, :productName, :productDescription, :productPrice, :restaurant, :productCategory, :productIngredients, :nutri_carb, :nutri_fat, :nutri_kcal, :nutri_protein, :glutenFree, :lactoseFree, :vegan, :fresh, :zeroWaste, :productImageURL, :productDeliveryTime");
+    $stmt = $connection->prepare("INSERT INTO dishes VALUES (:productName, :productDescription, :productPrice, :restaurant, :productCategory, :productIngredients, :nutri_carb, :nutri_fat, :nutri_kcal, :nutri_protein, :glutenFree, :lactoseFree, :vegan, :fresh, :zeroWaste, :productImageURL, :productDeliveryTime");
 
-    $stmt->bindParam(':code', $code);
     $stmt->bindParam(':productName', $productName);
     $stmt->bindParam(':productDescription', $productDescription);
     $stmt->bindParam(':productPrice', $productPrice);
@@ -48,8 +47,12 @@ if(isset($_POST["submit"])){
     $stmt->bindParam(':zeroWaste', $zeroWaste);
     $stmt->bindParam(':productImageURL', $productImageURL);
     $stmt->bindParam(':productDeliveryTime', $productDeliveryTime);
-    $stmt->execute();
-    echo "New records created successfully";
+    $inserted = $stmt->execute();
+    if($inserted){
+      echo "New records created successfully";}
+    else{
+      echo "error";
+    }
   }
   catch(PDOException $e){
     echo "Error: " . $e->getMessage();
@@ -60,6 +63,7 @@ if(isset($_POST["submit"])){
 ?>
 
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/common_head.php"); ?>
+
 <body>
 
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/navbar.php"); ?>
@@ -109,20 +113,20 @@ if(isset($_POST["submit"])){
 
 <label><h4>Allergenes:</h4></label>
 <div class="text-left">
-          <input type="checkbox" name="glutenFree" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Gluten free</label><br>
+          <input type="checkbox" name="glutenFree" class="form-check-input" id="1">
+          <label class="form-check-label" for="1">Gluten free</label><br>
 
-          <input type="checkbox" name="lactoseFree" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Lactose free</label><br>
+          <input type="checkbox" name="lactoseFree" class="form-check-input" id="2">
+          <label class="form-check-label" for="2">Lactose free</label><br>
 
-          <input type="checkbox" name="vegan" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Vegan</label><br>
+          <input type="checkbox" name="vegan" class="form-check-input" id="3">
+          <label class="form-check-label" for="3">Vegan</label><br>
 
-          <input type="checkbox" name="fresh"class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Fresh</label><br>
+          <input type="checkbox" name="fresh"class="form-check-input" id="4">
+          <label class="form-check-label" for="4">Fresh</label><br>
 
-          <input type="checkbox" name="zeroWaste" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Zero waste</label><br>
+          <input type="checkbox" name="zeroWaste" class="form-check-input" id="5">
+          <label class="form-check-label" for="5">Zero waste</label><br>
       </div>
 
       <br>
