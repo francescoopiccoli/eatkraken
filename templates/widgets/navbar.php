@@ -13,8 +13,8 @@
     </div>
     <div class="collapse navbar-collapse navbar-right" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="#"><b>HOME</b></a></li>
-        <li><a href="#"><b>ABOUT</b></a></li>
+        <li><a href="/"><b>HOME</b></a></li>
+        <li><a href="/about.php"><b>ABOUT</b></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <?php include($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/checkout.php"); ?>
