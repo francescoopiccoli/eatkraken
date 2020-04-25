@@ -29,26 +29,26 @@ $product_flag_zero_waste = $product["flag_zero_waste"];
 $product_image_url = $product["image_url"];
 
 function allergenes($gluten_free, $lactose_free, $vegan, $fresh, $zero_waste){
-    $allergene = "<ul style=\"list-style-type: none;\">";
+    $allergene = "<ul style=\"list-style-type: none; margin: 10%;\">";
     if($gluten_free){
-        $allergene .= "<li>Gluten free</li>";
+        $allergene .= "<li style=\"border-bottom: 1px solid #e2e2e2; margin: 10px;\">Gluten free</li>";
     }
 
     if($lactose_free){
-        $allergene .= "<li>Lactose free</li>";
+        $allergene .= "<li style=\"border-bottom: 1px solid #e2e2e2; margin: 10px;\">Lactose free</li>";
     }
 
     if($vegan){
-        $allergene .= "<li>Vegan</li>";
+        $allergene .= "<li style=\"border-bottom: 1px solid #e2e2e2; margin: 10px;\">Vegan</li>";
     }
 
     if($fresh){
-        $allergene .= "<li>Daily sourced</li>";
+        $allergene .= "<li style=\"border-bottom: 1px solid #e2e2e2; margin: 10px;\">Daily sourced</li>";
 
     }
 
     if($zero_waste){
-        $allergene .= "<li>Zero waste</li>";
+        $allergene .= "<li style=\"border-bottom: 1px solid #e2e2e2; margin: 10px;\">Zero waste</li>";
     }
     return $allergene . "</ul>";
 }
@@ -56,14 +56,14 @@ function allergenes($gluten_free, $lactose_free, $vegan, $fresh, $zero_waste){
 $product_allergenes = allergenes($product_flag_gluten_free, $product_flag_lactose_free, $product_flag_vegan, $product_flag_fresh, $product_flag_zero_waste);
 
 $product_nutri_facts = "
-<ul style= \"list-style-type: none;\">
 <i>Quantities per 100 grams</i>
-<li><b>Calories</b>: $product_nutri_kcal</li>
-<li><b>Carbs</b>: $product_nutri_carbs</li>
-<li><b>Fats</b>: $product_nutri_fats</li>
-<li>Proteins:  $product_nutri_proteins</li>
-</ul>";
+<table class=\"table table-bordered\">
+<tr><td><b>Calories</b>:</td> <td>$product_nutri_kcal kcal</td> </tr>
+<tr><td><b>Carbs</b>:</td> <td>$product_nutri_carbs g</td> </tr>
+<tr><td><b>Fats</b>:</td>  <td>$product_nutri_fats g</td> </tr>
+<tr><td><b>Proteins:</b></td>   <td>$product_nutri_proteins g</td> </tr>
+</table>";
+
 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/templates/product.php");
-
 ?>

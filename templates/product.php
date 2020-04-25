@@ -11,7 +11,7 @@
         <h1><?= $product_name ?></h1>
         <p class="lead"><?= $product_desc ?></p>
         <h3><b>€<?= $product_price ?></b><small>/piece</small></h3>
-        <button id="btn-cart-add">Add to cart</button>
+        <button class="homePageButton">Add to cart</button>
       </div>
     </div>
 </div>
