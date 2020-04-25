@@ -84,13 +84,13 @@ body {
     text-transform: uppercase;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
-    background-color: $butter;
+    background-color: transparent;
     border-radius: 10px;
 
 }
 
 .homePageButton:hover{
-    background-color: $butter;
+    background-color: transparent;
     border-radius: 10px;
     color: #DDDDDD;
     border-color: #DDDDDD;
@@ -99,7 +99,7 @@ body {
 }
 
 .homePageButton:active{
-    background-color: $butter;
+    background-color: transparent;
     border-radius: 10px;
     color: #BBBBBB;
     border-color: #BBBBBB;

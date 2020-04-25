@@ -12,7 +12,6 @@ body {
 .navbar-nav > li > a {
   color: white !important;
   font-family: "Acme";
-
 }
 
 .navbar-brand {
@@ -32,7 +31,6 @@ body {
   font-weight: 900;
   margin-left: 10px;
   font-family: "Acme";
-
 }
 
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
@@ -68,38 +66,35 @@ body {
 }
 
 .homePageButton {
-    display: inline-block;
-    padding: 0.5em 3em;
-    border: 0.16em solid white;
-    color: white;
-    margin: 0 0.3em 0.3em 0;
-    text-align: center;
-    box-sizing: border-box;
-    text-decoration:none;
-    text-transform: uppercase;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-  background-color: #F2D388;
-    border-radius: 10px;
-
+  display: inline-block;
+  padding: 0.5em 3em;
+  border: 0.16em solid white;
+  color: white;
+  margin: 0 0.3em 0.3em 0;
+  text-align: center;
+  box-sizing: border-box;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  background-color: transparent;
+  border-radius: 10px;
 }
 
-.homePageButton:hover{
-  background-color: #F2D388;
-    border-radius: 10px;
-    color: #DDDDDD;
-    border-color: #DDDDDD;
-    text-decoration:none;
-
+.homePageButton:hover {
+  background-color: transparent;
+  border-radius: 10px;
+  color: #DDDDDD;
+  border-color: #DDDDDD;
+  text-decoration: none;
 }
 
-.homePageButton:active{
-  background-color: #F2D388;
-    border-radius: 10px;
-    color: #BBBBBB;
-    border-color: #BBBBBB;
-    text-decoration:none;
-
+.homePageButton:active {
+  background-color: transparent;
+  border-radius: 10px;
+  color: #BBBBBB;
+  border-color: #BBBBBB;
+  text-decoration: none;
 }
 
 /* Homepage items */
@@ -165,7 +160,6 @@ body {
 
 /*specific product page*/
 .home-inner {
-  background-image: url(https://images.lacucinaitaliana.it/wp-content/uploads/2018/08/27105330/migliore-pizzeria-pizza-trancio-milano-1600x800.jpg);
   width: 100%;
   height: 30em;
   opacity: 0.8;
