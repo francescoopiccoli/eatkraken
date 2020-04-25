@@ -26,32 +26,36 @@ if(isset($_POST["submit"])){
   $productImageURL = mysqli_real_escape_string($_POST["imageUrl"]);
   $productDeliveryTime = mysqli_real_escape_string($_POST["deliveryTime"]);
 
-$stmt = $dbh->prepare("INSERT INTO dishes VALUES (:code, :productName, :productDescription, :productPrice, :restaurant, :productCategory,/* qui ci sarebbe allergeni che dobbiamo togliere la colonna
-* */ :productIngredients, :nutri_carb, :nutri_fat, :nutri_kcal, :nutri_protein, :glutenFree, :lactoseFree, :vegan, :fresh, :zeroWaste, :productImageURL, :productDeliveryTime");
+  try{
+   
+    $connection = new PDO($GLOBALS['db_pdo_data']);
+    $stmt = $connection->prepare("INSERT INTO dishes VALUES (:code, :productName, :productDescription, :productPrice, :restaurant, :productCategory, :productIngredients, :nutri_carb, :nutri_fat, :nutri_kcal, :nutri_protein, :glutenFree, :lactoseFree, :vegan, :fresh, :zeroWaste, :productImageURL, :productDeliveryTime");
 
-$stmt->bindParam(':code', $code);
-$stmt->bindParam(':productName', $productName);
-$stmt->bindParam(':productDescription', $productDescription);
-$stmt->bindParam(':productPrice', $productPrice);
-$stmt->bindParam(':restaurant', $restaurant);
-$stmt->bindParam(':productCategory', $productCategory);
-//allergenes?
-$stmt->bindParam(':productIngredients', $productIngredients);
-$stmt->bindParam(':nutri_carb', $nutri_carb);
-$stmt->bindParam(':nutri_fat', $nutri_fat);
-$stmt->bindParam(':nutri_kcal', $nutri_kcal);
-$stmt->bindParam(':nutri_protein', $nutri_protein);
-$stmt->bindParam(':glutenFree', $glutenFree);
-$stmt->bindParam(':lactoseFree', $lactoseFree);
-$stmt->bindParam(':vegan', $vegan);
-$stmt->bindParam(':zeroWaste', $zeroWaste);
-$stmt->bindParam(':productImageURL', $productImageURL);
-$stmt->bindParam(':productDeliveryTime', $productDeliveryTime);
+    $stmt->bindParam(':code', $code);
+    $stmt->bindParam(':productName', $productName);
+    $stmt->bindParam(':productDescription', $productDescription);
+    $stmt->bindParam(':productPrice', $productPrice);
+    $stmt->bindParam(':restaurant', $restaurant);
+    $stmt->bindParam(':productCategory', $productCategory);
+    $stmt->bindParam(':productIngredients', $productIngredients);
+    $stmt->bindParam(':nutri_carb', $nutri_carb);
+    $stmt->bindParam(':nutri_fat', $nutri_fat);
+    $stmt->bindParam(':nutri_kcal', $nutri_kcal);
+    $stmt->bindParam(':nutri_protein', $nutri_protein);
+    $stmt->bindParam(':glutenFree', $glutenFree);
+    $stmt->bindParam(':lactoseFree', $lactoseFree);
+    $stmt->bindParam(':vegan', $vegan);
+    $stmt->bindParam(':zeroWaste', $zeroWaste);
+    $stmt->bindParam(':productImageURL', $productImageURL);
+    $stmt->bindParam(':productDeliveryTime', $productDeliveryTime);
+    $stmt->execute();
+  }
+  catch(PDOException $e){
+    echo "Error: " . $e->getMessage();
+  }
 
-$stmt->execute();
+  $connection = null;
 }
-
-
 ?>
 
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/common_head.php"); ?>
