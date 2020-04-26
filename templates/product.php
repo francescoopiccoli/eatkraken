@@ -1,6 +1,10 @@
+<?php
+require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-  <?php include($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/common_head.php"); ?>
+  <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/common_head.php"); ?>
   <style>
   td{
     padding:10px;
@@ -16,9 +20,23 @@
             <h1><?= $product_name ?></h1>
             <p class="lead"><?= $product_desc ?></p>
             <h3><b>€<?= $product_price ?></b><small style="color: #ccc; font-weight: 500;"> / piece</small></h3>
-            <button class="homePageButton" id="cart-add-btn">Add to cart</button>
+            <a class="homePageButton" id="cart-add-btn" href="/product.php?code=<?= $product_id; ?>&add">
+            <?php
+              if(!$addToCart || !$addSuccess) {
+                echo "Add to cart";
+              } else {
+                echo "Added!";
+              }
+            ?>
+            </a>
             <br>
-            <span id="cart-add-msg"></span>
+            <span id="cart-add-msg">
+            <?php
+              if($addToCart && !$addSuccess) {
+                echo "Error adding, try again?";
+              }
+            ?>
+            </span>
           </div>
         </div>
     </div>
@@ -41,23 +59,6 @@
     </div>
 
     <?php include($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/footer.php"); ?>
-
-    <script>
-      $(document).ready(function() {
-        $("#cart-add-btn").click(function() {
-          /* TODO : jquery */
-          alert("*horrible crash noises*");
-
-          if(true) {
-            $("#cart-add-btn").text("Added!");
-            $("#cart-add-msg").val("");
-          } else {
-            $("#cart-add-msg").val("An error has occurred, please try again");
-          }
-
-        });
-      });
-    </script>
   </body>
 </html>
 
