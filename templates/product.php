@@ -15,7 +15,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
 
     <?php include($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/navbar.php"); ?>
     <div class="mainbody"> 
-        <div class="home-inner container" style= "background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 1)), url(<?=$product_image_url?>);">
+        <div class="home-inner container" style= "background-image: linear-gradient(rgba(0,0,0, 0.2), rgba(0,0,0, 1)), url(<?=$product_image_url?>);">
           <div class="caption text-center">
 
             <img class="circular--landscape" id="profile-pic" src=<?=$product_image_url?>>
