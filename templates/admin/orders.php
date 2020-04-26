@@ -12,11 +12,17 @@ function get_orders(){
 }
 
 function get_orders_items(){
-  return db_simple_query("select * from order_items where ord = $order[0]");
+  return db_simple_query("select * from order_items where ord = 0");
+}
+
+function get_dish($code){
+  return db_simple_query("select name, price from dishes where code = $code");
 }
 
   $orders = get_orders();
-  print_r($array);
+  $order_items = get_orders_items();
+  $dishOne = get_dish($order_items[0][2]);
+
 
 ?>
 
@@ -47,6 +53,7 @@ function get_orders_items(){
           </thead>
           <tbody>
           <?php 
+
             foreach($orders as $order){?>
             "<tr>
               <th scope="row"><?= $order[0] ?></th>
@@ -58,16 +65,17 @@ function get_orders_items(){
               </td>
               <td>
               <?php
-              $order_items = get_orders_items();
-                print_r($order_items);
 
 
               foreach($order_items as $order_item){
 
+                 $dish = get_dish($order_item[2]);
+                 echo $dish[0][0] ."<b> ". $dish[0][1] ."€</b></br>";
+
               }
               ?>
               </td>
-              <td><?= $order[8] . "€" ?></td>
+              <td><?= ($order[8] + $order[7]) . "€" ?></td>
               <td>
                 Deliver within <b>40 minutes</b><br><b><?= $order[6] ?></b> <?= $order[7] . "€" ?><br>
                 <button class="btn btn-success btn-sm">
