@@ -11,6 +11,10 @@ function get_orders(){
     return db_simple_query("select * from orders where restaurant = 1 and status = 1");
 }
 
+function get_orders_items(){
+  return db_simple_query("select * from order_items where ord = $order[0]");
+}
+
   $orders = get_orders();
   print_r($array);
 
@@ -47,13 +51,21 @@ function get_orders(){
             "<tr>
               <th scope="row"><?= $order[0] ?></th>
               <td>
-                <b>Username???</b><br>
+                <b><?=$order[2]?></b><br>
                 <?=$order[3] ?><br>
                 <?=$order[4] ?><br>
                 <a href="tel:<?=$order[5] ?>"><?=$order[5] ?></a>
               </td>
               <td>
-              <?=$order[2]?>
+              <?php
+              $order_items = get_orders_items();
+                print_r($order_items);
+
+
+              foreach($order_items as $order_item){
+
+              }
+              ?>
               </td>
               <td><?= $order[8] . "€" ?></td>
               <td>
