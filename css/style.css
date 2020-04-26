@@ -98,7 +98,7 @@ body {
 /* Homepage items */
 .homepageAllergenes {
   background-size: cover;
-  background-position: center ;
+  background-position: center center;
   display: block;
   min-height: 20px;
   height: 100px;
@@ -110,7 +110,7 @@ body {
   margin-bottom: 2em; 
   font-size: large;
   font-family: Arial, Helvetica, serif;
-  text-align: right;
+  text-align: left;
 }
 
 /* Checkout page */

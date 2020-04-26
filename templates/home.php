@@ -6,7 +6,19 @@ $title = "EatKraken";
   <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/common_head.php"); ?>
   <body>
   <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/navbar.php"); ?>
+  <?php 
 
+    function getRandomImage(){
+      
+      $arrayId = array(1, 2, 3, 11, 12, 21, 22, 31, 32, 41, 42, 51, 52, 53, 61, 62);
+      //$arrayId = db_simple_query("select code from dishes")[0];
+      $randIndex = array_rand($arrayId);
+      $productCode = $arrayId[$randIndex];
+      $imageURL = db_simple_query("select image_url from dishes where code = $productCode");
+      return $imageURL[0][0];
+    }
+
+  ?>
 
   <div class="mainbody"> 
     
@@ -19,23 +31,22 @@ $title = "EatKraken";
     </ol>-->
 
   <div class="carousel-inner">
-
-      <div class="item active" style="background-image: url(https://images.unsplash.com/photo-1561760041-ca62af0d9047?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);">
+      <div class="item active" style="background-image: url(<?= getRandomImage()?>">
         <div class="carousel-caption">
           <h2>You choose it, we bring it!</h2>
           <a href="list.php" class="homePageButton">Check the list!</a>
         </div>
       </div>
 
-      <div class="item" style="background-image: url(https://video-images.vice.com/articles/59ca67cc3c5a224d52beeafc/lede/1506437421227-perche-non-ci-sono-donne-tra-i-kebabbari.jpeg?crop=0.999247554552295xw:1xh;center,center);">
+      <div class="item" style="background-image: url(<?= getRandomImage()?>">
         <div class="carousel-caption">
           <h2>Your favourite restaurant, at your door!</h2>
           <a href="list.php" class="homePageButton">Check the list!</a>
         </div>
       </div>
 
-      <div class="item" style="background-image: url(https://www.larena.it/image/policy:1.4667048:1456192040/image.jpg?f=16x9&w=1200&$p$f$w=9b37ea6);">
-        <div class="carousel-caption">
+      <div class="item" style="background-image: url(<?= getRandomImage()?>">
+      <div class="carousel-caption">
           <h2>Free delivery on order over 20$</h2>
           <a href="list.php" class="homePageButton">Check the list!</a>
         </div>
