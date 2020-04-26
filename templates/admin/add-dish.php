@@ -17,7 +17,7 @@ if(isset($_POST["submit"])){
   $productName = $_POST["ProductName"];
   $productDescription = $_POST["ProductDescription"];
   $productPrice = $_POST["ProductPrice"];
-  $restaurant = 2; //??
+  $restaurant = restaurant_get_logged_id();
   $productCategory = $_POST["ProductCategory"];
   $productIngredients = $_POST["ProductIngredients"];
   $nutri_kcal = $_POST["nutri_kcal"];
@@ -93,6 +93,7 @@ else{
     $stmt->bindParam(':productImageURL', $productImageURL);
     $stmt->bindParam(':productDeliveryTime', $productDeliveryTime);
     $inserted = $stmt->execute();
+    print_r($inserted);
     
     if($inserted){
       echo "New records created successfully";}
