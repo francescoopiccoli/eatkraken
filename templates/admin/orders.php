@@ -6,7 +6,16 @@ if(!restaurant_is_logged_in()) {
   header("Location: /");
   exit;
 }
+//http://localhost:8080/restaurant/auth.php?login=kebabkebabkebabkebabkebabkebabke
+function get_orders(){
+    return db_simple_query("select * from orders where restaurant = 1 and status = 1");
+}
+
+  $orders = get_orders();
+  print_r($array);
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,33 +43,31 @@ if(!restaurant_is_logged_in()) {
           </thead>
           <tbody>
           <?php 
-            for($i = 0; $i<5; $i++){
-            echo "<tr>
-              <th scope=\"row\">18355</th>
+            foreach($orders as $order){?>
+            "<tr>
+              <th scope="row"><?= $order[0] ?></th>
               <td>
-                <b>Francesco Ricci</b><br>
-                Via Alto Adige, 5 <br>
-                00100 Bolzano (BZ) <br>
-                <a href=\"tel:+393310123456\">+39 331 012 3456</a>
+                <b>Username???</b><br>
+                <?=$order[3] ?><br>
+                <?=$order[4] ?><br>
+                <a href="tel:<?=$order[5] ?>"><?=$order[5] ?></a>
               </td>
               <td>
-                3x <b>Greta Burger</b> (€5)<br>
-                <i>\"Without onions, thanks!!!!!\"</i>
-                <br>
-                2x <b>Large Coke</b> (€2.5)
+              <?=$order[2]?>
               </td>
-              <td>€25</td>
+              <td><?= $order[8] . "€" ?></td>
               <td>
-                Deliver within <b>40 minutes</b><br><b>Home delivery</b> (€5)<br>
-                <button class=\"btn btn-success btn-sm\">
+                Deliver within <b>40 minutes</b><br><b><?= $order[6] ?></b> <?= $order[7] . "€" ?><br>
+                <button class="btn btn-success btn-sm">
                   Accept
                 </button> 
-                <button class=\"btn btn-danger btn-sm\">
+                <button class="btn btn-danger btn-sm">
                   Refuse
                 </button>
               </td>
-            </tr>";
-            }?>
+            </tr>
+            <?php } ?>
+
           </tbody>
         </table>
 

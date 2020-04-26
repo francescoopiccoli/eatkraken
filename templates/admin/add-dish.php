@@ -14,7 +14,6 @@ if(!restaurant_is_logged_in()) {
 
 if(isset($_POST["submit"])){
 
-
   $productName = $_POST["ProductName"];
   $productDescription = $_POST["ProductDescription"];
   $productPrice = $_POST["ProductPrice"];
@@ -27,44 +26,44 @@ if(isset($_POST["submit"])){
   $nutri_protein = $_POST["nutri_protein"];
 
 
-  if(!isset($_POST['glutenFree'])){
+  if(!(isset($_POST['glutenFree']) && $_POST['glutenFree'] == "true")){
     $glutenFree = 'false';
   }
   else{
-    $glutenFree = $_POST['glutenFree'];
+    $glutenFree = 'true';
   }
 
-  if(!isset($_POST['lactoseFree'])){
+  if(isset($_POST['lactoseFree']) && $_POST['lactoseFree'] == "true"){
     $lactoseFree = 'false';
   }
   else{
-    $lactoseFree = $_POST['lactoseFree'];
+    $lactoseFree = 'true';
   }
-
   
-  if(!isset($_POST['vegan'])){
-    $vegan = false;
+  if(isset($_POST['vegan']) && $_POST['vegan'] == "true"){
+    $vegan = "false";
   }
   else{
-    $vegan = $_POST['vegan'];
+    $vegan = 'true';
   }
 
-  
-  if(!isset($_POST['fresh'])){
+  if(isset($_POST['fresh']) && $_POST['fresh'] == "true"){
     $fresh = 'false';
   }
-  else{
-    $fresh = $_POST['fresh'];
+else{
+    $fresh = 'true';
   }
 
-  
-  if(!isset($_POST['zeroWaste'])){
+  if(isset($_POST['zeroWaste']) && $_POST['zeroWaste'] == "true"){
     $zeroWaste = 'false';
   }
   else{
-    $zeroWaste = $_POST['zeroWaste'];
+    $zeroWaste = 'true';
   }
 
+  echo  $glutenFree . " " . $lactoseFree . " " . $vegan . " " . $fresh . " " . $zeroWaste;
+
+  
   $productImageURL = $_POST["imageUrl"];
   $productDeliveryTime = $_POST["deliveryTime"];
 
@@ -161,19 +160,19 @@ if(isset($_POST["submit"])){
 
 <label><h4>Allergenes:</h4></label>
 <div class="text-left">
-          <input type="checkbox" name="glutenFree" class="form-check-input" id="1">
+          <input type="checkbox" name="glutenFree" class="form-check-input" id="1" value="true">
           <label class="form-check-label" for="1">Gluten free</label><br>
 
-          <input type="checkbox" name="lactoseFree" class="form-check-input" id="2">
+          <input type="checkbox" name="lactoseFree" class="form-check-input" id="2" value="true">
           <label class="form-check-label" for="2">Lactose free</label><br>
 
-          <input type="checkbox" name="vegan" class="form-check-input" id="3">
+          <input type="checkbox" name="vegan" class="form-check-input" id="3" value="true">
           <label class="form-check-label" for="3">Vegan</label><br>
 
-          <input type="checkbox" name="fresh"class="form-check-input" id="4">
+          <input type="checkbox" name="fresh"class="form-check-input" id="4" value="true">
           <label class="form-check-label" for="4">Fresh</label><br>
 
-          <input type="checkbox" name="zeroWaste" class="form-check-input" id="5">
+          <input type="checkbox" name="zeroWaste" class="form-check-input" id="5" value="true">
           <label class="form-check-label" for="5">Zero waste</label><br>
       </div>
 
