@@ -82,10 +82,22 @@ function db_get_shipping_cost($order){
 	return $shipping_cost;
 }
 
-function db_get_dishes($city, $cat, $deadline, $flags) {
-    $connection = new PDO($GLOBALS['db_pdo_data']);
+function db_get_dishes($city, $cat, $time, $flags) {
+    // must be consistent with one in list.php
+    $supportedFlags = array(
+        array('code' => 1, 'name' => "fresh"),
+        array('code' => 2, 'name' => "gluten_free"),
+        array('code' => 3, 'name' => "lactose_free"),
+        array('code' => 4, 'name' => "vegan"),
+        array('code' => 5, 'name' => "zero_waste"),
+    );
+    $flagsText = "";
+    foreach($supportedFlags as $flag) {
+        if(in_array($flag['code'], $flags))
+            $flagsText .= " and dishes.flag_".$flag['name']. " = true";
+    }
 
-    $time = $deadline - 0; // todo: "0" must be current timestamp, $deadline desired timestamp
+    $connection = new PDO($GLOBALS['db_pdo_data']);
     
     $stmt = $connection->prepare(
         "select dishes.code, dishes.name, dishes.price, dishes.image_url, dishes.restaurant as restaurant_id, restaurants.name as restaurant_name".
@@ -94,13 +106,13 @@ function db_get_dishes($city, $cat, $deadline, $flags) {
         " and delivers_to.city = :city".
         " and dishes.restaurant = restaurants.code".
         ($cat > 0 ? " and dishes.category = :cat" : "").
-        ($deadline > 0 ? " and dishes.preparation_time < :time" : "").
-        // todo: flags e.g. "and dishes.flag_vegan = 1".
+        ($time > 0 ? " and dishes.delivery_time < :time" : "").
+        $flagsText . 
         " order by name asc");
 
     $options = ['city' => $city];
     if($cat > 0) $options['cat'] = $cat;
-    if($deadline > 0) $options['time'] = $time;
+    if($time > 0) $options['time'] = $time;
     $stmt->execute($options);
     $res = $stmt->fetchAll();
     $connection = null;

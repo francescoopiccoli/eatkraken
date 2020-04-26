@@ -4,7 +4,7 @@
 <body>
   <script>
   $(document).ready(function() {
-    $(".form-control").change(function() {
+    $(".form-refresh").change(function() {
       $("#form").submit();
     });
   });
@@ -16,24 +16,26 @@
       <div class="col-sm-3 .bg-secondary sidenav text-left">
         <br><br>
         <h4>Deliverable to</h4>
-        <select name="city" class="form-control">
+        <select name="city" class="form-control form-refresh">
           <option value="">Select a city</option>
           <?php
             foreach ($cities as $city) {
-              echo("<option value=\"{$city["code"]}\">{$city["name"]}</option>");
+              $selected = ( ($city['code'] == $selectedCity) ? "selected" : "");
+              echo("<option value=\"{$city['code']}\" {$selected}>{$city['name']}</option>");
             }
           ?>
         </select>
         <br>
-        <h4>Deliver before</h4>
-        <input type="datetime-local" name="deadline" id="" class="form-control">
+        <h4>Deliver within (minutes)</h4>
+        <input type="number" name="time" id="" class="form-control form-refresh" placeholder="minutes" min="15" max="120" value="<?= htmlentities($deliveryTime); ?>">
         <br>
         <h4>In category</h4>
-        <select name="category" id="" class="form-control">
+        <select name="category" id="" class="form-control form-refresh">
           <option value="0" selected>All</option>
           <?php
             foreach ($categories as $category) {
-              echo("<option value=\"{$category["code"]}\">{$category["name"]}</option>");
+              $selected = ($category['code'] == $selectedCategory? "selected" : "");
+              echo("<option value=\"{$category['code']}\" {$selected}>{$category['name']}</option>");
             }
           ?>
           <option value="-1">Others</option>
@@ -43,7 +45,8 @@
         <div class="">
           <?php
             foreach($options as $option) {
-              echo("<input type=\"checkbox\" name=\"opt_{$option["code"]}\"> ".
+              $checked = (in_array($option['code'], $selectedFlags) ? "checked" : "");
+              echo("<input type=\"checkbox\" name=\"opt_{$option["code"]}\" class=\"form-refresh\" {$checked}> ".
               "<label for=\"opt_{$option["code"]}\">{$option["name"]}</label>".
               "<br>");
             }

@@ -16,12 +16,19 @@ $options = array(
 
 $categories = db_get_categories();
 
+$selectedCity = (isset($_GET['city']) ? $_GET['city'] : "");
+$selectedCategory = (isset($_GET['category']) ? $_GET['category'] : "");
+$deliveryTime = (isset($_GET['time']) && $_GET['time'] > 0 ? $_GET['time'] : "");
+$selectedFlags = array();
 
-$results = db_get_dishes($_GET['city'], $_GET['category'], $_GET['deadline'], 0);
+foreach($_GET as $name => $v) {
+  if(substr($name,0,4) == "opt_")
+    array_push($selectedFlags, substr($name,4));
+}
+
+$results = db_get_dishes($_GET['city'], $_GET['category'], $_GET['time'], $selectedFlags);
 
 $title = "All products";
-
-
 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/templates/list.php");
 
