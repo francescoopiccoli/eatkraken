@@ -11,6 +11,10 @@ function cart_get_items() {
     else
         return $_SESSION['cart'];
 }
+function cart_empty() {
+    if(isset($_SESSION['cart']))
+        unset($_SESSION['cart']);
+}
 
 function cart_get_orders() {
     $items = cart_get_items();
@@ -101,7 +105,7 @@ function cart_get_restaurant_message($restaurant) {
     return $_SESSION['restaurant_prefs'][$restaurant];
 }
 
-// also remember address as session data
+// also remember address, phone & email as session data
 function cart_set_address($address) {    
     $_SESSION['address'] = htmlentities($address);
 }
@@ -110,6 +114,26 @@ function cart_get_address() {
         return "No Shipping Address specified";
     
     return $_SESSION['address'];
+}
+
+function cart_set_email($email) {    
+    $_SESSION['email'] = htmlentities($email);
+}
+function cart_get_email() {
+    if(!isset($_SESSION['email']))
+        return "";
+    
+    return $_SESSION['email'];
+}
+
+function cart_set_phone($phone) {    
+    $_SESSION['phone'] = htmlentities($phone);
+}
+function cart_get_phone() {
+    if(!isset($_SESSION['phone']))
+        return "";
+    
+    return $_SESSION['phone'];
 }
 
 

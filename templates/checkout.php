@@ -1,6 +1,6 @@
 <?php
 $title = "Checkout";
-
+$isCheckoutPage = true; // for checkout widget
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,14 +15,21 @@ $title = "Checkout";
         <div class="col-sm-12 text-left"> 
 
           <div class="row checkout-total-row">
-            <div class="col-sm-8">
+            <div class="col-sm-3">
               <b>Deliver to:</b>
               <br>  
               <span id="address"><?= cart_get_address(); ?></span> (<a href="#" onclick="editAddress()">edit</a>)
             </div>
+            <div class="col-sm-3">
+              <b>Personal information</b>
+              <br>  
+              <span id="address"><?= (cart_get_email() == "" ? "No email specified" : cart_get_email()); ?></span> (<a href="#" onclick="editMail()">edit</a>)<br>
+              <span id="address"><?= (cart_get_phone() == "" ? "No phone specified" : cart_get_phone()); ?></span> (<a href="#" onclick="editPhone()">edit</a>)
+            </div>
             
             <div class="col-sm-2 text-center">
               Shipping
+              <!-- todo! -->
               <h2>€5</h2>
             </div>
             <div class="col-sm-2 text-center">
@@ -92,6 +99,18 @@ $title = "Checkout";
 
         if(address != null)
           document.location = "/checkout.php?set_address="+encodeURI(address);
+      }
+      function editMail() {
+        address = prompt("Enter e-mail address");
+
+        if(address != null)
+          document.location = "/checkout.php?set_email="+encodeURI(address);
+      }
+      function editPhone() {
+        phone = prompt("Enter phone number");
+
+        if(phone != null)
+          document.location = "/checkout.php?set_phone="+encodeURI(phone);
       }
       
     </script>
