@@ -1,11 +1,22 @@
 <?php
+require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/database.php");
 
 if(!isset($_GET['code']) || !is_numeric($_GET['code'])) {
     header("Location: /404.php");
 }
 
-$product = db_get_product($_GET['code'] / 1); // make sure it's a number -> avoid SQLinj
+$product_id = $_GET['code'] / 1; // make sure it's a number -> avoid SQLinj
+$product = db_get_product($product_id); 
+
+if(!$product) {
+    header("Location: /404.php");
+}
+
+$addToCart = isset($_GET['add']);
+if($addToCart) {
+    $addSuccess = cart_add_item($product_id);
+}
 
 $title = "Order " . $product["name"] . " - EatKraken";
 

@@ -9,15 +9,44 @@ function cart_get_items() {
     else
         return $_SESSION['cart'];
 }
+
+function cart_get_orders() {
+    $items = cart_get_items();
+    $orders = array();
+
+    foreach($items as $item) {
+        $restaurant = $item['restaurant'];
+        
+        $newItem = true;
+        foreach ($orders as $rName => $rItems) {
+            if($rName == $restaurant) {
+                $newItem = false;
+                array_push($rItems, $item);
+            }
+        }
+        if($newItem) {
+            $orders[$restaurant] = array($item);
+        }
+    }
+    return $orders;
+}
 function cart_add_item($id) {
-    $price = db_get_item_price($id);
-    if($price <= 0)
-        return false; // invalid item
+    $product = db_get_product($id);
+    if(!$product) return false;
+
+    $price = $product['price'];
+    $restaurant = $product['restaurant'];
+
+    if($price < 0) return false; // invalid item
 
     // store price for better DB performance and to avoid final price to be different from when the user added it
     if(!isset($_SESSION['cart']))
         $_SESSION['cart'] = array(
-            array("id" => $id, "price" => $price)
+            array(
+                "id" => $id,
+                "restaurant" => $restaurant,
+                "price" => $price
+            )
         );
     else
         array_push($_SESSION['cart'], array("id" => $id, "price" => $price));
@@ -33,6 +62,7 @@ function cart_get_total() {
     }
     return $total;
 }
+
 
 // Restaurant login -- todo!
 function log_in($token) {
