@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <?php include($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/common_head.php"); ?>
+  <style>
+  td{
+    padding:10px;
+  }
+ 
+  </style>
   <body>
 
     <?php include($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/navbar.php"); ?>
