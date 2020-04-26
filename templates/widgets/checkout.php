@@ -4,7 +4,14 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
 
 $cart = cart_get_items();
 
-if(restaurant_is_logged_in()) {
+if($isCheckoutPage) {
+?>
+<li>
+    <a href="checkout.php?confirm" class="btn btn-success">Confirm order</a>
+</li>
+<?php
+} else {
+    if(restaurant_is_logged_in()) {
 ?>
 <li>
     <a class="btn btn-text" href="/restaurant/auth.php?logout">logout</a>
@@ -13,7 +20,7 @@ if(restaurant_is_logged_in()) {
 </li>
 
 <?php
-} else {
+}
 ?>
 
 <li class="navbar-text checkout-widget">
@@ -24,9 +31,5 @@ if(restaurant_is_logged_in()) {
 </li>
 <li class="checkout-widget">
     <a href="/checkout.php" class="btn-checkout"><i class="fas fa-shopping-cart"></i></a>
-    <?php } ?>
+    <?php } } ?>
 </li>
-
-<?php
-}
-?>
