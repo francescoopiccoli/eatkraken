@@ -92,6 +92,7 @@ $title = "Checkout";
         if(address != null)
           $("#address").text(address);
       }
+      
     </script>
   </body>
 </html>

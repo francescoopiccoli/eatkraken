@@ -1,11 +1,18 @@
+<?php 
+  require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/database.php");
+  require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/common_head.php"); ?>
+
 <body>
   <?php include($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/navbar.php"); ?>
 
 
-  <div class="container-fluid text-center mainbody">    
+  <div class="container-fluid text-center mainbody">  
     <div class="row content">
       <div class="col-sm-12 text-left"> 
         <h2>Pending orders</h2>
@@ -22,33 +29,34 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">18355</th>
+          <?php 
+            for($i = 0; $i<5; $i++){
+            echo "<tr>
+              <th scope=\"row\">18355</th>
               <td>
                 <b>Francesco Ricci</b><br>
                 Via Alto Adige, 5 <br>
                 00100 Bolzano (BZ) <br>
-                <a href="tel:+393310123456">+39 331 012 3456</a>
+                <a href=\"tel:+393310123456\">+39 331 012 3456</a>
               </td>
               <td>
                 3x <b>Greta Burger</b> (€5)<br>
-                <i>"Without onions, thanks!!!!!"</i>
+                <i>\"Without onions, thanks!!!!!\"</i>
                 <br>
                 2x <b>Large Coke</b> (€2.5)
-                <hr>
-                <b>Home delivery</b> (€5)
               </td>
               <td>€25</td>
               <td>
-                Deliver within <b>40 minutes</b><br>
-                <button class="btn btn-success btn-sm">
+                Deliver within <b>40 minutes</b><br><b>Home delivery</b> (€5)<br>
+                <button class=\"btn btn-success btn-sm\">
                   Accept
                 </button> 
-                <button class="btn btn-danger btn-sm">
+                <button class=\"btn btn-danger btn-sm\">
                   Refuse
                 </button>
               </td>
-            </tr>
+            </tr>";
+            }?>
           </tbody>
         </table>
 
