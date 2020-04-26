@@ -35,7 +35,7 @@ if(isset($_POST["submit"])){
 
   
   if(!isset($_POST['vegan'])){
-    $vegan = 'false';
+    $vegan = false;
   }
   else{
     $vegan = $_POST['vegan'];
@@ -153,19 +153,19 @@ if(isset($_POST["submit"])){
 
 <label><h4>Allergenes:</h4></label>
 <div class="text-left">
-          <input type="checkbox" name="glutenFree" class="form-check-input" id="1" value="true">
+          <input type="checkbox" name="glutenFree" class="form-check-input" id="1">
           <label class="form-check-label" for="1">Gluten free</label><br>
 
-          <input type="checkbox" name="lactoseFree" class="form-check-input" id="2" value="true">
+          <input type="checkbox" name="lactoseFree" class="form-check-input" id="2">
           <label class="form-check-label" for="2">Lactose free</label><br>
 
-          <input type="checkbox" name="vegan" class="form-check-input" id="3" value="true">
+          <input type="checkbox" name="vegan" class="form-check-input" id="3">
           <label class="form-check-label" for="3">Vegan</label><br>
 
-          <input type="checkbox" name="fresh"class="form-check-input" id="4" value="true">
+          <input type="checkbox" name="fresh"class="form-check-input" id="4">
           <label class="form-check-label" for="4">Fresh</label><br>
 
-          <input type="checkbox" name="zeroWaste" class="form-check-input" id="5" value="true">
+          <input type="checkbox" name="zeroWaste" class="form-check-input" id="5">
           <label class="form-check-label" for="5">Zero waste</label><br>
       </div>
 
