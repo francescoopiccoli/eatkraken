@@ -31,7 +31,7 @@ $title = "EatKraken";
     </ol>-->
 
   <div class="carousel-inner">
-      <div class="item active" style="background-image: url(<?= getRandomImage()?>">
+      <div class="item active" style="background-image: url(<?= getRandomImage()?>)">
         <div class="carousel-caption">
           <h2>You choose it, we bring it!</h2>
           <a href="list.php" class="homePageButton">Check the list!</a>
