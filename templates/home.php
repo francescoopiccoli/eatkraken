@@ -6,20 +6,7 @@ $title = "EatKraken";
   <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/common_head.php"); ?>
   <body>
   <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/navbar.php"); ?>
-  
-  <?php 
 
-    function getRandomImage(){
-      
-      $arrayId = array(1, 2, 3, 11, 12, 21, 22, 31, 32, 41, 42, 51, 52, 53, 61, 62);
-      //$arrayId = db_simple_query("select code from dishes")[0];
-      $randIndex = array_rand($arrayId);
-      $productCode = $arrayId[$randIndex];
-      $imageURL = db_simple_query("select image_url from dishes where code = $productCode");
-      return $imageURL[0][0];
-    }
-
-  ?>
 
   <div class="mainbody"> 
     
@@ -30,24 +17,24 @@ $title = "EatKraken";
       <li data-target="#myCarousel" data-slide-to="1"></li>
       <li data-target="#myCarousel" data-slide-to="2"></li>
     </ol>-->
-  <div class="carousel-inner">
-     
-     <div class="item active" style="background-image: url(<?= getRandomImage()?>">
 
+  <div class="carousel-inner">
+
+      <div class="item active" style="background-image: url(https://images.unsplash.com/photo-1561760041-ca62af0d9047?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);">
         <div class="carousel-caption">
           <h2>You choose it, we bring it!</h2>
           <a href="list.php" class="homePageButton">Check the list!</a>
         </div>
       </div>
 
-      <div class="item" style="background-image: url(<?= getRandomImage()?>">
+      <div class="item" style="background-image: url(https://video-images.vice.com/articles/59ca67cc3c5a224d52beeafc/lede/1506437421227-perche-non-ci-sono-donne-tra-i-kebabbari.jpeg?crop=0.999247554552295xw:1xh;center,center);">
         <div class="carousel-caption">
           <h2>Your favourite restaurant, at your door!</h2>
           <a href="list.php" class="homePageButton">Check the list!</a>
         </div>
       </div>
 
-     <div class="item" style="background-image: url(<?= getRandomImage()?>">
+      <div class="item" style="background-image: url(https://www.larena.it/image/policy:1.4667048:1456192040/image.jpg?f=16x9&w=1200&$p$f$w=9b37ea6);">
         <div class="carousel-caption">
           <h2>Free delivery on order over 20$</h2>
           <a href="list.php" class="homePageButton">Check the list!</a>
@@ -58,10 +45,10 @@ $title = "EatKraken";
   </div>
 
   <div class="container-fluid threeColumnsHome">
-    <div class="row">
-      <div class="col-xs-12 col-sm-4 text-left "><img class="homepageAllergenes" src="https://i.ya-webdesign.com/images/marshmallow-on-stick-free-png-8.png">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</div>
-      <div class="col-xs-12 col-sm-4 text-left "><img class="homepageAllergenes" src="https://upload.wikimedia.org/wikipedia/commons/2/26/V_de_Vegan.png">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</div>
-      <div class="col-xs-12 col-sm-4 text-left "><img class="homepageAllergenes" src="https://cdn4.iconfinder.com/data/icons/eco-food-and-cosmetic-labels-1/128/Artboard_66-512.png">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</div>
+    <div class="row"> 
+      <div class="col-xs-12 col-sm-4 text-center  "><h1>We value your healt...</h1><img class="homepageAllergenes" src="https://i.ya-webdesign.com/images/marshmallow-on-stick-free-png-8.png">Do you have some allergies or intollerances? Don't worry! All the products come with a complete list of allergens. You can easily select from the search page the allergenes you want to avoid, and that's it! We offer a great variety of meals, including gluten-free, lactose-free and many others. We are sure you will easily find the dish you desire</div>
+      <div class="col-xs-12 col-sm-4 text-center "><h1>...Animals' Life...</h1><img class="homepageAllergenes" src="https://upload.wikimedia.org/wikipedia/commons/2/26/V_de_Vegan.png">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</div>
+      <div class="col-xs-12 col-sm-4 text-center "><h1>...and the Environment</h1><img class="homepageAllergenes" src="https://cdn4.iconfinder.com/data/icons/eco-food-and-cosmetic-labels-1/128/Artboard_66-512.png">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</div>
     </div>
   </div>
 
