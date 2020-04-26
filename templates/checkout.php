@@ -17,7 +17,7 @@ $title = "Checkout";
           <div class="row checkout-total-row">
             <div class="col-sm-8">
               <b>Deliver to:</b>
-              <br>
+              <br>  
               <span id="address">No address specified</span> (<a href="#" onclick="editAddress()">edit</a>)
             </div>
             
@@ -84,7 +84,7 @@ $title = "Checkout";
       function editNotes(id) {
         notes = prompt("Enter custom message");
 
-        if(notes != null) // "cancel" pressed
+        if(notes != null)
           $("#notes-"+id).text(notes);
       }
       function editAddress() {

@@ -1,4 +1,13 @@
 <?php
+require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/database.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
+
+if(!restaurant_is_logged_in()) {
+  header("Location: /");
+  exit;
+}
+?>
+<?php
 $dishes = array(
   array(
     "id" => 123,

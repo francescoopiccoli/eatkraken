@@ -1,8 +1,16 @@
+<?php
+require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/database.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
+
+if(!restaurant_is_logged_in()) {
+  header("Location: /");
+  exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <?php 
-require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/database.php");
 
 if(isset($_POST["submit"])){
 

@@ -1,6 +1,8 @@
 <?php
 /* Simple library for session-related functions */
 
+require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/database.php");
+
 session_start();
 
 function cart_get_items() {
@@ -64,7 +66,7 @@ function cart_get_total() {
 
 
 // Restaurant login -- todo!
-function log_in($token) {
+function restaurant_log_in($token) {
     $restaurant_id = db_get_restaurant_by_token($token);
     if($restaurant_id > 0) {
         $_SESSION['restaurant_id'] = $restaurant_id;
@@ -73,11 +75,17 @@ function log_in($token) {
         return false;
     }
 }
-function is_logged_in() {
+function restaurant_is_logged_in() {
     return isset($_SESSION['restaurant_id']);
 }
+function restaurant_get_logged_id() {
+    if(!restaurant_is_logged_in())
+        return -1;
+    else
+        return $_SESSION['restaurant_id'];
+}
 
-function logout() {
+function restaurant_log_out() {
     if(isset($_SESSION['restaurant_id']))
         unset($_SESSION['restaurant_id']);
 }

@@ -149,7 +149,11 @@ function db_new_order_items($item,$order,$quantity,$note){
 }
 
 function db_get_restaurant_by_token($token) {
-    return db_stmt_query("select code from restaurants where token = ?", [$token]);
+    $res = db_stmt_query("select code from restaurants where access_token = ?", [$token]);
+    if(count($res) > 0)
+        return $res[0]['code'];
+    else
+        return false;
 }
 function db_get_restaurant_name($id) {
     $res = db_stmt_query("select name from restaurants where code = ?", [$id]);
