@@ -16,12 +16,11 @@ function cart_get_orders() {
 
     foreach($items as $item) {
         $restaurant = $item['restaurant'];
-        
         $newItem = true;
         foreach ($orders as $rName => $rItems) {
             if($rName == $restaurant) {
                 $newItem = false;
-                array_push($rItems, $item);
+                array_push($orders[$rName], $item);
             }
         }
         if($newItem) {
@@ -49,7 +48,7 @@ function cart_add_item($id) {
             )
         );
     else
-        array_push($_SESSION['cart'], array("id" => $id, "price" => $price));
+        array_push($_SESSION['cart'], array("id" => $id, "restaurant" => $restaurant, "price" => $price));
     
     return true;
 }
