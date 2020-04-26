@@ -1,6 +1,12 @@
 body {
   font-family: 'Khula', sans-serif; }
 
+h1 {
+   font-family: 'Acme';
+}
+h2 {
+  font-family: 'Acme';
+}
 /*colori:
 #A7D2CB=navbar verdino
 #C98474=footer arancio
@@ -111,10 +117,6 @@ body {
   font-size: large;
   font-family: Arial, Helvetica, serif;
   text-align: left;
-}
-
-h1 {
-  font-family: 'Acme';
 }
 
 /* Checkout page */
