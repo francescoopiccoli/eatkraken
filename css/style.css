@@ -113,6 +113,10 @@ body {
   text-align: left;
 }
 
+h1 {
+  font-family: 'Acme';
+}
+
 /* Checkout page */
 .checkout-main {
   margin: 20px; }
