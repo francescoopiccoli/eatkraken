@@ -22,6 +22,18 @@ function db_simple_query($query_text) {
     }
     $connection = null;
 }
+function db_stmt_query($query_text, $params) {
+    $connection = new PDO($GLOBALS['db_pdo_data']);
+    
+    $stmt = $connection->prepare($query_text);
+    $stmt->execute($params);
+    $res = $stmt->fetchAll();
+    $connection = null;
+    if($res)
+        return $res;
+    else
+        return false;
+}
 
 
 function db_get_cities() {
@@ -44,6 +56,13 @@ function db_get_cost_eat_in($restaurant){
 	return db_simple_query("select cost_eat_in from restaurants where code=$restaurant");
 }
 
+function db_get_item_price($code) {
+    $price = db_stmt_query("select price from dishes where code = ?", [$code]);
+    if($price) 
+        return $price;
+    else
+        return -1;
+}
 function db_get_items_cost($order){
 	return db_simple_query("SELECT sum(price) FROM dishes, order_items WHERE order_items.ord=$order and dishes.code=order_items.item;");
 }
@@ -118,17 +137,7 @@ function db_new_order_items($item,$order,$quantity,$note){
 }
 
 function db_get_restaurant_by_token($token) {
-    $connection = new PDO($GLOBALS['db_pdo_data']);
-    
-    $stmt = $connection->prepare("select code from restaurants where token = ?");
-    $stmt->execute([$token]);
-    $row = $stmt->fetch();
-    if($row)
-        $res = $row['code'];
-    else
-        $res = -1;
-    $connection = null;
-    return $res;
+    return db_stmt_query("select code from restaurants where token = ?", [$token]);
 }
 
 ?>
