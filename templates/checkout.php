@@ -18,7 +18,7 @@ $title = "Checkout";
             <div class="col-sm-8">
               <b>Deliver to:</b>
               <br>  
-              <span id="address">No address specified</span> (<a href="#" onclick="editAddress()">edit</a>)
+              <span id="address"><?= cart_get_address(); ?></span> (<a href="#" onclick="editAddress()">edit</a>)
             </div>
             
             <div class="col-sm-2 text-center">
@@ -35,7 +35,7 @@ $title = "Checkout";
           <div class="row">
             <div class="col-sm-10">
               <h2><?= db_get_restaurant_name($restaurant); ?></h2>
-              <i id="notes-<?= $restaurant; ?>">No custom message</i> (<a href="#" onclick="editNotes(<?= $restaurant; ?>)">edit</a>)
+              <i id="notes-<?= $restaurant; ?>"><?= cart_get_restaurant_message($restaurant); ?></i> (<a href="#" onclick="editNotes(<?= $restaurant; ?>)">edit</a>)
             </div>
 
             <div class="col-sm-2">
@@ -50,7 +50,7 @@ $title = "Checkout";
 
           <?php 
           foreach($items as $item) { 
-            $item = db_get_product($item['id']);
+            $item = db_get_product($item['code']);
           ?>
           <div class="row checkout-results-row">
             <div class="col-sm-2">
@@ -85,12 +85,13 @@ $title = "Checkout";
         notes = prompt("Enter custom message");
 
         if(notes != null)
-          $("#notes-"+id).text(notes);
+          document.location = "/checkout.php?restaurant="+id+"&set_message="+encodeURI(notes);
       }
       function editAddress() {
         address = prompt("Enter delivery address");
+
         if(address != null)
-          $("#address").text(address);
+          document.location = "/checkout.php?set_address="+encodeURI(address);
       }
       
     </script>

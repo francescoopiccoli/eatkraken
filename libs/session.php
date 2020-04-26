@@ -44,16 +44,26 @@ function cart_add_item($id) {
     if(!isset($_SESSION['cart']))
         $_SESSION['cart'] = array(
             array(
-                "id" => $id,
+                "code" => $id,
                 "restaurant" => $restaurant,
                 "price" => $price
             )
         );
     else
-        array_push($_SESSION['cart'], array("id" => $id, "restaurant" => $restaurant, "price" => $price));
+        array_push($_SESSION['cart'], array("code" => $id, "restaurant" => $restaurant, "price" => $price));
     
     return true;
 }
+
+function cart_rm_first($id) {
+    foreach (cart_get_items() as $index => $item) {
+        if($item['code'] == $id) {
+            unset($_SESSION['cart'][$index]);
+            break;
+        }
+    }
+}
+
 function cart_get_total() {
     $total = 0;
     if(isset($_SESSION['cart'])) {
@@ -62,6 +72,44 @@ function cart_get_total() {
         }
     }
     return $total;
+}
+
+// User-specific restaurant shipping and message preferences - remembered on server among different orders
+function cart_set_restaurant_shipping($restaurant, $method) {
+    if(!isset($_SESSION['shipping_prefs']))
+        $_SESSION['shipping_prefs'] = array();
+    
+    $_SESSION['shipping_prefs'][$restaurant] = htmlentities($method);
+}
+function cart_set_restaurant_message($restaurant, $message) {
+    if(!isset($_SESSION['restaurant_prefs']))
+        $_SESSION['restaurant_prefs'] = array();
+    
+    $_SESSION['restaurant_prefs'][$restaurant] = htmlentities($message);
+}
+
+function cart_get_restaurant_shipping($restaurant) {
+    if(!isset($_SESSION['shipping_prefs']))
+        return 0;
+    
+    return $_SESSION['shipping_prefs'][$restaurant];
+}
+function cart_get_restaurant_message($restaurant) {
+    if(!isset($_SESSION['restaurant_prefs']) || $_SESSION['restaurant_prefs'] == "")
+        return "No message to the restaurant. ";
+    
+    return $_SESSION['restaurant_prefs'][$restaurant];
+}
+
+// also remember address as session data
+function cart_set_address($address) {    
+    $_SESSION['address'] = htmlentities($address);
+}
+function cart_get_address() {
+    if(!isset($_SESSION['address']))
+        return "No Shipping Address specified";
+    
+    return $_SESSION['address'];
 }
 
 
