@@ -1,5 +1,6 @@
 <?php
 $title = "Checkout";
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,20 +27,26 @@ $title = "Checkout";
             </div>
             <div class="col-sm-2 text-center">
               Total
-              <h2>€55</h2>
+              <h2>€<?= cart_get_total() + 0 /* TODO: shipping cost */ ?></h2>
             </div>
           </div>
 
-          <h2>Pizzeria Scarsa</h2>
+          <?php foreach($orders as $restaurant => $items) { ?>
+          <h2><?= db_get_restaurant_name($restaurant); ?></h2>
+           
           
+          <?php 
+          foreach($items as $item) { 
+            $item = db_get_product($item['id']);
+          ?>
           <div class="row checkout-results-row">
             <div class="col-sm-2">
               <img class="thumbnail-small" src="https://cdn-media.italiani.it/site-caserta/2019/01/pizza-con-ananas-caserta-2.jpg">
             </div>
             <div class="col-sm-5">
-              <h3>Pizza Margherita</h3>
-              <p>1350Kcal</p>
-              <small><i id="message">message</i> (<a href="#" onclick="editNotes()">edit</a>)</small>
+              <h3><a href="/product.php?code=<?= $item['code']; ?>"><?= $item['name']; ?></a></h3>
+              <p><?= $item['nutri_kcal']; ?>Kcal</p>
+              <small><i id="notes-<?= $restaurant; ?>">No custom note</i> (<a href="#" onclick="editNotes(<?= $restaurant; ?>)">edit</a>)</small>
             </div>
             <div class="col-sm-3">
               <select name="" id="" class="form-control">
@@ -57,10 +64,12 @@ $title = "Checkout";
               </select>
             </div>
             <div class="col-sm-2 text-center">
-              <h3>€50</h3>
+              <h3><?= $item['price']; ?>€</h3>
               +warnings?
             </div>
           </div>
+
+          <?php } } ?>
 
 
 
@@ -71,8 +80,9 @@ $title = "Checkout";
 
     <?php include($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/footer.php"); ?>
     <script>
-      function editMessage() {
-        prompt("Enter custom message");
+      function editNotes(id) {
+        notes = prompt("Enter custom message");
+        $("#notes-"+id).text(notes);
       }
       function editAddress() {
         address = prompt("Enter delivery address");

@@ -58,8 +58,8 @@ function db_get_cost_eat_in($restaurant){
 
 function db_get_item_price($code) {
     $price = db_stmt_query("select price from dishes where code = ?", [$code]);
-    if($price) 
-        return $price;
+    if($price && count($price) > 0) 
+        return $price[0]['price'];
     else
         return -1;
 }
@@ -138,6 +138,13 @@ function db_new_order_items($item,$order,$quantity,$note){
 
 function db_get_restaurant_by_token($token) {
     return db_stmt_query("select code from restaurants where token = ?", [$token]);
+}
+function db_get_restaurant_name($id) {
+    $res = db_stmt_query("select name from restaurants where code = ?", [$id]);
+    if(count($res) > 0)
+        return $res[0]['name'];
+    else
+        return false;
 }
 
 ?>
