@@ -26,7 +26,7 @@ if(isset($_POST["submit"])){
   $nutri_protein = $_POST["nutri_protein"];
 
 
-  if(!(isset($_POST['glutenFree']) && $_POST['glutenFree'] == "true")){
+  if(isset($_POST['glutenFree']) && $_POST['glutenFree'] == "true"){
     $glutenFree = 'true';
   }
   else{
