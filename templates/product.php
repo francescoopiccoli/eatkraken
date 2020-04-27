@@ -60,6 +60,15 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
       </div>
     </div>
 
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-sm-4 text-center ">
+          <h2 style="margin-top: 15px;">Restaurant:</h2>
+          <?= $restaurant_description?><?= $restaurant_name?><?= $restaurant_id?>
+        </div>
+      </div>
+    </div>
+
     <?php include($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/footer.php"); ?>
   </body>
 </html>

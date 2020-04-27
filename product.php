@@ -9,6 +9,10 @@ if(!isset($_GET['code']) || !is_numeric($_GET['code'])) {
 $product_id = $_GET['code'] / 1; // make sure it's a number -> avoid SQLinj
 $product = db_get_product($product_id); 
 
+$restaurant_id = $product["restaurant"];
+$restaurant_name = db_get_restaurant_name($restaurant_id);
+$restaurant_description = db_get_restaurant_description($restaurant_id);
+
 if(!$product) {
     header("Location: /404.php");
 }
