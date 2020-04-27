@@ -23,8 +23,7 @@ if(isset($_GET['confirm'])) {
         // 2. insert into DB each order
         $orders = cart_get_orders();
         foreach($orders as $restaurant => $items) {
-            print_r($order);
-            $code = db_insert_empty_order($restaurant, "TODO", cart_get_address(), 1, cart_get_phone(), cart_get_restaurant_shipping($restaurant), cart_get_total(), $delivery_time);
+            $code = db_insert_empty_order($restaurant, "TODO", cart_get_address(), cart_get_email(), 1, cart_get_phone(), cart_get_restaurant_shipping($restaurant), cart_get_total(), $delivery_time);
             foreach($items as $item) {
                 // todo: group multiple items as one via the quantity param
                 //  db_insert_new_order_item($code, $item['id'], $item['price']);
@@ -40,7 +39,7 @@ if(isset($_GET['confirm'])) {
         cart_empty();
 
         // 5. show msg-..., redirect to homepage after 10 seconds
-        header("refresh:1; url=/");
+        header("refresh:10; url=/");
         die('<script>alert("Your order has been sent!\\nYou will receive a confirmation e-mail shortly");</script>');
     }
 }

@@ -130,20 +130,21 @@ function db_get_product($productCode){
 }
 
 /*make orders*/
-function db_insert_empty_order($restaurant, $full_name, $address, $city, $phone, $shipping_type, $items_cost, $delivery_time){
+function db_insert_empty_order($restaurant, $full_name, $address, $email, $city, $phone, $shipping_type, $items_cost, $delivery_time){
     $delivery_deadline = time() + $delivery_time; // starting from when order is placed
-    $shipping_cost = db_get_shipping_cost($restaurant, $shipping_type);
+    $shipping_cost = 0; // db_get_shipping_cost($restaurant, $shipping_type);
 	$total_cost = $items_cost + $shipping_cost;
 
-    $q = db_stmt_query("insert into orders (code, restaurant, full_name, address, city, phone, shipping_type, shipping_cost, total_cost, delivery_deadline, status) ".
-    "values (default, :restaurant, :full_name, :address, :city, :phone, :shipping_type, :shipping_cost, :total_cost, :delivery_deadline, 0);",
-    ["restaurant" => $restaurant, "full_name" => $full_name, "address" => $address, "city" => $city, "phone" => $phone, "shipping_type" => $shipping_type, "shipping_cost" => $shipping_cost, "total_cost" => $total_cost, "delivery_deadline" => $delivery_deadline]);
-    
+    $q = db_stmt_query(
+        "insert into orders (restaurant, full_name, address, email, city, phone, shipping_type, shipping_cost, total_cost, delivery_deadline, status) ".
+        "values (:restaurant, :full_name, :address, :email, :city, :phone, :shipping_type, :shipping_cost, :total_cost, :delivery_deadline, 0)",
+    ["restaurant" => $restaurant, "full_name" => $full_name, "address" => $address, "email" => $email, "city" => $city, "phone" => $phone, "shipping_type" => $shipping_type, "shipping_cost" => $shipping_cost, "total_cost" => $total_cost, "delivery_deadline" => $delivery_deadline]);
+    print($q);
 	return db_get_last_order_code();
 }
 
 function db_get_last_order_code(){
-    $res = db_simple_query("SELECT MAX(code) AS lastOrderCode FROM order;");
+    $res = db_simple_query("SELECT MAX(code) AS lastOrderCode FROM orders");
     if(count($res) > 0)
         return $res[0][0];
     else
