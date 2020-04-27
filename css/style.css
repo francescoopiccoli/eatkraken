@@ -1,11 +1,15 @@
 body {
   font-family: 'Khula', sans-serif; }
-
 h1 {
    font-family: 'Acme';
 }
 h2 {
   font-family: 'Acme';
+}
+
+.text{
+  font-family: "cabin";
+  font-weight: 500;
 }
 /*colori:
 #A7D2CB= verdino = 167,210,203
