@@ -27,48 +27,65 @@ if(isset($_POST["submit"])){
 
 
   if(!(isset($_POST['glutenFree']) && $_POST['glutenFree'] == "true")){
-    $glutenFree = 'false';
+    $glutenFree = 'true';
   }
   else{
-    $glutenFree = 'true';
+    $glutenFree = 'false';
   }
 
   if(isset($_POST['lactoseFree']) && $_POST['lactoseFree'] == "true"){
-    $lactoseFree = 'false';
+    $lactoseFree = 'true';
   }
   else{
-    $lactoseFree = 'true';
+    $lactoseFree = 'false';
   }
   
   if(isset($_POST['vegan']) && $_POST['vegan'] == "true"){
-    $vegan = "false";
+    $vegan = "true";
   }
   else{
-    $vegan = 'true';
+    $vegan = 'false';
   }
 
   if(isset($_POST['fresh']) && $_POST['fresh'] == "true"){
-    $fresh = 'false';
+    $fresh = 'true';
   }
 else{
-    $fresh = 'true';
+    $fresh = 'false';
   }
 
   if(isset($_POST['zeroWaste']) && $_POST['zeroWaste'] == "true"){
-    $zeroWaste = 'false';
-  }
-  else{
     $zeroWaste = 'true';
   }
+  else{
+    $zeroWaste = 'false';
+  }
 
-  echo  $glutenFree . " " . $lactoseFree . " " . $vegan . " " . $fresh . " " . $zeroWaste;
-
-  
   $productImageURL = $_POST["imageUrl"];
   $productDeliveryTime = $_POST["deliveryTime"];
 
+  // echo  $glutenFree . " " . $lactoseFree . " " . $vegan . " " . $fresh . " " . $zeroWaste;
+
+
+    $connection = new PDO($GLOBALS['db_pdo_data']);
+    $sql  = "INSERT INTO dishes VALUES (default, '$productName', '$productDescription', $productPrice, $restaurant, $productCategory, '$productIngredients', $nutri_carb, $nutri_fat, $nutri_kcal, $nutri_protein, $glutenFree, $lactoseFree, $vegan, $fresh, $zeroWaste, '$productImageURL', $productDeliveryTime)";
+
+  
+
+    if ($connection->query($sql) === TRUE) {
+       // echo "New record created successfully";
+    } else {
+      //echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+      $connection = null;
+    
+  }
+
+  
+  
+/*
   $connection = new PDO($GLOBALS['db_pdo_data']);
-  print_r($_POST);
+  //print_r($_POST);
 
   try{
    
@@ -93,7 +110,7 @@ else{
     $stmt->bindParam(':productImageURL', $productImageURL);
     $stmt->bindParam(':productDeliveryTime', $productDeliveryTime);
     $inserted = $stmt->execute();
-    print_r($inserted);
+    //print_r($inserted);
     
     if($inserted){
       echo "New records created successfully";}
@@ -106,8 +123,8 @@ else{
     echo "Error: " . $e->getMessage();
   }
 
-  $connection = null;
-}
+  $connection = null;*/
+
 ?>
 
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/common_head.php"); ?>
