@@ -64,7 +64,7 @@ function db_get_item_price($code) {
         return -1;
 }
 function db_get_items_cost($order){
-	return db_simple_query("SELECT sum(price) FROM dishes, order_items WHERE order_items.ord=$order and dishes.code=order_items.item;");
+	return db_stmt_query("SELECT sum(price) FROM dishes, order_items WHERE order_items.ord=? and dishes.code=order_items.item;", [$order]);
 }
 
 function db_get_shipping_cost($order){
