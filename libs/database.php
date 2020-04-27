@@ -166,7 +166,7 @@ function db_get_restaurant_name($id) {
 function db_get_restaurant_description($id) {
     $res = db_stmt_query("select description from restaurants where code = ?", [$id]);
     if(count($res) > 0)
-        return $res[0]['name'];
+        return $res[0]['description'];
     else
         return false;
 }
