@@ -24,14 +24,17 @@ if(isset($_GET['confirm'])) {
         $orders = cart_get_orders();
         foreach($orders as $restaurant => $items) {
             print_r($order);
-            //$code = db_insert_new_order($restaurant, $items);
-            // foreach($items as $item) {
+            $code = db_insert_empty_order($restaurant, "TODO", cart_get_address(), 1, cart_get_phone(), cart_get_restaurant_shipping($restaurant), cart_get_total(), $delivery_time);
+            foreach($items as $item) {
                 // todo: group multiple items as one via the quantity param
-            //  db_insert_new_order_item($code, $item['id'], $item['price']);
-            // }
+                //  db_insert_new_order_item($code, $item['id'], $item['price']);
+
+	            db_add_order_item($code, $item['id'], 1, cart_get_restaurant_message($restaurant));
+            }
         }
 
         // 3. send confirm email
+        mail(cart_get_email(), "Your EatKraken order has been placed","TODO");
 
         // 4. clean-up cart
         cart_empty();
