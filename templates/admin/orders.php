@@ -8,11 +8,21 @@ if(!restaurant_is_logged_in()) {
 }
 //http://localhost:8080/restaurant/auth.php?login=kebabkebabkebabkebabkebabkebabke
 function get_orders(){
-    return db_simple_query("select * from orders where restaurant = 1 and status = 1");
+    $restuarantID= restaurant_get_logged_id();
+    return db_simple_query("select * from orders where restaurant = $restuarantID and status = 0");
 }
 
-  $orders = get_orders();
-  print_r($array);
+
+
+function get_orders_items($i, $orders){
+  return db_simple_query("select * from order_items where ord = " . $orders[$i][0]);
+
+}
+
+
+function get_dish($code){
+  return db_simple_query("select name, price from dishes where code = $code");
+}
 
 ?>
 
@@ -43,21 +53,35 @@ function get_orders(){
           </thead>
           <tbody>
           <?php 
-            foreach($orders as $order){?>
+            $orders = get_orders();
+
+          foreach($orders as $order){ ?>
             "<tr>
               <th scope="row"><?= $order[0] ?></th>
               <td>
-                <b>Username???</b><br>
+                <b><?=$order[2]?></b><br>
                 <?=$order[3] ?><br>
                 <?=$order[4] ?><br>
                 <a href="tel:<?=$order[5] ?>"><?=$order[5] ?></a>
               </td>
               <td>
-              <?=$order[2]?>
+              <?php
+
+              $k = 0;
+              $order_items = get_orders_items($k, $orders);
+              $k++;
+              
+              foreach($order_items as $order_item){
+                
+                 $dish = get_dish($order_item[2]);
+                 echo $order_item[3] . "x " . $dish[0][0] ."<b> ". $dish[0][1] ."€</b><br><i>Notes: \"$order_item[4]\"</i><br><br>";
+
+              }
+              ?>
               </td>
-              <td><?= $order[8] . "€" ?></td>
+              <td><?= ($order[8] + $order[7]) . "€" ?></td>
               <td>
-                Deliver within <b>40 minutes</b><br><b><?= $order[6] ?></b> <?= $order[7] . "€" ?><br>
+                Deliver within <b>40 minutes</b><br><b><?= "Delivery type:" . $order[6] ?></b> <?= "Cost: " . $order[7] . "€" ?><br>
                 <button class="btn btn-success btn-sm">
                   Accept
                 </button> 

@@ -15,7 +15,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
 
     <?php include($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/navbar.php"); ?>
     <div class="mainbody"> 
-        <div class="home-inner container" style= "background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 1)), url(<?=$product_image_url?>);">
+        <div class="home-inner container" style= "background-image: linear-gradient(rgba(20, 25, 24, 0.1), rgba(20, 25, 24, 1)), url(<?=$product_image_url?>);">
           <div class="caption text-center">
 
             <img class="circular--landscape" id="profile-pic" src=<?=$product_image_url?>>
@@ -45,18 +45,27 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
 
     <div class="container-fluid threeColumnsHome">
       <div class="row">
-        <div class="col-xs-12 col-sm-4 text-center ">
-          <h2 style="margin-top: 15px;">Product info</h2>
+        <div class="col-xs-12 col-sm-4 text-left ">
+          <h2 style="margin-top: 15px; text-align:center">Product info</h2>
           <?= $product_allergenes ?>
         </div>
         <div class="col-xs-12 col-sm-4 text-center ">
           <h2 style="margin-top: 15px;">Ingredients</h2>
           <div><?= $product_ingredients ?></div>
         </div>
-        <div class="col-xs-12 col-sm-4 text-center ">
-          <h2 style="margin-top: 15px;">Nutritional facts  (x 100g)</h2>
+        <div class="col-xs-12 col-sm-4 text-left ">
+          <h2 style="margin-top: 15px; text-align:center">Nutritional facts  (x 100g)</h2>
           <?= $product_nutri_facts ?>
           </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-sm-4 text-center ">
+          <h2 style="margin-top: 15px;">Restaurant:</h2>
+          <?= $restaurant_description?><?= $restaurant_name?><?= $restaurant_id?>
+        </div>
       </div>
     </div>
 
