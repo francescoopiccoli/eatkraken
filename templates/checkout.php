@@ -78,11 +78,12 @@ $isCheckoutPage = true; // for checkout widget
               <a class="btn btn-sm btn-danger" href="checkout.php?dish=<?= $item['code']; ?>&remove">Remove</a>
             </div>
           </div>
-
-          <?php } ?>
           <hr style="border-color: #bbb;">
-          <?php } ?>
 
+          <?php } ?>
+          
+          <?php }  ?>
+          <a href="checkout.php?confirm" class="btn btn-success btn-lg" style="float:right">Confirm order</a>
 
 
         </div>

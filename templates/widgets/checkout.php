@@ -7,7 +7,7 @@ $cart = cart_get_items();
 if($isCheckoutPage) {
 ?>
 <li>
-    <a href="checkout.php?confirm" class="btn btn-success">Confirm order</a>
+    <!--<a href="checkout.php?confirm" class="btn btn-success">Confirm order</a>-->
 </li>
 <?php
 } else {
