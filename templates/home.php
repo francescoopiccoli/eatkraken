@@ -5,15 +5,17 @@ $title = "EatKraken";
 <html lang="en">
   <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/common_head.php"); ?>
   <body>
-  <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/navbar.php"); ?>
+  <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/navbar.php"); 
+  ?>
   <?php 
 
     function getRandomImage(){
       
-      $arrayId = array(1, 2, 3, 11, 12, 21, 22, 31, 32, 41, 42, 51, 52, 53, 61, 62);
-      //$arrayId = db_simple_query("select code from dishes");
-      $randIndex = array_rand($arrayId);
-      $productCode = $arrayId[$randIndex];
+      //$arrayId = array(1, 2, 3, 11, 12, 21, 22, 31, 32, 41, 42, 51, 52, 53, 61, 62);
+      $arrayId2 = db_simple_query("select code from dishes");
+
+      $randIndex = array_rand($arrayId2);
+      $productCode = $arrayId2[$randIndex][0];
       $imageURL = db_simple_query("select image_url from dishes where code = $productCode");
       return $imageURL[0][0];
     }
@@ -24,28 +26,28 @@ $title = "EatKraken";
     
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
-    <!-- <ol class="carousel-indicators">
+     <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
       <li data-target="#myCarousel" data-slide-to="1"></li>
       <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>-->
+    </ol>
 
   <div class="carousel-inner">
-      <div class="item active" style="background-image: url(<?= getRandomImage()?>)">
+      <div class="item active" style="background-image: url('<?=getRandomImage()?>')">
         <div class="carousel-caption">
           <h2>You choose it, we bring it!</h2>
           <a href="list.php" class="homePageButton">Check the list!</a>
         </div>
       </div>
 
-      <div class="item" style="background-image: url(<?= getRandomImage()?>">
+      <div class="item" style="background-image: url('<?=getRandomImage()?>')">
         <div class="carousel-caption">
           <h2>Your favourite restaurant, at your door!</h2>
           <a href="list.php" class="homePageButton">Check the list!</a>
         </div>
       </div>
 
-      <div class="item" style="background-image: url(<?= getRandomImage()?>">
+      <div class="item" style="background-image: url('<?=getRandomImage()?>')">
       <div class="carousel-caption">
           <h2>Free delivery on order over 20$</h2>
           <a href="list.php" class="homePageButton">Check the list!</a>

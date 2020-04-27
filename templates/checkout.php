@@ -64,7 +64,8 @@ $isCheckoutPage = true; // for checkout widget
           ?>
           <div class="row checkout-results-row">
             <div class="col-sm-2">
-              <img class="thumbnail-small" src="<?= $item['image_url']; ?>">
+            <img class="circular--landscape" id="profile-pic" style ="width:140px; height:140px; text-align:center"src=<?=$item['image_url']?>>
+
             </div>
             <div class="col-sm-8">
               <h3><a href="/product.php?code=<?= $item['code']; ?>"><?= $item['name']; ?></a></h3>
