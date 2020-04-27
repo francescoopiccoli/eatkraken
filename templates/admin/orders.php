@@ -24,6 +24,30 @@ function get_dish($code){
   return db_simple_query("select name, price from dishes where code = $code");
 }
 
+function email(){
+$to = "xfrancescopiccolix@gmail.com";
+$subject = "My subject";
+$txt = "Hello world!";
+$headers = "From: xfrancescopiccoli@gmail.com\r\n";
+
+mail($to,$subject,$txt,$headers);}
+
+function removeElement($code){
+  $connection = new PDO($GLOBALS['db_pdo_data']);
+  $query  = "UPDATE orders SET status = 1  WHERE code = $code;";
+  if($connection->query($query)){
+    echo "succesful";
+  }
+}
+
+function onclick($code){
+
+if(isset($_POST['accept'])) { 
+  
+  removeElement($code);
+  email(); 
+  echo "email sent";
+} }
 ?>
 
 <!DOCTYPE html>
@@ -57,7 +81,7 @@ function get_dish($code){
             $k = 0;
 
           foreach($orders as $order){ ?>
-            "<tr>
+            <tr>
               <th scope="row"><?= $order[0] ?></th>
               <td>
                 <b><?=$order[2]?></b><br>
@@ -70,24 +94,22 @@ function get_dish($code){
 
               $order_items = get_orders_items($k, $orders);
               $k++;
-              $j = 0;
 
               foreach($order_items as $order_item){
                  $dish = get_dish($order_item[2]);
-                 echo $order_item[3] . "x " . $dish[$j][0] ."<b> ". $dish[$j][1] ."€</b><br><i>Notes: \"$order_item[4]\"</i><br><br>";
-                $j++;
+                 echo $order_item[3] . "x " . $dish[0][0] ."<b> ". $dish[0][1] ."€</b><br><i>Notes: \"$order_item[4]\"</i><br><br>";
               }
               ?>
               </td>
               <td><?= ($order[8] + $order[7]) . "€" ?></td>
               <td>
                 Deliver within <b>40 minutes</b><br><b><?= "Delivery type:" . $order[6] ?></b> <?= "Cost: " . $order[7] . "€" ?><br>
-                <button class="btn btn-success btn-sm">
-                  Accept
-                </button> 
-                <button class="btn btn-danger btn-sm">
-                  Refuse
-                </button>
+                <form method="post"> 
+                <input type="submit" name="accept" value = "Accept" class= "btn btn-success btn-sm"/>
+                <input type="submit" name="Refuse" value = "Refuse" class="btn btn-danger btn-sm"/>
+                <!-- <?php // onclick($order[0]); ?> -->
+                </form> 
+
               </td>
             </tr>
             <?php } ?>
