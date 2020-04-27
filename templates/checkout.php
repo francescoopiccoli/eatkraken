@@ -26,6 +26,9 @@ $isCheckoutPage = true; // for checkout widget
               <span id="address"><?= (cart_get_email() == "" ? "No email specified" : cart_get_email()); ?></span> (<a href="#" onclick="editMail()">edit</a>)<br>
               <span id="address"><?= (cart_get_phone() == "" ? "No phone specified" : cart_get_phone()); ?></span> (<a href="#" onclick="editPhone()">edit</a>)
             </div>
+
+            <div class="col-sm-2">
+            </div>
             
             <div class="col-sm-2 text-center">
               Shipping
