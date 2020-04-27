@@ -45,8 +45,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
 
     <div class="container-fluid threeColumnsHome">
       <div class="row">
-        <div class="col-xs-12 col-sm-4 text-center ">
-          <h2 style="margin-top: 15px;">Product info</h2>
+        <div class="col-xs-12 col-sm-4 text-left ">
+          <h2 style="margin-top: 15px; text-align:center">Product info</h2>
           <?= $product_allergenes ?>
         </div>
         <div class="col-xs-12 col-sm-4 text-center ">
