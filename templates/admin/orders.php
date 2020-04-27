@@ -54,6 +54,7 @@ function get_dish($code){
           <tbody>
           <?php 
             $orders = get_orders();
+            $k = 0;
 
           foreach($orders as $order){ ?>
             "<tr>
@@ -67,15 +68,14 @@ function get_dish($code){
               <td>
               <?php
 
-              $k = 0;
               $order_items = get_orders_items($k, $orders);
               $k++;
-              
-              foreach($order_items as $order_item){
-                
-                 $dish = get_dish($order_item[2]);
-                 echo $order_item[3] . "x " . $dish[0][0] ."<b> ". $dish[0][1] ."€</b><br><i>Notes: \"$order_item[4]\"</i><br><br>";
+              $j = 0;
 
+              foreach($order_items as $order_item){
+                 $dish = get_dish($order_item[2]);
+                 echo $order_item[3] . "x " . $dish[$j][0] ."<b> ". $dish[$j][1] ."€</b><br><i>Notes: \"$order_item[4]\"</i><br><br>";
+                $j++;
               }
               ?>
               </td>
