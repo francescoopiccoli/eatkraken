@@ -45,15 +45,15 @@ function db_get_categories() {
 }
 
 function db_get_cost_home_delivery($restaurant){
-	return db_simple_query("select cost_home_delivery from restaurants where code=$restaurant");
+	return db_stmt_query("select cost_home_delivery from restaurants where code=?",[$restaurant]);
 }
 
 function db_get_cost_takeaway($restaurant){
-	return db_simple_query("select shipping_cost from restaurants where code=$restaurant");
+	return db_stmt_query("select shipping_cost from restaurants where code=?",[$restaurant]);
 }
 
 function db_get_cost_eat_in($restaurant){
-	return db_simple_query("select cost_eat_in from restaurants where code=$restaurant");
+	return db_stmt_query("select cost_eat_in from restaurants where code=?",[$restaurant]);
 }
 
 function db_get_item_price($code) {
@@ -68,7 +68,8 @@ function db_get_items_cost($order){
 }
 
 function db_get_shipping_cost($order){
-	switch ($shipping_type) {
+    return 5; // todo: fix
+	/*switch ($shipping_type) {
 	case 0:
 		$shipping_cost = db_get_cost_eat_in();
 		break;
@@ -79,7 +80,7 @@ function db_get_shipping_cost($order){
 		$shipping_cost = db_get_cost_home_delivery();
 		break;
 	}
-	return $shipping_cost;
+	return $shipping_cost;*/
 }
 
 function db_get_dishes($city, $cat, $time, $flags) {
@@ -129,22 +130,27 @@ function db_get_product($productCode){
 }
 
 /*make orders*/
-function db_new_order($restaurant, $full_name, $address, $city, $phone, $shipping_type, $delivery_deadline, $status){
+function db_insert_empty_order($restaurant, $full_name, $address, $city, $phone, $shipping_type, $items_cost, $delivery_time){
+    $delivery_deadline = time() + $delivery_time; // starting from when order is placed
+    $shipping_cost = db_get_shipping_cost($restaurant, $shipping_type);
+	$total_cost = $items_cost + $shipping_cost;
 
-	$total_cost = db_get_items_cost($order)+db_get_shipping_cost($order);
-	$shipping_cost=db_get_shipping_cost($order);
-
-	db_stmt_query("insert into orders (code, restaurant, full_name, address, city, phone, shipping_type, shipping_cost, total_cost, delivery_deadline, status) values (default, $restaurant, $full_name, $address, $city, $phone, $shipping_type, $shipping_cost, $total_cost, $delivery_deadline, $status);");
-
-	$order = db_get_last_order_code();
-	return db_new_order_items($item,$order,$quantity,$note);
+    $q = db_stmt_query("insert into orders (code, restaurant, full_name, address, city, phone, shipping_type, shipping_cost, total_cost, delivery_deadline, status) ".
+    "values (default, :restaurant, :full_name, :address, :city, :phone, :shipping_type, :shipping_cost, :total_cost, :delivery_deadline, 0);",
+    ["restaurant" => $restaurant, "full_name" => $full_name, "address" => $address, "city" => $city, "phone" => $phone, "shipping_type" => $shipping_type, "shipping_cost" => $shipping_cost, "total_cost" => $total_cost, "delivery_deadline" => $delivery_deadline]);
+    
+	return db_get_last_order_code();
 }
 
 function db_get_last_order_code(){
-	return db_simple_query("SELECT MAX(code) AS lastOrderCode FROM order;");
+    $res = db_simple_query("SELECT MAX(code) AS lastOrderCode FROM order;");
+    if(count($res) > 0)
+        return $res[0][0];
+    else
+        return false;
 }
 
-function db_new_order_items($item,$order,$quantity,$note){
+function db_add_order_item($order, $item,$quantity,$note){
 	return db_simple_query("insert into order_items (code, ord, item, quantity, note) values (default, $order, $itemCode, $quantity, $note);");
 }
 
