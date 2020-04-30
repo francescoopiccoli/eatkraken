@@ -77,12 +77,21 @@ function cart_get_total() {
     }
     return $total;
 }
+function cart_get_shipping_total() {
+    $total = 0;
+    $orders = cart_get_orders();
+    foreach ($orders as $restaurant => $items) {
+        $total += db_get_shipping_cost($restaurant, cart_get_restaurant_shipping($restaurant));
+    }
+    return $total;
+}
 
 // User-specific restaurant shipping and message preferences - remembered on server among different orders
 function cart_set_restaurant_shipping($restaurant, $method) {
     if(!isset($_SESSION['shipping_prefs']))
         $_SESSION['shipping_prefs'] = array();
     
+    // TODO: check if shipping supported?, else set default
     $_SESSION['shipping_prefs'][$restaurant] = htmlentities($method);
 }
 function cart_set_restaurant_message($restaurant, $message) {
@@ -114,6 +123,15 @@ function cart_get_address() {
         return "No Shipping Address specified";
     
     return $_SESSION['address'];
+}
+function cart_set_full_name($address) {    
+    $_SESSION['full_name'] = htmlentities($address);
+}
+function cart_get_full_name() {
+    if(!isset($_SESSION['full_name']))
+        return "";
+    
+    return $_SESSION['full_name'];
 }
 
 function cart_set_email($email) {    

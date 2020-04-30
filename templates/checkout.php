@@ -18,6 +18,8 @@ $isCheckoutPage = true; // for checkout widget
             <div class="col-sm-3">
               <b>Deliver to:</b>
               <br>  
+              <b id="full_name"><?= (cart_get_full_name() != "" ? cart_get_full_name() : "Enter Full Name"); ?></b> (<a href="#" onclick="editName()">edit</a>)
+              <br>  
               <span id="address"><?= cart_get_address(); ?></span> (<a href="#" onclick="editAddress()">edit</a>)
             </div>
             <div class="col-sm-3">
@@ -33,11 +35,11 @@ $isCheckoutPage = true; // for checkout widget
             <div class="col-sm-2 text-center">
               Shipping
               <!-- todo! -->
-              <h2>€5</h2>
+              <h2>€<?= cart_get_shipping_total() ?></h2>
             </div>
             <div class="col-sm-2 text-center">
               Total
-              <h2>€<?= cart_get_total() + 0 /* TODO: shipping cost */ ?></h2>
+              <h2>€<?= cart_get_total() + cart_get_shipping_total() ?></h2>
             </div>
           </div>
 
@@ -50,10 +52,10 @@ $isCheckoutPage = true; // for checkout widget
 
             <div class="col-sm-2">
               <br>
-              <select name="" id="" class="form-control" onchange="changeShipping(<?= $restaurant; ?>);">
+              <select name="" id="shipping-<?= $restaurant; ?>" class="form-control" onchange="changeShipping(<?= $restaurant; ?>);">
                 <?php /* todo: show only supported shipping methods */ ?>
-                <option value="">Home delivery (+€5)</option>
-                <option value="">Eat in (free)</option>
+                <option value="1">Home delivery (+€5)</option>
+                <option value="2">Eat in (free)</option>
               </select>
             </div>
           </div>
@@ -99,6 +101,12 @@ $isCheckoutPage = true; // for checkout widget
         if(notes != null)
           document.location = "/checkout.php?restaurant="+id+"&set_message="+encodeURI(notes);
       }
+      function editName() {
+        fName = prompt("Enter full name");
+
+        if(fName != null)
+          document.location = "/checkout.php?set_full_name="+encodeURI(fName);
+      }
       function editAddress() {
         address = prompt("Enter delivery address");
 
@@ -116,6 +124,11 @@ $isCheckoutPage = true; // for checkout widget
 
         if(phone != null)
           document.location = "/checkout.php?set_phone="+encodeURI(phone);
+      }
+      function changeShipping(code) {
+        shipping = $("#shipping-"+code).val();
+        if(!isNaN(shipping))
+          document.location = "/checkout.php?restaurant="+encodeURI(code)+"&set_shipping="+encodeURI(shipping);
       }
       
     </script>

@@ -67,7 +67,7 @@ function db_get_items_cost($order){
 	return db_stmt_query("SELECT sum(price) FROM dishes, order_items WHERE order_items.ord=? and dishes.code=order_items.item;", [$order]);
 }
 
-function db_get_shipping_cost($order){
+/*function db_get_shipping_cost($order){
     return 5; // todo: fix
 	/*switch ($shipping_type) {
 	case 0:
@@ -80,7 +80,13 @@ function db_get_shipping_cost($order){
 		$shipping_cost = db_get_cost_home_delivery();
 		break;
 	}
-	return $shipping_cost;*/
+	return $shipping_cost;
+}*/
+
+function db_get_shipping_cost($restaurant, $method) {
+    // 1. is $method supported? no -> -1
+    // 2. yes -> return cost for chosen method
+    return 0;
 }
 
 function db_get_dishes($city, $cat, $time, $flags) {
