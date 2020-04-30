@@ -60,12 +60,16 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
       </div>
     </div>
 
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-xs-12 col-sm-4 text-center ">
-          <h2 style="margin-top: 15px;">Restaurant:</h2>
-          <?= $restaurant_description?><?= $restaurant_name?><?= $restaurant_id?>
-        </div>
+    <div class="container-fluid justify-content-center "  style="background-color: #F0F0F0; width:100%">
+          <div class="row justify-content-center" style="padding: 30px;">
+          <div class="col-xs-12 col-sm-4 text-center"><?php echo "<img style=\"width:100%; opacity: 0.7; border: 1px solid; border-radius: 80%\" src=\"$restaurant_image_url\">"?>
+          </div>
+          <div class="col-xs-12 col-sm-8 text-center">
+            <h2 style="margin-top: 30px;"> <?= $restaurant_name?></h2>
+            <hr style="border-color: #bbb; width: 30%">
+            <div style="width:100%; text-align: center;">
+            <?= "<i>$restaurant_description</i>"?></div>
+          </div>
       </div>
     </div>
 

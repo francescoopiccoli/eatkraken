@@ -201,4 +201,12 @@ function db_get_restaurant_description($id) {
         return false;
 }
 
+function db_get_restaurant_image_url($id) {
+    $res = db_stmt_query("select image_url from restaurants where code = ?", [$id]);
+    if(count($res) > 0)
+        return $res[0]['image_url'];
+    else
+        return false;
+}
+
 ?>

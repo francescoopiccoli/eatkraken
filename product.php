@@ -12,6 +12,8 @@ $product = db_get_product($product_id);
 $restaurant_id = $product["restaurant"];
 $restaurant_name = db_get_restaurant_name($restaurant_id);
 $restaurant_description = db_get_restaurant_description($restaurant_id);
+$restaurant_image_url = db_get_restaurant_image_url($restaurant_id);
+
 
 if(!$product) {
     header("Location: /404.php");
