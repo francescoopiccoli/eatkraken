@@ -131,7 +131,7 @@ function db_get_product($productCode){
 
 /*make orders*/
 function db_insert_empty_order($restaurant, $full_name, $address, $email, $city, $phone, $shipping_type, $items_cost, $delivery_time){
-    $delivery_deadline = time() + $delivery_time; // starting from when order is placed
+    $delivery_deadline = time() + $delivery_time * 60; // starting from when order is placed
     $shipping_cost = 0; // db_get_shipping_cost($restaurant, $shipping_type);
 	$total_cost = $items_cost + $shipping_cost;
 

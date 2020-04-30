@@ -117,7 +117,9 @@ function cart_get_address() {
 }
 
 function cart_set_email($email) {    
-    $_SESSION['email'] = htmlentities($email);
+    // set if valid
+    if(filter_var($email, FILTER_VALIDATE_EMAIL))
+        $_SESSION['email'] = htmlentities($email);
 }
 function cart_get_email() {
     if(!isset($_SESSION['email']))
@@ -127,7 +129,9 @@ function cart_get_email() {
 }
 
 function cart_set_phone($phone) {    
-    $_SESSION['phone'] = htmlentities($phone);
+    // validate: + (xx) [numbers & spaces]
+    if(preg_match("/\\+?\\d(\\s|\\d)+/",$phone))
+        $_SESSION['phone'] = htmlentities($phone);
 }
 function cart_get_phone() {
     if(!isset($_SESSION['phone']))
