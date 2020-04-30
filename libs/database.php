@@ -10,7 +10,7 @@ $GLOBALS['db_pdo_data'] = "pgsql:host=".$GLOBALS['db_host']." port=5432 dbname="
 
 // indices: simple_query(...)[row][column]
 function db_simple_query($query_text) {
-    $connection = new PDO($GLOBALS['db_pdo_data']);
+    $connection = new PDO($GLOBALS['db_pdo_data'], $GLOBALS['db_username'], $GLOBALS['db_password'], array(PDO::ATTR_PERSISTENT => true));
     try {
         if($query = $connection->query($query_text)) 
             return $query->fetchAll();
@@ -23,7 +23,7 @@ function db_simple_query($query_text) {
     $connection = null;
 }
 function db_stmt_query($query_text, $params) {
-    $connection = new PDO($GLOBALS['db_pdo_data']);
+    $connection = new PDO($GLOBALS['db_pdo_data'], $GLOBALS['db_username'], $GLOBALS['db_password'], array(PDO::ATTR_PERSISTENT => true));
     
     $stmt = $connection->prepare($query_text);
     $stmt->execute($params);
@@ -98,7 +98,7 @@ function db_get_dishes($city, $cat, $time, $flags) {
             $flagsText .= " and dishes.flag_".$flag['name']. " = true";
     }
 
-    $connection = new PDO($GLOBALS['db_pdo_data']);
+    $connection = new PDO($GLOBALS['db_pdo_data'], $GLOBALS['db_username'], $GLOBALS['db_password'], array(PDO::ATTR_PERSISTENT => true));
     
     $stmt = $connection->prepare(
         "select dishes.code, dishes.name, dishes.price, dishes.image_url, dishes.restaurant as restaurant_id, restaurants.name as restaurant_name".
