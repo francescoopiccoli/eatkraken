@@ -65,6 +65,12 @@ $title = "EatKraken";
     </div>
   </div>
 
+  <!--<div class="container-fluid threeColumnsHome" style="background-color: #F0F0F0; width:100%">
+    <div class="row"> 
+      <div class="col-xs-12 col-sm-4 text-center"><h2><?= db_get_restaurant_name(1)?></h2><img class="homepageAllergenes img-circle" src="<?= db_get_restaurant_image_url(1)?>"><p><?= db_get_restaurant_description(1)?></p></div>
+      <div class="col-xs-12 col-sm-4 text-center"><h2><?= db_get_restaurant_name(2)?></h2><img class="homepageAllergenes img-circle" src="<?= db_get_restaurant_image_url(2)?>"><p><?= db_get_restaurant_description(2)?></p></div>
+      <div class="col-xs-12 col-sm-4 text-center"><h2><?= db_get_restaurant_name(3)?></h2><img class="homepageAllergenes img-circle" src="<?= db_get_restaurant_image_url(3)?>"><p><?= db_get_restaurant_description(3)?></p></div></div>-->
+
   <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/footer.php"); ?>
 
   </body>
