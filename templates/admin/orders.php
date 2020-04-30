@@ -1,4 +1,9 @@
 <?php
+
+/// possible POST actions:
+// ?order={id}&approve
+// ?order={id}&reject
+
 require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/database.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
 
@@ -6,6 +11,7 @@ if(!restaurant_is_logged_in()) {
   header("Location: /");
   exit;
 }
+
 //http://localhost:8080/restaurant/auth.php?login=kebabkebabkebabkebabkebabkebabke
 function get_orders(){
     $restuarantID= restaurant_get_logged_id();
@@ -36,18 +42,27 @@ function removeElement($code){
   $connection = new PDO($GLOBALS['db_pdo_data']);
   $query  = "UPDATE orders SET status = 1  WHERE code = $code;";
   if($connection->query($query)){
-    echo "succesful";
+    echo "successful";
   }
 }
 
-function onclick($code){
+if(isset($_POST['order'])) { 
+  if(isset($_POST['approve'])) {
+    $connection = new PDO($GLOBALS['db_pdo_data']);
+    $stmt = $connection->prepare("UPDATE orders SET status = 1  WHERE code = ? AND restaurant = ?");
+    if($stmt->execute([$_POST['order'], restaurant_get_logged_id()])){
+       // silently accept
+    }
+  }
 
-if(isset($_POST['accept'])) { 
-  
-  removeElement($code);
-  email(); 
-  echo "email sent";
-} }
+  if(isset($_POST['reject'])) {
+    $connection = new PDO($GLOBALS['db_pdo_data']);
+    $stmt = $connection->prepare("UPDATE orders SET status = 2  WHERE code = ? AND restaurant = ?");
+    if($stmt->execute([$_POST['order'], restaurant_get_logged_id()])){
+      // silently reject
+    }
+  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -104,10 +119,10 @@ if(isset($_POST['accept'])) {
               <td><?= ($order[8] + $order[7]) . "€" ?></td>
               <td>
                 Deliver within <b>40 minutes</b><br><b><?= "Delivery type:" . $order[6] ?></b> <?= "Cost: " . $order[7] . "€" ?><br>
-                <form method="post"> 
-                <input type="submit" name="accept" value = "Accept" class= "btn btn-success btn-sm"/>
-                <input type="submit" name="Refuse" value = "Refuse" class="btn btn-danger btn-sm"/>
-                <!-- <?php // onclick($order[0]); ?> -->
+                <form method="post" action="orders.php"> 
+                <input type="hidden" name="order" value="<?= $order['code']; ?>">
+                <input type="submit" name="approve" value="Approve" class= "btn btn-success btn-sm"/>
+                <input type="submit" name="reject" value="Reject" class="btn btn-danger btn-sm"/>
                 </form> 
 
               </td>
