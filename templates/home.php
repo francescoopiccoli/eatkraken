@@ -26,7 +26,7 @@ $title = "EatKraken";
   <div class="mainbody"> 
   <div class="dropdown"id="selectCity">
   <button class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-   <span style="margin-right: 20px">Select a city to start!</span> <span class="caret"></span>
+   <span style="margin-right: 20px; letter-spacing: 1px; word-spacing: 3px">Select a city to start!</span> <span style="margin-top:12px; float:right; color: #C98474" class="caret"></span>
   </button>
   <ul class="dropdown-menu cityList">
   <?php 
@@ -81,7 +81,7 @@ $title = "EatKraken";
     </div>
   </div>
 
-  <!--
+  
   <style>
    .image:hover{
      opacity: 0.5;
@@ -110,9 +110,9 @@ $title = "EatKraken";
 }
    }
    
-    </style>-->
+    </style>
 
- <?php /*
+ <?php 
            echo "<div style=\"margin-bottom:50px\">
                   <h1 style=\"text-align: center\">We work with...</h1>";
             $restaurants = db_simple_query("select * from restaurants");
@@ -145,7 +145,7 @@ $title = "EatKraken";
             }
             echo "</div></div></div>";
 
-  */?>
+  ?>
   <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/footer.php"); ?>
 
   </body>
