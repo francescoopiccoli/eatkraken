@@ -68,7 +68,65 @@ body {
     color: white;
 }
 
+/*Homepage dropdown button*/
+#selectCity {
+    position: absolute;
+    display:inline-block;
+    left: 50%;
+    top:50%;
+    transform: translate(-50%, 0);
+    z-index: 1;
+    color:white;
+    z-index: 5;
+
+    
+}
+
+@media screen and(width: 1024px){
+    #selectCity {
+    top:20%;
+    }
+}
+
+@media screen and(width: 768px){
+    #selectCity {
+    top:30%;
+    }
+}
+
+@media screen and(width: 768px){
+    #selectCity {
+    top:40%;
+    }
+}
+
+.dropdown button{
+    width: 300px;
+    font-family: 'Acme';
+    font-size: 1.6em;
+    z-index: 5;
+
+
+}
+
+.cityList, .cityList a, .cityList li{
+    width: 300px;
+    font-family: 'Acme';
+    font-size: 1.1em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 5px;
+    z-index: 5;
+ }
+
+ .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover{
+     background-color: transparent;
+     text-decoration: none;
+     color: $eggplant;
+ }
+
 /*carousel images homepage*/
+
 .item{
     min-height: 300px; 
     height: 550px;
@@ -90,7 +148,6 @@ body {
     font-weight: 400;
     background-color: transparent;
     border-radius: 10px;
-
 }
 
 .homePageButton:hover{
@@ -109,6 +166,10 @@ body {
     border-color: #BBBBBB;
     text-decoration:none;
 
+}
+
+.carousel-indicators{
+    z-index: 1;
 }
 
 /* Homepage items */

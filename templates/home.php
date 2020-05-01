@@ -7,8 +7,8 @@ $title = "EatKraken";
   <body>
   <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/navbar.php"); 
   ?>
-  <?php 
 
+  <?php 
     function getRandomImage(){
       
       //$arrayId = array(1, 2, 3, 11, 12, 21, 22, 31, 32, 41, 42, 51, 52, 53, 61, 62);
@@ -19,11 +19,30 @@ $title = "EatKraken";
       $imageURL = db_simple_query("select image_url from dishes where code = $productCode");
       return $imageURL[0][0];
     }
-
   ?>
 
+ 
   <div class="mainbody"> 
-    
+  <div class="dropdown"id="selectCity">
+  <button class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+   <span style="margin-right: 20px">Select a city to start!</span> <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu cityList">
+  <?php 
+            $cities = db_simple_query("select * from cities");
+            foreach($cities as $city){
+            $link = "/list.php?city=" . $city['code'] . "&time=&category=0";
+             echo "<li><a href=\"$link\">" . $city['name'] . "</a></li>";
+            }
+            ?>
+  </ul>
+</div>
+  
+
+       
+       
+
+
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
      <ol class="carousel-indicators">
@@ -36,22 +55,18 @@ $title = "EatKraken";
       <div class="item active" style="background-image: url('<?=getRandomImage()?>')">
         <div class="carousel-caption">
           <h2>You choose it, we bring it!</h2>
-          <a href="list.php" class="homePageButton">Check the list!</a>
         </div>
       </div>
 
       <div class="item" style="background-image: url('<?=getRandomImage()?>')">
         <div class="carousel-caption">
           <h2>Your favourite restaurant, at your door!</h2>
-          <a href="list.php" class="homePageButton">Check the list!</a>
         </div>
       </div>
 
       <div class="item" style="background-image: url('<?=getRandomImage()?>')">
       <div class="carousel-caption">
           <h2>Free delivery on order over 20$</h2>
-          <a href="list.php" class="homePageButton">Check the list!</a>
-        </div>
       </div>
     </div>
   </div>
