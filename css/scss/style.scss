@@ -212,15 +212,26 @@ h1 {
     margin: 20px;
 }
 .checkout-main .row {
-    padding: 15px;
+    padding: 25px;
+    text-align: center;
+
 }
+
+@media screen and(min-width: 768px){
+    .checkout-main .row{
+        text-align: left;
+    }
+}
+
 .checkout-main .row * {
     vertical-align: middle;
 }
 .checkout-total-row {
-    background-color:$butter;
-    border: $salmon 2px solid;
+    background-color: #F0F0F0;
+    box-shadow: 5px 5px 2px grey;
+
 }
+
 .checkout-total-row h2 {
     margin-top: 5px;
     margin-bottom: 0;
@@ -237,6 +248,18 @@ h1 {
 .food-card:hover {
     text-decoration: none !important;
 }
+
+.checkoutProductImage{
+    border: 3px solid white;
+    display: inline-block;
+    position: relative;
+    width: 280px;
+    height: 280px;
+    overflow: hidden;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
 
 /* list page */
 .food-card .panel:hover {

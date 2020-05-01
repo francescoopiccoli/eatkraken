@@ -12,34 +12,38 @@ $isCheckoutPage = true; // for checkout widget
 
     <div class="container-fluid text-center mainbody">    
       <div class="row content checkout-main">
-        <div class="col-sm-12 text-left"> 
+        <div class="col-sm-12"> 
 
           <div class="row checkout-total-row">
             <div class="col-sm-3">
-              <b>Deliver to:</b>
+              <b style="font-size: 1.3em; font-family: 'Acme';">Deliver to:</b>
+              <br><br>
+              <span id="full_name"><?= (cart_get_full_name() != "" ? cart_get_full_name() : "Enter Full Name"); ?></span> (<a href="#" onclick="editName()">edit</a>)
               <br>  
-              <b id="full_name"><?= (cart_get_full_name() != "" ? cart_get_full_name() : "Enter Full Name"); ?></b> (<a href="#" onclick="editName()">edit</a>)
-              <br>  
-              <span id="address"><?= cart_get_address(); ?></span> (<a href="#" onclick="editAddress()">edit</a>)
+              <span id="address"><?= cart_get_address(); ?></span> (<a href="#" onclick="editAddress()">edit</a>)<br><br><br>
+
             </div>
             <div class="col-sm-3">
-              <b>Personal information</b>
-              <br>  
+              <b style="font-size: 1.3em; font-family: 'Acme';">Personal information</b>
+              <br><br>
               <span id="address"><?= (cart_get_email() == "" ? "No email specified" : cart_get_email()); ?></span> (<a href="#" onclick="editMail()">edit</a>)<br>
               <span id="address"><?= (cart_get_phone() == "" ? "No phone specified" : cart_get_phone()); ?></span> (<a href="#" onclick="editPhone()">edit</a>)
+              <br><br><br>
             </div>
 
-            <div class="col-sm-2">
-            </div>
-            
-            <div class="col-sm-2 text-center">
-              Shipping
-              <!-- todo! -->
-              <h2>€<?= cart_get_shipping_total() ?></h2>
-            </div>
-            <div class="col-sm-2 text-center">
-              Total
-              <h2>€<?= cart_get_total() + cart_get_shipping_total() ?></h2>
+           
+              <div class="col-sm-2 text-center">
+              <b style="font-size: 1.3em; font-family: 'Acme';">Shipping</b>
+                <!-- todo! -->
+                <h3><?= cart_get_shipping_total() ?>€</h3>
+              </div>
+              <div class="col-sm-2 text-center">
+              <b style="font-size: 1.3em; font-family: 'Acme';">Total</b>
+
+                <h3><?= cart_get_total() + cart_get_shipping_total() ?>€</h3>
+              </div>
+              <div class="col-sm-2 text-center">
+              <a href="checkout.php?confirm" class="btn btn-success btn-lg" style="margin-top:20px; font-family: 'Acme';">Confirm order</a>
             </div>
           </div>
 
@@ -65,29 +69,28 @@ $isCheckoutPage = true; // for checkout widget
             $item = db_get_product($item['code']);
           ?>
           <div class="row checkout-results-row">
-            <div class="col-sm-2">
-            <img class="circular--landscape" id="profile-pic" style ="width:140px; height:140px; text-align:center"src=<?=$item['image_url']?>>
+           
+            <div class="col-sm-3">
+            <img class="circular--landscape checkoutProductImage" style ="width:140px; height:140px; text-align:center"src=<?=$item['image_url']?>>
 
             </div>
-            <div class="col-sm-8">
-              <h3><a href="/product.php?code=<?= $item['code']; ?>"><?= $item['name']; ?></a></h3>
-              <p><?= $item['nutri_kcal']; ?>Kcal</p>
+            <div class="col-sm-7">
+              <h3><a style="color: black; text-decoration: none; font-family: 'Acme'" href="/product.php?code=<?= $item['code']; ?>"><?= $item['name']; ?></a></h3>
+              <i style="font-size: 1.2em; "><?= $item['description']; ?></i>
+              <br>
             </div>
 
-            <div class="col-sm-2 text-center">
-              <h3><?= $item['price']; ?>€</h3>
+            <div class="col-sm-1 text-center">
+              <b style="font-size: 2em"><?= $item['price']; ?>€</b></div>
               <?php /* allergenes warnings? */ ?>
-              <a class="btn btn-sm btn-danger" href="checkout.php?dish=<?= $item['code']; ?>&remove">Remove</a>
+              <div class="col-sm-1 text-center">
+              <a class="btn btn-lg btn-danger" style="font-family: 'Acme'; href="checkout.php?dish=<?= $item['code']; ?>&remove">Remove</a>
             </div>
           </div>
           <hr style="border-color: #bbb;">
 
-          <?php } ?>
+          <?php } }?>
           
-          <?php }  ?>
-          <a href="checkout.php?confirm" class="btn btn-success btn-lg" style="float:right">Confirm order</a>
-
-
         </div>
       </div>
     </div>
@@ -101,6 +104,7 @@ $isCheckoutPage = true; // for checkout widget
         if(notes != null)
           document.location = "/checkout.php?restaurant="+id+"&set_message="+encodeURI(notes);
       }
+
       function editName() {
         fName = prompt("Enter full name");
 

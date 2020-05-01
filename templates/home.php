@@ -9,6 +9,7 @@ $title = "EatKraken";
   ?>
 
   <?php 
+  
     function getRandomImage(){
       
       //$arrayId = array(1, 2, 3, 11, 12, 21, 22, 31, 32, 41, 42, 51, 52, 53, 61, 62);
@@ -80,12 +81,71 @@ $title = "EatKraken";
     </div>
   </div>
 
-  <!--<div class="container-fluid threeColumnsHome" style="background-color: #F0F0F0; width:100%">
-    <div class="row"> 
-      <div class="col-xs-12 col-sm-4 text-center"><h2><?= db_get_restaurant_name(1)?></h2><img class="homepageAllergenes img-circle" src="<?= db_get_restaurant_image_url(1)?>"><p><?= db_get_restaurant_description(1)?></p></div>
-      <div class="col-xs-12 col-sm-4 text-center"><h2><?= db_get_restaurant_name(2)?></h2><img class="homepageAllergenes img-circle" src="<?= db_get_restaurant_image_url(2)?>"><p><?= db_get_restaurant_description(2)?></p></div>
-      <div class="col-xs-12 col-sm-4 text-center"><h2><?= db_get_restaurant_name(3)?></h2><img class="homepageAllergenes img-circle" src="<?= db_get_restaurant_image_url(3)?>"><p><?= db_get_restaurant_description(3)?></p></div></div>-->
+  <!--
+  <style>
+   .image:hover{
+     opacity: 0.5;
 
+   }
+
+   .imageText{
+      visibility: hidden;
+   }
+
+   .column{
+      flex: 33%;
+      max-width:33%;
+}
+
+   @media screen and (max-width: 700px){
+    .column{
+      flex: 100%;
+      max-width:100%;
+}
+
+@media screen and (max-width: 1100px) and (min-width: 701px){
+    .column{
+      flex: 50%;
+      max-width:50%;
+}
+   }
+   
+    </style>-->
+
+ <?php /*
+           echo "<div style=\"margin-bottom:50px\">
+                  <h1 style=\"text-align: center\">We work with...</h1>";
+            $restaurants = db_simple_query("select * from restaurants");
+            echo "<div class=\"row\" style=\"display: flex;
+            flex-wrap: wrap;
+            padding: 0 4px;\">";
+
+            $i = 1;
+
+            foreach($restaurants as $restaurant){
+              if($i % 3 == 0 || $i == 1){
+                echo "<div class=\"column\" style=\"
+                padding: 0 4px; text-align:center\">";}
+              
+
+              echo "<div class\"imageContainer\">
+                <img class=\"image\" style=\" margin-top: 8px;
+                vertical-align: middle;
+                width: 100%;
+                -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 
+                filter: grayscale(100%);
+              \" src=\"" . $restaurant["image_url"] ."\">
+              <div class=\"imageText\">Image 1 Text</div>
+            </div>";
+            $i++;
+
+            if($i % 3 == 0 || $i == 1){
+              echo "</div>";
+            }
+            }
+            echo "</div></div></div>";
+
+  */?>
   <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/footer.php"); ?>
 
   </body>
