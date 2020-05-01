@@ -67,7 +67,7 @@ function db_get_items_cost($order){
 	return db_stmt_query("SELECT sum(price) FROM dishes, order_items WHERE order_items.ord=? and dishes.code=order_items.item;", [$order]);
 }
 
-function db_get_shipping_cost($order){
+/*function db_get_shipping_cost($order){
     return 5; // todo: fix
 	/*switch ($shipping_type) {
 	case 0:
@@ -80,7 +80,13 @@ function db_get_shipping_cost($order){
 		$shipping_cost = db_get_cost_home_delivery();
 		break;
 	}
-	return $shipping_cost;*/
+	return $shipping_cost;
+}*/
+
+function db_get_shipping_cost($restaurant, $method) {
+    // 1. is $method supported? no -> -1
+    // 2. yes -> return cost for chosen method
+    return 0;
 }
 
 function db_get_dishes($city, $cat, $time, $flags) {
@@ -135,16 +141,36 @@ function db_insert_empty_order($restaurant, $full_name, $address, $email, $city,
     $shipping_cost = 0; // db_get_shipping_cost($restaurant, $shipping_type);
 	$total_cost = $items_cost + $shipping_cost;
 
-    $q = db_stmt_query(
-        "insert into orders (restaurant, full_name, address, email, city, phone, shipping_type, shipping_cost, total_cost, delivery_deadline, status) ".
-        "values (:restaurant, :full_name, :address, :email, :city, :phone, :shipping_type, :shipping_cost, :total_cost, :delivery_deadline, 0)",
-    ["restaurant" => $restaurant, "full_name" => $full_name, "address" => $address, "email" => $email, "city" => $city, "phone" => $phone, "shipping_type" => $shipping_type, "shipping_cost" => $shipping_cost, "total_cost" => $total_cost, "delivery_deadline" => $delivery_deadline]);
-    print($q);
-	return db_get_last_order_code();
+    $connection = new PDO($GLOBALS['db_pdo_data'], $GLOBALS['db_username'], $GLOBALS['db_password'], array(PDO::ATTR_PERSISTENT => true));
+
+    $stmt = $connection->prepare(
+        "insert into orders (code, restaurant, full_name, address, email, city, phone, shipping_type, shipping_cost, total_cost, delivery_deadline, status) ".
+        "values ((SELECT MAX(code) FROM orders) + 1, :restaurant, :full_name, :address, :email, :city, :phone, :shipping_type, :shipping_cost, :total_cost, :delivery_deadline, 0)"
+    );
+    
+    $res = $stmt->execute([
+        "restaurant" => $restaurant, 
+        "full_name" => $full_name, 
+        "address" => $address, 
+        "email" => $email, 
+        "city" => $city, 
+        "phone" => $phone, 
+        "shipping_type" => $shipping_type, 
+        "shipping_cost" => $shipping_cost, 
+        "total_cost" => $total_cost, 
+        "delivery_deadline" => date("Y-m-d H:i:s", $delivery_deadline) // https://stackoverflow.com/questions/2374631/pdoparam-for-dates
+    ]);
+
+    $connection = null;
+    if($res)
+        return db_get_last_order_code();
+    else
+        return false;
+    
 }
 
 function db_get_last_order_code(){
-    $res = db_simple_query("SELECT MAX(code) AS lastOrderCode FROM orders");
+    $res = db_simple_query("SELECT MAX(code) FROM orders");
     if(count($res) > 0)
         return $res[0][0];
     else
@@ -152,7 +178,10 @@ function db_get_last_order_code(){
 }
 
 function db_add_order_item($order, $item,$quantity,$note){
-	return db_simple_query("insert into order_items (code, ord, item, quantity, note) values (default, $order, $itemCode, $quantity, $note);");
+    return db_stmt_query(
+        "insert into order_items (code, ord, item, quantity, notes) values (default, ?, ?, ?, ?);",
+        [$order, $item, $quantity, $note]
+    );
 }
 
 function db_get_restaurant_by_token($token) {
