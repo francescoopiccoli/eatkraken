@@ -23,13 +23,12 @@ if($isCheckoutPage) {
 }
 ?>
 
+<?php if(count($cart) > 0) { ?>
 <li class="navbar-text checkout-widget">
-    <?php if(count($cart) == 0) { ?>
-        Your cart is empty
-    <?php } else { ?>
     <?= count($cart); ?> items, <?= cart_get_total(); ?>€
 </li>
+<?php } ?>
 <li class="checkout-widget">
     <a href="/checkout.php" class="btn-checkout"><i class="fas fa-shopping-cart"></i></a>
-    <?php } } ?>
+    <?php } ?>
 </li>
