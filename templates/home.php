@@ -67,7 +67,7 @@ $title = "EatKraken";
 
       <div class="item" style="background-image: linear-gradient(rgba(20, 25, 24, 0.1), rgba(20, 25, 24, 1)), url('<?=getRandomImage()?>')">
       <div class="carousel-caption">
-          <h2>Free delivery on order over 20$</h2>
+          <h2>Sustainable food options available</h2>
       </div>
     </div>
   </div>
