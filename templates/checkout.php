@@ -45,7 +45,7 @@ $isCheckoutPage = true; // for checkout widget
               <form action="checkout.php" method="post">
                 <input type="hidden" name="confirm">
                 <?php if(count(cart_get_items()) > 0) { ?>
-                <a href="checkout.php" class="btn btn-success btn-lg" style="margin-top:20px; font-family: 'Acme';">Confirm order</a>
+                <button type="submit" class="btn btn-success btn-lg" style="margin-top:20px; font-family: 'Acme';">Confirm order</button>
                 <?php } ?>
               </form>
             </div>
@@ -61,9 +61,18 @@ $isCheckoutPage = true; // for checkout widget
             <div class="col-sm-2">
               <br>
               <select name="" id="shipping-<?= $restaurant; ?>" class="form-control" onchange="changeShipping(<?= $restaurant; ?>);">
-                <?php /* todo: show only supported shipping methods */ ?>
-                <option value="1">Home delivery (+€5)</option>
-                <option value="2">Eat in (free)</option>
+                <?php 
+                $shipping_methods = db_get_shipping_methods($restaurant);
+                foreach ($shipping_methods as $method) {
+                  $sel = (cart_get_restaurant_shipping($restaurant) == $method['id'] ? "selected" : "");
+                ?>
+                <option value="<?= $method['id'] ?>" <?= $sel ?>>
+                  <?= $method['name'] ?>
+                  (<?= number_format($method['cost'], 2) ?>€)
+                </option>
+                <?php
+                }
+                ?>
               </select>
             </div>
           </div>

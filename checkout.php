@@ -54,7 +54,7 @@ if(isset($_POST['confirm'])) {
         cart_empty();
 
         // 5. show msg-..., redirect to homepage after 10 seconds
-        header("refresh:10; url=/");
+        header("refresh:0; url=/");
         die('<script>alert("Your order has been sent!\\nYou will receive a confirmation e-mail shortly");</script>');
     }
 }
