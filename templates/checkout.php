@@ -120,37 +120,83 @@ $isCheckoutPage = true; // for checkout widget
         notes = prompt("Enter custom message");
 
         if(notes != null)
-          document.location = "/checkout.php?restaurant="+id+"&set_message="+encodeURI(notes);
+          $("<form>", {
+            "action": "checkout.php",
+            "method": "post",
+          }).append(
+            $("<input/>", {"type": "hidden", "name": "restaurant", "value": id})
+          ).append(
+            $("<input/>", {"type": "hidden", "name": "set_message", "value": notes})
+          )
+          .appendTo(document.body)
+          .submit();
       }
 
       function editName() {
         fName = prompt("Enter full name");
 
         if(fName != null)
-          document.location = "/checkout.php?set_full_name="+encodeURI(fName);
+          $("<form>", {
+            "action": "checkout.php",
+            "method": "post",
+          }).append(
+            $("<input/>", {"type": "hidden", "name": "set_full_name", "value": fName})
+          )
+          .appendTo(document.body)
+          .submit();
       }
       function editAddress() {
         address = prompt("Enter delivery address");
 
         if(address != null)
-          document.location = "/checkout.php?set_address="+encodeURI(address);
+          $("<form>", {
+            "action": "checkout.php",
+            "method": "post",
+          }).append(
+            $("<input/>", {"type": "hidden", "name": "set_address", "value": address})
+          )
+          .appendTo(document.body)
+          .submit();
       }
       function editMail() {
         address = prompt("Enter e-mail address");
 
         if(address != null)
-          document.location = "/checkout.php?set_email="+encodeURI(address);
+          $("<form>", {
+            "action": "checkout.php",
+            "method": "post",
+          }).append(
+            $("<input/>", {"type": "hidden", "name": "set_email", "value": address})
+          )
+          .appendTo(document.body)
+          .submit();
       }
       function editPhone() {
         phone = prompt("Enter phone number");
 
         if(phone != null)
-          document.location = "/checkout.php?set_phone="+encodeURI(phone);
+          $("<form>", {
+            "action": "checkout.php",
+            "method": "post",
+          }).append(
+            $("<input/>", {"type": "hidden", "name": "set_phone", "value": phone})
+          )
+          .appendTo(document.body)
+          .submit();
       }
-      function changeShipping(code) {
-        shipping = $("#shipping-"+code).val();
+      function changeShipping(restaurant) {
+        shipping = $("#shipping-"+restaurant).val();
         if(!isNaN(shipping))
-          document.location = "/checkout.php?restaurant="+encodeURI(code)+"&set_shipping="+encodeURI(shipping);
+          $("<form>", {
+              "action": "checkout.php",
+              "method": "post",
+            }).append(
+              $("<input/>", {"type": "hidden", "name": "restaurant", "value": restaurant})
+            ).append(
+              $("<input/>", {"type": "hidden", "name": "set_shipping", "value": shipping})
+            )
+            .appendTo(document.body)
+            .submit();
       }
       
     </script>
