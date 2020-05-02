@@ -54,18 +54,21 @@ $title = "EatKraken";
 
   <div class="carousel-inner">
       <div class="item active" style="background-image: url('<?=getRandomImage()?>')">
+        <div class="circle"></div>
         <div class="carousel-caption">
           <h2>You choose it, we bring it!</h2>
         </div>
       </div>
 
       <div class="item" style="background-image: url('<?=getRandomImage()?>')">
+      <div class="circle"></div>
         <div class="carousel-caption">
           <h2>Your favourite restaurant, at your door!</h2>
         </div>
       </div>
 
       <div class="item" style="background-image: url('<?=getRandomImage()?>')">
+      <div class="circle"></div>
       <div class="carousel-caption">
           <h2>Free delivery on order over 20$</h2>
       </div>
