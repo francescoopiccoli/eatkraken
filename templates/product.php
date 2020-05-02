@@ -22,15 +22,18 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
             <h1><?= $product_name ?></h1>
             <p class="lead"><?= $product_desc ?></p>
             <h3><b>€<?= $product_price ?></b><small style="color: #ccc; font-weight: 500;"> / piece</small></h3>
-            <a class="homePageButton" id="cart-add-btn" href="/product.php?code=<?= $product_id; ?>&add">
-            <?php
-              if(!$addToCart || !$addSuccess) {
-                echo "Add to cart";
-              } else {
-                echo "Added!";
-              }
-            ?>
-            </a>
+            <form action="/product.php?code=<?= $product_id; ?>" method="post">
+              <input type="hidden" name="add">
+              <button type="submit" class="homePageButton" id="cart-add-btn"<?= $product_id; ?>>
+              <?php
+                if(!$addToCart || !$addSuccess) {
+                  echo "Add to cart";
+                } else {
+                  echo "Added!";
+                }
+              ?>
+              </button>
+            </form>
             <br>
             <span id="cart-add-msg">
             <?php

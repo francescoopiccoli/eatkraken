@@ -4,10 +4,12 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
 
 $title = "Checkout - EatKraken";
 
-// possible GET actions:
+// possible POST actions:
 // ?confirm
 // ?dish={ID}&remove
 // ?dish={ID}&confirm_add (if there are any allergene warnings) -> don't implement yet
+
+// still GET actions (migrate to POST! / ajax?):
 // ?restaurant={ID}&set_shipping={MODE}
 // ?restaurant={ID}&set_message={X}
 // ?set_full_name={X}
@@ -15,7 +17,7 @@ $title = "Checkout - EatKraken";
 // ?set_phone={X}
 // ?set_email={X}
 
-if(isset($_GET['confirm'])) {
+if(isset($_POST['confirm'])) {
     // 1. check phone & email -> failure: show warning msg-danger and go on
     // however address is not mandatory, e.g. if user takes away or eats in
     if(cart_get_phone() == "" || cart_get_email() == "" || cart_get_full_name() == "") {
@@ -49,7 +51,7 @@ if(isset($_GET['confirm'])) {
         mail(cart_get_email(), "Your EatKraken order has been placed","TODO");
 
         // 4. clean-up cart
-        //cart_empty();
+        cart_empty();
 
         // 5. show msg-..., redirect to homepage after 10 seconds
         header("refresh:10; url=/");
@@ -57,9 +59,9 @@ if(isset($_GET['confirm'])) {
     }
 }
 
-if(isset($_GET['dish'])) {
-    if(isset($_GET['remove'])) {
-        cart_rm_first($_GET['dish']);
+if(isset($_POST['dish'])) {
+    if(isset($_POST['remove'])) {
+        cart_rm_first($_POST['dish']);
     }
 }
 

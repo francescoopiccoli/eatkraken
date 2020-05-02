@@ -42,7 +42,10 @@ $isCheckoutPage = true; // for checkout widget
                 <h3><?= cart_get_total() + cart_get_shipping_total() ?>€</h3>
               </div>
               <div class="col-sm-2 text-center">
-              <a href="checkout.php?confirm" class="btn btn-success btn-lg" style="margin-top:20px; font-family: 'Acme';">Confirm order</a>
+              <form action="checkout.php" method="post">
+                <input type="hidden" name="confirm">
+                <a href="checkout.php" class="btn btn-success btn-lg" style="margin-top:20px; font-family: 'Acme';">Confirm order</a>
+              </form>
             </div>
           </div>
 
@@ -80,10 +83,15 @@ $isCheckoutPage = true; // for checkout widget
             </div>
 
             <div class="col-sm-1 text-center">
-              <b style="font-size: 2em"><?= $item['price']; ?>€</b></div>
+              <b style="font-size: 2em"><?= $item['price']; ?>€</b>
+            </div>
               <?php /* allergenes warnings? */ ?>
               <div class="col-sm-1 text-center">
-              <a class="btn btn-lg btn-danger" style="font-family: 'Acme'; href="checkout.php?dish=<?= $item['code']; ?>&remove">Remove</a>
+              <form action="checkout.php" method="post">
+                <input type="hidden" name="dish" value="<?= $item['code']; ?>">
+                <input type="hidden" name="remove" value="true">
+                <button type="submit" class="btn btn-lg btn-danger" style="font-family: 'Acme';">Remove</button>
+              </form>
             </div>
           </div>
           <hr style="border-color: #bbb;">

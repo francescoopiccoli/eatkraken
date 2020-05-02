@@ -19,7 +19,8 @@ if(!$product) {
     header("Location: /404.php");
 }
 
-$addToCart = isset($_GET['add']);
+// 'add' in POST -> add to cart
+$addToCart = isset($_POST['add']);
 if($addToCart) {
     $addSuccess = cart_add_item($product_id);
 }
