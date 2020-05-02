@@ -65,25 +65,25 @@ if(isset($_POST['dish'])) {
     }
 }
 
-if(isset($_GET['restaurant'])) {
-    if(isset($_GET['set_shipping'])) {
-        cart_set_restaurant_shipping($_GET['restaurant'], $_GET['set_shipping']);
+if(isset($_POST['restaurant'])) {
+    if(isset($_POST['set_shipping'])) {
+        cart_set_restaurant_shipping($_POST['restaurant'], $_POST['set_shipping']);
     }
-    if(isset($_GET['set_message'])) {
-        cart_set_restaurant_message($_GET['restaurant'], $_GET['set_message']);
+    if(isset($_POST['set_message'])) {
+        cart_set_restaurant_message($_POST['restaurant'], $_POST['set_message']);
     }
 }
-if(isset($_GET['set_address'])) {
-    cart_set_address($_GET['set_address']);
+if(isset($_POST['set_address'])) {
+    cart_set_address($_POST['set_address']);
 }
-if(isset($_GET['set_full_name'])) {
-    cart_set_full_name($_GET['set_full_name']);
+if(isset($_POST['set_full_name'])) {
+    cart_set_full_name($_POST['set_full_name']);
 }
-if(isset($_GET['set_phone'])) {
-    cart_set_phone($_GET['set_phone']);
+if(isset($_POST['set_phone'])) {
+    cart_set_phone($_POST['set_phone']);
 }
-if(isset($_GET['set_email'])) {
-    cart_set_email($_GET['set_email']);
+if(isset($_POST['set_email'])) {
+    cart_set_email($_POST['set_email']);
 }
 
 $orders = cart_get_orders();
