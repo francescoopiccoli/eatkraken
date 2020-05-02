@@ -41,7 +41,7 @@ h2 {
   height: 450px; }
 
 .checkout-widget {
-  color: #fff; }
+  color: #fff !important; }
 
 .sidenav {
   background-color: #f1f1f1;
