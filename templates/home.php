@@ -120,14 +120,6 @@ $title = "EatKraken";
   backface-visibility: hidden;
 }
 
-/* Responsive layout - makes a two column-layout instead of four columns */
-@media screen and (max-width: 800px) {
-  .column {
-    -ms-flex: 50%;
-    flex: 50%;
-    max-width: 50%;
-  }
-}
 
 /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
@@ -141,6 +133,7 @@ $title = "EatKraken";
 .container {
   position: relative;
   width: 100%;
+  padding: 3px 3px;
 }
 
 .middle {
@@ -226,72 +219,6 @@ $title = "EatKraken";
 
   </div>
 </div>
-
-  <?php /*
-  <style>
-   .image:hover{
-     opacity: 0.5;
-
-   }
-
-   .imageText{
-      visibility: hidden;
-   }
-
-   .column{
-      flex: 33%;
-      max-width:33%;
-}
-
-   @media screen and (max-width: 700px){
-    .column{
-      flex: 100%;
-      max-width:100%;
-}
-
-@media screen and (max-width: 1100px) and (min-width: 701px){
-    .column{
-      flex: 50%;
-      max-width:50%;
-}
-   }
-   
-    </style>
-
- <?php 
-           echo "<div style=\"margin-bottom:50px\">
-                  <h1 style=\"text-align: center\">We work with...</h1>";
-            $restaurants = db_simple_query("select * from restaurants");
-            echo "<div class=\"row\" style=\"display: flex;
-            flex-wrap: wrap;
-            padding: 0 4px;\">";
-
-            $i = 1;
-
-            foreach($restaurants as $restaurant){
-              if($i % 3 == 0 || $i == 1){
-                echo "<div class=\"column\" style=\"
-                padding: 0 4px; text-align:center\">";}
-              
-
-              echo "<div class\"imageContainer\">
-                <img class=\"image\" style=\" margin-top: 8px;
-                vertical-align: middle;
-                width: 100%;
-                -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 
-                filter: grayscale(100%);
-              \" src=\"" . $restaurant["image_url"] ."\">
-              <div class=\"imageText\">Image 1 Text</div>
-            </div>";
-            $i++;
-
-            if($i % 3 == 0 || $i == 1){
-              echo "</div>";
-            }
-            }
-            echo "</div></div></div>";
-
-  ?> */ ?>
   <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/footer.php"); ?>
 
   </body>
