@@ -20,7 +20,7 @@ $isCheckoutPage = true; // for checkout widget
               <br><br>
               <span id="full_name"><?= (cart_get_full_name() != "" ? cart_get_full_name() : "Enter Full Name"); ?></span> (<a href="#" onclick="editName()">edit</a>)
               <br>  
-              <span id="address"><?= cart_get_address(); ?></span> (<a href="#" onclick="editAddress()">edit</a>)<br><br><br>
+              <span id="address"><?= cart_get_address(); ?></span> (<a href="#" onclick="editAddress()">edit</a>)
 
             </div>
             <div class="col-sm-3">
@@ -28,7 +28,6 @@ $isCheckoutPage = true; // for checkout widget
               <br><br>
               <span id="address"><?= (cart_get_email() == "" ? "No email specified" : cart_get_email()); ?></span> (<a href="#" onclick="editMail()">edit</a>)<br>
               <span id="address"><?= (cart_get_phone() == "" ? "No phone specified" : cart_get_phone()); ?></span> (<a href="#" onclick="editPhone()">edit</a>)
-              <br><br><br>
             </div>
 
            

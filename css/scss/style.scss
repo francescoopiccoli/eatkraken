@@ -21,11 +21,6 @@ h1 {
    font-family: "cabin";
    font-weight: 500;
  }
- /*colori:
- #A7D2CB= verdino = 167,210,203
- #C98474= arancio = 201,132,116
- 
- /*
  
 
 /* Remove the navbar's default margin-bottom and rounded borders */ 
@@ -44,7 +39,7 @@ h1 {
     color: white !important;
 }
 .navbar-custom { 
-    background-color: $clean; 
+    background-color: $salmon; 
 } 
 
 .mainbody{
@@ -329,7 +324,7 @@ h1 {
 
 .footer-basic {
     padding:40px 0;
-    background-color: $salmon;
+    background-color: $clean;
     color:#4b4c4d;
   }
   
