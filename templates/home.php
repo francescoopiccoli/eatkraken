@@ -81,7 +81,150 @@ $title = "EatKraken";
     </div>
   </div>
 
-  
+
+<style>
+.row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+/* Create four equal columns that sits next to each other */
+.column {
+  -ms-flex: 33%; /* IE10 */
+  flex: 33%;
+  max-width: 33%;
+  padding: 0 4px;
+}
+
+.column img {
+  margin-top: 8px;
+  vertical-align: middle;
+  width: 100%;
+}
+
+
+.restImage{
+-webkit-filter: grayscale(100%);
+ filter: grayscale(100%);
+ opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 800px) {
+  .column {
+    -ms-flex: 50%;
+    flex: 50%;
+    max-width: 50%;
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    -ms-flex: 100%;
+    flex: 100%;
+    max-width: 100%;
+  }
+}
+
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.container:hover .restImage {
+  opacity: 0.3;
+}
+
+.container:hover .middle {
+  opacity: 1;
+}
+
+.restName {
+  color: black;
+  font-size: 26px;
+  padding: 16px 32px;
+  font-family: 'Acme';
+}
+</style>
+<?php             $restaurants = db_simple_query("select * from restaurants");?>
+
+<h1 style="text-align: center">We work with...</h1>
+  <div class="row" style="margin-bottom: 20px"> 
+  <div class="column">
+    <div class="container">
+      <?= "<img class=\"restImage\" src=\"" . $restaurants[0]["image_url"] ."\" style=\"width:100%\">"?>
+      <div class="middle">
+    <div class="restName"><?=$restaurants[0]["name"]?></div>
+  </div>
+</div>
+    <div class="container">
+      <?= "<img class=\"restImage\" src=\"" . $restaurants[1]["image_url"] ."\" style=\"width:100%\">"?>
+      <div class="middle">
+      <div class="restName"><?=$restaurants[1]["name"]?></div>
+  </div>
+</div>
+
+  </div>
+  <div class="column">
+  <div class="container">
+    <?= "<img class=\"restImage\" src=\"" . $restaurants[2]["image_url"] ."\" style=\"width:100%\">"?>
+    <div class="middle">
+    <div class="restName"><?=$restaurants[2]["name"]?></div>
+  </div>
+</div>
+  <div class="container">
+    <?= "<img class=\"restImage\" src=\"" . $restaurants[3]["image_url"] ."\" style=\"width:100%\">"?>
+    <div class="middle">
+    <div class="restName"><?=$restaurants[3]["name"]?></div>
+  </div>
+</div>
+  <div class="container">
+    <?= "<img class=\"restImage\" src=\"" . $restaurants[4]["image_url"] ."\" style=\"width:100%\">"?>
+    <div class="middle">
+    <div class="restName"><?=$restaurants[4]["name"]?></div>
+  </div>
+</div>
+
+ 
+  </div>  
+  <div class="column">
+  <div class="container">
+    <?= "<img class=\"restImage\" src=\"" . $restaurants[5]["image_url"] ."\" style=\"width:100%\">"?>
+    <div class="middle">
+    <div class="restName"><?=$restaurants[5]["name"]?></div>
+  </div>
+</div>
+  <div class="container">
+    <?= "<img class=\"restImage\" src=\"" . $restaurants[6]["image_url"] ."\" style=\"width:100%\">"?>
+    <div class="middle">
+    <div class="restName"><?=$restaurants[6]["name"]?></div>
+  </div>
+</div>
+
+  </div>
+</div>
+
+  <?php /*
   <style>
    .image:hover{
      opacity: 0.5;
@@ -145,7 +288,7 @@ $title = "EatKraken";
             }
             echo "</div></div></div>";
 
-  ?>
+  ?> */ ?>
   <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/footer.php"); ?>
 
   </body>
