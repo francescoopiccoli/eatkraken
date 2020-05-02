@@ -8,6 +8,14 @@ $GLOBALS['db_username'] = "yhqbrujn";
 $GLOBALS['db_password'] = "vTdT4LC9LlOf_rgw6fA-Uz54Q-_xefB5";
 $GLOBALS['db_pdo_data'] = "pgsql:host=".$GLOBALS['db_host']." port=5432 dbname=".$GLOBALS['db_name']." user=".$GLOBALS['db_username']." password=".$GLOBALS['db_password'];
 
+function all_shipping_methods() {
+    return array(
+        array("id" => 0, "name" => "Eat in"),
+        array("id" => 1, "name" => "Take away"),
+        array("id" => 2, "name" => "Home delivery"),
+    );
+}
+
 // indices: simple_query(...)[row][column]
 function db_simple_query($query_text) {
     $connection = new PDO($GLOBALS['db_pdo_data'], $GLOBALS['db_username'], $GLOBALS['db_password'], array(PDO::ATTR_PERSISTENT => true));
@@ -45,15 +53,15 @@ function db_get_categories() {
 }
 
 function db_get_cost_home_delivery($restaurant){
-	return db_stmt_query("select cost_home_delivery from restaurants where code=?",[$restaurant]);
+	return db_stmt_query("select cost_home_delivery from restaurants where code=?",[$restaurant])[0][0];
 }
 
 function db_get_cost_takeaway($restaurant){
-	return db_stmt_query("select shipping_cost from restaurants where code=?",[$restaurant]);
+	return db_stmt_query("select shipping_cost from restaurants where code=?",[$restaurant])[0][0];
 }
 
 function db_get_cost_eat_in($restaurant){
-	return db_stmt_query("select cost_eat_in from restaurants where code=?",[$restaurant]);
+	return db_stmt_query("select cost_eat_in from restaurants where code=?",[$restaurant])[0][0];
 }
 
 function db_get_item_price($code) {
@@ -67,26 +75,37 @@ function db_get_items_cost($order){
 	return db_stmt_query("SELECT sum(price) FROM dishes, order_items WHERE order_items.ord=? and dishes.code=order_items.item;", [$order]);
 }
 
-/*function db_get_shipping_cost($order){
-    return 5; // todo: fix
-	/*switch ($shipping_type) {
-	case 0:
-		$shipping_cost = db_get_cost_eat_in();
-		break;
-	case 1:
-		$shipping_cost = db_get_cost_takeaway();
-		break;
-	case 2:
-		$shipping_cost = db_get_cost_home_delivery();
-		break;
-	}
-	return $shipping_cost;
-}*/
-
 function db_get_shipping_cost($restaurant, $method) {
-    // 1. is $method supported? no -> -1
+    // 1. is $method supported? no -> -1 in db
+    switch ($method) {
+        case 0:
+            return db_get_cost_eat_in($restaurant);
+            break;
+        case 1:
+            return db_get_cost_takeaway($restaurant);
+            break;
+        case 2:
+            return db_get_cost_home_delivery($restaurant);
+            break;
+        default:
+            return -1;
+    }
     // 2. yes -> return cost for chosen method
     return 0;
+}
+
+function db_get_shipping_methods($restaurant) {
+    $methods = array();
+    foreach (all_shipping_methods() as $id => $item) {
+        $cost = db_get_shipping_cost($restaurant, $id);
+        if($cost >= 0)
+            array_push($methods, array(
+                "id" => $id,
+                "name" => $item['name'],
+                "cost" => $cost
+            ));
+    }
+    return $methods;
 }
 
 function db_get_dishes($city, $cat, $time, $flags) {

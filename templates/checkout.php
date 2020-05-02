@@ -20,7 +20,7 @@ $isCheckoutPage = true; // for checkout widget
               <br><br>
               <span id="full_name"><?= (cart_get_full_name() != "" ? cart_get_full_name() : "Enter Full Name"); ?></span> (<a href="#" onclick="editName()">edit</a>)
               <br>  
-              <span id="address"><?= cart_get_address(); ?></span> (<a href="#" onclick="editAddress()">edit</a>)<br><br><br>
+              <span id="address"><?= cart_get_address(); ?></span> (<a href="#" onclick="editAddress()">edit</a>)
 
             </div>
             <div class="col-sm-3">
@@ -28,7 +28,6 @@ $isCheckoutPage = true; // for checkout widget
               <br><br>
               <span id="address"><?= (cart_get_email() == "" ? "No email specified" : cart_get_email()); ?></span> (<a href="#" onclick="editMail()">edit</a>)<br>
               <span id="address"><?= (cart_get_phone() == "" ? "No phone specified" : cart_get_phone()); ?></span> (<a href="#" onclick="editPhone()">edit</a>)
-              <br><br><br>
             </div>
 
            
@@ -43,7 +42,12 @@ $isCheckoutPage = true; // for checkout widget
                 <h3><?= cart_get_total() + cart_get_shipping_total() ?>€</h3>
               </div>
               <div class="col-sm-2 text-center">
-              <a href="checkout.php?confirm" class="btn btn-success btn-lg" style="margin-top:20px; font-family: 'Acme';">Confirm order</a>
+              <form action="checkout.php" method="post">
+                <input type="hidden" name="confirm">
+                <?php if(count(cart_get_items()) > 0) { ?>
+                <button type="submit" class="btn btn-success btn-lg" style="margin-top:20px; font-family: 'Acme';">Confirm order</button>
+                <?php } ?>
+              </form>
             </div>
           </div>
 
@@ -57,9 +61,18 @@ $isCheckoutPage = true; // for checkout widget
             <div class="col-sm-2">
               <br>
               <select name="" id="shipping-<?= $restaurant; ?>" class="form-control" onchange="changeShipping(<?= $restaurant; ?>);">
-                <?php /* todo: show only supported shipping methods */ ?>
-                <option value="1">Home delivery (+€5)</option>
-                <option value="2">Eat in (free)</option>
+                <?php 
+                $shipping_methods = db_get_shipping_methods($restaurant);
+                foreach ($shipping_methods as $method) {
+                  $sel = (cart_get_restaurant_shipping($restaurant) == $method['id'] ? "selected" : "");
+                ?>
+                <option value="<?= $method['id'] ?>" <?= $sel ?>>
+                  <?= $method['name'] ?>
+                  (<?= number_format($method['cost'], 2) ?>€)
+                </option>
+                <?php
+                }
+                ?>
               </select>
             </div>
           </div>
@@ -81,10 +94,15 @@ $isCheckoutPage = true; // for checkout widget
             </div>
 
             <div class="col-sm-1 text-center">
-              <b style="font-size: 2em"><?= $item['price']; ?>€</b></div>
+              <b style="font-size: 2em"><?= $item['price']; ?>€</b>
+            </div>
               <?php /* allergenes warnings? */ ?>
               <div class="col-sm-1 text-center">
-              <a class="btn btn-lg btn-danger" style="font-family: 'Acme'; href="checkout.php?dish=<?= $item['code']; ?>&remove">Remove</a>
+              <form action="checkout.php" method="post">
+                <input type="hidden" name="dish" value="<?= $item['code']; ?>">
+                <input type="hidden" name="remove" value="true">
+                <button type="submit" class="btn btn-lg btn-danger" style="font-family: 'Acme';">Remove</button>
+              </form>
             </div>
           </div>
           <hr style="border-color: #bbb;">
