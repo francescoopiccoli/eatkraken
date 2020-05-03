@@ -120,10 +120,8 @@ $title = "EatKraken";
 
 /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
-  .column {
-    -ms-flex: 100%;
-    flex: 100%;
-    max-width: 100%;
+  .restaurantsDiv {
+    display: none;
   }
 }
 
@@ -158,9 +156,27 @@ $title = "EatKraken";
   padding: 16px 32px;
   font-family: 'Acme';
 }
+
+.clients img{
+  width: 200px;
+  border-radius: 100%;
+}
+<blockquote> .svg-inline--fa{
+  color: #A7D2CB;
+  margin: 1rem;
+}
+
+.clients-hr{
+  border-top: .05rem solid #A7D2CB;
+}
+
+.fa-quote-left{
+  color: #A7D2CB;
+}
 </style>
 <?php             $restaurants = db_simple_query("select * from restaurants");?>
 
+<div class="restaurantsDiv">
 <h1 style="text-align: center">We work with...</h1>
   <div class="row" style="margin-bottom: 20px"> 
   <div class="column">
@@ -216,6 +232,44 @@ $title = "EatKraken";
 
   </div>
 </div>
+</div>
+<h1 style="text-align: center; margin-top: 6%; margin-bottom: 3%">What they say about us...</h1>
+<div class="row" style="margin-bottom:5%">
+  <div class="col-md-4 clients">
+    
+    <div class="col-md-12">
+    <blockquote>
+    <i class="fas fa-quote-left"></i>
+Just what I needed! Quality food delivered right to my house, at any time I need! 
+    <hr class="clients-hr">
+    <cite>TrustPilot user</cite>
+    </blockquote>
+  </div>
+  </div>
+
+  <div class="col-md-4 clients">
+    
+    <div class="col-md-12">
+    <blockquote>
+    <i class="fas fa-quote-left"></i>
+
+  A great idea which comes in a moment of great need! Nothing to add! Well done Eatkraken!    <hr class="clients-hr">
+    <cite>The Guardian</cite>
+    </blockquote>
+  </div>
+  </div>
+  <div class="col-md-4 clients">
+    
+    <div class="col-md-12">
+    <blockquote>
+    <i class="fas fa-quote-left"></i>
+  Eatkraken brings home food delivery to the next level! You can really choose between a wide array of delicacies! <hr class="clients-hr">
+    <cite>Huffington Post</cite>
+    </blockquote>
+  </div>
+  </div>
+</div></div>
+
   <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/footer.php"); ?>
 
   </body>
