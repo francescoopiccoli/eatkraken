@@ -35,8 +35,8 @@ if(isset($_POST['confirm'])) {
         $codes = array(); // used to email every detail
         foreach($orders as $restaurant => $items) {
             $code = db_insert_empty_order($restaurant, cart_get_full_name(), cart_get_address(), cart_get_email(), -1, cart_get_phone(), cart_get_restaurant_shipping($restaurant), cart_get_total(), $delivery_time);
-            array_push($codes, $code);
             if($code) {
+                array_push($codes, $code);
                 foreach($items as $item) {
                     // todo: group multiple items as one via the quantity param
                     //  db_insert_new_order_item($code, $item['id'], $item['price']);

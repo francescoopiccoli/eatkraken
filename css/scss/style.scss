@@ -378,7 +378,24 @@ h1 {
     margin-bottom:0;
   }
   
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
   
+@media print {
+    .footer-basic {
+        display: none;
+    }
+    .navbar {
+        display: block;
+    }
+    .navbar-toggle {
+        display: none;
+    }
+    .dont-print {
+        display: none;
+    }
 
-
-
+}

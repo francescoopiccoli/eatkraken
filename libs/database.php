@@ -179,6 +179,7 @@ function db_insert_empty_order($restaurant, $full_name, $address, $email, $city,
         "total_cost" => $total_cost, 
         "delivery_deadline" => date("Y-m-d H:i:s", $delivery_deadline) // https://stackoverflow.com/questions/2374631/pdoparam-for-dates
     ]);
+    //print_r($stmt->errorInfo());
 
     $connection = null;
     if($res)
