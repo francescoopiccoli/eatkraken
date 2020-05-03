@@ -10,9 +10,9 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require_once($_SERVER['DOCUMENT_ROOT'] . "/templates/admin/PHPMailer/src/Exception.php");
-require_once($_SERVER['DOCUMENT_ROOT'] . "/templates/admin/PHPMailer/src/PHPMailer.php");
-require_once($_SERVER['DOCUMENT_ROOT'] . "/templates/admin/PHPMailer/src/SMTP.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/PHPMailer/src/Exception.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/PHPMailer/src/PHPMailer.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/PHPMailer/src/SMTP.php");
 
 
 if(!restaurant_is_logged_in()) {
