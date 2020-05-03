@@ -87,6 +87,6 @@ if(isset($_POST['set_email'])) {
 }
 
 $orders = cart_get_orders();
-require_once($_SERVER['DOCUMENT_ROOT'] . "/templates/checkout.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/views/checkout.php");
 
 ?>

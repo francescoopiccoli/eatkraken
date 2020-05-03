@@ -4,7 +4,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
 
 <!DOCTYPE html>
 <html lang="en">
-  <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/common_head.php"); ?>
+  <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/common_head.php"); ?>
   <style>
   td{
     padding:10px;
@@ -13,7 +13,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
   </style>
   <body>
 
-    <?php include($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/navbar.php"); ?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/navbar.php"); ?>
     <div class="mainbody"> 
         <div class="home-inner container" style= "background-image: linear-gradient(rgba(20, 25, 24, 0.1), rgba(20, 25, 24, 1)), url('<?=$product_image_url?>');">
           <div class="caption text-center">
@@ -76,7 +76,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
       </div>
     </div>
 
-    <?php include($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/footer.php"); ?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/footer.php"); ?>
   </body>
 </html>
 

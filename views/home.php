@@ -3,9 +3,9 @@ $title = "EatKraken";
 ?>
 <!DOCTYPE html>
 <html lang="en">
-  <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/common_head.php"); ?>
+  <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/common_head.php"); ?>
   <body>
-  <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/navbar.php"); 
+  <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/navbar.php"); 
   ?>
 
   <?php 
@@ -270,7 +270,7 @@ Just what I needed! Quality food delivered right to my house, at any time I need
   </div>
 </div></div>
 
-  <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/footer.php"); ?>
+  <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/footer.php"); ?>
 
   </body>
 </html>

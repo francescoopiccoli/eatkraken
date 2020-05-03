@@ -92,5 +92,5 @@ $product_nutri_facts = "
 </table>";
 
 
-require_once($_SERVER['DOCUMENT_ROOT'] . "/templates/product.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/views/product.php");
 ?>

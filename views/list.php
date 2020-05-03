@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/common_head.php"); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/common_head.php"); ?>
 <body>
   <script>
   $(document).ready(function() {
@@ -9,7 +9,7 @@
     });
   });
   </script>
-  <?php include($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/navbar.php"); ?>
+  <?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/navbar.php"); ?>
 
   <div class="container-fluid text-center mainbody">    
     <form id="form" class="row" action="/list.php" method="get">
@@ -85,7 +85,7 @@
   </div>
 
 
-  <?php include($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/footer.php"); ?>
+  <?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/footer.php"); ?>
 
 </body>
 </html>

@@ -107,10 +107,10 @@ if(isset($_POST['order'])) {
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/common_head.php"); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/common_head.php"); ?>
 
 <body>
-  <?php include($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/navbar.php"); ?>
+  <?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/navbar.php"); ?>
 
 
   <div class="container-fluid text-center mainbody">  
@@ -291,7 +291,7 @@ if(isset($_POST['order'])) {
     </div>
   </div>
 
-  <?php include($_SERVER['DOCUMENT_ROOT'] . "/templates/widgets/footer.php"); ?>
+  <?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/footer.php"); ?>
 
 
 </body>

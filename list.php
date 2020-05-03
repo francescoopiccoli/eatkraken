@@ -30,6 +30,6 @@ $results = db_get_dishes($_GET['city'], $_GET['category'], $_GET['time'], $selec
 
 $title = "All products";
 
-require_once($_SERVER['DOCUMENT_ROOT'] . "/templates/list.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/views/list.php");
 
 ?>
