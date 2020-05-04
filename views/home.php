@@ -23,26 +23,22 @@ $title = "EatKraken";
   ?>
 
  
-  <div class="mainbody"> 
+<div class="mainbody"> 
   <div class="dropdown"id="selectCity">
-  <button class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-   <span style="margin-right: 20px; letter-spacing: 1px; word-spacing: 3px">Select a city to start!</span> <span style="margin-top:12px; float:right; color: #C98474" class="caret"></span>
-  </button>
-  <ul class="dropdown-menu cityList">
-  <?php 
+    <button class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span style="margin-right: 20px; letter-spacing: 1px; word-spacing: 3px">Select a city to start!</span> <span style="margin-top:12px; float:right; color: #C98474" class="caret"></span>
+    </button>
+    <ul class="dropdown-menu cityList">
+      <?php 
             $cities = db_simple_query("select * from cities");
             foreach($cities as $city){
             $link = "/list.php?city=" . $city['code'] . "&time=&category=0";
-             echo "<li><a href=\"$link\">" . $city['name'] . "</a></li>";
+            echo "<li><a href=\"$link\">" . $city['name'] . "</a></li>";
             }
-            ?>
-  </ul>
-</div>
+      ?>
+    </ul>
+  </div>
   
-
-       
-       
-
 
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
@@ -81,197 +77,121 @@ $title = "EatKraken";
     </div>
   </div>
 
+  <?php $restaurants = db_simple_query("select * from restaurants");?>
 
-<style>
-.row {
-  display: -ms-flexbox; /* IE10 */
-  display: flex;
-  -ms-flex-wrap: wrap; /* IE10 */
-  flex-wrap: wrap;
-  padding: 0 4px;
-}
+  <div class="restaurantsDiv">
 
-/* Create four equal columns that sits next to each other */
-.column {
-  -ms-flex: 33%; /* IE10 */
-  flex: 33%;
-  max-width: 33%;
-  padding: 0 4px;
-}
+    <h1 style="text-align: center">We work with...</h1>
+    <div class="row" style="margin-bottom: 20px"> 
 
-.column img {
-  margin-top: 8px;
-  vertical-align: middle;
-  width: 100%;
-}
+      <div class="column">
 
+        <div class="container">
+          <?= "<img class=\"restImage\" src=\"" . $restaurants[0]["image_url"] ."\" style=\"width:100%\">"?>
+          <div class="middle">
+            <div class="restName"><?=$restaurants[0]["name"]?>
+            </div>
+          </div>
+        </div>
 
-.restImage{
--webkit-filter: grayscale(100%);
- filter: grayscale(100%);
- opacity: 1;
-  display: block;
-  width: 100%;
-  height: auto;
-  transition: .5s ease;
-  backface-visibility: hidden;
-}
+        <div class="container">
+          <?= "<img class=\"restImage\" src=\"" . $restaurants[1]["image_url"] ."\" style=\"width:100%\">"?>
+          <div class="middle">
+            <div class="restName"><?=$restaurants[1]["name"]?>
+            </div>
+          </div>
+        </div>
+
+      </div>
 
 
-/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-  .restaurantsDiv {
-    display: none;
-  }
-}
+      <div class="column">
+        
+        <div class="container">
+          <?= "<img class=\"restImage\" src=\"" . $restaurants[2]["image_url"] ."\" style=\"width:100%\">"?>
+          <div class="middle">
+            <div class="restName"><?=$restaurants[2]["name"]?>
+            </div>
+          </div>
+        </div>
 
-.container {
-  position: relative;
-  width: 100%;
-  padding: 3px 3px;
-}
+        <div class="container">
+          <?= "<img class=\"restImage\" src=\"" . $restaurants[3]["image_url"] ."\" style=\"width:100%\">"?>
+          <div class="middle">
+            <div class="restName"><?=$restaurants[3]["name"]?>
+            </div>
+          </div>
+        </div>
 
-.middle {
-  transition: .5s ease;
-  opacity: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  text-align: center;
-}
+        <div class="container">
+          <?= "<img class=\"restImage\" src=\"" . $restaurants[4]["image_url"] ."\" style=\"width:100%\">"?>
+          <div class="middle">
+            <div class="restName"><?=$restaurants[4]["name"]?>
+            </div>
+          </div>
+        </div>
 
-.container:hover .restImage {
-  opacity: 0.3;
-}
+      </div> 
 
-.container:hover .middle {
-  opacity: 1;
-}
+      <div class="column">
 
-.restName {
-  color: black;
-  font-size: 26px;
-  padding: 16px 32px;
-  font-family: 'Acme';
-}
+        <div class="container">
+          <?= "<img class=\"restImage\" src=\"" . $restaurants[5]["image_url"] ."\" style=\"width:100%\">"?>
+          <div class="middle">
+            <div class="restName"><?=$restaurants[5]["name"]?>
+            </div>
+          </div>
+        </div>
 
-.clients img{
-  width: 200px;
-  border-radius: 100%;
-}
-<blockquote> .svg-inline--fa{
-  color: #A7D2CB;
-  margin: 1rem;
-}
+        <div class="container">
+          <?= "<img class=\"restImage\" src=\"" . $restaurants[6]["image_url"] ."\" style=\"width:100%\">"?>
+          <div class="middle">
+            <div class="restName"><?=$restaurants[6]["name"]?>
+            </div>
+          </div>
+        </div>
 
-.clients-hr{
-  border-top: .05rem solid #A7D2CB;
-}
-
-.fa-quote-left{
-  color: #A7D2CB;
-}
-</style>
-<?php             $restaurants = db_simple_query("select * from restaurants");?>
-
-<div class="restaurantsDiv">
-<h1 style="text-align: center">We work with...</h1>
-  <div class="row" style="margin-bottom: 20px"> 
-  <div class="column">
-    <div class="container">
-      <?= "<img class=\"restImage\" src=\"" . $restaurants[0]["image_url"] ."\" style=\"width:100%\">"?>
-      <div class="middle">
-    <div class="restName"><?=$restaurants[0]["name"]?></div>
+      </div>
+    </div>
   </div>
-</div>
-    <div class="container">
-      <?= "<img class=\"restImage\" src=\"" . $restaurants[1]["image_url"] ."\" style=\"width:100%\">"?>
-      <div class="middle">
-      <div class="restName"><?=$restaurants[1]["name"]?></div>
-  </div>
-</div>
 
-  </div>
-  <div class="column">
-  <div class="container">
-    <?= "<img class=\"restImage\" src=\"" . $restaurants[2]["image_url"] ."\" style=\"width:100%\">"?>
-    <div class="middle">
-    <div class="restName"><?=$restaurants[2]["name"]?></div>
-  </div>
-</div>
-  <div class="container">
-    <?= "<img class=\"restImage\" src=\"" . $restaurants[3]["image_url"] ."\" style=\"width:100%\">"?>
-    <div class="middle">
-    <div class="restName"><?=$restaurants[3]["name"]?></div>
-  </div>
-</div>
-  <div class="container">
-    <?= "<img class=\"restImage\" src=\"" . $restaurants[4]["image_url"] ."\" style=\"width:100%\">"?>
-    <div class="middle">
-    <div class="restName"><?=$restaurants[4]["name"]?></div>
+  <h1 style="text-align: center; margin-top: 6%; margin-bottom: 3%">They say about us...</h1>
+  <div class="row" style="margin-bottom:5%">
+    <div class="col-md-4 clients">
+      
+      <div class="col-md-12">
+        <blockquote>
+          <i class="fas fa-quote-left"></i>Just what I needed! Quality food delivered right to my house, at any time I need! 
+          <hr class="clients-hr">
+          <cite>TrustPilot user</cite>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="col-md-4 clients">
+      
+      <div class="col-md-12">
+        <blockquote>
+          <i class="fas fa-quote-left"></i> A great idea which comes in a moment of great need! Nothing to add! Well done Eatkraken!
+          <hr class="clients-hr">
+          <cite>The Guardian</cite>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="col-md-4 clients">
+      <div class="col-md-12">
+        <blockquote>
+          <i class="fas fa-quote-left"></i>Eatkraken brings home food delivery to the next level! You can really choose between a wide array of delicacies! 
+          <hr class="clients-hr">
+          <cite>Huffington Post</cite>
+        </blockquote>
+      </div>
+    </div>
   </div>
 </div>
 
- 
-  </div>  
-  <div class="column">
-  <div class="container">
-    <?= "<img class=\"restImage\" src=\"" . $restaurants[5]["image_url"] ."\" style=\"width:100%\">"?>
-    <div class="middle">
-    <div class="restName"><?=$restaurants[5]["name"]?></div>
-  </div>
-</div>
-  <div class="container">
-    <?= "<img class=\"restImage\" src=\"" . $restaurants[6]["image_url"] ."\" style=\"width:100%\">"?>
-    <div class="middle">
-    <div class="restName"><?=$restaurants[6]["name"]?></div>
-  </div>
-</div>
-
-  </div>
-</div>
-</div>
-<h1 style="text-align: center; margin-top: 6%; margin-bottom: 3%">They say about us...</h1>
-<div class="row" style="margin-bottom:5%">
-  <div class="col-md-4 clients">
-    
-    <div class="col-md-12">
-    <blockquote>
-    <i class="fas fa-quote-left"></i>
-Just what I needed! Quality food delivered right to my house, at any time I need! 
-    <hr class="clients-hr">
-    <cite>TrustPilot user</cite>
-    </blockquote>
-  </div>
-  </div>
-
-  <div class="col-md-4 clients">
-    
-    <div class="col-md-12">
-    <blockquote>
-    <i class="fas fa-quote-left"></i>
-
-  A great idea which comes in a moment of great need! Nothing to add! Well done Eatkraken!    <hr class="clients-hr">
-    <cite>The Guardian</cite>
-    </blockquote>
-  </div>
-  </div>
-  <div class="col-md-4 clients">
-    
-    <div class="col-md-12">
-    <blockquote>
-    <i class="fas fa-quote-left"></i>
-  Eatkraken brings home food delivery to the next level! You can really choose between a wide array of delicacies! <hr class="clients-hr">
-    <cite>Huffington Post</cite>
-    </blockquote>
-  </div>
-  </div>
-</div></div>
-
-  <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/footer.php"); ?>
-
-  </body>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/footer.php"); ?>
+</body>
 </html>
 
