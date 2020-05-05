@@ -20,10 +20,10 @@ if(!restaurant_is_logged_in()) {
   exit;
 }
 
-// test authentication: http://localhost:8080/restaurant/auth.php?login=kebabkebabkebabkebabkebabkebabke
+// test authentication: http://localhost:8080/restaurant/auth.php?login=kebabkebabkebabkebabkebabkebabke and delivery_deadline > NOW()
 function get_pending_orders(){
     $restaurantID= restaurant_get_logged_id();
-    return db_stmt_query("select * from orders where restaurant = ? and delivery_deadline > NOW() and status = 0", [$restaurantID]);
+    return db_stmt_query("select * from orders where restaurant = ? and status = 0", [$restaurantID]);
 }
 function get_accepted_orders(){
   $restaurantID= restaurant_get_logged_id();
@@ -34,6 +34,10 @@ function get_past_orders(){
   return db_stmt_query("select * from orders where restaurant = ? and (delivery_deadline < NOW() or status = 2)", [$restaurantID]);
 }
 
+function get_restaurantName(){
+  $restaurantID= restaurant_get_logged_id();
+  return db_stmt_query("select name from restaurants where code = ?", [$restaurantID]);
+}
 
 
 function get_orders_items($i, $orders){
@@ -46,7 +50,7 @@ function get_dish($code){
   return db_stmt_query("select name, price from dishes where code = ?", [$code]);
 }
 
-function email(){
+function email($emailAddress, $restaurantName){
 $mail = new PHPMailer(true);
 try {
     //Server settings
@@ -60,16 +64,30 @@ try {
 
     //Recipients
     $mail->setFrom('info.eatkraken@gmail.com', 'Eatkraken');
-        $mail->addAddress('...');     // Add a recipient
+        $mail->addAddress($emailAddress);     // Add a recipient
 
      // Content
-    $mail->isHTML(true);                                  // Set email format to HTML
-    $mail->Subject = 'Your eatkraken order';
-    $mail->Body    = 'Your order has been accepted, it will be at your place as 
-    soon as possible';
-    $mail->AltBody = 'Your order has been accepted, it will be at your place as 
-    soon as possible';
+    $mail->isHTML(true); 
+    if(isset($_POST['order'])) { 
+      if(isset($_POST['approve'])) {
+        $mail->Subject = 'Your order at ' . $restaurantName;
+        $mail->Body    = 'Your order at ' . $restaurantName . ' has been accepted, it will be at your place as 
+        soon as possible.
+        The EatKraken Team';
+        $mail->AltBody = 'Your order at ' . $restaurantName . ' has been accepted, it will be at your place as 
+        soon as possible.
+        The EatKraken Team';
+      }
+    }   
 
+    if(isset($_POST['reject'])) {
+      $mail->Subject = 'Order rejected at ' . $restaurantName;
+      $mail->Body    = 'We are sorry but your order at ' . $restaurantName . ' could not be accepted.
+      The EatKraken Team';
+      $mail->AltBody = 'We are sorry but your order at ' . $restaurantName . ' could not be accepted.
+      The EatKraken Team';
+    }                  
+    
     $mail->send();
 }
 catch (Exception $e) {
@@ -85,23 +103,31 @@ function removeElement($code){
   }
 }
 
-if(isset($_POST['order'])) { 
-  if(isset($_POST['approve'])) {
-    $connection = new PDO($GLOBALS['db_pdo_data']);
-    $stmt = $connection->prepare("UPDATE orders SET status = 1  WHERE code = ? AND restaurant = ?");
-    if($stmt->execute([$_POST['order'], restaurant_get_logged_id()])){
-    	email();
-    }
-  }
+function accepted($emailAddress, $restaurantName){
+  if(isset($_POST['order'])) { 
+    if(isset($_POST['approve'])) {
+      $connection = new PDO($GLOBALS['db_pdo_data']);
+      $stmt = $connection->prepare("UPDATE orders SET status = 1  WHERE code = ? AND restaurant = ?");
+      if($stmt->execute([$_POST['order'], restaurant_get_logged_id()])){
 
-  if(isset($_POST['reject'])) {
-    $connection = new PDO($GLOBALS['db_pdo_data']);
-    $stmt = $connection->prepare("UPDATE orders SET status = 2  WHERE code = ? AND restaurant = ?");
-    if($stmt->execute([$_POST['order'], restaurant_get_logged_id()])){
-      // email user about rejection?
+        email($emailAddress, $restaurantName);
+      }
     }
   }
 }
+
+function rejected($emailAddress, $restaurantName){
+    if(isset($_POST['reject'])) {
+      $connection = new PDO($GLOBALS['db_pdo_data']);
+      $stmt = $connection->prepare("UPDATE orders SET status = 2  WHERE code = ? AND restaurant = ?");
+      if($stmt->execute([$_POST['order'], restaurant_get_logged_id()])){
+
+        email($emailAddress, $restaurantName);
+
+      }
+    }
+  }
+
 ?>
 
 <!DOCTYPE html>
@@ -193,40 +219,40 @@ if(isset($_POST['order'])) {
             <?php 
               $orders = get_pending_orders();
               $k = 0;
+            if($orders){
+              foreach($orders as $order){ ?>
+                <tr>
+                  <th scope="row"><?= $order[0] ?></th>
+                  <td>
+                    <b><?=$order[2]?></b><br>
+                    <?=$order[3] ?><br>
+                    <?=$order[4] ?><br>
+                    <a href="tel:<?=$order[5] ?>"><?=$order[5] ?></a>
+                  </td>
+                  <td>
+                  <?php
 
-            foreach($orders as $order){ ?>
-              <tr>
-                <th scope="row"><?= $order[0] ?></th>
-                <td>
-                  <b><?=$order[2]?></b><br>
-                  <?=$order[3] ?><br>
-                  <?=$order[4] ?><br>
-                  <a href="tel:<?=$order[5] ?>"><?=$order[5] ?></a>
-                </td>
-                <td>
-                <?php
+                  $order_items = get_orders_items($k, $orders);
+                  $k++;
 
-                $order_items = get_orders_items($k, $orders);
-                $k++;
+                  foreach($order_items as $order_item){
+                    $dish = get_dish($order_item[2]);
+                    echo $order_item[3] . "x " . $dish[0][0] ."<b> ". $dish[0][1] ."€</b><br><i>Notes: \"$order_item[4]\"</i><br><br>";
+                  }
+                  ?>
+                  </td>
+                  <td><?= ($order[8] + $order[7]) . "€" ?></td>
+                  <td>
+                    Deliver within <b>40 minutes</b><br><b><?= "Delivery type:" . $order[6] ?></b> <?= "Cost: " . $order[7] . "€" ?><br>
+                    <form method="post" action="orders.php"> 
+                    <input type="hidden" name="order" value="<?= $order['code']; ?>">
+                    <input type="submit" name="approve" value="Approve" class= "btn btn-success btn-sm"/><?php accepted($order[11], get_restaurantName()[0][0])?>
+                    <input type="submit" name="reject" value="Reject" class="btn btn-danger btn-sm"/><?php rejected($order[11], get_restaurantName()[0][0])?>
+                    </form> 
 
-                foreach($order_items as $order_item){
-                  $dish = get_dish($order_item[2]);
-                  echo $order_item[3] . "x " . $dish[0][0] ."<b> ". $dish[0][1] ."€</b><br><i>Notes: \"$order_item[4]\"</i><br><br>";
-                }
-                ?>
-                </td>
-                <td><?= ($order[8] + $order[7]) . "€" ?></td>
-                <td>
-                  Deliver within <b>40 minutes</b><br><b><?= "Delivery type:" . $order[6] ?></b> <?= "Cost: " . $order[7] . "€" ?><br>
-                  <form method="post" action="orders.php"> 
-                  <input type="hidden" name="order" value="<?= $order['code']; ?>">
-                  <input type="submit" name="approve" value="Approve" class= "btn btn-success btn-sm"/>
-                  <input type="submit" name="reject" value="Reject" class="btn btn-danger btn-sm"/>
-                  </form> 
-
-                </td>
-              </tr>
-              <?php } ?>
+                  </td>
+                </tr>
+              <?php }} ?>
 
             </tbody>
           </table>
