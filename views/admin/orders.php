@@ -20,6 +20,7 @@ if(!restaurant_is_logged_in()) {
   exit;
 }
 
+//considers 24h format time, works only for orders of the same day, keeps negative time
 function getTimeLeft($orderID){
   date_default_timezone_set('Europe/Rome');
   $currentTime = strval(substr(date('Y/m/d H:i:s a', time()), 0, 16));
@@ -38,7 +39,7 @@ function getTimeLeft($orderID){
   $timeLeftInMinutes = $differenceHour * 60 + $differenceMinutes;
 
   if(substr($currentTime, 0, 10) ==substr($deadlineTime, 0, 10)){ // if the day is the same
-    return $timeLeftInMinutes . " ";
+    return $timeLeftInMinutes;
   }
 }
 
