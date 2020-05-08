@@ -232,15 +232,17 @@ blockquote .svg-inline--fa {
 
 .checkout-main .row {
   padding: 25px;
-  text-align: center; }
-
-@media screen and (min-width: 768px) {
-  .checkout-main .row {
-    text-align: left; } }
-.checkout-main .row {
+  text-align: center;
   display: flex;
   align-items: center; }
 
+@media screen and (max-width: 768px) {
+  .checkout-main .row {
+    display: block;
+    /* responsive design: turn off the flexible box layout */ } }
+@media screen and (min-width: 768px) {
+  .checkout-main .row {
+    text-align: left; } }
 .checkout-total-row {
   background-color: #F0F0F0;
   box-shadow: 5px 5px 2px grey; }

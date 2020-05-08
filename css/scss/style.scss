@@ -74,7 +74,7 @@ h1 {
     }
     .row.content {
         height: auto;
-    } 
+    }
 }
 
 .li{
@@ -302,18 +302,19 @@ h1 {
 .checkout-main .row {
     padding: 25px;
     text-align: center;
+    display: flex;
+    align-items: center;
 
 }
-
+@media screen and(max-width: 768px){
+  .checkout-main .row {
+    display: block; /* responsive design: turn off the flexible box layout */
+  }
+}
 @media screen and(min-width: 768px){
     .checkout-main .row{
         text-align: left;
     }
-}
-
-.checkout-main .row {
-    display: flex;
-    align-items: center;
 }
 .checkout-total-row {
     background-color: #F0F0F0;
