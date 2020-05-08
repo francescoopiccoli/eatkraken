@@ -47,6 +47,13 @@ function db_stmt_query($query_text, $params) {
 function db_get_cities() {
     return db_simple_query("select * from cities");
 }
+function db_get_city_name($code) {
+    $city = db_stmt_query("select name from cities where code = ?", [$code]);
+    if($city && count($city) > 0) 
+        return $city[0][0];
+    else
+        return "";
+}
 
 function db_get_categories() {
     return db_simple_query("select * from categories order by name asc");
@@ -157,7 +164,7 @@ function db_get_product($productCode){
 /*make orders*/
 function db_insert_empty_order($restaurant, $full_name, $address, $email, $city, $phone, $shipping_type, $items_cost, $delivery_time){
     $delivery_deadline = time() + $delivery_time * 60; // starting from when order is placed
-    $shipping_cost = 0; // db_get_shipping_cost($restaurant, $shipping_type);
+    $shipping_cost = db_get_shipping_cost($restaurant, $shipping_type);
 	$total_cost = $items_cost + $shipping_cost;
 
     $connection = new PDO($GLOBALS['db_pdo_data'], $GLOBALS['db_username'], $GLOBALS['db_password'], array(PDO::ATTR_PERSISTENT => true));
@@ -215,6 +222,13 @@ function db_get_restaurant_name($id) {
     $res = db_stmt_query("select name from restaurants where code = ?", [$id]);
     if(count($res) > 0)
         return $res[0]['name'];
+    else
+        return false;
+}
+function db_restaurant_can_deliver($restaurant, $city) {
+    $count = db_stmt_query("select count(*) from delivers_to where restaurant = ? and city = ?", [$restaurant, $city])[0][0];
+    if($count > 0)
+        return true;
     else
         return false;
 }

@@ -157,6 +157,16 @@ function cart_get_phone() {
     
     return $_SESSION['phone'];
 }
+function cart_set_city($city) {    
+    if(db_get_city_name($city) != "")
+        $_SESSION['city'] = htmlentities($city);
+}
+function cart_get_city() {
+    if(!isset($_SESSION['city']))
+        return 0;
+    
+    return $_SESSION['city'];
+}
 
 
 // Restaurant login -- todo!
