@@ -71,7 +71,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
             <h2 style="margin-top: 30px;"> <?= $restaurant_name?></h2>
             <hr style="border-color: #bbb; width: 30%">
             <div style="width:100%; text-align: center;">
-            <?= "<i>$restaurant_description</i>"?></div>
+            <i><?= $restaurant_description?></i></div>
           </div>
       </div>
     </div>
