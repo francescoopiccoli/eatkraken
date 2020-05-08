@@ -20,11 +20,40 @@ if(!restaurant_is_logged_in()) {
   exit;
 }
 
+function getTimeLeft($orderID){
+  date_default_timezone_set('Europe/Rome');
+  $currentTime = strval(substr(date('Y/m/d H:i:s a', time()), 0, 16));
+  $deadlineTime = strval(substr(get_deadline($orderID)[0][0], 0, 16));
+  $deadlineTime = str_replace("-","/", $deadlineTime);
+
+  $currentTimeHour = substr($currentTime, 10, -3);
+  $deadlineTimeHour = substr($deadlineTime, 10, -3);
+
+  $currentTimeMinutes = substr($currentTime, 14, 15);
+  $deadlineMinutes = substr($deadlineTime, 14, 15);
+
+  $differenceHour = $deadlineTimeHour - $currentTimeHour;
+  $differenceMinutes = $deadlineMinutes - $currentTimeMinutes;
+
+  $timeLeftInMinutes = $differenceHour * 60 + $differenceMinutes;
+
+  if(substr($currentTime, 0, 10) ==substr($deadlineTime, 0, 10)){ // if the day is the same
+    return $timeLeftInMinutes . " ";
+  }
+}
+
+
 // test authentication: http://localhost:8080/restaurant/auth.php?login=kebabkebabkebabkebabkebabkebabke
+function get_deadline($orderID){
+  return db_stmt_query("select delivery_deadline from orders where code = ?", [$orderID]);
+}
+
+
 function get_pending_orders(){
   $restaurantID= restaurant_get_logged_id();
   return db_stmt_query("select * from orders where restaurant = ? and delivery_deadline > NOW() and status = 0", [$restaurantID]);
 }
+
 function get_accepted_orders(){
   $restaurantID= restaurant_get_logged_id();
   return db_stmt_query("select * from orders where restaurant = ? and delivery_deadline > NOW() and status = 1", [$restaurantID]);
@@ -33,6 +62,12 @@ function get_past_orders(){
   $restaurantID= restaurant_get_logged_id();
   return db_stmt_query("select * from orders where restaurant = ? and (delivery_deadline < NOW() or status = 2)", [$restaurantID]);
 }
+
+function deliveryCosts(){
+  $restaurantID= restaurant_get_logged_id();
+  return db_stmt_query("select cost_eat_in, cost_takeaway, cost_home_delivery from restaurants where code = ?", [$restaurantID]);
+}
+
 
 function get_restaurantName(){
   $restaurantID= restaurant_get_logged_id();
@@ -50,9 +85,11 @@ function get_dish($code){
   return db_stmt_query("select name, price from dishes where code = ?", [$code]);
 }
 
-function email($emailAddress, $restaurantName){
-$mail = new PHPMailer(true);
-try {
+function email($emailAddress){
+
+  $restaurantName = get_restaurantName()[0][0];
+  $mail = new PHPMailer(true);
+  try {
     //Server settings
     $mail->isSMTP();                                            // Send using SMTP
     $mail->Host       = 'smtp.sendgrid.net';                    // Set the SMTP server to send through
@@ -67,10 +104,11 @@ try {
         $mail->addAddress($emailAddress);     // Add a recipient
 
      // Content
+
     $mail->isHTML(true); 
-    if(isset($_POST['order'])) { 
+
       if(isset($_POST['approve'])) {
-        $mail->Subject = 'Your order at ' . $restaurantName;
+        $mail->Subject = 'Your order at ' .$restaurantName;
         $mail->Body    = 'Your order at ' . $restaurantName . ' has been accepted, it will be at your place as 
         soon as possible.
         The EatKraken Team';
@@ -78,7 +116,7 @@ try {
         soon as possible.
         The EatKraken Team';
       }
-    }   
+       
 
     if(isset($_POST['reject'])) {
       $mail->Subject = 'Order rejected at ' . $restaurantName;
@@ -103,30 +141,27 @@ function removeElement($code){
   }
 }
 
-function accepted($emailAddress, $restaurantName){
   if(isset($_POST['order'])) { 
     if(isset($_POST['approve'])) {
       $connection = new PDO($GLOBALS['db_pdo_data']);
       $stmt = $connection->prepare("UPDATE orders SET status = 1  WHERE code = ? AND restaurant = ?");
       if($stmt->execute([$_POST['order'], restaurant_get_logged_id()])){
 
-        email($emailAddress, $restaurantName);
+       // email($emailAddress);
       }
     }
   }
-}
 
-function rejected($emailAddress, $restaurantName){
+
     if(isset($_POST['reject'])) {
       $connection = new PDO($GLOBALS['db_pdo_data']);
       $stmt = $connection->prepare("UPDATE orders SET status = 2  WHERE code = ? AND restaurant = ?");
       if($stmt->execute([$_POST['order'], restaurant_get_logged_id()])){
 
-        email($emailAddress, $restaurantName);
+       // email($emailAddress);
 
       }
     }
-  }
 
 
   function get_city($cityID){
@@ -147,6 +182,9 @@ function rejected($emailAddress, $restaurantName){
   <div class="container-fluid text-center mainbody">  
     <div class="row content">
       <div class="col-sm-12 text-left"> 
+
+                    <!-- accepted orders -->
+
         <h2>Accepted orders</h2>
         <p>
           Deliver as soon as possible. 
@@ -168,16 +206,24 @@ function rejected($emailAddress, $restaurantName){
             $orders = get_accepted_orders();
             $k = 0;
 
+
+
           foreach($orders as $order){ 
             $delivery_type = "";
             if($order[6]==0){
               $delivery_type ="Eat in";
+              $deliveryCost = deliveryCosts()[0][0];
+
             }
             elseif($order[6]==1){
               $delivery_type ="Take away";
+              $deliveryCost = deliveryCosts()[0][1];
+
             }
             else{
               $delivery_type = "Home delivery";
+              $deliveryCost = deliveryCosts()[0][2];
+
             }?>
 
             <tr>
@@ -202,9 +248,9 @@ function rejected($emailAddress, $restaurantName){
               </td>
               <td><?= ($order[8] + $order[7]) . "€" ?></td>
               <td>
-              <b>Time left:</b><i>  40 minutes<br>
+              <b>Time left: </b><i><?= getTimeLeft($order[0]) . " minutes"?><br>
                 <b><?= "Delivery type: </b>
-                <i> $delivery_type"?></i> 
+                <i> $delivery_type ($deliveryCost €)"?></i>
                <br>
                 <form method="post" action="orders.php"> 
                 <input type="hidden" name="order" value="<?= $order['code']; ?>">
@@ -235,6 +281,9 @@ function rejected($emailAddress, $restaurantName){
               </tr>
             </thead>
             <tbody>
+
+
+              <!-- pending orders -->
             <?php 
               $orders = get_pending_orders();
               $k = 0;
@@ -262,14 +311,14 @@ function rejected($emailAddress, $restaurantName){
                   </td>
                   <td><?= ($order[8] + $order[7]) . "€" ?></td>
                   <td>
-                  <b>Time left:</b><i>  40 minutes<br>
-                      <?= "Delivery type: </b>
-                <i> $delivery_type"?></i> 
+                  <b>Time left: </b><i><?= getTimeLeft($order[0]) . " minutes"?><br>
+                      <?= "Delivery type: <i> $delivery_type ($deliveryCost €)"?></i>
+
                <br>
-                    <form method="post" action="orders.php"> 
+                    <form method="post" action="orders.php">
                     <input type="hidden" name="order" value="<?= $order['code']; ?>">
-                    <input type="submit" name="approve" value="Approve" class= "btn btn-success btn-sm"/><?php accepted($order[11], get_restaurantName()[0][0])?>
-                    <input type="submit" name="reject" value="Reject" class="btn btn-danger btn-sm"/><?php rejected($order[11], get_restaurantName()[0][0])?>
+                    <input type="submit" name="approve" value="Approve" class= "btn btn-success btn-sm"/> 
+                    <input type="submit" name="reject" value="Reject" class="btn btn-danger btn-sm"/>
                     </form> 
 
                   </td>
@@ -281,6 +330,10 @@ function rejected($emailAddress, $restaurantName){
         </div>
 
         <br><br>
+
+
+                      <!-- past orders -->
+
         <div class="dont-print">
           <h2>Past orders</h2>
 
@@ -322,9 +375,10 @@ function rejected($emailAddress, $restaurantName){
                 </td>
                 <td><?= ($order[8] + $order[7]) . "€" ?></td>
                 <td>
-                <b>Expired since :</b><i>  40 minutes<br>
+                <b>Expired since: </b><i><?= getTimeLeft($order[0]) . " minutes"?><br>
                   <b><?= "Delivery type: </b>
-                <i> $delivery_type"?></i> 
+                                <i> $delivery_type ($deliveryCost €)"?></i>
+
                <br>
 
                 </td>
