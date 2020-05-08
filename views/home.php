@@ -82,7 +82,7 @@ $title = "EatKraken";
   <div class="restaurantsDiv">
 
     <h1 style="text-align: center">We work with...</h1>
-    <div class="row" style="margin-bottom: 20px"> 
+    <div class="row" style="margin-bottom: 20px;  margin-left:0px; margin-right:0px;"> 
 
       <div class="column">
 
@@ -155,8 +155,8 @@ $title = "EatKraken";
     </div>
   </div>
 
-  <h1 style="text-align: center; margin-top: 6%; margin-bottom: 3%">They say about us...</h1>
-  <div class="row" style="margin-bottom:5%">
+  <h1 style="text-align: center; margin-top: 6%; margin-bottom: 3%;">They say about us...</h1>
+  <div class="row" style="margin-bottom:5%;  margin-left:0px; margin-right:0px;">
     <div class="col-md-4 clients">
       
       <div class="col-md-12">
