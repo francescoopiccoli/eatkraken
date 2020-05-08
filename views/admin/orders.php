@@ -20,10 +20,10 @@ if(!restaurant_is_logged_in()) {
   exit;
 }
 
-// test authentication: http://localhost:8080/restaurant/auth.php?login=kebabkebabkebabkebabkebabkebabke and delivery_deadline > NOW()
+// test authentication: http://localhost:8080/restaurant/auth.php?login=kebabkebabkebabkebabkebabkebabke
 function get_pending_orders(){
-    $restaurantID= restaurant_get_logged_id();
-    return db_stmt_query("select * from orders where restaurant = ? and status = 0", [$restaurantID]);
+  $restaurantID= restaurant_get_logged_id();
+  return db_stmt_query("select * from orders where restaurant = ? and delivery_deadline > NOW() and status = 0", [$restaurantID]);
 }
 function get_accepted_orders(){
   $restaurantID= restaurant_get_logged_id();
@@ -128,6 +128,11 @@ function rejected($emailAddress, $restaurantName){
     }
   }
 
+
+  function get_city($cityID){
+    return db_stmt_query("select name from cities where code = ?", [$cityID]);
+  }
+
 ?>
 
 <!DOCTYPE html>
@@ -163,15 +168,26 @@ function rejected($emailAddress, $restaurantName){
             $orders = get_accepted_orders();
             $k = 0;
 
-          foreach($orders as $order){ ?>
+          foreach($orders as $order){ 
+            $delivery_type = "";
+            if($order[6]==0){
+              $delivery_type ="Eat in";
+            }
+            elseif($order[6]==1){
+              $delivery_type ="Take away";
+            }
+            else{
+              $delivery_type = "Home delivery";
+            }?>
+
             <tr>
-              <th scope="row"><?= $order[0] ?></th>
+              <th scope="row"><?= $order["code"] ?></th>
               <td>
-                <b><?=$order[2]?></b><br>
-                <?=$order[3] ?><br>
-                <?=$order[4] ?><br>
-                <a href="tel:<?=$order[5] ?>"><?=$order[5] ?></a>
-              </td>
+                    <?="<b>Name: </b>" . $order["full_name"]?><br>
+                    <?="<b>Address:</b> " . $order["address"] ?><br>
+                    <?="<b>City: </b>" . get_city($order["city"])[0][0]?><br>
+                    <b>Phone: </b> <a href="tel:<?=$order["phone"] ?>"><?= $order["phone"] ?></a>
+                  </td>
               <td>
               <?php
 
@@ -180,16 +196,19 @@ function rejected($emailAddress, $restaurantName){
 
               foreach($order_items as $order_item){
                 $dish = get_dish($order_item[2]);
-                echo $order_item[3] . "x " . $dish[0][0] ."<b> ". $dish[0][1] ."€</b><br><i>Notes: \"$order_item[4]\"</i><br><br>";
+                echo "<b>" . $order_item[3] . "x " . "</b>" . $dish[0][0] ."<b> ". $dish[0][1] ."€</b><br><b>Notes: </b><i>\"$order_item[4]\"</i><br><br>";
               }
               ?>
               </td>
               <td><?= ($order[8] + $order[7]) . "€" ?></td>
               <td>
-                Deliver within <b>40 minutes</b><br><b><?= "Delivery type:" . $order[6] ?></b> <?= "Cost: " . $order[7] . "€" ?><br>
+              <b>Time left:</b><i>  40 minutes<br>
+                <b><?= "Delivery type: </b>
+                <i> $delivery_type"?></i> 
+               <br>
                 <form method="post" action="orders.php"> 
                 <input type="hidden" name="order" value="<?= $order['code']; ?>">
-                <input type="submit" name="reject" value="Cancel" class="btn btn-danger btn-sm dont-print"/>
+                <input type="submit" name="reject" value="Cancel" class="btn btn-danger btn-sm dont-print" style="margin-top: 6px;"/>
                 </form> 
 
               </td>
@@ -222,12 +241,12 @@ function rejected($emailAddress, $restaurantName){
             if($orders){
               foreach($orders as $order){ ?>
                 <tr>
-                  <th scope="row"><?= $order[0] ?></th>
+                  <th scope="row"><?= $order["code"] ?></th>
                   <td>
-                    <b><?=$order[2]?></b><br>
-                    <?=$order[3] ?><br>
-                    <?=$order[4] ?><br>
-                    <a href="tel:<?=$order[5] ?>"><?=$order[5] ?></a>
+                    <?="<b>Name: </b>" . $order["full_name"]?><br>
+                    <?="<b>Address:</b> " . $order["address"] ?><br>
+                    <?="<b>City: </b>" . get_city($order["city"])[0][0]?><br>
+                    <b>Phone: </b> <a href="tel:<?=$order["phone"] ?>"><?= $order["phone"] ?></a>
                   </td>
                   <td>
                   <?php
@@ -237,13 +256,16 @@ function rejected($emailAddress, $restaurantName){
 
                   foreach($order_items as $order_item){
                     $dish = get_dish($order_item[2]);
-                    echo $order_item[3] . "x " . $dish[0][0] ."<b> ". $dish[0][1] ."€</b><br><i>Notes: \"$order_item[4]\"</i><br><br>";
+                    echo "<b>" . $order_item[3] . "x " . "</b>" . $dish[0][0] ."<b> ". $dish[0][1] ."€</b><br><b>Notes: </b><i>\"$order_item[4]\"</i><br><br>";
                   }
                   ?>
                   </td>
                   <td><?= ($order[8] + $order[7]) . "€" ?></td>
                   <td>
-                    Deliver within <b>40 minutes</b><br><b><?= "Delivery type:" . $order[6] ?></b> <?= "Cost: " . $order[7] . "€" ?><br>
+                  <b>Time left:</b><i>  40 minutes<br>
+                      <?= "Delivery type: </b>
+                <i> $delivery_type"?></i> 
+               <br>
                     <form method="post" action="orders.php"> 
                     <input type="hidden" name="order" value="<?= $order['code']; ?>">
                     <input type="submit" name="approve" value="Approve" class= "btn btn-success btn-sm"/><?php accepted($order[11], get_restaurantName()[0][0])?>
@@ -279,13 +301,13 @@ function rejected($emailAddress, $restaurantName){
 
             foreach($orders as $order){ ?>
               <tr>
-                <th scope="row"><?= $order[0] ?></th>
-                <td>
-                  <b><?=$order[2]?></b><br>
-                  <?=$order[3] ?><br>
-                  <?=$order[4] ?><br>
-                  <a href="tel:<?=$order[5] ?>"><?=$order[5] ?></a>
-                </td>
+              <th scope="row"><?= $order["code"] ?></th>
+                  <td>
+                    <?="<b>Name: </b>" . $order["full_name"]?><br>
+                    <?="<b>Address:</b> " . $order["address"] ?><br>
+                    <?="<b>City: </b>" . get_city($order["city"])[0][0]?><br>
+                    <b>Phone: </b> <a href="tel:<?=$order["phone"] ?>"><?= $order["phone"] ?></a>
+                  </td>
                 <td>
                 <?php
 
@@ -294,15 +316,16 @@ function rejected($emailAddress, $restaurantName){
 
                 foreach($order_items as $order_item){
                   $dish = get_dish($order_item[2]);
-                  echo $order_item[3] . "x " . $dish[0][0] ."<b> ". $dish[0][1] ."€</b><br><i>Notes: \"$order_item[4]\"</i><br><br>";
+                  echo "<b>" . $order_item[3] . "x " . "</b>" . $dish[0][0] ."<b> ". $dish[0][1] ."€</b><br><b>Notes: </b><i>\"$order_item[4]\"</i><br><br>";
                 }
                 ?>
                 </td>
                 <td><?= ($order[8] + $order[7]) . "€" ?></td>
                 <td>
-                  Expired since <b>40 minutes</b><br>
-                  <b><?= "Delivery type: " . $order[6] ?></b> <?= "Cost: " . $order[7] . "€" ?><br>
-                  Status before expiration: <b>pending</b>
+                <b>Expired since :</b><i>  40 minutes<br>
+                  <b><?= "Delivery type: </b>
+                <i> $delivery_type"?></i> 
+               <br>
 
                 </td>
               </tr>
