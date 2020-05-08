@@ -311,8 +311,9 @@ h1 {
     }
 }
 
-.checkout-main .row * {
-    vertical-align: middle;
+.checkout-main .row {
+    display: flex;
+    align-items: center;
 }
 .checkout-total-row {
     background-color: #F0F0F0;

@@ -45,7 +45,7 @@ $isCheckoutPage = true; // for checkout widget
               <form action="checkout.php" method="post">
                 <input type="hidden" name="confirm">
                 <?php if(count($cart_items) > 0) { ?>
-                <button type="submit" class="btn btn-success btn-lg" style="margin-top:20px; font-family: 'Acme';">Confirm order</button>
+                <button type="submit" class="btn btn-success btn-lg" style="font-family: 'Acme';">Confirm</button>
                 <?php } ?>
               </form>
             </div>
