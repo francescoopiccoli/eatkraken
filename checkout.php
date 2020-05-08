@@ -86,7 +86,18 @@ if(isset($_POST['set_email'])) {
     cart_set_email($_POST['set_email']);
 }
 
-$orders = cart_get_orders();
+$cart_orders = cart_get_orders();
+$cart_items = cart_get_items();
+
+$cart_name = (cart_get_full_name() != "" ? cart_get_full_name() : "Enter Full Name");
+$cart_addr = cart_get_address();
+$cart_email = (cart_get_email() == "" ? "No email specified" : cart_get_email());
+$cart_phone = (cart_get_phone() == "" ? "No phone specified" : cart_get_phone());
+
+$cart_item_total = cart_get_total();
+$cart_shipping_total = cart_get_shipping_total();
+$cart_total = $cart_item_total + $cart_shipping_total;
+
 require_once($_SERVER['DOCUMENT_ROOT'] . "/views/checkout.php");
 
 ?>
