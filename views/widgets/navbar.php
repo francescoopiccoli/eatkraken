@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>                        
       </button>
       <a class="navbar-brand" href="/">
-        <i class="fas fa-hamburger"></i> 
+        <i class="fas fa-utensils"></i> 
         <span class="navbar-logo"><b>EATKRAKEN</b></span>
       </a>
     </div>
