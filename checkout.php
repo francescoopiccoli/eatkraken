@@ -33,16 +33,19 @@ if(isset($_POST['confirm'])) {
         $orders = cart_get_orders();
         $codes = array(); // used to email every detail
         foreach($orders as $restaurant => $items) {
-            $code = db_insert_empty_order($restaurant, cart_get_full_name(), cart_get_address(), cart_get_email(), cart_get_city(), cart_get_phone(), cart_get_restaurant_shipping($restaurant), cart_get_total(), $delivery_time);
-            if($code) {
-                array_push($codes, $code);
-                foreach($items as $item) {
-                    // todo: group multiple items as one via the quantity param
-                    //  db_insert_new_order_item($code, $item['id'], $item['price']);
-                    db_add_order_item($code, $item['code'], 1, cart_get_restaurant_message($restaurant));
+            // ignore if can't be delivered
+            if(cart_get_restaurant_shipping($restaurant) == 2 && db_restaurant_can_deliver($restaurant, cart_get_city())) {
+                $code = db_insert_empty_order($restaurant, cart_get_full_name(), cart_get_address(), cart_get_email(), cart_get_city(), cart_get_phone(), cart_get_restaurant_shipping($restaurant), cart_get_total(), $delivery_time);
+                if($code) {
+                    array_push($codes, $code);
+                    foreach($items as $item) {
+                        // todo: group multiple items as one via the quantity param
+                        //  db_insert_new_order_item($code, $item['id'], $item['price']);
+                        db_add_order_item($code, $item['code'], 1, cart_get_restaurant_message($restaurant));
+                    }
+                } else {
+                    die("DB error");
                 }
-            } else {
-                die("DB error");
             }
         }
 

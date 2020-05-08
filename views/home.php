@@ -11,9 +11,7 @@ $title = "EatKraken";
   <?php 
   
     function getRandomImage(){
-      
-      //$arrayId = array(1, 2, 3, 11, 12, 21, 22, 31, 32, 41, 42, 51, 52, 53, 61, 62);
-      $arrayId2 = db_simple_query("select code from dishes");
+      $arrayId2 = db_simple_query("select code from dishes limit 10");
 
       $randIndex = array_rand($arrayId2);
       $productCode = $arrayId2[$randIndex][0];
@@ -26,7 +24,7 @@ $title = "EatKraken";
 <div class="mainbody"> 
   <div class="dropdown"id="selectCity">
     <button class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <span style="margin-right: 20px; letter-spacing: 1px; word-spacing: 3px">Select a city to start!</span> <span style="margin-top:12px; float:right; color: #C98474" class="caret"></span>
+    <span style="margin-right: 20px; letter-spacing: 1px; word-spacing: 3px">Select a city</span> <span style="margin-top:12px; float:right; color: #C98474" class="caret"></span>
     </button>
     <ul class="dropdown-menu cityList">
       <?php 
