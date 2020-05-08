@@ -18,40 +18,40 @@ $isCheckoutPage = true; // for checkout widget
             <div class="col-sm-3">
               <b style="font-size: 1.3em; font-family: 'Acme';">Deliver to:</b>
               <br><br>
-              <span id="full_name"><?= (cart_get_full_name() != "" ? cart_get_full_name() : "Enter Full Name"); ?></span> (<a href="#" onclick="editName()">edit</a>)
+              <span id="full_name"><?= $cart_name; ?></span> (<a href="#" onclick="editName()">edit</a>)
               <br>  
-              <span id="address"><?= cart_get_address(); ?></span> (<a href="#" onclick="editAddress()">edit</a>)
+              <span id="address"><?= $cart_addr; ?></span> (<a href="#" onclick="editAddress()">edit</a>)
 
             </div>
             <div class="col-sm-3">
               <b style="font-size: 1.3em; font-family: 'Acme';">Personal information</b>
               <br><br>
-              <span id="address"><?= (cart_get_email() == "" ? "No email specified" : cart_get_email()); ?></span> (<a href="#" onclick="editMail()">edit</a>)<br>
-              <span id="address"><?= (cart_get_phone() == "" ? "No phone specified" : cart_get_phone()); ?></span> (<a href="#" onclick="editPhone()">edit</a>)
+              <span id="address"><?= $cart_email ?></span> (<a href="#" onclick="editMail()">edit</a>)<br>
+              <span id="address"><?= $cart_phone ?></span> (<a href="#" onclick="editPhone()">edit</a>)
             </div>
 
            
               <div class="col-sm-2 text-center">
               <b style="font-size: 1.3em; font-family: 'Acme';">Shipping</b>
                 <!-- todo! -->
-                <h3><?= cart_get_shipping_total() ?>€</h3>
+                <h3><?= $cart_shipping_total ?>€</h3>
               </div>
               <div class="col-sm-2 text-center">
               <b style="font-size: 1.3em; font-family: 'Acme';">Total</b>
 
-                <h3><?= cart_get_total() + cart_get_shipping_total() ?>€</h3>
+                <h3><?= $cart_total ?>€</h3>
               </div>
               <div class="col-sm-2 text-center">
               <form action="checkout.php" method="post">
                 <input type="hidden" name="confirm">
-                <?php if(count(cart_get_items()) > 0) { ?>
+                <?php if(count($cart_items) > 0) { ?>
                 <button type="submit" class="btn btn-success btn-lg" style="margin-top:20px; font-family: 'Acme';">Confirm order</button>
                 <?php } ?>
               </form>
             </div>
           </div>
 
-          <?php foreach($orders as $restaurant => $items) { ?>
+          <?php foreach($cart_orders as $restaurant => $items) { ?>
           <div class="row">
             <div class="col-sm-10">
               <h2><?= db_get_restaurant_name($restaurant); ?></h2>
