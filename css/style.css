@@ -330,7 +330,16 @@ blockquote .svg-inline--fa {
 
 /* list page */
 .food-card .panel:hover {
-  border-color: #999;
+  /*border-color: #999;*/
+  border-color: #A7D2CB;
+}
+
+.panel-footer {
+  background-color: rgba(201, 132, 116, 0.329);
+}
+
+#food-title {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .thumbnail-small {

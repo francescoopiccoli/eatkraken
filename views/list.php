@@ -53,8 +53,24 @@
           ?>
         </div>
       </div>
-      <div class="col-sm-9 text-left"> 
-        <h1><?= count($results); ?> results in your area</h1>
+      <div class="col-sm-9 text-left">
+
+        <?php
+          function getListMessage(){
+            return count($results);
+          }
+        ?>
+
+        <h1 id="results">pirla </h1>
+
+        <script>
+          if(<?= count($results); ?>>0){
+            document.getElementById("results").innerHTML = <?= count($results); ?>+" results in your area!";
+          }else{
+            document.getElementById("results").innerHTML = "Select a city to start!";
+          }
+        </script>
+
         <p>All of them can deliver to your address.</p>
         
         <hr>
@@ -67,7 +83,7 @@
               <div class="panel-body list-thumb" style="background-image: url('<?= $result["image_url"] ?>'); background-size: cover; min-width: 100px; min-height: 120px;">
               </div>
               <div class="panel-footer">
-                <b><?= $result["name"] ?></b> 
+                <b id="food-title"><?= $result["name"] ?></b> 
                 <span class="text-right">€<?= $result["price"] ?></span>
                 <br>
                 <small><?= $result["restaurant_name"] ?></small>
