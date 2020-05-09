@@ -14,116 +14,94 @@ if(!restaurant_is_logged_in()) {
 
 if(isset($_POST["submit"])){
 
-  $productName = $_POST["ProductName"];
-  $productDescription = $_POST["ProductDescription"];
-  $productPrice = $_POST["ProductPrice"];
+  $name = htmlentities($_POST["ProductName"]);
+  $description = htmlentities($_POST["ProductDescription"]);
+  $price = htmlentities($_POST["ProductPrice"]);
   $restaurant = restaurant_get_logged_id();
-  $productCategory = $_POST["ProductCategory"];
-  $productIngredients = $_POST["ProductIngredients"];
-  $nutri_kcal = $_POST["nutri_kcal"];
-  $nutri_carb = $_POST["nutri_carbs"];
-  $nutri_fat = $_POST["nutri_fat"];
-  $nutri_protein = $_POST["nutri_protein"];
+  $category = htmlentities($_POST["ProductCategory"]);
+  $ingredients = htmlentities($_POST["ProductIngredients"]);
+  $nutri_kcal = htmlentities($_POST["nutri_kcal"]);
+  $nutri_carbs = htmlentities($_POST["nutri_carbs"]);
+  $nutri_fats = htmlentities($_POST["nutri_fat"]);
+  $nutri_proteins = htmlentities($_POST["nutri_protein"]);
 
 
   if(isset($_POST['glutenFree']) && $_POST['glutenFree'] == "true"){
-    $glutenFree = 'true';
+    $flag_gluten_free = 'true';
   }
   else{
-    $glutenFree = 'false';
+    $flag_gluten_free = 'false';
   }
 
   if(isset($_POST['lactoseFree']) && $_POST['lactoseFree'] == "true"){
-    $lactoseFree = 'true';
+    $flag_lactose_free = 'true';
   }
   else{
-    $lactoseFree = 'false';
+    $flag_lactose_free = 'false';
   }
   
   if(isset($_POST['vegan']) && $_POST['vegan'] == "true"){
-    $vegan = "true";
+    $flag_vegan = "true";
   }
   else{
-    $vegan = 'false';
+    $flag_vegan = 'false';
   }
 
   if(isset($_POST['fresh']) && $_POST['fresh'] == "true"){
-    $fresh = 'true';
+    $flag_fresh = 'true';
   }
 else{
-    $fresh = 'false';
+    $flag_fresh = 'false';
   }
 
   if(isset($_POST['zeroWaste']) && $_POST['zeroWaste'] == "true"){
-    $zeroWaste = 'true';
+    $flag_zero_waste = 'true';
   }
   else{
-    $zeroWaste = 'false';
+    $flag_zero_waste = 'false';
   }
 
-  $productImageURL = $_POST["imageUrl"];
-  $productDeliveryTime = $_POST["deliveryTime"];
-
-  // echo  $glutenFree . " " . $lactoseFree . " " . $vegan . " " . $fresh . " " . $zeroWaste;
+  $image_url = htmlentities($_POST["imageUrl"]);
+  $delivery_time = htmlentities($_POST["deliveryTime"]);
 
 
-    $connection = new PDO($GLOBALS['db_pdo_data']);
+  $connection = new PDO($GLOBALS['db_pdo_data'], $GLOBALS['db_username'], $GLOBALS['db_password'], array(PDO::ATTR_PERSISTENT => true));
+
+ 
+  $stmt = $connection->prepare(
+    "insert into dishes (code, name, description, price, restaurant, category, ingredients, nutri_carbs, nutri_fats, nutri_kcal, nutri_proteins, flag_gluten_free, flag_lactose_free, flag_vegan, flag_fresh, flag_zero_waste, image_url, delivery_time) " .
+   "VALUES ((SELECT MAX(code) FROM orders) + 1, :name, :description, :price, :restaurant, :category, :ingredients, :nutri_carbs, :nutri_fats, :nutri_kcal, :nutri_proteins, :flag_gluten_free, :flag_lactose_free, :flag_vegan, :flag_fresh, :flag_zero_waste, :image_url, :delivery_time)"
+  );
+
+  $res = $stmt->execute([
+  "name" => $name,
+  "description" =>  $description,
+  "price" =>  $price,
+  "restaurant" =>  $restaurant,
+  "category" =>  $category,
+  "ingredients" =>  $ingredients,
+  "nutri_carbs" =>  $nutri_carbs,
+  "nutri_fats" =>  $nutri_fats,
+  "nutri_kcal" =>  $nutri_kcal,
+  "nutri_proteins" =>  $nutri_proteins,
+  "flag_gluten_free" => $flag_gluten_free,
+  "flag_lactose_free" =>  $flag_lactose_free,
+  "flag_vegan" =>  $flag_vegan,
+  "flag_fresh" =>  $flag_fresh,
+  "flag_zero_waste" => $flag_zero_waste,
+  "image_url" =>  $image_url,
+  "delivery_time" =>  $delivery_time
+  ]);
+
+ // print_r($stmt->errorInfo());
+  $connection = null;
+
+    /*$connection = new PDO($GLOBALS['db_pdo_data']);
     $sql  = "INSERT INTO dishes VALUES (default, '$productName', '$productDescription', $productPrice, $restaurant, $productCategory, '$productIngredients', $nutri_carb, $nutri_fat, $nutri_kcal, $nutri_protein, $glutenFree, $lactoseFree, $vegan, $fresh, $zeroWaste, '$productImageURL', $productDeliveryTime)";
 
-  
-
-    if ($connection->query($sql) === TRUE) {
-       // echo "New record created successfully";
-    } else {
-      //echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-      $connection = null;
+    $connection = null;*/
     
   }
-
-  
-  
-/*
-  $connection = new PDO($GLOBALS['db_pdo_data']);
-  //print_r($_POST);
-
-  try{
-   
-    $stmt = $connection->prepare("INSERT INTO 'dishes' (name, description, price, restaurant, category, ingredients, nutri_carbs, nutri_fats, nutri_kcal, nutri_proteins, flag_gluten_free, flag_lactose_free, flag_vegan, flag_fresh, flag_zero_waste, image_url, delivery_time)
-     VALUES (:productName, :productDescription, :productPrice, :restaurant, :productCategory, :productIngredients, :nutri_carb, :nutri_fat, :nutri_kcal, :nutri_protein, :glutenFree, :lactoseFree, :vegan, :fresh, :zeroWaste, :productImageURL, :productDeliveryTime)");
-
-    $stmt->bindParam(':productName', $productName);
-    $stmt->bindParam(':productDescription', $productDescription);
-    $stmt->bindParam(':productPrice', $productPrice);
-    $stmt->bindParam(':restaurant', $restaurant);
-    $stmt->bindParam(':productCategory', $productCategory);
-    $stmt->bindParam(':productIngredients', $productIngredients);
-    $stmt->bindParam(':nutri_carb', $nutri_carb);
-    $stmt->bindParam(':nutri_fat', $nutri_fat);
-    $stmt->bindParam(':nutri_kcal', $nutri_kcal);
-    $stmt->bindParam(':nutri_protein', $nutri_protein);
-    $stmt->bindParam(':glutenFree', $glutenFree);
-    $stmt->bindParam(':lactoseFree', $lactoseFree);
-    $stmt->bindParam(':vegan', $vegan);
-    $stmt->bindParam(':fresh', $fresh);
-    $stmt->bindParam(':zeroWaste', $zeroWaste);
-    $stmt->bindParam(':productImageURL', $productImageURL);
-    $stmt->bindParam(':productDeliveryTime', $productDeliveryTime);
-    $inserted = $stmt->execute();
-    //print_r($inserted);
-    
-    if($inserted){
-      echo "New records created successfully";}
-
-    else{
-      echo "error";
-    }
-  }
-  catch(PDOException $e){
-    echo "Error: " . $e->getMessage();
-  }
-
-  $connection = null;*/
 
 ?>
 
