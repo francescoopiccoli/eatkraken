@@ -350,14 +350,17 @@ h1 {
 
 
 /* list page */
+.food-card{
+  width: 250px;
+  height: 220px;
+}
 .food-card .panel:hover {
     /*border-color: #999;*/
     border-color: #A7D2CB;
-    
 }
 
 .panel-footer{
-  background-color: rgba(201, 132, 116, 0.329);
+  background-color: rgba(201, 132, 116, 0.247);
 }
 
 #food-title{
@@ -387,6 +390,10 @@ h1 {
     border-radius: 50%;
     object-fit: cover;
   }
+
+#ingredients{
+  font-size: large;
+}
   
 
 .caption{

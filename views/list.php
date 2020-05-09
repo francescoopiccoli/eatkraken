@@ -61,8 +61,6 @@
           }
         ?>
 
-        <h1 id="results">pirla </h1>
-
         <script>
           if(<?= count($results); ?>>0){
             document.getElementById("results").innerHTML = <?= count($results); ?>+" results in your area!";

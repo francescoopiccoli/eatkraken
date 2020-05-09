@@ -53,8 +53,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
           <?= $product_allergenes ?>
         </div>
         <div class="col-xs-12 col-sm-4 text-center ">
-          <h2 style="margin-top: 15px;">Ingredients</h2>
-          <div><?= $product_ingredients ?></div>
+          <h2  style="margin-top: 15px;">Ingredients</h2>
+          <div id="ingredients"><?= $product_ingredients ?></div>
         </div>
         <div class="col-xs-12 col-sm-4 text-left ">
           <h2 style="margin-top: 15px; text-align:center">Nutritional facts  (x 100g)</h2>
