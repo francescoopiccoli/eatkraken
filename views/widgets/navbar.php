@@ -7,14 +7,14 @@
         <span class="icon-bar"></span>                        
       </button>
       <a class="navbar-brand" href="/">
-        <i class="fas fa-utensils"></i> 
-        <span class="navbar-logo"><b>EATKRAKEN</b></span>
+        <i style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black" class="fas fa-utensils"></i> 
+        <span style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black" class="navbar-logo"><b>EATKRAKEN</b></span>
       </a>
     </div>
     <div class="collapse navbar-collapse navbar-right" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="/"><b>HOME</b></a></li>
-        <li><a href="/about.php"><b>ABOUT</b></a></li>
+        <li><a href="/" style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black"><b>HOME</b></a></li>
+        <li><a href="/about.php" style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black"><b>ABOUT</b></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/checkout.php"); ?>

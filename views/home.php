@@ -24,7 +24,7 @@ $title = "EatKraken";
 <div class="mainbody"> 
   <div class="dropdown"id="selectCity">
     <button class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <span style="margin-right: 20px; letter-spacing: 1px; word-spacing: 3px">Select a city</span> <span style="margin-top:12px; float:right; color: #C98474" class="caret"></span>
+    <span style="margin-right: 20px; letter-spacing: 1px; word-spacing: 3px">SELECT A CITY</span> <span style="margin-top:12px; float:right; color: #C98474" class="caret"></span>
     </button>
     <ul class="dropdown-menu cityList">
       <?php 
@@ -61,7 +61,7 @@ $title = "EatKraken";
 
       <div class="item" style="background-image: linear-gradient(rgba(20, 25, 24, 0.1), rgba(20, 25, 24, 1)), url('<?=getRandomImage()?>')">
       <div class="carousel-caption">
-          <h2>Sustainable food options available</h2>
+          <h2>Sustainable food options available!</h2>
       </div>
     </div>
   </div>

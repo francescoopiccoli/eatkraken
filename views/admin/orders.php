@@ -53,7 +53,7 @@ function getTimeLeft($orderID){
   $differenceMinutes = $deadlineMinutes - $currentTimeMinutes;
 
   $timeLeftInMinutes = $differenceHour * 60 + $differenceMinutes;
-
+  $timeLeftInMinutes = str_replace("-", "", $timeLeftInMinutes);
   if(substr($currentTime, 0, 10) ==substr($deadlineTime, 0, 10)){ // if the day is the same
     return $timeLeftInMinutes . "<i> minutes</i>";
   }
