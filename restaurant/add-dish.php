@@ -91,6 +91,7 @@ else{
  // print_r($stmt->errorInfo());
   $connection = null;
   }
+  
 require_once($_SERVER['DOCUMENT_ROOT'] . "/views/admin/add-dish.php");
 
 ?>

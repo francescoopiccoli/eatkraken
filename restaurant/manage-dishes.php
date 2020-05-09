@@ -8,10 +8,7 @@ if(!restaurant_is_logged_in()) {
 }
 ?>
 <?php
-function get_dishes(){
-  return db_stmt_query("select code, name, price, image_url from dishes where restaurant = ?", [restaurant_get_logged_id()]);
-}
-
+// test authentication: http://localhost:8080/restaurant/auth.php?login=kebabkebabkebabkebabkebabkebabke
 //not working for now
 if(isset($_POST['remove'])) {
   $code= $dish['code'];
@@ -21,6 +18,7 @@ if(isset($_POST['remove'])) {
   $stmt->execute();
   $connection = null;
 }
+
 require_once($_SERVER['DOCUMENT_ROOT'] . "/views/admin/manage-dishes.php");
 
 ?>

@@ -1,5 +1,5 @@
 <?php
-
+// test authentication: http://localhost:8080/restaurant/auth.php?login=kebabkebabkebabkebabkebabkebabke
 require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/database.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/simple_email.php");
@@ -38,6 +38,7 @@ if(isset($_POST['order']) && $order = db_get_order($_POST['order'])) {
 
 //considers 24h format time,  keeps negative time
 function getTimeLeft($orderID){
+
   date_default_timezone_set('Europe/Rome');
   $currentTime = strval(substr(date('Y/m/d H:i:s a', time()), 0, 16));
   $deadlineTime = strval(substr(get_deadline($orderID)[0][0], 0, 16));
@@ -54,12 +55,17 @@ function getTimeLeft($orderID){
 
   $timeLeftInMinutes = $differenceHour * 60 + $differenceMinutes;
   $timeLeftInMinutes = str_replace("-", "", $timeLeftInMinutes);
+
   if(substr($currentTime, 0, 10) ==substr($deadlineTime, 0, 10)){ // if the day is the same
-    return $timeLeftInMinutes . "<i> minutes</i>";
+    if($timeLeftInMinutes < 59){
+    return $timeLeftInMinutes . "<i> minutes</i>";}
+    else{
+      return round($timeLeftInMinutes/60) . "h " . $timeLeftInMinutes%60 . " minutes";
+    }
   }
 
 
-  elseif(substr($currentTime, 5, -9) == substr($deadlineTime, 5, -9)){ 
+  elseif(substr($currentTime, 5, -9) == substr($deadlineTime, 5, -9)){
     //if the day is different but the month is the samereturns how many days have passed since the expiration
     if((substr($currentTime, 8, -6) - substr($deadlineTime, 8, -6)) == 1){
       return (substr($currentTime, 8, -6) - substr($deadlineTime, 8, -6)) . " <i> day<i/>";
@@ -80,47 +86,6 @@ function getTimeLeft($orderID){
 }
 
 
-// test authentication: http://localhost:8080/restaurant/auth.php?login=kebabkebabkebabkebabkebabkebabke
-function get_deadline($orderID){
-  return db_stmt_query("select delivery_deadline from orders where code = ?", [$orderID]);
-}
-
-
-function get_pending_orders(){
-  $restaurantID= restaurant_get_logged_id();
-  return db_stmt_query("select * from orders where restaurant = ? and delivery_deadline > (SELECT now() AT TIME ZONE 'Europe/Rome') and status = 0 order by delivery_deadline asc", [$restaurantID]);
-}
-
-function get_accepted_orders(){
-  $restaurantID = restaurant_get_logged_id();
-  return db_stmt_query("select * from orders where restaurant = ? and delivery_deadline > (SELECT now() AT TIME ZONE 'Europe/Rome') and status = 1 order by delivery_deadline asc", [$restaurantID]);
-}
-function get_past_orders(){
-  $restaurantID = restaurant_get_logged_id();
-  return db_stmt_query("select * from orders where restaurant = ? and (delivery_deadline < (SELECT now() AT TIME ZONE 'Europe/Rome') or status = 2) order by delivery_deadline desc", [$restaurantID]);
-}
-
-function deliveryCosts(){
-  $restaurantID = restaurant_get_logged_id();
-  return db_stmt_query("select cost_eat_in, cost_takeaway, cost_home_delivery from restaurants where code = ?", [$restaurantID]);
-}
-
-
-function get_restaurantName(){
-  $restaurantID = restaurant_get_logged_id();
-  return db_stmt_query("select name from restaurants where code = ?", [$restaurantID]);
-}
-
-
-function get_orders_items($i, $orders){
-  return db_stmt_query("select * from order_items where ord = ?", [$orders[$i][0]]);
-
-}
-
-
-function get_dish($code){
-  return db_stmt_query("select name, price from dishes where code = ?", [$code]);
-}
 function email_approve($addr) {
   $restaurant = db_get_restaurant_name(restaurant_get_logged_id());
   return simple_email(
@@ -129,6 +94,7 @@ function email_approve($addr) {
     'Your order at ' . $restaurant . ' has been accepted, it will be at your place as soon as possible.<br>The EatKraken Team');
   
 }
+
 function email_reject($addr) {
   $restaurant = db_get_restaurant_name(restaurant_get_logged_id());
   return simple_email(
@@ -143,10 +109,6 @@ function removeElement($code){
   if($connection->query($query)){
     echo "successful";
   }
-}
-
-function get_city($cityID){
-  return db_stmt_query("select name from cities where code = ?", [$cityID]);
 }
 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/views/admin/orders.php");
