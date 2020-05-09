@@ -8,6 +8,9 @@ $GLOBALS['db_username'] = "yhqbrujn";
 $GLOBALS['db_password'] = "vTdT4LC9LlOf_rgw6fA-Uz54Q-_xefB5";
 $GLOBALS['db_pdo_data'] = "pgsql:host=".$GLOBALS['db_host']." port=5432 dbname=".$GLOBALS['db_name']." user=".$GLOBALS['db_username']." password=".$GLOBALS['db_password'];
 
+
+date_default_timezone_set('Europe/Rome');
+
 function all_shipping_methods() {
     return array(
         array("id" => 0, "name" => "Eat in"),
@@ -153,10 +156,17 @@ function db_get_dishes($city, $cat, $time, $flags) {
 }
 
 
-function db_get_product($productCode){
-    $product = db_simple_query("select * from dishes where code = $productCode");
+function db_get_product($code){
+    $product = db_stmt_query("select * from dishes where code = ?",[$code]);
     if(count($product) > 0)
         return $product[0];
+    else
+        return false;
+}
+function db_get_product_delivery_time($code){
+    $product = db_stmt_query("select delivery_time from dishes where code = ?", [$code]);
+    if(count($product) > 0)
+        return $product[0][0];
     else
         return false;
 }
@@ -164,6 +174,7 @@ function db_get_product($productCode){
 /*make orders*/
 function db_insert_empty_order($restaurant, $full_name, $address, $email, $city, $phone, $shipping_type, $items_cost, $delivery_time){
     $delivery_deadline = time() + $delivery_time * 60; // starting from when order is placed
+    //die($delivery_time . " " . date("Y-m-d H:i:s", time()) . " " . date("Y-m-d H:i:s", $delivery_deadline));
     $shipping_cost = db_get_shipping_cost($restaurant, $shipping_type);
 	$total_cost = $items_cost + $shipping_cost;
 

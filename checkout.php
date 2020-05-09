@@ -34,7 +34,15 @@ if(isset($_POST['confirm'])) {
         $codes = array(); // used to email every detail
         foreach($orders as $restaurant => $items) {
             // ignore if can't be delivered
-            if(cart_get_restaurant_shipping($restaurant) == 2 && db_restaurant_can_deliver($restaurant, cart_get_city())) {
+            if(cart_get_restaurant_shipping($restaurant) != 2 || db_restaurant_can_deliver($restaurant, cart_get_city())) {
+                $delivery_time = 0;
+                // delivery time of order is set to max. of all items
+                foreach($items as $item) {
+                    $t = db_get_product_delivery_time($item['code']);
+                    if($t > $delivery_time)
+                        $delivery_time = $t;
+                }
+
                 $code = db_insert_empty_order($restaurant, cart_get_full_name(), cart_get_address(), cart_get_email(), cart_get_city(), cart_get_phone(), cart_get_restaurant_shipping($restaurant), cart_get_total(), $delivery_time);
                 if($code) {
                     array_push($codes, $code);

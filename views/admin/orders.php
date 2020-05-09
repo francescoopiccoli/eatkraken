@@ -72,16 +72,16 @@ function get_deadline($orderID){
 
 function get_pending_orders(){
   $restaurantID= restaurant_get_logged_id();
-  return db_stmt_query("select * from orders where restaurant = ? and delivery_deadline > NOW() and status = 0", [$restaurantID]);
+  return db_stmt_query("select * from orders where restaurant = ? and delivery_deadline > NOW() and status = 0 order by delivery_deadline asc", [$restaurantID]);
 }
 
 function get_accepted_orders(){
   $restaurantID= restaurant_get_logged_id();
-  return db_stmt_query("select * from orders where restaurant = ? and delivery_deadline > NOW() and status = 1", [$restaurantID]);
+  return db_stmt_query("select * from orders where restaurant = ? and delivery_deadline > NOW() and status = 1 order by delivery_deadline asc", [$restaurantID]);
 }
 function get_past_orders(){
   $restaurantID= restaurant_get_logged_id();
-  return db_stmt_query("select * from orders where restaurant = ? and (delivery_deadline < NOW() or status = 2)", [$restaurantID]);
+  return db_stmt_query("select * from orders where restaurant = ? and (delivery_deadline < NOW() or status = 2) order by delivery_deadline desc", [$restaurantID]);
 }
 
 function deliveryCosts(){
@@ -155,7 +155,7 @@ catch (Exception $e) {
 }
 
 function removeElement($code){
-  $connection = new PDO($GLOBALS['db_pdo_data']);
+  $connection = new PDO($GLOBALS['db_pdo_data'], $GLOBALS['db_username'], $GLOBALS['db_password'], array(PDO::ATTR_PERSISTENT => true));
   $query  = "UPDATE orders SET status = 1  WHERE code = $code;";
   if($connection->query($query)){
     echo "successful";
@@ -164,7 +164,7 @@ function removeElement($code){
 
   if(isset($_POST['order'])) { 
     if(isset($_POST['approve'])) {
-      $connection = new PDO($GLOBALS['db_pdo_data']);
+      $connection = new PDO($GLOBALS['db_pdo_data'], $GLOBALS['db_username'], $GLOBALS['db_password'], array(PDO::ATTR_PERSISTENT => true));
       $stmt = $connection->prepare("UPDATE orders SET status = 1  WHERE code = ? AND restaurant = ?");
       if($stmt->execute([$_POST['order'], restaurant_get_logged_id()])){
 
@@ -175,7 +175,7 @@ function removeElement($code){
 
 
     if(isset($_POST['reject'])) {
-      $connection = new PDO($GLOBALS['db_pdo_data']);
+      $connection = new PDO($GLOBALS['db_pdo_data'], $GLOBALS['db_username'], $GLOBALS['db_password'], array(PDO::ATTR_PERSISTENT => true));
       $stmt = $connection->prepare("UPDATE orders SET status = 2  WHERE code = ? AND restaurant = ?");
       if($stmt->execute([$_POST['order'], restaurant_get_logged_id()])){
 
@@ -209,7 +209,7 @@ function removeElement($code){
         <h2>Accepted orders</h2>
         <p>
           Deliver as soon as possible. 
-          <a href="javascript:window.print();" class="btn btn-sm btn-primary dont-print" style="float:right;">Print this page</a>
+          <a href="javascript:window.print();" class="btn btn-sm btn-primary dont-print" style="float:right;">Print</a>
         </p>
 
         <table class="table">
@@ -369,7 +369,7 @@ function removeElement($code){
         <br><br>
 
 
-                      <!-- past orders -->
+        <!-- past orders -->
 
         <div class="dont-print">
           <h2>Past orders</h2>
