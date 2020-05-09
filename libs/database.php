@@ -171,6 +171,14 @@ function db_get_product_delivery_time($code){
         return false;
 }
 
+function db_get_order($code){
+    $order = db_stmt_query("select * from orders where code = ?",[$code]);
+    if(count($order) > 0)
+        return $order[0];
+    else
+        return false;
+}
+
 /*make orders*/
 function db_insert_empty_order($restaurant, $full_name, $address, $email, $city, $phone, $shipping_type, $items_cost, $delivery_time){
     $delivery_deadline = time() + $delivery_time * 60; // starting from when order is placed

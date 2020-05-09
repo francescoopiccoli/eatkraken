@@ -1,24 +1,40 @@
 <?php
 
-/// possible POST actions:
-// ?order={id}&approve
-// ?order={id}&reject
-
 require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/database.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/simple_email.php");
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/PHPMailer/src/Exception.php");
-require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/PHPMailer/src/PHPMailer.php");
-require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/PHPMailer/src/SMTP.php");
 
 
 if(!restaurant_is_logged_in()) {
   header("Location: /");
   exit;
 }
+
+
+
+/// possible POST actions:
+// ?order={id}&approve
+// ?order={id}&reject
+if(isset($_POST['order']) && $order = db_get_order($_POST['order'])) {
+  $connection = new PDO($GLOBALS['db_pdo_data'], $GLOBALS['db_username'], $GLOBALS['db_password'], array(PDO::ATTR_PERSISTENT => true));
+  
+  if(isset($_POST['approve'])) {
+    $stmt = $connection->prepare("UPDATE orders SET status = 1  WHERE code = ? AND restaurant = ?");
+    if($stmt->execute([$_POST['order'], restaurant_get_logged_id()])){
+      email_approve($order['email']);
+    }
+  }
+  if(isset($_POST['reject'])) {
+    $stmt = $connection->prepare("UPDATE orders SET status = 2  WHERE code = ? AND restaurant = ?");
+    if($stmt->execute([$_POST['order'], restaurant_get_logged_id()])){
+      
+      email_reject($order['email']);
+    }
+  }
+  $connection = null;
+}
+
 
 //considers 24h format time,  keeps negative time
 function getTimeLeft($orderID){
@@ -105,53 +121,20 @@ function get_orders_items($i, $orders){
 function get_dish($code){
   return db_stmt_query("select name, price from dishes where code = ?", [$code]);
 }
-
-function email($emailAddress){
-
-  $restaurantName = get_restaurantName()[0][0];
-  $mail = new PHPMailer(true);
-  try {
-    //Server settings
-    $mail->isSMTP();                                            // Send using SMTP
-    $mail->Host       = 'smtp.sendgrid.net';                    // Set the SMTP server to send through
-    $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-    $mail->Username   = 'info.eatkraken@gmail.com';                     // SMTP username
-    $mail->Password   = 'eatkraken2020';                               // SMTP password
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
-    $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
-
-    //Recipients
-    $mail->setFrom('info.eatkraken@gmail.com', 'Eatkraken');
-        $mail->addAddress($emailAddress);     // Add a recipient
-
-     // Content
-
-    $mail->isHTML(true); 
-
-      if(isset($_POST['approve'])) {
-        $mail->Subject = 'Your order at ' .$restaurantName;
-        $mail->Body    = 'Your order at ' . $restaurantName . ' has been accepted, it will be at your place as 
-        soon as possible.
-        The EatKraken Team';
-        $mail->AltBody = 'Your order at ' . $restaurantName . ' has been accepted, it will be at your place as 
-        soon as possible.
-        The EatKraken Team';
-      }
-       
-
-    if(isset($_POST['reject'])) {
-      $mail->Subject = 'Order rejected at ' . $restaurantName;
-      $mail->Body    = 'We are sorry but your order at ' . $restaurantName . ' could not be accepted.
-      The EatKraken Team';
-      $mail->AltBody = 'We are sorry but your order at ' . $restaurantName . ' could not be accepted.
-      The EatKraken Team';
-    }                  
-    
-    $mail->send();
+function email_approve($addr) {
+  $restaurant = db_get_restaurant_name(restaurant_get_logged_id());
+  return simple_email(
+    $addr,
+    'EatKraken: Order approved',
+    'Your order at ' . $restaurant . ' has been accepted, it will be at your place as soon as possible.<br>The EatKraken Team');
+  
 }
-catch (Exception $e) {
-  echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-}
+function email_reject($addr) {
+  $restaurant = db_get_restaurant_name(restaurant_get_logged_id());
+  return simple_email(
+    $addr,
+    'EatKraken: Order rejected',
+    'We are sorry but your order at ' . $restaurant . ' could not be accepted, or it has been cancelled.<br>See you soon, The EatKraken Team'); 
 }
 
 function removeElement($code){
@@ -162,32 +145,9 @@ function removeElement($code){
   }
 }
 
-  if(isset($_POST['order'])) { 
-    if(isset($_POST['approve'])) {
-      $connection = new PDO($GLOBALS['db_pdo_data'], $GLOBALS['db_username'], $GLOBALS['db_password'], array(PDO::ATTR_PERSISTENT => true));
-      $stmt = $connection->prepare("UPDATE orders SET status = 1  WHERE code = ? AND restaurant = ?");
-      if($stmt->execute([$_POST['order'], restaurant_get_logged_id()])){
-
-       // email($emailAddress);
-      }
-    }
-  }
-
-
-    if(isset($_POST['reject'])) {
-      $connection = new PDO($GLOBALS['db_pdo_data'], $GLOBALS['db_username'], $GLOBALS['db_password'], array(PDO::ATTR_PERSISTENT => true));
-      $stmt = $connection->prepare("UPDATE orders SET status = 2  WHERE code = ? AND restaurant = ?");
-      if($stmt->execute([$_POST['order'], restaurant_get_logged_id()])){
-
-       // email($emailAddress);
-
-      }
-    }
-
-
-  function get_city($cityID){
-    return db_stmt_query("select name from cities where code = ?", [$cityID]);
-  }
+function get_city($cityID){
+  return db_stmt_query("select name from cities where code = ?", [$cityID]);
+}
 
 ?>
 

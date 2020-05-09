@@ -1,6 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/database.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/simple_email.php");
 
 $title = "Checkout - EatKraken";
 
@@ -58,7 +59,7 @@ if(isset($_POST['confirm'])) {
         }
 
         // 3. send confirm email
-        mail(cart_get_email(), "Your EatKraken order has been placed","TODO");
+        simple_email(cart_get_email(), "Your EatKraken order has been placed","We will inform you once it gets approved by the restaurant.");
 
         // 4. clean-up cart
         cart_empty();
