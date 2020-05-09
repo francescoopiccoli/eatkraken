@@ -41,12 +41,24 @@ function getTimeLeft($orderID){
   if(substr($currentTime, 0, 10) ==substr($deadlineTime, 0, 10)){ // if the day is the same
     return $timeLeftInMinutes . "<i> minutes</i>";
   }
-  else{ //if the day is different returns how many days have passed since the expiration
+
+
+  elseif(substr($currentTime, 5, -9) == substr($deadlineTime, 5, -9)){ 
+    //if the day is different but the month is the samereturns how many days have passed since the expiration
     if((substr($currentTime, 8, -6) - substr($deadlineTime, 8, -6)) == 1){
-      return (substr($currentTime, 8, -6) - substr($deadlineTime, 8, -6)) . " day";
+      return (substr($currentTime, 8, -6) - substr($deadlineTime, 8, -6)) . " <i> day<i/>";
     }
     else{
-      return (substr($currentTime, 8, -6) - substr($deadlineTime, 8, -6)) . " days";
+      return (substr($currentTime, 8, -6) - substr($deadlineTime, 8, -6)) . "<i> days<i/>";
+    }
+  }
+
+  else{ // if the month is different
+    if((substr($currentTime, 5, -9) - substr($currentTime, 5, -9)) == 1){
+      return (substr($currentTime, 5, -9) - substr($deadlineTime, 5, -9)) . " <i> month<i/>";
+    }
+    else{
+      return (substr($currentTime, 5, -9) - substr($deadlineTime, 5, -9)) . " <i> months<i/>";
     }
   }
 }
