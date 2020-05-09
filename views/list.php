@@ -61,15 +61,22 @@
           }
         ?>
 
+        <h1 id="results">results</h1>
+        <p id="subtitle">All of them can deliver to your address.</p>
+
         <script>
           if(<?= count($results); ?>>0){
             document.getElementById("results").innerHTML = <?= count($results); ?>+" results in your area!";
+            document.getElementById("subtitle").innerHTML = "All of them can deliver to your address";
           }else{
             document.getElementById("results").innerHTML = "Select a city to start!";
+            var x = document.getElementById("results");
+            x.align="center";
+            document.getElementById("subtitle").innerHTML = "";
           }
         </script>
 
-        <p>All of them can deliver to your address.</p>
+        
         
         <hr>
         <div class="row">
