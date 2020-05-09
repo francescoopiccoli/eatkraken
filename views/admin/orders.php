@@ -20,7 +20,7 @@ if(!restaurant_is_logged_in()) {
   exit;
 }
 
-//considers 24h format time, works only for orders of the same day, keeps negative time
+//considers 24h format time,  keeps negative time
 function getTimeLeft($orderID){
   date_default_timezone_set('Europe/Rome');
   $currentTime = strval(substr(date('Y/m/d H:i:s a', time()), 0, 16));
@@ -39,7 +39,15 @@ function getTimeLeft($orderID){
   $timeLeftInMinutes = $differenceHour * 60 + $differenceMinutes;
 
   if(substr($currentTime, 0, 10) ==substr($deadlineTime, 0, 10)){ // if the day is the same
-    return $timeLeftInMinutes;
+    return $timeLeftInMinutes . "<i> minutes</i>";
+  }
+  else{ //if the day is different returns how many days have passed since the expiration
+    if((substr($currentTime, 8, -6) - substr($deadlineTime, 8, -6)) == 1){
+      return (substr($currentTime, 8, -6) - substr($deadlineTime, 8, -6)) . " day";
+    }
+    else{
+      return (substr($currentTime, 8, -6) - substr($deadlineTime, 8, -6)) . " days";
+    }
   }
 }
 
@@ -208,7 +216,7 @@ function removeElement($code){
             $k = 0;
 
 
-
+      if($orders){
           foreach($orders as $order){ 
             $delivery_type = "";
             if($order[6]==0){
@@ -249,7 +257,7 @@ function removeElement($code){
               </td>
               <td><?= ($order[8] + $order[7]) . "€" ?></td>
               <td>
-              <b>Time left: </b><i><?= getTimeLeft($order[0]) . " minutes"?><br>
+              <b>Time left: </b><i><?= getTimeLeft($order[0])?><br>
                 <b><?= "Delivery type: </b>
                 <i> $delivery_type ($deliveryCost €)"?></i>
                <br>
@@ -260,7 +268,7 @@ function removeElement($code){
 
               </td>
             </tr>
-            <?php } ?>
+            <?php }} ?>
 
           </tbody>
         </table>
@@ -289,7 +297,23 @@ function removeElement($code){
               $orders = get_pending_orders();
               $k = 0;
             if($orders){
-              foreach($orders as $order){ ?>
+              foreach($orders as $order){ 
+                  $delivery_type = "";
+                  if($order[6]==0){
+                    $delivery_type ="Eat in";
+                    $deliveryCost = deliveryCosts()[0][0];
+      
+                  }
+                  elseif($order[6]==1){
+                    $delivery_type ="Take away";
+                    $deliveryCost = deliveryCosts()[0][1];
+      
+                  }
+                  else{
+                    $delivery_type = "Home delivery";
+                    $deliveryCost = deliveryCosts()[0][2];
+      
+                  }?>
                 <tr>
                   <th scope="row"><?= $order["code"] ?></th>
                   <td>
@@ -312,7 +336,7 @@ function removeElement($code){
                   </td>
                   <td><?= ($order[8] + $order[7]) . "€" ?></td>
                   <td>
-                  <b>Time left: </b><i><?= getTimeLeft($order[0]) . " minutes"?><br>
+                  <b>Time left: </b><i><?= getTimeLeft($order[0])?><br>
                       <?= "Delivery type: <i> $delivery_type ($deliveryCost €)"?></i>
 
                <br>
@@ -353,7 +377,23 @@ function removeElement($code){
               $orders = get_past_orders();
               $k = 0;
 
-            foreach($orders as $order){ ?>
+            foreach($orders as $order){ 
+                $delivery_type = "";
+                if($order[6]==0){
+                  $delivery_type ="Eat in";
+                  $deliveryCost = deliveryCosts()[0][0];
+    
+                }
+                elseif($order[6]==1){
+                  $delivery_type ="Take away";
+                  $deliveryCost = deliveryCosts()[0][1];
+    
+                }
+                else{
+                  $delivery_type = "Home delivery";
+                  $deliveryCost = deliveryCosts()[0][2];
+    
+                }?>
               <tr>
               <th scope="row"><?= $order["code"] ?></th>
                   <td>
@@ -376,7 +416,7 @@ function removeElement($code){
                 </td>
                 <td><?= ($order[8] + $order[7]) . "€" ?></td>
                 <td>
-                <b>Expired since: </b><i><?= getTimeLeft($order[0]) . " minutes"?><br>
+                <b>Expired since: </b><i><?= getTimeLeft($order[0])?><br>
                   <b><?= "Delivery type: </b>
                                 <i> $delivery_type ($deliveryCost €)"?></i>
 
