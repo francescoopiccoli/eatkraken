@@ -11,7 +11,7 @@ $title = "EatKraken";
   <?php 
   
     function getRandomImage(){
-      $arrayId2 = db_simple_query("select code from dishes limit 10");
+      $arrayId2 = db_simple_query("select code from dishes order by random()");
 
       $randIndex = array_rand($arrayId2);
       $productCode = $arrayId2[$randIndex][0];
