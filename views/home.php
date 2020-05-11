@@ -11,11 +11,7 @@ $title = "EatKraken";
   <?php 
   
     function getRandomImage(){
-      $arrayId2 = db_simple_query("select code from dishes order by random()");
-
-      $randIndex = array_rand($arrayId2);
-      $productCode = $arrayId2[$randIndex][0];
-      $imageURL = db_simple_query("select image_url from dishes where code = $productCode");
+      $imageURL = db_simple_query("select image_url from dishes order by random()");
       return $imageURL[0][0];
     }
   ?>
