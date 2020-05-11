@@ -12,10 +12,10 @@
   <?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/navbar.php"); ?>
 
   <div class="container-fluid text-center mainbody">    
-    <form id="form" class="row" action="/list.php" method="get">
-      <div class="col-sm-3 .bg-secondary sidenav text-left">
-        <br><br>
-        <h4>Deliverable to</h4>
+    <form id="form" class="row text-center" action="/list.php" method="get">
+      <div class="col-sm-12 .bg-secondary sidenav text-left" style="padding-top: 2%; padding-bottom: 2%">
+      <div class="col-md-2 col-sm-3">
+       <h4>Deliverable to</h4>
         <select name="city" class="form-control form-refresh">
           <option value="">Select a city</option>
           <?php
@@ -24,11 +24,15 @@
               echo("<option value=\"{$city['code']}\" {$selected}>{$city['name']}</option>");
             }
           ?>
-        </select>
-        <br>
-        <h4>Deliver within (minutes)</h4>
+        </select>        <br>
+</div>
+
+        <div class="col-sm-3 col-md-2">
+        <h4>Deliver within</h4>
         <input type="number" name="time" id="" class="form-control form-refresh" placeholder="minutes" min="15" max="120" value="<?= htmlentities($deliveryTime); ?>">
         <br>
+        </div>
+        <div class="col-sm-3 col-md-2"">
         <h4>In category</h4>
         <select name="category" id="" class="form-control form-refresh">
           <option value="0" selected>All</option>
@@ -41,19 +45,22 @@
           <option value="-1">Others</option>
         </select>
         <br>
+        </div>
+        <div class="col-sm-12 col-md-6">
+        <div class="options" style="display:inline-block; margin-left: 30px">
         <h4>Show only</h4>
-        <div class="">
           <?php
             foreach($options as $option) {
               $checked = (in_array($option['code'], $selectedFlags) ? "checked" : "");
-              echo("<input type=\"checkbox\" name=\"opt_{$option["code"]}\" class=\"form-refresh\" {$checked}> ".
-              "<label for=\"opt_{$option["code"]}\">{$option["name"]}</label>".
-              "<br>");
+              echo("<div class=\"options\" style=\"display:inline-block; \"><input type=\"checkbox\" name=\"opt_{$option["code"]}\" class=\"form-refresh\" {$checked}> ".
+              "<label style=\"margin-right: 30px; font-size: 1.1em\" for=\"opt_{$option["code"]}\">{$option["name"]}</label></div>");
             }
           ?>
+                  <br>
+
         </div>
-      </div>
-      <div class="col-sm-9 text-left">
+      </div></div>
+      <div class="col-sm-12 text-left">
 
         <?php
           function getListMessage(){
@@ -79,11 +86,11 @@
         
         
         <hr>
-        <div class="row">
+        <div class="row text-center">
           <?php
           foreach($results as $result) {
           ?>
-          <a class="col-md-2 col-sm-4 food-card" href="/product.php?code=<?= $result["code"] ?>">
+          <a class="col-md-2 col-sm-6 food-card" href="/product.php?code=<?= $result["code"] ?>">
             <div class="panel panel-default">
               <div class="panel-body list-thumb" style="background-image: url('<?= $result["image_url"] ?>'); background-size: cover; min-width: 100px; min-height: 120px;">
               </div>

@@ -350,9 +350,18 @@ h1 {
 
 
 /* list page */
+
+
+@media screen and(max-width: 768px){
+  .options {
+  display: block !important;
+  margin-left: 0px !important;
+  }
+}
+
 .food-card{
-  width: 230px;
-  height: 220px;
+  width: 250px;
+  height: 235px;
 }
 .food-card .panel:hover {
     /*border-color: #999;*/
