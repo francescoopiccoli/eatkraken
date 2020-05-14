@@ -352,7 +352,7 @@ h1 {
 /* list page */
 
 
-@media screen and(max-width: 768px){
+@media screen and(max-width: 767px){
   .options {
   display: block !important;
   margin-left: 0px !important;
@@ -362,10 +362,11 @@ h1 {
 .food-card{
   width: 250px;
   height: 235px;
+  margin: 0 auto; /* Added */
 }
 .food-card .panel:hover {
     /*border-color: #999;*/
-    border-color: #A7D2CB;
+    border-color: black;
 }
 
 .panel-footer{
