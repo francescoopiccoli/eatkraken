@@ -72,8 +72,8 @@
       <br>
       <br>
       <div class="text-right">
-        <input type="submit" value="Send" class="btn btn-success  btn-lg" name="submit">
-        <input type="reset" value="Reset" class="btn btn-danger  btn-lg" name="reset">
+        <input type="submit" value="ADD" class="btn btn-default btn-lg" name="submit" style="font-family:'Acme'; color: #73C6A0; border-color: #73C6A0;">
+        <input type="reset" value="RESET" class="btn btn-default btn-lg" name="reset"  style="font-family:'Acme'; margin-left:10px; color: #E74C3C; border-color: #E74C3C">
       </div>
       </form>
     </div>

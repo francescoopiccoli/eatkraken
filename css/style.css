@@ -122,8 +122,8 @@ h2 {
 .dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {
   background-color: transparent;
   text-decoration: none;
-  color: #874C62;
-  text-shadow: 1px 1px #C98474;
+  color: #73C6A0;
+  text-shadow: 1px 1px #3c763d;
 }
 
 /*carousel images homepage*/

@@ -48,7 +48,7 @@ $isCheckoutPage = true; // for checkout widget
               <form action="checkout.php" method="post">
                 <input type="hidden" name="confirm">
                 <?php if(count($cart_items) > 0) { ?>
-                <button type="submit" class="btn btn-success btn-lg" style="font-family: 'Acme';">Confirm</button>
+                <button type="submit" class="btn btn-default btn-lg" style="font-family: 'Acme'; color: #73C6A0; border-color: #73C6A0;  margin-top:25px">Confirm</button>
                 <?php } ?>
               </form>
             </div>
@@ -106,7 +106,7 @@ $isCheckoutPage = true; // for checkout widget
               <form action="checkout.php" method="post">
                 <input type="hidden" name="dish" value="<?= $item['code']; ?>">
                 <input type="hidden" name="remove" value="true">
-                <button type="submit" class="btn btn-danger" style="font-family: 'Acme';">Remove</button>
+                <button type="submit" class="btn btn-default" style="font-family: 'Acme'; color: #E74C3C; border-color: #E74C3C">Remove</button>
               </form>
             </div>
           </div>
