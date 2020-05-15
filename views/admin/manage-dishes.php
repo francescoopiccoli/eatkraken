@@ -10,7 +10,8 @@
     <div class="row content">
       <div class="col-sm-12 text-left"> 
         <h1 style="display: inline-block">Your dishes</h1>
-        <a href="add-dish.php" style="font-family: 'Acme'; float:right; margin-top: 20px;" class="btn btn-success btn-lg">Add dish</a>
+        <a href="add-dish.php" style="font-family: 'Acme'; float:right; margin-top: 20px;" class="btn btn-default btn-lg">Add dish</a>
+        <a href="orders.php" style="font-family: 'Acme'; float:right; margin-top: 20px; margin-right: 20px;" class="btn btn-default btn-lg">Go to orders</a>
         <br>
         <i>To edit a dish, please delete it and insert it again.</i>
         <hr>
