@@ -20,7 +20,7 @@ $title = "EatKraken";
 <div class="mainbody"> 
   <div class="dropdown"id="selectCity">
     <button class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <span style="margin-right: 20px; letter-spacing: 1px; word-spacing: 3px">SELECT A CITY</span> <span style="margin-top:12px; float:right; color: #C98474" class="caret"></span>
+    <span id="select-city" >SELECT A CITY</span> <span class="caret"></span>
     </button>
     <ul class="dropdown-menu cityList">
       <?php 
@@ -75,8 +75,8 @@ $title = "EatKraken";
 
   <div class="restaurantsDiv">
 
-    <h1 style="text-align: center">We work with...</h1>
-    <div class="row" style="margin-bottom: 20px;  margin-left:0px; margin-right:0px;"> 
+    <h1 class="centered-h1">We work with...</h1>
+    <div class="row"> 
 
       <div class="column">
 
@@ -149,7 +149,7 @@ $title = "EatKraken";
     </div>
   </div>
 
-  <h1 style="text-align: center; margin-top: 6%; margin-bottom: 3%;">They say about us...</h1>
+  <h1 id="they-say" >They say about us...</h1>
   <div class="row" style="margin-bottom:5%;  margin-left:0px; margin-right:0px;">
     <div class="col-md-4 clients">
       
