@@ -11,7 +11,8 @@ $isCheckoutPage = true; // for checkout widget
 
     <div class="allButFooter">
 
-    <div class="container-fluid text-center mainbody">    
+    <div class="container-fluid text-center mainbody">   
+    <?php if(count($cart_items) > 0) { ?>   
       <div class="row content checkout-main">
         <div class="col-sm-12"> 
 
@@ -48,9 +49,7 @@ $isCheckoutPage = true; // for checkout widget
               <div class="col-sm-2 text-center">
               <form action="checkout.php" method="post">
                 <input type="hidden" name="confirm">
-                <?php if(count($cart_items) > 0) { ?>
                 <button type="submit" class="btn btn-default btn-lg" style="font-family: 'Acme'; color: #73C6A0; border-color: #73C6A0;  margin-top:25px">Confirm</button>
-                <?php } ?>
               </form>
             </div>
           </div>
@@ -139,8 +138,9 @@ $isCheckoutPage = true; // for checkout widget
           </div>
         </form>
       </div>
-    </div>
-    </div>
+    </div><?php } 
+                else{echo "<h1>Your cart is empty</h1><h2>Add something from the list!</h2>";}?>  
+    </div></div>
 
     <?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/footer.php"); ?>
     <script>
