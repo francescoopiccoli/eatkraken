@@ -6,11 +6,18 @@
 
 
 <body style="background-image: linear-gradient(white, #2e3333); height: 80%;">
-<div class="container text-center allButFooter" style="margin-top:15%">
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/navbar.php"); ?>
+
+<div class="container text-center allButFooter" style="margin-top:7%">
   <div style="">
     <h1>EATKRAKEN</h1>
+    <h2>Enter in your restaurant account</h2>
     <br>
-    <form method="POST" action="restaurant/add-dish.php">
+
+    <form method="POST"   <?php if(isset($_POST["login"])){
+            echo "action=\"restaurant/auth.php?login=" . $_POST["login"] . "\"";}
+    ?>>
+ 
   <div style="width:50%; margin-left:25%">
     <div class="input-group">
     <span>
@@ -25,7 +32,6 @@
     <img style="width:10%" src="https://icons.iconarchive.com/icons/google/noto-emoji-animals-nature/512/22297-octopus-icon.png">
   </div>
 </div>
-
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/footer.php"); ?>
 </body>
 </html>
