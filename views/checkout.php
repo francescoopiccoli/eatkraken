@@ -18,7 +18,7 @@ $isCheckoutPage = true; // for checkout widget
 
           <div class="row checkout-total-row">
             <div class="col-sm-3">
-              <b style="font-size: 1.3em; font-family: 'Acme';">Deliver to:</b>
+              <b class=".checkout-body" >Deliver to:</b>
               <br><br>
               <b id="full_name"><?= $cart_name; ?></b> (<a href="#" onclick="editName()">edit</a>)
               <br>  
@@ -28,7 +28,7 @@ $isCheckoutPage = true; // for checkout widget
 
             </div>
             <div class="col-sm-3">
-              <b style="font-size: 1.3em; font-family: 'Acme';">Contacts:</b>
+              <b class=".checkout-body" >Contacts:</b>
               <br><br>
               <span id="mail"><?= $cart_email ?></span> (<a href="#" onclick="editMail()">edit</a>)
               <br>
@@ -37,19 +37,19 @@ $isCheckoutPage = true; // for checkout widget
 
            
               <div class="col-sm-2 text-center">
-              <b style="font-size: 1.3em; font-family: 'Acme';">Shipping</b>
+              <b class=".checkout-body">Shipping</b>
                 <!-- todo! -->
                 <h3><?= $cart_shipping_total ?>€</h3>
               </div>
               <div class="col-sm-2 text-center">
-              <b style="font-size: 1.3em; font-family: 'Acme';">Total</b>
+              <b class=".checkout-body" >Total</b>
 
                 <h3><?= $cart_total ?>€</h3>
               </div>
               <div class="col-sm-2 text-center">
               <form action="checkout.php" method="post">
                 <input type="hidden" name="confirm">
-                <button type="submit" class="btn btn-default btn-lg" style="font-family: 'Acme'; color: #73C6A0; border-color: #73C6A0;  margin-top:25px">Confirm</button>
+                <button type="submit" id="submitButton1" class="btn btn-default btn-lg" >Confirm</button>
               </form>
             </div>
           </div>
@@ -59,7 +59,7 @@ $isCheckoutPage = true; // for checkout widget
             <div class="col-sm-10">
               <h2><?= db_get_restaurant_name($restaurant); ?></h2>
               <?php if(cart_get_restaurant_shipping($restaurant) == 2 && !db_restaurant_can_deliver($restaurant, cart_get_city())) { ?>
-              <div style="color: red;">As this restaurant cannot deliver to your city, its items will be ignored.</div>
+              <div class="red-message">As this restaurant cannot deliver to your city, its items will be ignored.</div>
               <?php } ?>
               
               <i id="notes-<?= $restaurant; ?>"><?= cart_get_restaurant_message($restaurant); ?></i> (<a href="#" onclick="editNotes(<?= $restaurant; ?>)">edit</a>)
@@ -89,24 +89,24 @@ $isCheckoutPage = true; // for checkout widget
           <div class="row checkout-results-row">
            
             <div class="col-sm-3">
-            <img class="circular--landscape checkoutProductImage" style ="width:140px; height:140px; text-align:center"src=<?=$item['image_url']?>>
+            <img id="food-thumbnail" class="circular--landscape checkoutProductImage" src=<?=$item['image_url']?>>
 
             </div>
             <div class="col-sm-7">
-              <h3><a style="color: black; text-decoration: none; font-family: 'Acme'" href="/product.php?code=<?= $item['code']; ?>"><?= $item['name']; ?></a></h3>
-              <i style="font-size: 1.2em; "><?= $item['description']; ?></i>
+              <h3><a class="food-title" href="/product.php?code=<?= $item['code']; ?>"><?= $item['name']; ?></a></h3>
+              <i class="description"><?= $item['description']; ?></i>
               <br>
             </div>
 
             <div class="col-sm-1 text-center">
-              <b style="font-size: 2em"><?= $item['price']; ?>€</b>
+              <b id="price-col"><?= $item['price']; ?>€</b>
             </div>
               <?php /* allergenes warnings? */ ?>
               <div class="col-sm-1 text-center">
               <form action="checkout.php" method="post">
                 <input type="hidden" name="dish" value="<?= $item['code']; ?>">
                 <input type="hidden" name="remove" value="true">
-                <button type="submit" class="btn btn-default" style="font-family: 'Acme'; color: #E74C3C; border-color: #E74C3C">Remove</button>
+                <button type="submit" id="submitBtn2" class="btn btn-default">Remove</button>
               </form>
             </div>
           </div>
