@@ -110,7 +110,7 @@ $isCheckoutPage = true; // for checkout widget
               </form>
             </div>
           </div>
-          <hr style="border-color: #bbb;">
+          <hr class="hr">
 
           <?php } }?>
           
@@ -122,12 +122,12 @@ $isCheckoutPage = true; // for checkout widget
       <div class="modal-dialog" role="document">
         <form class="modal-content" action="checkout.php" method="post">
           <div class="modal-header">
-            <h4 class="modal-title" style="display: inline;">Select delivery city</h4>
-            <input class="btn btn-sm btn-primary" type="submit" value="Confirm" style="float: right;">
+            <h4 class="modal-title">Select delivery city</h4>
+            <input class="btn btn-sm btn-primary" type="submit" id="submit-btn" value="Confirm">
             
           </div>
           <div class="modal-body">
-            <select name="set_city" class="form-control" style="display: inline;">
+            <select name="set_city" class="form-control">
               <?php
               foreach ($cities as $city) {
                 $selected = ($cart_city == $city['name'] ? "selected" : "");

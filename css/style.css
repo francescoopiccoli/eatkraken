@@ -304,6 +304,10 @@ blockquote .svg-inline--fa {
   text-decoration: none;
 }
 
+.hr {
+  border-color: #bbb;
+}
+
 .description {
   font-size: 1.2em;
 }
@@ -320,6 +324,18 @@ blockquote .svg-inline--fa {
 
 #price-col {
   font-size: 2em;
+}
+
+.modal-title {
+  display: inline;
+}
+
+#submit-btn {
+  float: right;
+}
+
+.form-control {
+  display: inline;
 }
 
 @media screen and (min-width: 768px) {
