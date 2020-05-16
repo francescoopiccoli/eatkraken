@@ -9,6 +9,7 @@ $isCheckoutPage = true; // for checkout widget
 
     <?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/navbar.php"); ?>
 
+    <div class="allButFooter">
 
     <div class="container-fluid text-center mainbody">    
       <div class="row content checkout-main">
@@ -26,7 +27,7 @@ $isCheckoutPage = true; // for checkout widget
 
             </div>
             <div class="col-sm-3">
-              <b style="font-size: 1.3em; font-family: 'Acme';">Personal information</b>
+              <b style="font-size: 1.3em; font-family: 'Acme';">Contacts:</b>
               <br><br>
               <span id="mail"><?= $cart_email ?></span> (<a href="#" onclick="editMail()">edit</a>)
               <br>
@@ -138,6 +139,7 @@ $isCheckoutPage = true; // for checkout widget
           </div>
         </form>
       </div>
+    </div>
     </div>
 
     <?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/footer.php"); ?>

@@ -8,7 +8,7 @@
 
       <ul class="list-inline">
         <li class="list-inline-item"><a href="/">Home</a></li>
-        <li class="list-inline-item"><a href="/about.php">About</a></li>
+        <li class="list-inline-item"><a href="../workwithus.php">Partner with us</a></li>
         <li class="list-inline-item"><a href="/privacy.php">Privacy Policy</a></li>
       </ul>
       <p class="copyright">&copy Eatkraken 2020</p>

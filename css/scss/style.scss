@@ -445,6 +445,7 @@ h1 {
     padding:40px 0;
     background-color: #2e3333;
     color:#F9F6F3;
+    width:100%;
   }
   
   .footer-basic ul {
@@ -532,3 +533,7 @@ h1 {
             transform: rotate(360deg);
             font-size:2em;
   }
+
+  .allButFooter {
+    min-height: calc(90vh - 40px);
+}

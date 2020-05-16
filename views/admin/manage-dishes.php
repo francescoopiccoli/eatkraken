@@ -2,7 +2,8 @@
 <html lang="en">
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/common_head.php"); ?>
 <body>
-  
+<div class="allButFooter">
+
   <?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/navbar.php"); ?>
 
 
@@ -37,7 +38,7 @@
                     <br>
                     <form method="post" action="manage-dishes.php">
                     <input type="hidden" name="dish" value="<?= $dish['code']; ?>">
-                    <input type="submit" name="remove" value="Remove" class="btn btn-danger btn-sm"/>
+                    <input type="submit" name="remove" value="Remove" class="btn btn-default btn-sm" style="font-family:'Acme'; border-color:#E74C3C; color:#E74C3C;"/>
                     </form> 
                   </div>
                 </div>
@@ -47,7 +48,7 @@
       </div>
     </div>
   </div>
-
+</div>
   <?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/footer.php"); ?>
   </body>
 </html>

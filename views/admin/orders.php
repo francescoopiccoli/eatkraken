@@ -16,7 +16,7 @@
         <h2>Accepted orders</h2>
         <p>
           Deliver as soon as possible. 
-          <a href="javascript:window.print();" class="btn btn-sm btn-primary dont-print" style="float:right;">Print</a>
+          <a href="javascript:window.print();" class="btn btn-default dont-print" style="float:right; color:#1F618D; border-color:#1F618D; font-family:'Acme'">Print</a>
         </p>
 
         <table class="table">
