@@ -7,8 +7,6 @@
 <div class="allButFooter">
   <?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/navbar.php"); ?>
 
-  <div class="container-fluid text-center mainbody">    
-</div>
 <h1 style="text-align:center">Wanna work with us?</h1>
 <div class="container">
   <h3 style="text-align:center">If you have a restaurant in one of the cities where we are working at the moment and you would like to add your restaurant to our website, don't hesitate to reach us out! <br>Feel free to contact us 

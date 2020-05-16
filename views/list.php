@@ -42,7 +42,6 @@
               echo("<option value=\"{$category['code']}\" {$selected}>{$category['name']}</option>");
             }
           ?>
-          <option value="-1">Others</option>
         </select>
         <br>
         </div>

@@ -64,8 +64,8 @@ else{
 
  
   $stmt = $connection->prepare(
-    "insert into dishes (code, name, description, price, restaurant, category, ingredients, nutri_carbs, nutri_fats, nutri_kcal, nutri_proteins, flag_gluten_free, flag_lactose_free, flag_vegan, flag_fresh, flag_zero_waste, image_url, delivery_time) " .
-   "VALUES ((SELECT MAX(code) FROM orders) + 110, :name, :description, :price, :restaurant, :category, :ingredients, :nutri_carbs, :nutri_fats, :nutri_kcal, :nutri_proteins, :flag_gluten_free, :flag_lactose_free, :flag_vegan, :flag_fresh, :flag_zero_waste, :image_url, :delivery_time)"
+    "insert into dishes (name, description, price, restaurant, category, ingredients, nutri_carbs, nutri_fats, nutri_kcal, nutri_proteins, flag_gluten_free, flag_lactose_free, flag_vegan, flag_fresh, flag_zero_waste, image_url, delivery_time) " .
+   "VALUES (:name, :description, :price, :restaurant, :category, :ingredients, :nutri_carbs, :nutri_fats, :nutri_kcal, :nutri_proteins, :flag_gluten_free, :flag_lactose_free, :flag_vegan, :flag_fresh, :flag_zero_waste, :image_url, :delivery_time)"
   );
 
   $res = $stmt->execute([
