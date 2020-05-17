@@ -60,28 +60,14 @@
         </div>
       </div></div>
       <div class="col-sm-12">
-
-        <?php
-          function getListMessage(){
-            return count($results);
-          }
+        <h1 id="results">
+        <?=
+          (count($results)>0 ? count($results) . " results in your area" : "No results found")
         ?>
-
-        <h1 id="results">results</h1>
+        </h1>
+        <?php if(count($results)>0) { ?>
         <p id="subtitle">All of them can deliver to your address.</p>
-        
-        <script>
-        <!-- wtf? -->
-        <?php if(<?= count($results); ?>>0){
-            document.getElementById("results").innerHTML = <?= count($results); ?>+" results in your area!";
-            document.getElementById("subtitle").innerHTML = "All of them can deliver to your address";
-          }else{
-            document.getElementById("results").innerHTML = "Select a city to start!";
-            var x = document.getElementById("results");
-            x.align="center";
-            document.getElementById("subtitle").innerHTML = "";
-          }
-        </script>
+        <?php } ?>
 
         
         
