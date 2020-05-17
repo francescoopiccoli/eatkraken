@@ -189,8 +189,8 @@ function db_insert_empty_order($restaurant, $full_name, $address, $email, $city,
     $connection = new PDO($GLOBALS['db_pdo_data'], $GLOBALS['db_username'], $GLOBALS['db_password'], array(PDO::ATTR_PERSISTENT => true));
 
     $stmt = $connection->prepare(
-        "insert into orders (code, restaurant, full_name, address, email, city, phone, shipping_type, shipping_cost, total_cost, delivery_deadline, status) ".
-        "values ((SELECT MAX(code) FROM orders) + 1, :restaurant, :full_name, :address, :email, :city, :phone, :shipping_type, :shipping_cost, :total_cost, :delivery_deadline, 0)"
+        "insert into orders (restaurant, full_name, address, email, city, phone, shipping_type, shipping_cost, total_cost, delivery_deadline, status) ".
+        "values (:restaurant, :full_name, :address, :email, :city, :phone, :shipping_type, :shipping_cost, :total_cost, :delivery_deadline, 0)"
     );
     
     $res = $stmt->execute([
@@ -205,7 +205,8 @@ function db_insert_empty_order($restaurant, $full_name, $address, $email, $city,
         "total_cost" => $total_cost, 
         "delivery_deadline" => date("Y-m-d H:i:s", $delivery_deadline) // https://stackoverflow.com/questions/2374631/pdoparam-for-dates
     ]);
-    //print_r($stmt->errorInfo());
+    if(!$res)
+        print_r($stmt->errorInfo());
 
     $connection = null;
     if($res)

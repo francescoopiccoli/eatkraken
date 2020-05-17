@@ -49,7 +49,7 @@ $isCheckoutPage = true; // for checkout widget
               <div class="col-sm-2 text-center">
               <form action="checkout.php" method="post">
                 <input type="hidden" name="confirm">
-                <button type="submit" id="submitButton1" class="btn btn-default btn-lg" >Confirm</button>
+                <button type="submit" class="btn btn-default btn-ek-confirm btn-lg" >Confirm</button>
               </form>
             </div>
           </div>
@@ -106,7 +106,7 @@ $isCheckoutPage = true; // for checkout widget
               <form action="checkout.php" method="post">
                 <input type="hidden" name="dish" value="<?= $item['code']; ?>">
                 <input type="hidden" name="remove" value="true">
-                <button type="submit" onclick="return confirmAction();" id="submitBtn2" class="btn btn-default">Remove</button>
+                <button type="submit" onclick="return confirmAction();" class="btn btn-default btn-ek-danger">Remove</button>
               </form>
             </div>
           </div>

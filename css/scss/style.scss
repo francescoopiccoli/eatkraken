@@ -322,21 +322,27 @@ h1 {
 .checkout-main {
     margin: 20px;
 }
+@media (max-width: 767px) {
+  .checkout-main {
+      display: block; /* Turn off the flexible box layout */
+  }
+}
 .checkout-main .row {
+    display: flex;
+    align-items: center;
     padding: 25px;
     text-align: center;
 
 }
 
-#submitBtn1{
+.btn-ek-confirm {
   font-family: 'Acme';
   color: #73C6A0; 
-  border-color: #73C6A0;  
-  margin-top:25px;
+  border-color: #73C6A0;
 }
 
 
-#submitBtn2{
+.btn-ek-danger {
   font-family: 'Acme'; 
   color: #E74C3C; 
   border-color: #E74C3C
