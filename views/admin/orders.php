@@ -88,7 +88,7 @@ function getTimeLeft($deadline){
               <td>
                     <?="<b>Name: </b>" . $order["full_name"]?><br>
                     <?="<b>Address:</b> " . $order["address"] ?><br>
-                    <?="<b>City: </b>" . get_city($order["city"])[0][0]?><br>
+                    <?="<b>City: </b>" . db_get_city($order["city"])[0][0]?><br>
                     <b>Phone: </b> <a href="tel:<?=$order["phone"] ?>"><?= $order["phone"] ?></a>
                   </td>
               <td>
@@ -224,7 +224,7 @@ function getTimeLeft($deadline){
             <?php 
               $orders = db_get_past_orders(restaurant_get_logged_id());
               $k = 0;
-
+          if($orders){
             foreach($orders as $order){ 
                 $delivery_type = "";
                 if($order[6]==0){
@@ -272,7 +272,7 @@ function getTimeLeft($deadline){
 
                 </td>
               </tr>
-              <?php } ?>
+              <?php }} ?>
 
             </tbody>
           </table>

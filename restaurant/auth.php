@@ -1,7 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
 
-if(isset($_POST['logout'])) {
+if(isset($_GET['logout'])) {
     restaurant_log_out();
     header("Location: /");
 } elseif(isset($_POST['login'])) {
