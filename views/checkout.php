@@ -106,7 +106,7 @@ $isCheckoutPage = true; // for checkout widget
               <form action="checkout.php" method="post">
                 <input type="hidden" name="dish" value="<?= $item['code']; ?>">
                 <input type="hidden" name="remove" value="true">
-                <button type="submit" id="submitBtn2" class="btn btn-default">Remove</button>
+                <button type="submit" onclick="return confirmAction();" id="submitBtn2" class="btn btn-default">Remove</button>
               </form>
             </div>
           </div>
@@ -225,6 +225,11 @@ $isCheckoutPage = true; // for checkout widget
             )
             .appendTo(document.body)
             .submit();
+      }
+
+      // usability/feedback: sends form only ("return false" cancels click event) if confirmation is given
+      function confirmAction() {
+        return confirm("Are you sure?");
       }
       
     </script>

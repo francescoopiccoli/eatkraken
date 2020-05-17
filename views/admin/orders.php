@@ -82,7 +82,7 @@
                <br>
                 <form method="post" action="orders.php"> 
                 <input type="hidden" name="order" value="<?= $order['code']; ?>">
-                <input type="submit" name="reject" value="Cancel" class="btn btn-danger btn-sm dont-print" style="margin-top: 6px;"/>
+                <input type="submit" onclick="return confirmAction();" name="reject" value="Cancel" class="btn btn-danger btn-sm dont-print" style="margin-top: 6px;"/>
                 </form> 
 
               </td>
@@ -162,7 +162,7 @@
                     <form method="post" action="orders.php">
                     <input type="hidden" name="order" value="<?= $order['code']; ?>">
                     <input type="submit" name="approve" value="Approve" class= "btn btn-success btn-sm"/> 
-                    <input type="submit" name="reject" value="Reject" class="btn btn-danger btn-sm"/>
+                    <input type="submit" onclick="return confirmAction();" name="reject" value="Reject" class="btn btn-danger btn-sm"/>
                     </form> 
 
                   </td>
@@ -256,7 +256,12 @@
 
   <?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/footer.php"); ?>
 
-
+  <script>
+  // usability/feedback: sends form only ("return false" cancels click event) if confirmation is given
+  function confirmAction() {
+    return confirm("Are you sure?");
+  }
+  </script>
 </body>
 </html>
 
