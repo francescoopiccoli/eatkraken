@@ -255,13 +255,6 @@
   </div>
 
   <?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/footer.php"); ?>
-
-  <script>
-  // usability/feedback: sends form only ("return false" cancels click event) if confirmation is given
-  function confirmAction() {
-    return confirm("Are you sure?");
-  }
-  </script>
 </body>
 </html>
 

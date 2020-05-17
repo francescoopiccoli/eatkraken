@@ -38,7 +38,7 @@
                         <br>
                         <form method="post" action="/restaurant/manage-dishes.php">
                           <input type="hidden" name="dish" value="<?= $dish['code']; ?>">
-                          <input type="submit" name="remove" value="Remove" class="btn btn-default btn-sm" style="font-family:'Acme'; border-color:#E74C3C; color:#E74C3C;"/>
+                          <input type="submit" onclick="return confirmAction();" name="remove" value="Remove" class="btn btn-default btn-sm" style="font-family:'Acme'; border-color:#E74C3C; color:#E74C3C;"/>
                         </form> 
                       </div>
                     </div>
