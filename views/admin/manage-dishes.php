@@ -20,7 +20,7 @@
         <div class="row">
           <?php 
 
-            $dishes = get_dishes();
+            $dishes = db_get_restaurant_dishes(restaurant_get_logged_id());
 
               foreach($dishes as $dish) { ?>
               <div class="col-md-2 col-sm-4" href="">

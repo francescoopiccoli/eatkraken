@@ -269,26 +269,26 @@ function db_get_restaurant_image_url($id) {
 }
 
 //manage-dish.php
-function get_dishes(){
-    return db_stmt_query("select code, name, price, image_url from dishes where restaurant = ?", [restaurant_get_logged_id()]);
+function db_get_restaurant_dishes($code){
+    return db_stmt_query("select code, name, price, image_url from dishes where restaurant = ?", [$code]);
   }
 
 //orders.php
-  function get_deadline($orderID){
+  function db_get_deadline($orderID){
     return db_stmt_query("select delivery_deadline from orders where code = ?", [$orderID]);
   }
   
   
-  function get_pending_orders(){
+  function db_get_pending_orders(){
     $restaurantID= restaurant_get_logged_id();
     return db_stmt_query("select * from orders where restaurant = ? and delivery_deadline > (SELECT now() AT TIME ZONE 'Europe/Rome') and status = 0 order by delivery_deadline asc", [$restaurantID]);
   }
   
-  function get_accepted_orders(){
+  function db_get_accepted_orders(){
     $restaurantID = restaurant_get_logged_id();
     return db_stmt_query("select * from orders where restaurant = ? and delivery_deadline > (SELECT now() AT TIME ZONE 'Europe/Rome') and status = 1 order by delivery_deadline asc", [$restaurantID]);
   }
-  function get_past_orders(){
+  function db_get_past_orders(){
     $restaurantID = restaurant_get_logged_id();
     return db_stmt_query("select * from orders where restaurant = ? and (delivery_deadline < (SELECT now() AT TIME ZONE 'Europe/Rome') or status = 2) order by delivery_deadline desc", [$restaurantID]);
   }
@@ -299,23 +299,23 @@ function get_dishes(){
   }
   
   
-  function get_restaurantName(){
+  function db_get_restaurantName(){
     $restaurantID = restaurant_get_logged_id();
     return db_stmt_query("select name from restaurants where code = ?", [$restaurantID]);
   }
   
   
-  function get_orders_items($i, $orders){
+  function db_get_orders_items($i, $orders){
     return db_stmt_query("select * from order_items where ord = ?", [$orders[$i][0]]);
   
   }
   
   
-  function get_dish($code){
+  function db_get_dish($code){
     return db_stmt_query("select name, price from dishes where code = ?", [$code]);
   }
   
-  function get_city($cityID){
+  function db_get_city($cityID){
     return db_stmt_query("select name from cities where code = ?", [$cityID]);
   }
   

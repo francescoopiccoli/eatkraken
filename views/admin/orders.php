@@ -31,7 +31,7 @@
           </thead>
           <tbody>
           <?php 
-            $orders = get_accepted_orders();
+            $orders = db_get_accepted_orders();
             $k = 0;
 
 
@@ -65,11 +65,11 @@
               <td>
               <?php
 
-              $order_items = get_orders_items($k, $orders);
+              $order_items = db_get_orders_items($k, $orders);
               $k++;
 
               foreach($order_items as $order_item){
-                $dish = get_dish($order_item[2]);
+                $dish = db_get_dish($order_item[2]);
                 echo "<b>" . $order_item[3] . "x " . "</b>" . $dish[0][0] ."<b> ". $dish[0][1] ."€</b><br><b>Notes: </b><i>\"$order_item[4]\"</i><br><br>";
               }
               ?>
@@ -113,7 +113,7 @@
 
               <!-- pending orders -->
             <?php 
-              $orders = get_pending_orders();
+              $orders = db_get_pending_orders();
               $k = 0;
             if($orders){
               foreach($orders as $order){ 
@@ -138,17 +138,17 @@
                   <td>
                     <?="<b>Name: </b>" . $order["full_name"]?><br>
                     <?="<b>Address:</b> " . $order["address"] ?><br>
-                    <?="<b>City: </b>" . get_city($order["city"])[0][0]?><br>
+                    <?="<b>City: </b>" . db_get_city($order["city"])[0][0]?><br>
                     <b>Phone: </b> <a href="tel:<?=$order["phone"] ?>"><?= $order["phone"] ?></a>
                   </td>
                   <td>
                   <?php
 
-                  $order_items = get_orders_items($k, $orders);
+                  $order_items = db_get_orders_items($k, $orders);
                   $k++;
 
                   foreach($order_items as $order_item){
-                    $dish = get_dish($order_item[2]);
+                    $dish = db_get_dish($order_item[2]);
                     echo "<b>" . $order_item[3] . "x " . "</b>" . $dish[0][0] ."<b> ". $dish[0][1] ."€</b><br><b>Notes: </b><i>\"$order_item[4]\"</i><br><br>";
                   }
                   ?>
@@ -193,7 +193,7 @@
             </thead>
             <tbody>
             <?php 
-              $orders = get_past_orders();
+              $orders = db_get_past_orders();
               $k = 0;
 
             foreach($orders as $order){ 
@@ -218,17 +218,17 @@
                   <td>
                     <?="<b>Name: </b>" . $order["full_name"]?><br>
                     <?="<b>Address:</b> " . $order["address"] ?><br>
-                    <?="<b>City: </b>" . get_city($order["city"])[0][0]?><br>
+                    <?="<b>City: </b>" . db_get_city($order["city"])[0][0]?><br>
                     <b>Phone: </b> <a href="tel:<?=$order["phone"] ?>"><?= $order["phone"] ?></a>
                   </td>
                 <td>
                 <?php
 
-                $order_items = get_orders_items($k, $orders);
+                $order_items = db_get_orders_items($k, $orders);
                 $k++;
 
                 foreach($order_items as $order_item){
-                  $dish = get_dish($order_item[2]);
+                  $dish = db_get_dish($order_item[2]);
                   echo "<b>" . $order_item[3] . "x " . "</b>" . $dish[0][0] ."<b> ". $dish[0][1] ."€</b><br><b>Notes: </b><i>\"$order_item[4]\"</i><br><br>";
                 }
                 ?>
