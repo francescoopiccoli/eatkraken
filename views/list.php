@@ -69,9 +69,10 @@
 
         <h1 id="results">results</h1>
         <p id="subtitle">All of them can deliver to your address.</p>
-
+        
         <script>
-          if(<?= count($results); ?>>0){
+        <!-- wtf? -->
+        <?php if(<?= count($results); ?>>0){
             document.getElementById("results").innerHTML = <?= count($results); ?>+" results in your area!";
             document.getElementById("subtitle").innerHTML = "All of them can deliver to your address";
           }else{
