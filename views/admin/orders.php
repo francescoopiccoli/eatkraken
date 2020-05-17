@@ -1,7 +1,32 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/database.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
+
 $delivery_cost = db_get_delivery_costs(restaurant_get_logged_id());
+
+// todo: fix
+function getTimeLeft($deadline){
+  date_default_timezone_set('Europe/Rome');
+  $currentTime = strval(substr(date('Y/m/d H:i:s a', time()), 0, 16));
+  $deadlineTime = strval(substr($deadline, 0, 16));
+  $deadlineTime = str_replace("-","/", $deadlineTime);
+
+  $currentTimeHour = substr($currentTime, 10, -3);
+  $deadlineTimeHour = substr($deadlineTime, 10, -3);
+
+  $currentTimeMinutes = substr($currentTime, 14, 15);
+  $deadlineMinutes = substr($deadlineTime, 14, 15);
+
+  $differenceHour = $deadlineTimeHour - $currentTimeHour;
+  $differenceMinutes = $deadlineMinutes - $currentTimeMinutes;
+
+  $timeLeftInMinutes = $differenceHour * 60 + $differenceMinutes;
+
+  if(substr($currentTime, 0, 10) ==substr($deadlineTime, 0, 10)){ // if the day is the same
+    return $timeLeftInMinutes . " ";
+  }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -80,7 +105,7 @@ $delivery_cost = db_get_delivery_costs(restaurant_get_logged_id());
               </td>
               <td><?= ($order[8] + $order[7]) . "€" ?></td>
               <td>
-              <b>Time left: </b><i><?= getTimeLeft($order[0])?><br>
+              <b>Time left: </b><i><?= getTimeLeft($order['delivery_deadline'])?><br>
                 <b><?= "Delivery type: </b>
                 <i> $delivery_type ($deliveryCost €)"?></i>
                <br>
@@ -159,7 +184,7 @@ $delivery_cost = db_get_delivery_costs(restaurant_get_logged_id());
                   </td>
                   <td><?= ($order[8] + $order[7]) . "€" ?></td>
                   <td>
-                  <b>Time left: </b><i><?= getTimeLeft($order[0])?><br>
+                  <b>Time left: </b><i><?= getTimeLeft($order['delivery_deadline'])?><br>
                       <?= "Delivery type: <i> $delivery_type ($deliveryCost €)"?></i>
 
                <br>
@@ -239,7 +264,7 @@ $delivery_cost = db_get_delivery_costs(restaurant_get_logged_id());
                 </td>
                 <td><?= ($order[8] + $order[7]) . "€" ?></td>
                 <td>
-                <b>Expired since: </b><i><?= getTimeLeft($order[0])?><br>
+                <b>Expired since: </b><i><?= getTimeLeft($order['delivery_deadline'])?><br>
                   <b><?= "Delivery type: </b>
                                 <i> $delivery_type ($deliveryCost €)"?></i>
 
