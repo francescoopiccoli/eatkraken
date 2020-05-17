@@ -1,5 +1,4 @@
 <?php
-// test authentication: http://localhost:8080/restaurant/auth.php?login=kebabkebabkebabkebabkebabkebabke
 require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/database.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/simple_email.php");

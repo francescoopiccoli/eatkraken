@@ -1,3 +1,8 @@
+<?php
+require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/database.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
+$delivery_cost = db_get_delivery_costs(restaurant_get_logged_id());
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,7 +36,7 @@
           </thead>
           <tbody>
           <?php 
-            $orders = db_get_accepted_orders();
+            $orders = db_get_accepted_orders(restaurant_get_logged_id());
             $k = 0;
 
 
@@ -40,17 +45,16 @@
             $delivery_type = "";
             if($order[6]==0){
               $delivery_type ="Eat in";
-              $deliveryCost = deliveryCosts()[0][0];
+              $deliveryCost = $delivery_cost['cost_eat_in'];
 
             }
             elseif($order[6]==1){
               $delivery_type ="Take away";
-              $deliveryCost = deliveryCosts()[0][1];
-
+              $deliveryCost = $delivery_cost['cost_takeaway'];
             }
             else{
               $delivery_type = "Home delivery";
-              $deliveryCost = deliveryCosts()[0][2];
+              $deliveryCost = $delivery_cost['cost_home_delivery'];
 
             }?>
 
@@ -113,24 +117,24 @@
 
               <!-- pending orders -->
             <?php 
-              $orders = db_get_pending_orders();
+              $orders = db_get_pending_orders(restaurant_get_logged_id());
               $k = 0;
             if($orders){
               foreach($orders as $order){ 
                   $delivery_type = "";
-                  if($order[6]==0){
+                  if($order['delivery_cost']==0){
                     $delivery_type ="Eat in";
-                    $deliveryCost = deliveryCosts()[0][0];
+                    $deliveryCost = $delivery_cost['cost_eat_in'];
       
                   }
                   elseif($order[6]==1){
                     $delivery_type ="Take away";
-                    $deliveryCost = deliveryCosts()[0][1];
+                    $deliveryCost = $delivery_cost['cost_eat_in'];
       
                   }
                   else{
                     $delivery_type = "Home delivery";
-                    $deliveryCost = deliveryCosts()[0][2];
+                    $deliveryCost = $delivery_cost['cost_eat_in'];
       
                   }?>
                 <tr>
@@ -193,24 +197,24 @@
             </thead>
             <tbody>
             <?php 
-              $orders = db_get_past_orders();
+              $orders = db_get_past_orders(restaurant_get_logged_id());
               $k = 0;
 
             foreach($orders as $order){ 
                 $delivery_type = "";
                 if($order[6]==0){
                   $delivery_type ="Eat in";
-                  $deliveryCost = deliveryCosts()[0][0];
+                  $deliveryCost = db_get_delivery_costs(restaurant_get_logged_id()) [0][0];
     
                 }
                 elseif($order[6]==1){
                   $delivery_type ="Take away";
-                  $deliveryCost = deliveryCosts()[0][1];
+                  $deliveryCost = db_get_delivery_costs(restaurant_get_logged_id()) [0][1];
     
                 }
                 else{
                   $delivery_type = "Home delivery";
-                  $deliveryCost = deliveryCosts()[0][2];
+                  $deliveryCost = db_get_delivery_costs(restaurant_get_logged_id()) [0][2];
     
                 }?>
               <tr>
