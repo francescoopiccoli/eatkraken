@@ -344,7 +344,7 @@ blockquote .svg-inline--fa {
     display: block !important;
     margin-left: 0px !important; } }
 .food-card {
-  width: 250px;
+  max-width: 250px;
   height: 235px;
   margin: 0 auto;
   /* Added */ }
