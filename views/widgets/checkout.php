@@ -23,7 +23,7 @@ $cart = cart_get_items();
         </li>";}
         else{
             echo "<li class=\"checkout-widget\" style=\"float:left\">
-        <a class=\"btn btn-text\" href=\"/login.php\"><i style=\"font-size: 1.2em;\" class=\"fas fa-sign-in-alt\"></i>
+        <a class=\"btn btn-text\" href=\"/restaurant/login.php\"><i style=\"font-size: 1.2em;\" class=\"fas fa-sign-in-alt\"></i>
         </a>
         </li>";
         }
