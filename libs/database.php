@@ -274,6 +274,15 @@ function db_get_restaurant_name($id) {
     else
         return false;
 }
+
+function db_get_restaurant_contact($id) {
+    $res = db_stmt_query("select contact from restaurants where code = ?", [$id]);
+    if(count($res) > 0)
+        return $res[0]['contact'];
+    else
+        return false;
+}
+
 function db_restaurant_can_deliver($restaurant, $city) {
     $count = db_stmt_query("select count(*) from delivers_to where restaurant = ? and city = ?", [$restaurant, $city])[0][0];
     if($count > 0)

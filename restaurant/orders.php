@@ -41,7 +41,7 @@ function getTimeLeft($orderID){
 
   date_default_timezone_set('Europe/Rome');
   $currentTime = strval(substr(date('Y/m/d H:i:s a', time()), 0, 16));
-  $deadlineTime = strval(substr(get_deadline($orderID)[0][0], 0, 16));
+  $deadlineTime = strval(substr(db_get_deadline($orderID)[0][0], 0, 16));
   $deadlineTime = str_replace("-","/", $deadlineTime);
 
   $currentTimeHour = substr($currentTime, 10, -3);
@@ -88,10 +88,12 @@ function getTimeLeft($orderID){
 
 function email_approve($addr) {
   $restaurant = db_get_restaurant_name(restaurant_get_logged_id());
+  $restaurantContact = db_get_restaurant_contact(restaurant_get_logged_id());
   return simple_email(
     $addr,
     'EatKraken: Order approved',
-    'Your order at ' . $restaurant . ' has been accepted, it will be at your place as soon as possible.<br>The EatKraken Team');
+    'Your order at ' . $restaurant . ' has been accepted, it will be at your place as soon as possible.<br>
+    In case of problems contact the restaurant at: ' . $restaurantContact . '<br>The EatKraken Team');
   
 }
 
