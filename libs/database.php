@@ -20,12 +20,6 @@ function all_shipping_methods() {
 
 // indices: simple_query(...)[row][column]
 function db_simple_query($query_text) {
-    // profiling
-    $time = microtime();
-    $time = explode(' ', $time);
-    $time = $time[1] + $time[0];
-    $start = $time;
-
     $connection = new PDO($GLOBALS['db_pdo_data'], $GLOBALS['db_username'], $GLOBALS['db_password'], array(PDO::ATTR_PERSISTENT => true));
     try {
         if($query = $connection->query($query_text)) 
@@ -37,38 +31,14 @@ function db_simple_query($query_text) {
         die();
     }
     $connection = null;
-    
-    if(isset($_GET['_benchmark'])) {
-        $time = microtime();
-        $time = explode(' ', $time);
-        $time = $time[1] + $time[0];
-        $finish = $time;
-        $total_time = round(($finish - $start), 4);
-        echo("\nQUERY ".$total_time."s: ".$query_text."\n");
-    }
 }
 function db_stmt_query($query_text, $params) {
-    // profiling
-    $time = microtime();
-    $time = explode(' ', $time);
-    $time = $time[1] + $time[0];
-    $start = $time;
-
     $connection = new PDO($GLOBALS['db_pdo_data'], $GLOBALS['db_username'], $GLOBALS['db_password'], array(PDO::ATTR_PERSISTENT => true));
     
     $stmt = $connection->prepare($query_text);
     $stmt->execute($params);
     $res = $stmt->fetchAll();
     $connection = null;
-
-    if(isset($_GET['_benchmark'])) {
-        $time = microtime();
-        $time = explode(' ', $time);
-        $time = $time[1] + $time[0];
-        $finish = $time;
-        $total_time = round(($finish - $start), 4);
-        echo("\nQUERY ".$total_time."s: ".$query_text."\n");
-    }
 
     if($res)
         return $res;
