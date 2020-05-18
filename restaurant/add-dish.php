@@ -88,7 +88,7 @@ else{
   "delivery_time" =>  $delivery_time
   ]);
 
-  print_r($stmt->errorInfo());
+  //print_r($stmt->errorInfo());
   $connection = null;
   }
   

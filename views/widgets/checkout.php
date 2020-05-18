@@ -21,7 +21,7 @@ $cart = cart_get_items();
         <a class=\"btn btn-text\" href=\"/restaurant/\"><i style=\"font-size: 1.2em;\" class=\"fas fa-tools\"></i>
         </a>
         </li>";
-        echo "<li class=\"checkout-widget\" style=\"float:left\">
+        echo "<li class=\"checkout-widget\" id=\"settingIcon\" style=\"float:left\">
         <a class=\"btn btn-text\" href=\"/restaurant/auth.php?logout\"><i style=\"font-size: 1.2em;\" class=\"fas fa-sign-out-alt\"></i>
         </a>
         </li>";}

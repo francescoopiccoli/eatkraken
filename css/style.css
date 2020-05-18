@@ -59,6 +59,17 @@ h2 {
   color: #fff !important;
 }
 
+@media screen and (max-width: 767px) {
+  #settingIcon {
+    padding-right: 500px;
+  }
+}
+@media screen and (max-width: 450px) {
+  #goToOrders {
+    margin-top: 0px !important;
+    margin-right: 0px !important;
+  }
+}
 .sidenav {
   background-color: #f1f1f1;
   height: 100%;
@@ -367,10 +378,6 @@ blockquote .svg-inline--fa {
 
 #submit-btn {
   float: right;
-}
-
-.form-control {
-  display: inline;
 }
 
 @media screen and (min-width: 768px) {
