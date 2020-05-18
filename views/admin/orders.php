@@ -4,8 +4,9 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
 
 $delivery_cost = db_get_delivery_costs(restaurant_get_logged_id());
 
-// todo: fix
+//considers 24h format time,  keeps negative time
 function getTimeLeft($deadline){
+
   date_default_timezone_set('Europe/Rome');
   $currentTime = strval(substr(date('Y/m/d H:i:s a', time()), 0, 16));
   $deadlineTime = strval(substr($deadline, 0, 16));
@@ -21,9 +22,34 @@ function getTimeLeft($deadline){
   $differenceMinutes = $deadlineMinutes - $currentTimeMinutes;
 
   $timeLeftInMinutes = $differenceHour * 60 + $differenceMinutes;
+  $timeLeftInMinutes = str_replace("-", "", $timeLeftInMinutes);
 
   if(substr($currentTime, 0, 10) ==substr($deadlineTime, 0, 10)){ // if the day is the same
-    return $timeLeftInMinutes . " ";
+    if($timeLeftInMinutes < 59){
+    return $timeLeftInMinutes . "<i> minutes</i>";}
+    else{
+      return round($timeLeftInMinutes/60) . "h " . $timeLeftInMinutes%60 . " minutes";
+    }
+  }
+
+
+  elseif(substr($currentTime, 5, -9) == substr($deadlineTime, 5, -9)){
+    //if the day is different but the month is the samereturns how many days have passed since the expiration
+    if((substr($currentTime, 8, -6) - substr($deadlineTime, 8, -6)) == 1){
+      return (substr($currentTime, 8, -6) - substr($deadlineTime, 8, -6)) . " <i> day<i/>";
+    }
+    else{
+      return (substr($currentTime, 8, -6) - substr($deadlineTime, 8, -6)) . "<i> days<i/>";
+    }
+  }
+
+  else{ // if the month is different
+    if((substr($currentTime, 5, -9) - substr($currentTime, 5, -9)) == 1){
+      return (substr($currentTime, 5, -9) - substr($deadlineTime, 5, -9)) . " <i> month<i/>";
+    }
+    else{
+      return (substr($currentTime, 5, -9) - substr($deadlineTime, 5, -9)) . " <i> months<i/>";
+    }
   }
 }
 
@@ -60,9 +86,8 @@ function getTimeLeft($deadline){
             </tr>
           </thead>
           <tbody>
-          <?php 
+          <?php
             $orders = db_get_accepted_orders(restaurant_get_logged_id());
-            $k = 0;
 
 
       if($orders){
@@ -94,8 +119,7 @@ function getTimeLeft($deadline){
               <td>
               <?php
 
-              $order_items = db_get_orders_items($k, $orders);
-              $k++;
+              $order_items = db_get_orders_items($order["code"]);
 
               foreach($order_items as $order_item){
                 $dish = db_get_dish($order_item[2]);
@@ -143,7 +167,6 @@ function getTimeLeft($deadline){
               <!-- pending orders -->
             <?php 
               $orders = db_get_pending_orders(restaurant_get_logged_id());
-              $k = 0;
             if($orders){
               foreach($orders as $order){ 
                   $delivery_type = "";
@@ -173,8 +196,7 @@ function getTimeLeft($deadline){
                   <td>
                   <?php
 
-                  $order_items = db_get_orders_items($k, $orders);
-                  $k++;
+                  $order_items = db_get_orders_items($order["code"]);
 
                   foreach($order_items as $order_item){
                     $dish = db_get_dish($order_item[2]);
@@ -222,24 +244,24 @@ function getTimeLeft($deadline){
             </thead>
             <tbody>
             <?php 
+            
               $orders = db_get_past_orders(restaurant_get_logged_id());
-              $k = 0;
           if($orders){
             foreach($orders as $order){ 
                 $delivery_type = "";
                 if($order[6]==0){
                   $delivery_type ="Eat in";
-                  $deliveryCost = db_get_delivery_costs(restaurant_get_logged_id()) [0][0];
+                  $deliveryCost = $delivery_cost['cost_eat_in'];
     
                 }
                 elseif($order[6]==1){
                   $delivery_type ="Take away";
-                  $deliveryCost = db_get_delivery_costs(restaurant_get_logged_id()) [0][1];
+                  $deliveryCost = $delivery_cost['cost_takeaway'];
     
                 }
                 else{
                   $delivery_type = "Home delivery";
-                  $deliveryCost = db_get_delivery_costs(restaurant_get_logged_id()) [0][2];
+                  $deliveryCost = $delivery_cost['cost_home_delivery'];
     
                 }?>
               <tr>
@@ -253,8 +275,7 @@ function getTimeLeft($deadline){
                 <td>
                 <?php
 
-                $order_items = db_get_orders_items($k, $orders);
-                $k++;
+                $order_items = db_get_orders_items($order["code"]);
 
                 foreach($order_items as $order_item){
                   $dish = db_get_dish($order_item[2]);

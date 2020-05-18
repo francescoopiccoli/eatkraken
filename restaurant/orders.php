@@ -35,56 +35,6 @@ if(isset($_POST['order']) && $order = db_get_order($_POST['order'])) {
 }
 
 
-//considers 24h format time,  keeps negative time
-function getTimeLeft($orderID){
-
-  date_default_timezone_set('Europe/Rome');
-  $currentTime = strval(substr(date('Y/m/d H:i:s a', time()), 0, 16));
-  $deadlineTime = strval(substr(db_get_deadline($orderID)[0][0], 0, 16));
-  $deadlineTime = str_replace("-","/", $deadlineTime);
-
-  $currentTimeHour = substr($currentTime, 10, -3);
-  $deadlineTimeHour = substr($deadlineTime, 10, -3);
-
-  $currentTimeMinutes = substr($currentTime, 14, 15);
-  $deadlineMinutes = substr($deadlineTime, 14, 15);
-
-  $differenceHour = $deadlineTimeHour - $currentTimeHour;
-  $differenceMinutes = $deadlineMinutes - $currentTimeMinutes;
-
-  $timeLeftInMinutes = $differenceHour * 60 + $differenceMinutes;
-  $timeLeftInMinutes = str_replace("-", "", $timeLeftInMinutes);
-
-  if(substr($currentTime, 0, 10) ==substr($deadlineTime, 0, 10)){ // if the day is the same
-    if($timeLeftInMinutes < 59){
-    return $timeLeftInMinutes . "<i> minutes</i>";}
-    else{
-      return round($timeLeftInMinutes/60) . "h " . $timeLeftInMinutes%60 . " minutes";
-    }
-  }
-
-
-  elseif(substr($currentTime, 5, -9) == substr($deadlineTime, 5, -9)){
-    //if the day is different but the month is the samereturns how many days have passed since the expiration
-    if((substr($currentTime, 8, -6) - substr($deadlineTime, 8, -6)) == 1){
-      return (substr($currentTime, 8, -6) - substr($deadlineTime, 8, -6)) . " <i> day<i/>";
-    }
-    else{
-      return (substr($currentTime, 8, -6) - substr($deadlineTime, 8, -6)) . "<i> days<i/>";
-    }
-  }
-
-  else{ // if the month is different
-    if((substr($currentTime, 5, -9) - substr($currentTime, 5, -9)) == 1){
-      return (substr($currentTime, 5, -9) - substr($deadlineTime, 5, -9)) . " <i> month<i/>";
-    }
-    else{
-      return (substr($currentTime, 5, -9) - substr($deadlineTime, 5, -9)) . " <i> months<i/>";
-    }
-  }
-}
-
-
 function email_approve($addr) {
   $restaurant = db_get_restaurant_name(restaurant_get_logged_id());
   $restaurantContact = db_get_restaurant_contact(restaurant_get_logged_id());

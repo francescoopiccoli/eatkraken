@@ -8,7 +8,7 @@ if(isset($_GET['logout'])) {
     if(restaurant_log_in($_POST['login']))
         header("Location: /restaurant/");
     else
-        header("Location: /restaurant/login.php");
+        header("Location: /restaurant/login.php?error");
 } else {
     header("Location: /404.php");
 }

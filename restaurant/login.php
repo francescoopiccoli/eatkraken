@@ -25,7 +25,9 @@
         </div><!-- /input-group -->
       </div><!-- /.col-lg-6 -->
     </form>
-    <br><br><br>
+    <br>
+    <b style="color: red"><?= (isset($_GET['error']) ? "Error!" : "") ?></b>
+    <br><br>
     <img style="width:10%" src="https://icons.iconarchive.com/icons/google/noto-emoji-animals-nature/512/22297-octopus-icon.png">
   </div>
 </div>

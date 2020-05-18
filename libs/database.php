@@ -218,7 +218,7 @@ function db_insert_empty_order($restaurant, $full_name, $address, $email, $city,
 
 function db_get_last_order_code(){
     $res = db_simple_query("SELECT MAX(code) FROM orders");
-    if(count($res) > 0)
+    if($res && count($res) > 0)
         return $res[0][0];
     else
         return false;
@@ -233,14 +233,14 @@ function db_add_order_item($order, $item,$quantity,$note){
 
 function db_get_restaurant_by_token($token) {
     $res = db_stmt_query("select code from restaurants where access_token = ?", [$token]);
-    if(count($res) > 0)
+    if($res && count($res) > 0)
         return $res[0]['code'];
     else
         return false;
 }
 function db_get_restaurant_name($id) {
     $res = db_stmt_query("select name from restaurants where code = ?", [$id]);
-    if(count($res) > 0)
+    if($res && count($res) > 0)
         return $res[0]['name'];
     else
         return false;
@@ -248,7 +248,7 @@ function db_get_restaurant_name($id) {
 
 function db_get_restaurant_contact($id) {
     $res = db_stmt_query("select contact from restaurants where code = ?", [$id]);
-    if(count($res) > 0)
+    if($res && count($res) > 0)
         return $res[0]['contact'];
     else
         return false;
@@ -264,7 +264,7 @@ function db_restaurant_can_deliver($restaurant, $city) {
 
 function db_get_restaurant_description($id) {
     $res = db_stmt_query("select description from restaurants where code = ?", [$id]);
-    if(count($res) > 0)
+    if($res && count($res) > 0)
         return $res[0]['description'];
     else
         return false;
@@ -272,7 +272,7 @@ function db_get_restaurant_description($id) {
 
 function db_get_restaurant_image_url($id) {
     $res = db_stmt_query("select image_url from restaurants where code = ?", [$id]);
-    if(count($res) > 0)
+    if($res && count($res) > 0)
         return $res[0]['image_url'];
     else
         return false;
@@ -301,15 +301,15 @@ function db_get_past_orders($code){
 }
 
 function db_get_delivery_costs($code){
-    $res = db_stmt_query("select cost_eat_in, cost_takeaway, cost_home_delivery from restaurants where code = ?", [$code])[0];
-    if(count($res) > 0)
+    $res = db_stmt_query("select cost_eat_in, cost_takeaway, cost_home_delivery from restaurants where code = ?", [$code]);
+    if($res && count($res) > 0)
         return $res[0];
     else
         return false;
 }
 
-function db_get_orders_items($i, $orders){
-    return db_stmt_query("select * from order_items where ord = ?", [$orders[$i][0]]);
+function db_get_orders_items($code){
+    return db_stmt_query("select * from order_items where ord = ?", [$code]);
 }
 
 

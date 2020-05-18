@@ -38,6 +38,11 @@ h1 {
 
 }
 
+// remove black border
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+  border: none;
+}
+
 .navbar-brand{
     color: white !important;
 }
@@ -103,10 +108,8 @@ h1 {
     left: 50%;
     top:50%;
     transform: translate(-50%, 0);
-    z-index: 1;
     color:white;
-    z-index: 5;
-    
+    z-index: 999;
 }
 
 #select-city{
@@ -334,17 +337,17 @@ h1 {
 .checkout-main {
     margin: 20px;
 }
-@media (max-width: 767px) {
-  .checkout-main {
-      display: block; /* Turn off the flexible box layout */
-  }
-}
 .checkout-main .row {
     display: flex;
     align-items: center;
     padding: 25px;
     text-align: center;
 
+}
+@media (max-width: 767px) {
+  .checkout-main .row {
+      display: block; /* Turn off the flexible box layout */
+  }
 }
 
 .btn-ek-confirm {
@@ -404,9 +407,6 @@ h1 {
     }
 }
 
-.checkout-main .row * {
-    vertical-align: middle;
-}
 .checkout-total-row {
     background-color: #F0F0F0;
     box-shadow: 5px 5px 2px grey;
