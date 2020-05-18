@@ -92,18 +92,18 @@ function getTimeLeft($deadline){
 
       if($orders){
           foreach($orders as $order){ 
-            $delivery_type = "";
-            if($order[6]==0){
-              $delivery_type ="Eat in";
+            $shipping_type = "";
+            if($order['shipping_type']==0){
+              $shipping_type ="Eat in";
               $deliveryCost = $delivery_cost['cost_eat_in'];
 
             }
-            elseif($order[6]==1){
-              $delivery_type ="Take away";
+            elseif($order['shipping_type']==1){
+              $shipping_type ="Take away";
               $deliveryCost = $delivery_cost['cost_takeaway'];
             }
             else{
-              $delivery_type = "Home delivery";
+              $shipping_type = "Home delivery";
               $deliveryCost = $delivery_cost['cost_home_delivery'];
 
             }?>
@@ -127,11 +127,11 @@ function getTimeLeft($deadline){
               }
               ?>
               </td>
-              <td><?= ($order[8] + $order[7]) . "€" ?></td>
+              <td><?= $order[8] . "€" ?></td>
               <td>
               <b>Time left: </b><i><?= getTimeLeft($order['delivery_deadline'])?><br>
                 <b><?= "Delivery type: </b>
-                <i> $delivery_type ($deliveryCost €)"?></i>
+                <i> $shipping_type ($deliveryCost €)"?></i>
                <br>
                 <form method="post" action="orders.php"> 
                 <input type="hidden" name="order" value="<?= $order['code']; ?>">
@@ -169,20 +169,20 @@ function getTimeLeft($deadline){
               $orders = db_get_pending_orders(restaurant_get_logged_id());
             if($orders){
               foreach($orders as $order){ 
-                  $delivery_type = "";
-                  if($order['delivery_cost']==0){
-                    $delivery_type ="Eat in";
+                  $shipping_type = "";
+                  if($order['shipping_type']==0){
+                    $shipping_type ="Eat in";
                     $deliveryCost = $delivery_cost['cost_eat_in'];
       
                   }
-                  elseif($order[6]==1){
-                    $delivery_type ="Take away";
-                    $deliveryCost = $delivery_cost['cost_eat_in'];
+                  elseif($order['shipping_type']==1){
+                    $shipping_type ="Take away";
+                    $deliveryCost = $delivery_cost['cost_takeaway'];
       
                   }
                   else{
-                    $delivery_type = "Home delivery";
-                    $deliveryCost = $delivery_cost['cost_eat_in'];
+                    $shipping_type = "Home delivery";
+                    $deliveryCost = $delivery_cost['cost_home_delivery'];
       
                   }?>
                 <tr>
@@ -204,10 +204,10 @@ function getTimeLeft($deadline){
                   }
                   ?>
                   </td>
-                  <td><?= ($order[8] + $order[7]) . "€" ?></td>
+                  <td><?= $order[8] . "€" ?></td>
                   <td>
                   <b>Time left: </b><i><?= getTimeLeft($order['delivery_deadline'])?><br>
-                      <?= "Delivery type: <i> $delivery_type ($deliveryCost €)"?></i>
+                      <?= "Delivery type: <i> $shipping_type ($deliveryCost €)"?></i>
 
                <br>
                     <form method="post" action="orders.php">
@@ -248,19 +248,19 @@ function getTimeLeft($deadline){
               $orders = db_get_past_orders(restaurant_get_logged_id());
           if($orders){
             foreach($orders as $order){ 
-                $delivery_type = "";
-                if($order[6]==0){
-                  $delivery_type ="Eat in";
+                $shipping_type = "";
+                if($order['shipping_type']==0){
+                  $shipping_type ="Eat in";
                   $deliveryCost = $delivery_cost['cost_eat_in'];
     
                 }
-                elseif($order[6]==1){
-                  $delivery_type ="Take away";
+                elseif($order['shipping_type']==1){
+                  $shipping_type ="Take away";
                   $deliveryCost = $delivery_cost['cost_takeaway'];
     
                 }
                 else{
-                  $delivery_type = "Home delivery";
+                  $shipping_type = "Home delivery";
                   $deliveryCost = $delivery_cost['cost_home_delivery'];
     
                 }?>
@@ -283,11 +283,11 @@ function getTimeLeft($deadline){
                 }
                 ?>
                 </td>
-                <td><?= ($order[8] + $order[7]) . "€" ?></td>
+                <td><?= $order[8]. "€" ?></td>
                 <td>
                 <b>Expired since: </b><i><?= getTimeLeft($order['delivery_deadline'])?><br>
                   <b><?= "Delivery type: </b>
-                                <i> $delivery_type ($deliveryCost €)"?></i>
+                                <i> $shipping_type ($deliveryCost €)"?></i>
 
                <br>
 
