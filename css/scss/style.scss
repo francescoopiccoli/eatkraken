@@ -187,7 +187,7 @@ h1 {
     background-position: center center; 
 }
 
-.homePageButton {
+.productPageButton {
     display: inline-block;
     padding: 0.5em 3em;
     border: 0.16em solid white;
@@ -197,13 +197,13 @@ h1 {
     box-sizing: border-box;
     text-decoration:none;
     text-transform: uppercase;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Acme';
     font-weight: 400;
     background-color: transparent;
     border-radius: 10px;
 }
 
-.homePageButton:hover{
+.productPageButton:hover{
     background-color: transparent;
     border-radius: 10px;
     color: #DDDDDD;
@@ -212,7 +212,7 @@ h1 {
 
 }
 
-.homePageButton:active{
+.productPageButton:active{
     background-color: transparent;
     border-radius: 10px;
     color: #BBBBBB;
