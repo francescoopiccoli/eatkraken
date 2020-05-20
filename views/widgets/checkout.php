@@ -11,7 +11,7 @@ $cart = cart_get_items();
 <li class="checkout-widget"><a href="/checkout.php" class="btn-checkout">
 
 <?php if(count($cart) > 0) { ?>
-<span style="font-family:'acme'; font-size: 1.2em;"><?= count($cart); ?>x </span>
+<span id="checkout-items"><?= count($cart); ?></span>x 
 <?php } ?>
 
 <i id="cart" class="fas fa-shopping-cart" style="font-size: 1.1em;"></i></a>
