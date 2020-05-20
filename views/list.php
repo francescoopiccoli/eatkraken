@@ -11,7 +11,7 @@
   </script>
   <?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/navbar.php"); ?>
 
-  <div class="text-center mainbody">    
+  <div class="text-center mainbody allButFooter">    
     <form id="form" class="row text-center" action="/list.php" method="get">
       <div class="col-sm-12 .bg-secondary sidenav text-left" style="padding-top: 2%; padding-bottom: 2%">
       <div class="col-md-2 col-sm-4">

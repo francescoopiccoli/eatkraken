@@ -135,7 +135,7 @@ function getTimeLeft($deadline){
                <br>
                 <form method="post" action="orders.php"> 
                 <input type="hidden" name="order" value="<?= $order['code']; ?>">
-                <input type="submit" onclick="return confirmAction();" name="reject" value="Cancel" class="btn btn-danger btn-sm dont-print" style="margin-top: 6px;"/>
+                <input type="submit" onclick="return confirmAction();" name="reject" value="Cancel" class="btn btn-default btn-sm dont-print" style="margin-top: 6px; font-family:'Acme'; border-color:#E74C3C; color:#E74C3C;"/>
                 </form> 
 
               </td>
@@ -212,8 +212,8 @@ function getTimeLeft($deadline){
                <br>
                     <form method="post" action="orders.php">
                     <input type="hidden" name="order" value="<?= $order['code']; ?>">
-                    <input type="submit" name="approve" value="Approve" class= "btn btn-success btn-sm"/> 
-                    <input type="submit" onclick="return confirmAction();" name="reject" value="Reject" class="btn btn-danger btn-sm"/>
+                    <input type="submit" name="approve" value="Approve" class= "btn btn-default btn-sm" style="font-family:'Acme'; border-color:#73C6A0; color:#73C6A0;"/> 
+                    <input type="submit" onclick="return confirmAction();" name="reject" value="Reject" class="btn btn-default btn-sm" style="font-family:'Acme'; border-color:#E74C3C; color:#E74C3C;"/>
                     </form> 
 
                   </td>
