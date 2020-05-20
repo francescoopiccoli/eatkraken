@@ -24,7 +24,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
             <h3><b>€<?= $product_price ?></b><small id="small"> / piece</small></h3>
             <form action="/product.php?code=<?= $product_id; ?>" method="post">
               <input type="hidden" name="add">
-              <button type="submit" class="homePageButton" id="cart-add-btn"<?= $product_id; ?>>
+              <button type="submit" class="homePageButton" id="cart-add-btn" onclick="return ajaxAddCart(<?= $product_id; ?>);">
               <?php
                 if(!$addToCart || !$addSuccess) {
                   echo "Add to cart";

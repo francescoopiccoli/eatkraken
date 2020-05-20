@@ -87,3 +87,24 @@ function changeShipping(restaurant) {
 function confirmAction() {
     return confirm("Are you sure?");
 }
+
+
+// in product.php, if JS/AJAX is supported, this function add the item to cart using AJAX, otherwise if it fails to execute it will refresh the page and send a normal form without JS
+function ajaxAddCart(id) {
+    
+    $.post("/api/cart_add.php", { code: id })
+        .done(function( data ) {
+            if(data != "ok") {
+                $("#cart-add-msg").val("Error adding, try again?");
+                $("#cart-add-btn").val("Add");
+            } else {
+                $("#cart-add-btn").html("Added!");
+                $("#cart").toggleClass("animation-rotate");
+                countNew = parseInt($("#checkout-items").html()) + 1
+                $("#checkout-items").html(countNew);
+                
+            }
+        }); 
+    
+    return false; // we sent the request, so don't submit form
+}
