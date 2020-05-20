@@ -49,6 +49,10 @@ h2 {
 .checkout-widget {
   color: #fff !important; }
 
+#checkout-items {
+  font-family: 'acme';
+  font-size: 1.2em; }
+
 @media screen and (max-width: 767px) {
   #settingIcon {
     padding-right: 500px; } }
@@ -517,10 +521,9 @@ blockquote .svg-inline--fa {
   -webkit-transition: -webkit-transform 1s ease-in-out;
   transition: transform 1s ease-in-out; }
 
-#cart:hover {
+.animation-rotate {
   -webkit-transform: rotate(360deg);
-  transform: rotate(360deg);
-  font-size: 2em; }
+  transform: rotate(360deg); }
 
 .allButFooter {
   min-height: calc(90vh - 40px); }
