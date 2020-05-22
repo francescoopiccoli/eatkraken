@@ -13,7 +13,9 @@
     </div>
     <div class="collapse navbar-collapse navbar-right" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="/"><i class="fas fa-home"></i></a></li>
+        <li><a href="/" title="Homepage"><i style="font-size:1.1em" class="fas fa-home"></i></a></li>
+        <li><a href="/list.php" title="Check the list"><i style="font-size:1.1em" class="fas fa-clipboard-list"></i></a></li>
+
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/checkout.php"); ?>
