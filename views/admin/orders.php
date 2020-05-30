@@ -130,8 +130,8 @@ function getTimeLeft($deadline){
               <td><?= $order[8] . "€" ?></td>
               <td>
               <b>Time left: </b><i><?= getTimeLeft($order['delivery_deadline'])?><br>
-                <b><?= "Delivery type: </b>
-                <i> $shipping_type ($deliveryCost €)"?></i>
+                Order type:
+                <b> <?= $shipping_type . " (" . $deliveryCost . "€)" ?></b>
                <br>
                 <form method="post" action="orders.php"> 
                 <input type="hidden" name="order" value="<?= $order['code']; ?>">
@@ -207,7 +207,8 @@ function getTimeLeft($deadline){
                   <td><?= $order[8] . "€" ?></td>
                   <td>
                   <b>Time left: </b><i><?= getTimeLeft($order['delivery_deadline'])?><br>
-                      <?= "Delivery type: <i> $shipping_type ($deliveryCost €)"?></i>
+                  Order type:
+                  <b> <?= $shipping_type . " (" . $deliveryCost . "€)" ?></b>
 
                <br>
                     <form method="post" action="orders.php">
@@ -248,6 +249,7 @@ function getTimeLeft($deadline){
               $orders = db_get_past_orders(restaurant_get_logged_id());
           if($orders){
             foreach($orders as $order){ 
+              // TODO: $shipping_type via libreria!! (su tutti e 3)
                 $shipping_type = "";
                 if($order['shipping_type']==0){
                   $shipping_type ="Eat in";
@@ -286,8 +288,9 @@ function getTimeLeft($deadline){
                 <td><?= $order[8]. "€" ?></td>
                 <td>
                 <b>Expired since: </b><i><?= getTimeLeft($order['delivery_deadline'])?><br>
-                  <b><?= "Delivery type: </b>
-                                <i> $shipping_type ($deliveryCost €)"?></i>
+                  
+                Order type:
+                <b> <?= $shipping_type . " (" . $deliveryCost . "€)" ?></b>
 
                <br>
 

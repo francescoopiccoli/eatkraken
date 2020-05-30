@@ -44,8 +44,19 @@ if(isset($_POST['confirm'])) {
                         $delivery_time = $t;
                 }
 
-                // TODO: cart_get_total($restaurant)
-                $code = db_insert_empty_order($restaurant, cart_get_full_name(), cart_get_address(), cart_get_email(), cart_get_city(), cart_get_phone(), cart_get_restaurant_shipping($restaurant), cart_get_total(), $delivery_time);
+                // TODO: cart_get_total($restaurant)!
+                $code = db_insert_empty_order(
+                    $restaurant, 
+                    cart_get_full_name(), 
+                    cart_get_address(), 
+                    cart_get_email(), 
+                    cart_get_city(), 
+                    cart_get_phone(), 
+                    cart_get_restaurant_shipping($restaurant), 
+                    cart_get_restaurant_total($restaurant), 
+                    $delivery_time
+                );
+
                 if($code) {
                     array_push($codes, $code);
                     foreach($items as $item) {

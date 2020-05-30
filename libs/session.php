@@ -68,6 +68,7 @@ function cart_rm_first($id) {
     }
 }
 
+// total of all items
 function cart_get_total() {
     $total = 0;
     if(isset($_SESSION['cart'])) {
@@ -77,6 +78,19 @@ function cart_get_total() {
     }
     return $total;
 }
+
+// total of all items in a specific restaurant
+function cart_get_restaurant_total($restaurant) {
+    $total = 0;
+    if(isset($_SESSION['cart'])) {
+        foreach ($_SESSION['cart'] as $item) {
+            if($item["restaurant"] == $restaurant)
+                $total += $item["price"];
+        }
+    }
+    return $total;
+}
+
 function cart_get_shipping_total() {
     $total = 0;
     $orders = cart_get_orders();
