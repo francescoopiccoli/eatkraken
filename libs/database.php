@@ -1,5 +1,7 @@
 <?php
 
+require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/shipping_methods.php");
+
 /* Simple library for database-related functions */
 
 $GLOBALS['db_name'] = "yhqbrujn";
@@ -9,14 +11,6 @@ $GLOBALS['db_password'] = "vTdT4LC9LlOf_rgw6fA-Uz54Q-_xefB5";
 $GLOBALS['db_pdo_data'] = "pgsql:host=".$GLOBALS['db_host']." port=5432 dbname=".$GLOBALS['db_name']." user=".$GLOBALS['db_username']." password=".$GLOBALS['db_password'];
 
 date_default_timezone_set('Europe/Rome');
-
-function all_shipping_methods() {
-    return array(
-        array("id" => 0, "name" => "Eat in"),
-        array("id" => 1, "name" => "Take away"),
-        array("id" => 2, "name" => "Home delivery"),
-    );
-}
 
 // indices: simple_query(...)[row][column]
 function db_simple_query($query_text) {
@@ -87,6 +81,7 @@ function db_get_items_cost($order){
 
 function db_get_shipping_cost($restaurant, $method) {
     // 1. is $method supported? no -> -1 in db
+    //TODO?
     switch ($method) {
         case 0:
             return db_get_cost_eat_in($restaurant);
@@ -106,7 +101,7 @@ function db_get_shipping_cost($restaurant, $method) {
 
 function db_get_shipping_methods($restaurant) {
     $methods = array();
-    foreach (all_shipping_methods() as $id => $item) {
+    foreach (shipping_methods() as $id => $item) {
         $cost = db_get_shipping_cost($restaurant, $id);
         if($cost >= 0)
             array_push($methods, array(
