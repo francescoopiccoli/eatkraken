@@ -8,13 +8,17 @@ $cart = cart_get_items();
 
 
 
-<li class="checkout-widget"><a href="/checkout.php" class="btn-checkout">
-
-<?php if(count($cart) > 0) { ?>
-<span id="checkout-items"><?= count($cart); ?></span>x 
-<?php } ?>
-
-<i id="cart" title="cart" class="fas fa-shopping-cart" style="font-size: 1.1em;"></i></a>
+<li class="checkout-widget">
+    <a href="/checkout.php" class="btn-checkout">
+        <span id="checkout-items">
+            <?php if(count($cart) > 0) echo count($cart); ?>
+        </span>
+        <span id="checkout-x" <?php if(count($cart) == 0) echo 'style="display: none;"' ?>>
+            x&nbsp;&nbsp;
+        </span>
+        <i id="cart" title="cart" class="fas fa-shopping-cart" style="font-size: 1.1em;"></i>
+    </a>
+    
     <?php 
     if(restaurant_is_logged_in()) {
         echo "<li class=\"checkout-widget\" style=\"float:left\">

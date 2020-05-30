@@ -100,8 +100,16 @@ function ajaxAddCart(id) {
             } else {
                 $("#cart-add-btn").html("Added!");
                 $("#cart").toggleClass("animation-rotate");
-                countNew = parseInt($("#checkout-items").html()) + 1
+                
+                countOld = parseInt($("#checkout-items").html());
+                if(!countOld) {
+                    countOld = 0;
+                }
+                countNew = countOld + 1
+
                 $("#checkout-items").html(countNew);
+                $("#checkout-x").show();
+
                 
             }
         }); 
