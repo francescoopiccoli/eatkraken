@@ -60,23 +60,23 @@
         </div>
       </div></div>
       <div class="col-sm-12">
-        <h1 id="results">
+        <h1>
         <?=
           (count($results)>0 ? count($results) . " results in your area" : "No results found")
         ?>
         </h1>
         <?php if(count($results)>0) { ?>
-        <p id="subtitle">All of them can deliver to your address.</p>
+        <p>All of them can deliver to your address.</p>
         <?php } ?>
 
         
         
         <hr>
-        <div class="row mx-auto">
+        <div class="row results-row">
           <?php
           foreach($results as $result) {
           ?>
-          <a class="col-md-2 col-sm-4 col-6 food-card" href="/product.php?code=<?= $result["code"] ?>">
+          <a class="col-md-2 col-sm-4 col-xs-6 food-card" href="/product.php?code=<?= $result["code"] ?>">
             <div class="panel panel-default">
               <div class="panel-body list-thumb" style="background-image: url('<?= $result["image_url"] ?>'); background-size: cover; min-width: 100px; min-height: 120px;">
               </div>

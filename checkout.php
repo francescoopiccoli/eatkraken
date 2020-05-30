@@ -32,7 +32,7 @@ if(isset($_POST['confirm'])) {
     } else {
         // 2. insert into DB each order
         $orders = cart_get_orders();
-        $codes = array(); // used to email every detail
+        $codes = array();
         foreach($orders as $restaurant => $items) {
             // ignore if can't be delivered
             if(cart_get_restaurant_shipping($restaurant) != 2 || db_restaurant_can_deliver($restaurant, cart_get_city())) {
@@ -44,6 +44,7 @@ if(isset($_POST['confirm'])) {
                         $delivery_time = $t;
                 }
 
+                // TODO: cart_get_total($restaurant)
                 $code = db_insert_empty_order($restaurant, cart_get_full_name(), cart_get_address(), cart_get_email(), cart_get_city(), cart_get_phone(), cart_get_restaurant_shipping($restaurant), cart_get_total(), $delivery_time);
                 if($code) {
                     array_push($codes, $code);

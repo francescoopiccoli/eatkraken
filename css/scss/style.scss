@@ -437,6 +437,11 @@ blockquote .svg-inline--fa {
   }
 }
 
+.results-row {
+  margin: auto;
+  max-width: 1300px;
+}
+
 .food-card {
   max-width: 250px;
   height: 235px;
@@ -458,9 +463,6 @@ blockquote .svg-inline--fa {
 .thumbnail-small {
   width: 100px;
   height: 100px;
-}
-#results, #subtitle {
-  text-align: left;
 }
 
 // specific product/dish page

@@ -169,7 +169,7 @@ function cart_get_city() {
 }
 
 
-// Restaurant login -- todo!
+// Restaurant login functions
 function restaurant_log_in($token) {
     $restaurant_id = db_get_restaurant_by_token($token);
     if($restaurant_id > 0) {

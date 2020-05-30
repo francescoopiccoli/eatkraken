@@ -38,7 +38,6 @@ $isCheckoutPage = true; // for checkout widget
            
               <div class="col-sm-2 text-center">
               <b class=".checkout-body">Shipping</b>
-                <!-- todo! -->
                 <h3><?= $cart_shipping_total ?>€</h3>
               </div>
               <div class="col-sm-2 text-center">
