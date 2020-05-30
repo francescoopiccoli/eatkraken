@@ -367,17 +367,18 @@ blockquote .svg-inline--fa {
   font-size: 1.2em;
 }
 
-#food-thumbnail {
-  width: 140px;
-  height: 140px;
-  text-align: center;
+// todo: dump !important
+.dish-thumbnail {
+  width: 140px !important;
+  height: 140px !important;
+  text-align: center !important;
 }
 
 .red-message {
   color: red;
 }
 
-#price-col {
+.price-col {
   font-size: 2em;
 }
 
@@ -458,8 +459,7 @@ blockquote .svg-inline--fa {
   width: 100px;
   height: 100px;
 }
-#results,
-#subtitle {
+#results, #subtitle {
   text-align: left;
 }
 

@@ -67,7 +67,7 @@ $isCheckoutPage = true; // for checkout widget
 
             <div class="col-sm-2">
               <br>
-              <select name="" id="shipping-<?= $restaurant ?>" class="form-control" onchange="changeShipping(<?= $restaurant; ?>);">
+              <select id="shipping-<?= $restaurant ?>" class="form-control" onchange="changeShipping(<?= $restaurant; ?>);">
                 <?php 
                 $shipping_methods = db_get_shipping_methods($restaurant);
                 foreach ($shipping_methods as $method) {
@@ -89,7 +89,7 @@ $isCheckoutPage = true; // for checkout widget
           <div class="row checkout-results-row">
            
             <div class="col-sm-3">
-            <img id="food-thumbnail" class="circular--landscape checkoutProductImage" src=<?=$item['image_url']?>>
+            <img class="circular--landscape dish-thumbnail checkoutProductImage" src=<?=$item['image_url']?>>
 
             </div>
             <div class="col-sm-7">
@@ -99,7 +99,7 @@ $isCheckoutPage = true; // for checkout widget
             </div>
 
             <div class="col-sm-1 text-center">
-              <b id="price-col"><?= $item['price']; ?>€</b>
+              <b class="price-col"><?= $item['price']; ?>€</b>
             </div>
               <?php /* allergenes warnings? */ ?>
               <div class="col-sm-1 text-center">

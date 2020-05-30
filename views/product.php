@@ -71,7 +71,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
             <h2 id="rest-name"> <?= $restaurant_name?></h2>
             <hr id="hr1">
             <div id="rest-desc">
-            <i><?= $restaurant_description?></i></div>
+            <i><?= $restaurant_description ?></i></div>
           </div>
       </div>
     </div>
