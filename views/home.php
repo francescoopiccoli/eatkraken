@@ -80,7 +80,7 @@ $title = "EatKraken";
       <div class="column">
 
         <div class="container">
-          <?= "<img alt=\"restaurant image\"  title=\"restaurant image\" class=\"restImage\" src=\"" . $restaurants[0]["image_url"] ."\" style=\"width:100%\">"?>
+          <?= "<img alt=\"restaurant image\"  title=\"restaurant image\" class=\"restImage\" src=\"" . $restaurants[0]["image_url"] ."\">"?>
           <div class="middle">
             <div class="restName"><?=$restaurants[0]["name"]?>
             </div>
@@ -88,7 +88,7 @@ $title = "EatKraken";
         </div>
 
         <div class="container">
-          <?= "<img alt=\"restaurant image\" title=\"restaurant image\" class=\"restImage\" src=\"" . $restaurants[1]["image_url"] ."\" style=\"width:100%\">"?>
+          <?= "<img alt=\"restaurant image\" title=\"restaurant image\" class=\"restImage\" src=\"" . $restaurants[1]["image_url"] ."\">"?>
           <div class="middle">
             <div class="restName"><?=$restaurants[1]["name"]?>
             </div>
@@ -101,7 +101,7 @@ $title = "EatKraken";
       <div class="column">
         
         <div class="container">
-          <?= "<img alt=\"restaurant image\" title=\"restaurant image\" class=\"restImage\" src=\"" . $restaurants[2]["image_url"] ."\" style=\"width:100%\">"?>
+          <?= "<img alt=\"restaurant image\" title=\"restaurant image\" class=\"restImage\" src=\"" . $restaurants[2]["image_url"] ."\">"?>
           <div class="middle">
             <div class="restName"><?=$restaurants[2]["name"]?>
             </div>
@@ -109,7 +109,7 @@ $title = "EatKraken";
         </div>
 
         <div class="container">
-          <?= "<img alt=\"restaurant image\" title=\"restaurant image\" class=\"restImage\" src=\"" . $restaurants[3]["image_url"] ."\" style=\"width:100%\">"?>
+          <?= "<img alt=\"restaurant image\" title=\"restaurant image\" class=\"restImage\" src=\"" . $restaurants[3]["image_url"] ."\">"?>
           <div class="middle">
             <div class="restName"><?=$restaurants[3]["name"]?>
             </div>
@@ -117,7 +117,7 @@ $title = "EatKraken";
         </div>
 
         <div class="container">
-          <?= "<img alt=\"restaurant image\" title=\"restaurant image\" class=\"restImage\" src=\"" . $restaurants[4]["image_url"] ."\" style=\"width:100%\">"?>
+          <?= "<img alt=\"restaurant image\" title=\"restaurant image\" class=\"restImage\" src=\"" . $restaurants[4]["image_url"] ."\">"?>
           <div class="middle">
             <div class="restName"><?=$restaurants[4]["name"]?>
             </div>
@@ -129,7 +129,7 @@ $title = "EatKraken";
       <div class="column">
 
         <div class="container">
-          <?= "<img alt=\"restaurant image\" title=\"restaurant image\" class=\"restImage\" src=\"" . $restaurants[5]["image_url"] ."\" style=\"width:100%\">"?>
+          <?= "<img alt=\"restaurant image\" title=\"restaurant image\" class=\"restImage\" src=\"" . $restaurants[5]["image_url"] ."\">"?>
           <div class="middle">
             <div class="restName"><?=$restaurants[5]["name"]?>
             </div>
@@ -137,7 +137,7 @@ $title = "EatKraken";
         </div>
 
         <div class="container">
-          <?= "<img alt=\"restaurant image\" title=\"restaurant image\" class=\"restImage\" src=\"" . $restaurants[6]["image_url"] ."\" style=\"width:100%\">"?>
+          <?= "<img alt=\"restaurant image\" title=\"restaurant image\" class=\"restImage\" src=\"" . $restaurants[6]["image_url"] ."\">"?>
           <div class="middle">
             <div class="restName"><?=$restaurants[6]["name"]?>
             </div>
@@ -149,7 +149,7 @@ $title = "EatKraken";
   </div>
 
   <h1 id="they-say" >They say about us...</h1>
-  <div class="row" style="margin-bottom:5%;  margin-left:0px; margin-right:0px;">
+  <div class="row ratingRowHomepage">
     <div class="col-md-4 clients">
       
       <div class="col-md-12">

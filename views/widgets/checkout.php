@@ -16,23 +16,23 @@ $cart = cart_get_items();
         <span id="checkout-x" <?php if(count($cart) == 0) echo 'style="display: none;"' ?>>
             x&nbsp;&nbsp;
         </span>
-        <i id="cart" title="cart" class="fas fa-shopping-cart" style="font-size: 1.1em;"></i>
+        <i id="cart" title="cart" class="fas fa-shopping-cart widgetDimension"></i>
     </a>
 </li>
 
 <?php 
 if(restaurant_is_logged_in()) {
-    echo "<li class=\"checkout-widget\" style=\"float:left\">
-    <a title=\"manage\" class=\"btn btn-text\" href=\"/restaurant/\"><i style=\"font-size: 1.2em;\" class=\"fas fa-tools\"></i>
+    echo "<li class=\"checkout-widget settingIcon\">
+    <a title=\"manage\" class=\"btn btn-text\" href=\"/restaurant/\"><i class=\"fas fa-tools fontAwesomeLogos\"></i>
     </a>
     </li>";
-    echo "<li class=\"checkout-widget\" id=\"settingIcon\" style=\"float:left\">
-    <a title=\"log out\" class=\"btn btn-text\" href=\"/restaurant/auth.php?logout\"><i style=\"font-size: 1.2em;\" class=\"fas fa-sign-out-alt\"></i>
+    echo "<li class=\"checkout-widget settingIcon\">
+    <a title=\"log out\" class=\"btn btn-text\" href=\"/restaurant/auth.php?logout\"><i class=\"fas fa-sign-out-alt fontAwesomeLogos\"></i>
     </a>
     </li>";}
     else{
-        echo "<li class=\"checkout-widget\" style=\"float:left\">
-    <a title=\"sign in\" class=\"btn btn-text\" href=\"/restaurant/login.php\"><i style=\"font-size: 1.2em;\" class=\"fas fa-sign-in-alt\"></i>
+        echo "<li class=\"checkout-widget\">
+    <a title=\"sign in\" class=\"btn btn-text\" href=\"/restaurant/login.php\"><i class=\"fas fa-sign-in-alt fontAwesomeLogos\"></i>
     </a>
     </li>";
 } ?>

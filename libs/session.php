@@ -4,7 +4,8 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/database.php");
 
 // csrf protection
-session_start(['csrf_rewrite'=>SESSION_CSRF_POST, 'csrf_validate'=>SESSION_CSRF_POST]);
+session_start();
+//session_start(['csrf_rewrite'=>SESSION_CSRF_POST, 'csrf_validate'=>SESSION_CSRF_POST]);
 
 function cart_get_items() {
     if(!isset($_SESSION['cart']))

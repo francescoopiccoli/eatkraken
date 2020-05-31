@@ -72,8 +72,8 @@
       <br>
       <br>
       <div class="text-right">
-        <input type="submit" value="ADD" class="btn btn-default btn-lg" name="submit" onclick="alert('Dish added!')" style="font-family:'Acme'; color: #73C6A0; border-color: #73C6A0;">
-        <input type="reset" value="RESET" class="btn btn-default btn-lg" name="reset" style="font-family:'Acme'; margin-left:10px; color: #E74C3C; border-color: #E74C3C">
+        <input type="submit" value="ADD" class="btn btn-default btn-lg addDishSubmitButton" name="submit" onclick="alert('Dish added!')">
+        <input type="reset" value="RESET" class="btn btn-default btn-lg addDishResetButton" name="reset">
       </div>
       </form>
     </div>

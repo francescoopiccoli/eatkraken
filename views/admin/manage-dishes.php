@@ -10,9 +10,9 @@
       <div class="container-fluid text-center mainbody">    
         <div class="row content">
           <div class="col-sm-12 text-left"> 
-            <h1 style="display: inline-block">Your dishes</h1>
-            <a href="add-dish.php" style="font-family: 'Acme'; float:right; margin-top: 20px;" class="btn btn-default btn-lg">Add dish</a>
-            <a href="orders.php" id ="goToOrders" style="font-family: 'Acme'; float:right; margin-top: 20px; margin-right: 20px;" class="btn btn-default btn-lg">Go to orders</a>
+            <h1 id="yourDishesText">Your dishes</h1>
+            <a href="add-dish.php" class="btn btn-default btn-lg" id="addDishButton">Add dish</a>
+            <a href="orders.php" id ="goToOrders" class="btn btn-default btn-lg goToOrdersButton">Go to orders</a>
             <br>
             <i>To edit a dish, please delete it and insert it again.</i>
             <hr>
@@ -29,8 +29,8 @@
                       
                       </div>
                       <div class="panel-footer text-center">
-                      <a style="color:black" href="/product.php?code=<?= $dish["code"];?>" target="_blank">
-                        <b style="font-size:1.1em"><?= $dish["name"] ?></b>                     
+                      <a id="nameLink" href="/product.php?code=<?= $dish["code"];?>" target="_blank">
+                        <b id="nameProductSize"><?= $dish["name"] ?></b>                     
                       </a>
 
                         <br>
@@ -38,7 +38,7 @@
                         <br>
                         <form method="post" action="/restaurant/manage-dishes.php">
                           <input type="hidden" name="dish" value="<?= $dish['code']; ?>">
-                          <input type="submit" onclick="return confirmAction();" name="remove" value="Remove" class="btn btn-default btn-sm" style="font-family:'Acme'; border-color:#E74C3C; color:#E74C3C;"/>
+                          <input type="submit" onclick="return confirmAction();" name="remove" value="Remove" class="btn btn-default btn-sm removeButton"/>
                         </form> 
                       </div>
                     </div>

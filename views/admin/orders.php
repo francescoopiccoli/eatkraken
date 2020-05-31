@@ -72,7 +72,7 @@ function getTimeLeft($deadline){
         <h2>Accepted orders</h2>
         <p>
           Deliver as soon as possible. 
-          <a href="javascript:window.print();" class="btn btn-default dont-print" style="float:right; color:#1F618D; border-color:#1F618D; font-family:'Acme'">Print</a>
+          <a href="javascript:window.print();" class="btn btn-default dont-print printButton" style="">Print</a>
         </p>
 
         <table class="table">
@@ -135,7 +135,7 @@ function getTimeLeft($deadline){
                <br>
                 <form method="post" action="orders.php"> 
                 <input type="hidden" name="order" value="<?= $order['code']; ?>">
-                <input type="submit" onclick="return confirmAction();" name="reject" value="Cancel" class="btn btn-default btn-sm dont-print" style="margin-top: 6px; font-family:'Acme'; border-color:#E74C3C; color:#E74C3C;"/>
+                <input type="submit" onclick="return confirmAction();" name="reject" value="Cancel" class="btn btn-default btn-sm dont-print rejectButtonTwo"/>
                 </form> 
 
               </td>
@@ -213,8 +213,8 @@ function getTimeLeft($deadline){
                <br>
                     <form method="post" action="orders.php">
                     <input type="hidden" name="order" value="<?= $order['code']; ?>">
-                    <input type="submit" name="approve" value="Approve" class= "btn btn-default btn-sm" style="font-family:'Acme'; border-color:#73C6A0; color:#73C6A0;"/> 
-                    <input type="submit" onclick="return confirmAction();" name="reject" value="Reject" class="btn btn-default btn-sm" style="font-family:'Acme'; border-color:#E74C3C; color:#E74C3C;"/>
+                    <input type="submit" name="approve" value="Approve" class= "btn btn-default btn-sm approveButton"/> 
+                    <input type="submit" onclick="return confirmAction();" name="reject" value="Reject" class="btn btn-default btn-sm rejectButton"/>
                     </form> 
 
                   </td>

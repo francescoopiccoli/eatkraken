@@ -15,7 +15,7 @@
     <form id="form" class="row text-center" action="/list.php" method="get">
       <div class="col-sm-12 .bg-secondary sidenav text-left" style="padding-top: 2%; padding-bottom: 2%">
       <div class="col-md-2 col-sm-4">
-       <h4 style="font-family:'Acme'">Deliverable to:</h4>
+       <h4>Deliverable to:</h4>
         <select name="city" class="form-control form-refresh">
           <option value="">Select a city</option>
           <?php
@@ -28,12 +28,12 @@
 </div>
 
         <div class="col-sm-4 col-md-2">
-        <h4 style="font-family:'Acme'">Deliver within:</h4>
+        <h4>Deliver within:</h4>
         <input type="number" name="time" id="" class="form-control form-refresh" placeholder="minutes" min="15" max="120" value="<?= htmlentities($deliveryTime); ?>">
         <br>
         </div>
         <div class="col-sm-4 col-md-2"">
-        <h4 style="font-family:'Acme'">In category</h4>
+        <h4>In category</h4>
         <select name="category" id="" class="form-control form-refresh">
           <option value="0" selected>All</option>
           <?php
@@ -47,7 +47,7 @@
         </div>
         <div class="col-sm-12 col-md-6">
         <div class="options" style="display:inline-block;">
-        <h4 style="margin-bottom: 15px; font-family:'Acme'">Show only</h4>
+        <h4 style="margin-bottom: 15px;">Show only</h4>
           <?php
             foreach($options as $option) {
               $checked = (in_array($option['code'], $selectedFlags) ? "checked" : "");

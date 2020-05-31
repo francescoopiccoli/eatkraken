@@ -5,20 +5,14 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
 <!DOCTYPE html>
 <html lang="en">
   <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/common_head.php"); ?>
-  <style>
-  td{
-    padding:10px;
-  }
- 
-  </style>
   <body>
 
     <?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/navbar.php"); ?>
     <div class="mainbody"> 
-        <div title="image of the product" class="home-inner container" style= "background-image: linear-gradient(rgba(20, 25, 24, 0.1), rgba(20, 25, 24, 1)), url('<?=$product_image_url?>');">
+        <div title="image of the product" class="home-inner container " style= "background-image: linear-gradient(rgba(20, 25, 24, 0.1), rgba(20, 25, 24, 1)), url('<?=$product_image_url?>');">
           <div class="caption text-center">
 
-            <img alt="image of the product"  title="image of the product" class="circular--landscape" id="profile-pic" src=<?=$product_image_url?>>
+            <span><a target="_blank" href="<?= $product_image_url?>"><img alt="image_product" title="view image" id="profile-pic" src=<?=$product_image_url?>></a></span>
             <h1><?= $product_name ?></h1>
             <p class="lead"><?= $product_desc ?></p>
             <h3><b>€<?= $product_price ?></b><small id="small"> / piece</small></h3>
@@ -34,7 +28,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
               ?>
               </button>
             </form>
-            <span style="float:right"><a target="_blank" style="color:yellow" href="<?= $product_image_url?>"> View image</a></span>
+            <span class="viewImage"><a target="_blank" href="<?= $product_image_url?>"> View image</a></span>
 
             <br>
             <span id="cart-add-msg">
@@ -68,7 +62,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
 
     <div id="cont-rest" class="container-fluid justify-content-center" >
           <div id="row-padd" class="row justify-content-center">
-          <div class="col-xs-12 col-sm-4 text-center"><?php echo "<img alt=\"restaurant_image\" title=\"restaurant_image\" style=\"width:100%; opacity: 0.7; border: 1px solid; border-radius: 80%\" src=\"$restaurant_image_url\">"?>
+          <div class="col-xs-12 col-sm-4 text-center"><?php echo "<img id=\"restaurant_image_productPage\"alt=\"restaurant_image\" title=\"restaurant_image\" src=\"$restaurant_image_url\">"?>
           </div>
           <div class="col-xs-12 col-sm-8 text-center">
             <h2 id="rest-name"> <?= $restaurant_name?></h2>

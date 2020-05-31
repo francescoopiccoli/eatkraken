@@ -7,7 +7,7 @@ body {
   font-family: "Khula", sans-serif;
 }
 
-h1, h2 {
+h1, h2, h3, h4 {
   font-family: "Acme";
 }
 .text {
@@ -57,17 +57,27 @@ h1, h2 {
 .row.content {
   height: 450px;
 }
-
+//navbar widgets
 .checkout-widget {
   color: #fff !important;
+  float:left !important;
 }
+
+.fontAwesomeLogos{
+  font-size: 1.2em;
+}
+
 #checkout-items {
   font-family: "acme";
   font-size: 1.2em;
 }
 
+.widgetDimension{
+  font-size: 1.1em;
+}
+
 @media screen and (max-width: 767px) {
-  #settingIcon {
+  .settingIcon {
     padding-right: 500px;
   }
 }
@@ -96,8 +106,8 @@ h1, h2 {
 .li {
   color: white;
 }
-/*Homepage
-/*Homepage dropdown button*/
+//Homepage
+//Homepage dropdown button
 #selectCity {
   position: absolute;
   display: inline-block;
@@ -182,38 +192,6 @@ h1, h2 {
   background-position: center center;
 }
 
-.productPageButton {
-  display: inline-block;
-  padding: 0.5em 3em;
-  border: 0.16em solid white;
-  color: white;
-  margin: 0 0.3em 0.3em 0;
-  text-align: center;
-  box-sizing: border-box;
-  text-decoration: none;
-  text-transform: uppercase;
-  font-family: "Acme";
-  font-weight: 400;
-  background-color: transparent;
-  border-radius: 10px;
-}
-
-.productPageButton:hover {
-  background-color: transparent;
-  border-radius: 10px;
-  color: #dddddd;
-  border-color: #dddddd;
-  text-decoration: none;
-}
-
-.productPageButton:active {
-  background-color: transparent;
-  border-radius: 10px;
-  color: #bbbbbb;
-  border-color: #bbbbbb;
-  text-decoration: none;
-}
-
 .carousel-indicators {
   z-index: 1;
 }
@@ -278,6 +256,13 @@ h1, h2 {
   height: auto;
   transition: 0.5s ease;
   backface-visibility: hidden;
+
+}
+
+.ratingRowHomepage{
+  margin-bottom:5%;  
+  margin-left:0px; 
+  margin-right:0px;
 }
 
 @media screen and (max-width: 600px) {
@@ -465,7 +450,7 @@ blockquote .svg-inline--fa {
   height: 100px;
 }
 
-// specific product/dish page
+// specific product page
 .home-inner {
   width: 100%;
   height: 40em;
@@ -556,6 +541,73 @@ blockquote .svg-inline--fa {
   border-radius: 5px;
   margin-top: 0.7rem;
 }
+
+.productPageButton {
+  display: inline-block;
+  padding: 0.5em 3em;
+  border: 0.16em solid white;
+  color: white;
+  margin: 0 0.3em 0.3em 0;
+  text-align: center;
+  box-sizing: border-box;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: "Acme";
+  font-weight: 400;
+  background-color: transparent;
+  border-radius: 10px;
+}
+
+.productPageButton:hover {
+  background-color: transparent;
+  border-radius: 10px;
+  color: #dddddd;
+  border-color: #dddddd;
+  text-decoration: none;
+}
+
+.productPageButton:active {
+  background-color: transparent;
+  border-radius: 10px;
+  color: #bbbbbb;
+  border-color: #bbbbbb;
+  text-decoration: none;
+}
+
+.viewImage{
+  float:right;
+}
+.viewImage a{
+  color:yellow; 
+  font-size:1.2em;
+  font-family: 'Acme'
+}
+
+.nutriFactsTable, .productInfoTable{
+  tr{
+    td{
+      padding:10px !important;
+    }
+  }
+}
+
+.productInfoTable{
+  margin: 0 auto;
+}
+
+.productInfoLogos{
+  width:20px; 
+  height:20px;
+}
+
+#restaurant_image_productPage{
+  width:100%; opacity: 0.7; 
+  border: 1px solid; 
+  border-radius: 80%;
+}
+
+
+
 
 //footer
 .footer-basic {
@@ -654,4 +706,75 @@ blockquote .svg-inline--fa {
 .animation-rotate {
   -webkit-transform: rotate(360deg);
   transform: rotate(360deg);
+}
+
+//add dish page
+.addDishSubmitButton{
+  font-family:'Acme'; 
+  color: #73C6A0; 
+  border-color: #73C6A0;
+}
+
+.addDishResetButton{
+  font-family:'Acme'; 
+  margin-left:10px; 
+  color: #E74C3C; 
+  border-color: #E74C3C;
+}
+
+//manage dishes page
+#addDishButton{
+  font-family: 'Acme'; 
+  float:right; 
+  margin-top: 20px;
+}
+
+.goToOrdersButton{
+  font-family: 'Acme'; 
+  float:right; 
+  margin-top: 20px; 
+  margin-right: 20px;
+}
+
+#yourDishesText{
+  display: inline-block;
+}
+
+#nameLink{
+  color:black;
+}
+#nameProductSize{
+  font-size:1.1em;
+}
+.removeButton{
+  font-family:'Acme'; 
+  border-color:#E74C3C; 
+  color:#E74C3C;
+}
+
+//orders page
+.printButton{
+  float:right;
+  color:#1F618D;
+  border-color:#1F618D;
+  font-family:'Acme'
+}
+
+.approveButton{
+  font-family:'Acme'; 
+  border-color:#73C6A0; 
+  color:#73C6A0;
+}
+
+.rejectButton{
+  font-family:'Acme'; 
+  border-color:#E74C3C; 
+  color:#E74C3C;
+}
+
+.rejectButtonTwo{
+  margin-top: 6px; 
+  font-family:'Acme'; 
+  border-color:#E74C3C; 
+  color:#E74C3C;
 }
