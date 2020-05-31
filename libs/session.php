@@ -107,7 +107,6 @@ function cart_set_restaurant_shipping($restaurant, $method) {
     if(!isset($_SESSION['shipping_prefs']))
         $_SESSION['shipping_prefs'] = array();
     
-    // TODO: check if shipping supported?, else set default
     $_SESSION['shipping_prefs'][$restaurant] = htmlentities($method);
 }
 function cart_set_restaurant_message($restaurant, $message) {

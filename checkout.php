@@ -56,12 +56,30 @@ if(isset($_POST['confirm'])) {
                     $delivery_time
                 );
 
+                // simple algorithm for duplicate elimination & calc. quantity of each item item
+                $items_multi = array();
+                foreach($items as $item) {
+                    $found = false;
+                    foreach ($items_multi as $k => $item_new) {
+                        if($item['code'] == $item_new['code']) {
+                            $found = true;
+                            $item_new['quantity'] += 1;
+                            $items_multi[$k] = $item_new; // necessary step because $item_new is passed by value, not ref.
+                            break;
+                        }
+                    }
+                    if(!$found)
+                        array_push($items_multi, 
+                            array("code" => $item["code"], "restaurant" => $item["restaurant"],
+                                  "price" => $item["price"], "quantity" => 1)
+                        );
+                }
+                
                 if($code) {
                     array_push($codes, $code);
-                    foreach($items as $item) {
-                        // todo: group multiple items as one via the quantity param
-                        //  db_insert_new_order_item($code, $item['id'], $item['price']);
-                        db_add_order_item($code, $item['code'], 1, cart_get_restaurant_message($restaurant));
+                    
+                    foreach($items_multi as $item) { // we are NOT passing "items" directly -> see line 59
+                        db_add_order_item($code, $item['code'], $item['quantity'], cart_get_restaurant_message($restaurant));
                     }
                 } else {
                     die("DB error");
