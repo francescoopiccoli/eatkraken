@@ -43,7 +43,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
         </div>  
     </div>
 
-    <div class="container-fluid threeColumnsHome">
+    <div class="container-fluid main-3c-view">
       <div class="row">
         <div class="col-xs-12 col-sm-4 text-left ">
           <h2 class="text-center" >Product info</h2>

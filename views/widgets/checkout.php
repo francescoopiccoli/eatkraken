@@ -16,23 +16,23 @@ $cart = cart_get_items();
         <span id="checkout-x" <?php if(count($cart) == 0) echo 'style="display: none;"' ?>>
             x&nbsp;&nbsp;
         </span>
-        <i id="cart" title="cart" class="fas fa-shopping-cart widgetDimension"></i>
+        <i id="cart" title="cart" class="fas fa-shopping-cart "></i>
     </a>
 </li>
 
 <?php 
 if(restaurant_is_logged_in()) {
     echo "<li class=\"checkout-widget settingIcon\">
-    <a title=\"manage\" class=\"btn btn-text\" href=\"/restaurant/\"><i class=\"fas fa-tools fontAwesomeLogos\"></i>
+    <a title=\"manage\" class=\"btn btn-text\" href=\"/restaurant/\"><i class=\"fas fa-tools \"></i>
     </a>
     </li>";
     echo "<li class=\"checkout-widget settingIcon\">
-    <a title=\"log out\" class=\"btn btn-text\" href=\"/restaurant/auth.php?logout\"><i class=\"fas fa-sign-out-alt fontAwesomeLogos\"></i>
+    <a title=\"log out\" class=\"btn btn-text\" href=\"/restaurant/auth.php?logout\"><i class=\"fas fa-sign-out-alt \"></i>
     </a>
     </li>";}
     else{
         echo "<li class=\"checkout-widget\">
-    <a title=\"sign in\" class=\"btn btn-text\" href=\"/restaurant/login.php\"><i class=\"fas fa-sign-in-alt fontAwesomeLogos\"></i>
+    <a title=\"sign in\" class=\"btn btn-text\" href=\"/restaurant/login.php\"><i class=\"fas fa-sign-in-alt \"></i>
     </a>
     </li>";
 } ?>

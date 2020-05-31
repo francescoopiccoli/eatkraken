@@ -24,32 +24,21 @@ h1, h2, h3, h4 {
 .navbar-custom {
   background-color: #73c6a0; }
 
-.mainbody {
-  height: 80%;
-  width: 100%; }
-
 .navbar-logo {
   font-weight: 900;
   margin-left: 10px;
   font-family: "Acme"; }
 
-/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-.row.content {
-  height: 450px; }
-
 .checkout-widget {
   color: #fff !important;
   float: left !important; }
 
-.fontAwesomeLogos {
-  font-size: 1.2em; }
+.fas {
+  font-size: 1.2em !important; }
 
 #checkout-items {
   font-family: "acme";
   font-size: 1.2em; }
-
-.widgetDimension {
-  font-size: 1.1em; }
 
 @media screen and (max-width: 767px) {
   .settingIcon {
@@ -69,10 +58,7 @@ h1, h2, h3, h4 {
 
   .row.content {
     height: auto; } }
-.li {
-  color: white; }
-
-#selectCity {
+#select-city-outer {
   position: absolute;
   display: inline-block;
   left: 50%;
@@ -99,26 +85,21 @@ h1, h2, h3, h4 {
 .caret {
   margin-top: 12px;
   float: right;
-  color: #c98474; }
+  color: #e74c3c; }
 
 @media screen and (width: 1024px) {
-  #selectCity {
+  #select-city-outer {
     top: 20%; } }
 @media screen and (width: 768px) {
-  #selectCity {
-    top: 30%; }
-
-  #selectCity {
+  #select-city-outer {
     top: 40%; } }
 .dropdown button {
   width: 300px;
   font-family: "Acme";
   font-size: 1.6em;
-  z-index: 5; }
+  z-index: 99; }
 
-.cityList,
-.cityList a,
-.cityList li {
+.city-list, .city-list a, .city-list li {
   width: 300px;
   font-family: "Acme";
   font-size: 1.1em;
@@ -152,40 +133,40 @@ h1, h2, h3, h4 {
   height: 100px;
   margin: 0 auto; }
 
-.threeColumnsHome {
+.main-3c-view {
   margin-top: 2em;
   margin-bottom: 2em; }
 
-.restaurantsDiv .row .column .container {
+.restaurants-div .row .column .container {
   position: relative;
   width: 100%;
   padding: 3px 3px; }
 
-.restaurantsDiv .row .column .container:hover .restImage {
+.restaurants-div .row .column .container:hover .restaurant-image {
   opacity: 0.3; }
 
-.restaurantsDiv .row .column .container:hover .middle {
+.restaurants-div .row .column .container:hover .middle {
   opacity: 1; }
 
-.restaurantsDiv .row {
+.restaurants-div .row {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   padding: 0 4px; }
 
-.restaurantsDiv .row .column {
+.restaurants-div .row .column {
   -ms-flex: 33%;
   flex: 33%;
   max-width: 33%;
   padding: 0 4px; }
 
-.restaurantsDiv .row .column img {
+.restaurants-div .row .column img {
   margin-top: 8px;
   vertical-align: middle;
   width: 100%; }
 
-.restImage {
+.restaurant-image {
   -webkit-filter: grayscale(100%);
   filter: grayscale(100%);
   opacity: 1;
@@ -195,13 +176,13 @@ h1, h2, h3, h4 {
   transition: 0.5s ease;
   backface-visibility: hidden; }
 
-.ratingRowHomepage {
+.home-ratings {
   margin-bottom: 5%;
   margin-left: 0px;
   margin-right: 0px; }
 
 @media screen and (max-width: 600px) {
-  .restaurantsDiv {
+  .restaurants-div {
     display: none; } }
 .middle {
   transition: 0.5s ease;
@@ -213,7 +194,7 @@ h1, h2, h3, h4 {
   -ms-transform: translate(-50%, -50%);
   text-align: center; }
 
-.restName {
+.restaurant-name {
   color: black;
   font-size: 26px;
   padding: 16px 32px;
@@ -224,14 +205,14 @@ h1, h2, h3, h4 {
   border-radius: 100%; }
 
 blockquote .svg-inline--fa {
-  color: #a7d2cb;
+  color: #73c6a0;
   margin: 1rem; }
 
 .clients-hr {
-  border-top: 0.05rem solid #a7d2cb; }
+  border-top: 0.05rem solid #73c6a0; }
 
 .fa-quote-left {
-  color: #a7d2cb; }
+  color: #73c6a0; }
 
 /* Checkout page */
 .checkout-main {
@@ -286,7 +267,7 @@ blockquote .svg-inline--fa {
 .modal-title {
   display: inline; }
 
-#submit-btn {
+#city-dropdown-submit-btn {
   float: right; }
 
 @media screen and (min-width: 768px) {
@@ -310,7 +291,7 @@ blockquote .svg-inline--fa {
 .food-card:hover {
   text-decoration: none !important; }
 
-.checkoutProductImage {
+.checkout-product-image {
   border: 3px solid white;
   display: inline-block;
   position: relative;

@@ -38,19 +38,10 @@ h1, h2, h3, h4 {
   background-color: $aquamarina;
 }
 
-.mainbody {
-  height: 80%;
-  width: 100%;
-}
 .navbar-logo {
   font-weight: 900;
   margin-left: 10px;
   font-family: "Acme";
-}
-
-/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-.row.content {
-  height: 450px;
 }
 
 //navbar widgets
@@ -59,17 +50,14 @@ h1, h2, h3, h4 {
   float:left !important;
 }
 
-.fontAwesomeLogos{
-  font-size: 1.2em;
+// bigger font awesome logos
+.fas{
+  font-size: 1.2em !important;
 }
 
 #checkout-items {
   font-family: "acme";
   font-size: 1.2em;
-}
-
-.widgetDimension{
-  font-size: 1.1em;
 }
 
 @media screen and (max-width: 767px) {
@@ -84,6 +72,7 @@ h1, h2, h3, h4 {
     margin-right: 0px !important;
   }
 }
+
 .sidenav {
   background-color: #f1f1f1;
   height: 100%;
@@ -99,12 +88,9 @@ h1, h2, h3, h4 {
   }
 }
 
-.li {
-  color: white;
-}
 //Homepage
 //Homepage dropdown button
-#selectCity {
+#select-city-outer {
   position: absolute;
   display: inline-block;
   left: 50%;
@@ -135,20 +121,17 @@ h1, h2, h3, h4 {
 .caret {
   margin-top: 12px;
   float: right;
-  color: #c98474;
+  color: $red;
 }
 
 @media screen and(width: 1024px) {
-  #selectCity {
+  #select-city-outer {
     top: 20%;
   }
 }
 
 @media screen and(width: 768px) {
-  #selectCity {
-    top: 30%;
-  }
-  #selectCity {
+  #select-city-outer {
     top: 40%;
   }
 }
@@ -157,12 +140,10 @@ h1, h2, h3, h4 {
   width: 300px;
   font-family: "Acme";
   font-size: 1.6em;
-  z-index: 5;
+  z-index: 99;
 }
 
-.cityList,
-.cityList a,
-.cityList li {
+.city-list, .city-list a, .city-list li {
   width: 300px;
   font-family: "Acme";
   font-size: 1.1em;
@@ -202,27 +183,27 @@ h1, h2, h3, h4 {
   margin: 0 auto;
 }
 
-.threeColumnsHome {
+.main-3c-view {
   margin-top: 2em;
   margin-bottom: 2em;
 }
 
 //Homepage black-white grid
-.restaurantsDiv .row .column .container {
+.restaurants-div .row .column .container {
   position: relative;
   width: 100%;
   padding: 3px 3px;
 }
 
-.restaurantsDiv .row .column .container:hover .restImage {
+.restaurants-div .row .column .container:hover .restaurant-image {
   opacity: 0.3;
 }
 
-.restaurantsDiv .row .column .container:hover .middle {
+.restaurants-div .row .column .container:hover .middle {
   opacity: 1;
 }
 
-.restaurantsDiv .row {
+.restaurants-div .row {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
@@ -230,20 +211,20 @@ h1, h2, h3, h4 {
   padding: 0 4px;
 }
 
-.restaurantsDiv .row .column {
+.restaurants-div .row .column {
   -ms-flex: 33%;
   flex: 33%;
   max-width: 33%;
   padding: 0 4px;
 }
 
-.restaurantsDiv .row .column img {
+.restaurants-div .row .column img {
   margin-top: 8px;
   vertical-align: middle;
   width: 100%;
 }
 
-.restImage {
+.restaurant-image {
   -webkit-filter: grayscale(100%);
   filter: grayscale(100%);
   opacity: 1;
@@ -255,14 +236,14 @@ h1, h2, h3, h4 {
 
 }
 
-.ratingRowHomepage{
+.home-ratings{
   margin-bottom:5%;  
   margin-left:0px; 
   margin-right:0px;
 }
 
 @media screen and (max-width: 600px) {
-  .restaurantsDiv {
+  .restaurants-div {
     display: none;
   }
 }
@@ -278,7 +259,7 @@ h1, h2, h3, h4 {
   text-align: center;
 }
 
-.restName {
+.restaurant-name {
   color: black;
   font-size: 26px;
   padding: 16px 32px;
@@ -291,16 +272,16 @@ h1, h2, h3, h4 {
 }
 
 blockquote .svg-inline--fa {
-  color: #a7d2cb;
+  color: $aquamarina;
   margin: 1rem;
 }
 
 .clients-hr {
-  border-top: 0.05rem solid #a7d2cb;
+  border-top: 0.05rem solid $aquamarina;
 }
 
 .fa-quote-left {
-  color: #a7d2cb;
+  color: $aquamarina;
 }
 
 /* Checkout page */
@@ -366,7 +347,7 @@ blockquote .svg-inline--fa {
 .modal-title {
   display: inline;
 }
-#submit-btn {
+#city-dropdown-submit-btn {
   float: right;
 }
 
@@ -398,7 +379,7 @@ blockquote .svg-inline--fa {
   text-decoration: none !important;
 }
 
-.checkoutProductImage {
+.checkout-product-image {
   border: 3px solid white;
   display: inline-block;
   position: relative;
