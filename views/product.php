@@ -34,8 +34,11 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
               ?>
               </button>
             </form>
+            <span style="float:right"><a target="_blank" style="color:yellow; text" href="<?= $product_image_url?>"> View full page image</a></span>
+
             <br>
             <span id="cart-add-msg">
+
             <?php
               if($addToCart && !$addSuccess) {
                 echo "Error adding, try again?";
@@ -43,7 +46,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
             ?>
             </span>
           </div>
-        </div>
+        </div>  
     </div>
 
     <div class="container-fluid threeColumnsHome">
