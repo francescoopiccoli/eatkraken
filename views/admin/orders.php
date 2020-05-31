@@ -107,10 +107,11 @@ function getTimeLeft($deadline){
               <?php
 
               $order_items = db_get_orders_items($order["code"]);
-
-              foreach($order_items as $order_item){
-                $dish = db_get_dish($order_item[2]);
-                echo "<b>" . $order_item[3] . "x " . "</b>" . $dish[0][0] ."<b> ". $dish[0][1] ."€</b><br><b>Notes: </b><i>\"$order_item[4]\"</i><br><br>";
+              if($order_items){
+                foreach($order_items as $order_item){
+                  $dish = db_get_dish($order_item[2]);
+                  echo "<b>" . $order_item[3] . "x " . "</b>" . $dish[0][0] ."<b> ". $dish[0][1] ."€</b><br><b>Notes: </b><i>\"$order_item[4]\"</i><br><br>";
+                }
               }
               ?>
               </td>
@@ -172,11 +173,11 @@ function getTimeLeft($deadline){
                   <?php
 
                   $order_items = db_get_orders_items($order["code"]);
-
+                  if($order_items){
                   foreach($order_items as $order_item){
                     $dish = db_get_dish($order_item[2]);
                     echo "<b>" . $order_item[3] . "x " . "</b>" . $dish[0][0] ."<b> ". $dish[0][1] ."€</b><br><b>Notes: </b><i>\"$order_item[4]\"</i><br><br>";
-                  }
+                  }}
                   ?>
                   </td>
                   <td><?= $order[8] . "€" ?></td>
@@ -239,11 +240,11 @@ function getTimeLeft($deadline){
                 <?php
 
                 $order_items = db_get_orders_items($order["code"]);
-
-                foreach($order_items as $order_item){
-                  $dish = db_get_dish($order_item[2]);
-                  echo "<b>" . $order_item[3] . "x " . "</b>" . $dish[0][0] ."<b> ". $dish[0][1] ."€</b><br><b>Notes: </b><i>\"$order_item[4]\"</i><br><br>";
-                }
+                if($order_items){
+                  foreach($order_items as $order_item){
+                    $dish = db_get_dish($order_item[2]);
+                    echo "<b>" . $order_item[3] . "x " . "</b>" . $dish[0][0] ."<b> ". $dish[0][1] ."€</b><br><b>Notes: </b><i>\"$order_item[4]\"</i><br><br>";
+                  }}
                 ?>
                 </td>
                 <td><?= $order[8]. "€" ?></td>
