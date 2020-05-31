@@ -77,7 +77,7 @@
           foreach($results as $result) {
           ?>
           <a class="col-md-2 col-sm-4 col-xs-6 food-card" href="/product.php?code=<?= $result["code"] ?>">
-            <div class="panel panel-default">
+            <div alt="dish_card" title="dish_card" class="panel panel-default">
               <div class="panel-body list-thumb" style="background-image: url('<?= $result["image_url"] ?>'); background-size: cover; min-width: 100px; min-height: 120px;">
               </div>
               <div class="panel-footer">

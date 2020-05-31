@@ -24,7 +24,7 @@
 
                   foreach($dishes as $dish) { ?>
                   <div class="col-md-2 col-sm-4" href="">
-                    <div class="panel panel-default">
+                    <div alt="dish_card" title="dish_card" class="panel panel-default">
                       <div class="panel-body list-thumb" style="background-image: url('<?= $dish["image_url"]; ?>'); background-size: cover; min-width: 100px; min-height: 120px;">
                       
                       </div>

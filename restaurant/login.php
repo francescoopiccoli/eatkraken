@@ -26,9 +26,9 @@
       </div><!-- /.col-lg-6 -->
     </form>
     <br>
-    <b style="color: red"><?= (isset($_GET['error']) ? "Error!" : "") ?></b>
+    <b style="color: red; font-family: 'Acme'"><?= (isset($_GET['error']) ? "Wrong token, please try again!" : "") ?></b>
     <br><br>
-    <img style="width:10%" src="https://icons.iconarchive.com/icons/google/noto-emoji-animals-nature/512/22297-octopus-icon.png">
+    <img alt="eatkraken_logo" title="eatkraken_logo" style="width:10%" src="https://icons.iconarchive.com/icons/google/noto-emoji-animals-nature/512/22297-octopus-icon.png">
   </div>
 </div>
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/footer.php"); ?>

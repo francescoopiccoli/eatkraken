@@ -88,7 +88,7 @@ $isCheckoutPage = true; // for checkout widget
           <div class="row checkout-results-row">
            
             <div class="col-sm-3">
-            <img class="circular--landscape dish-thumbnail checkoutProductImage" src=<?=$item['image_url']?>>
+            <img alt="product_image" title="product_image" class="circular--landscape dish-thumbnail checkoutProductImage" src=<?=$item['image_url']?>>
 
             </div>
             <div class="col-sm-7">

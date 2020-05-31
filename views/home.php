@@ -43,19 +43,19 @@ $title = "EatKraken";
     </ol>
 
   <div class="carousel-inner">
-      <div class="item active" style="background-image: linear-gradient(rgba(20, 25, 24, 0.1), rgba(20, 25, 24, 1)), url('<?=getRandomImage()?>')">
+      <div title="food image" class="item active" style="background-image: linear-gradient(rgba(20, 25, 24, 0.1), rgba(20, 25, 24, 1)), url('<?=getRandomImage()?>')">
         <div class="carousel-caption">
           <h2>You choose it, we bring it!</h2>
         </div>
       </div>
 
-      <div class="item" style="background-image: linear-gradient(rgba(20, 25, 24, 0.1), rgba(20, 25, 24, 1)), url('<?=getRandomImage()?>')">
+      <div title="food image" class="item" style="background-image: linear-gradient(rgba(20, 25, 24, 0.1), rgba(20, 25, 24, 1)), url('<?=getRandomImage()?>')">
         <div class="carousel-caption">
           <h2>Your favourite restaurant, at your door!</h2>
         </div>
       </div>
 
-      <div class="item" style="background-image: linear-gradient(rgba(20, 25, 24, 0.1), rgba(20, 25, 24, 1)), url('<?=getRandomImage()?>')">
+      <div title="food image" class="item" style="background-image: linear-gradient(rgba(20, 25, 24, 0.1), rgba(20, 25, 24, 1)), url('<?=getRandomImage()?>')">
       <div class="carousel-caption">
           <h2>Sustainable food options available!</h2>
       </div>
@@ -65,9 +65,9 @@ $title = "EatKraken";
 
   <div class="container-fluid threeColumnsHome">
     <div class="row"> 
-      <div class="col-xs-12 col-sm-4 text-center "><h1>We Value Your Health...</h1><img class="homepageAllergenes" src="https://i.ya-webdesign.com/images/marshmallow-on-stick-free-png-8.png"><div class="text" id="allerg">Do you have some allergies or intollerances? Don't worry! All the products come with a complete list of allergens. You can easily select from the search page the allergenes you want to avoid, and that's it! We offer a great variety of meals, including gluten-free, lactose-free and many others.</div></div>
-      <div class="col-xs-12 col-sm-4 text-center "><h1>...Animals' Life...</h1><img class="homepageAllergenes" src="https://upload.wikimedia.org/wikipedia/commons/2/26/V_de_Vegan.png"> <div class="text" id="veg">The pleasure of food should not compromise other living beings wellness. This is why we decided to implement a vegan option to the meals search. From now on, you can enjoy your meals freely: we put a special effort in involving the best restaurant with a vegan option.</div></div>
-      <div class="col-xs-12 col-sm-4 text-center "><h1>...and the Environment</h1><img class="homepageAllergenes" src="https://cdn4.iconfinder.com/data/icons/eco-food-and-cosmetic-labels-1/128/Artboard_66-512.png"><div class="text" id="waste">Tired of being overwhelmed by tons of plastic packages? With Eatkraken you can give it a stop! In addiction to the vegan option, the portal supports now also the zero-waste option. We make the best to persuade restaurant to adopt full recyclable packages, to help us save the world!</div></div>
+      <div class="col-xs-12 col-sm-4 text-center "><h1>We Value Your Health...</h1><img title="gluten_free_icon" alt="gluten_free_icon" class="homepageAllergenes" src="https://i.ya-webdesign.com/images/marshmallow-on-stick-free-png-8.png"><div class="text" id="allerg">Do you have some allergies or intollerances? Don't worry! All the products come with a complete list of allergens. You can easily select from the search page the allergenes you want to avoid, and that's it! We offer a great variety of meals, including gluten-free, lactose-free and many others.</div></div>
+      <div class="col-xs-12 col-sm-4 text-center "><h1>...Animals' Life...</h1><img title="vegan_icon" alt="vegan_icon" class="homepageAllergenes" src="https://upload.wikimedia.org/wikipedia/commons/2/26/V_de_Vegan.png"> <div class="text" id="veg">The pleasure of food should not compromise other living beings wellness. This is why we decided to implement a vegan option to the meals search. From now on, you can enjoy your meals freely: we put a special effort in involving the best restaurant with a vegan option.</div></div>
+      <div class="col-xs-12 col-sm-4 text-center "><h1>...and the Environment</h1><img title="dairy_free_icon" alt="dairy_free_icon" class="homepageAllergenes" src="https://cdn4.iconfinder.com/data/icons/eco-food-and-cosmetic-labels-1/128/Artboard_66-512.png"><div class="text" id="waste">Tired of being overwhelmed by tons of plastic packages? With Eatkraken you can give it a stop! In addiction to the vegan option, the portal supports now also the zero-waste option. We make the best to persuade restaurant to adopt full recyclable packages, to help us save the world!</div></div>
     </div>
   </div>
 
@@ -81,7 +81,7 @@ $title = "EatKraken";
       <div class="column">
 
         <div class="container">
-          <?= "<img class=\"restImage\" src=\"" . $restaurants[0]["image_url"] ."\" style=\"width:100%\">"?>
+          <?= "<img alt=\"restaurant image\"  title=\"restaurant image\" class=\"restImage\" src=\"" . $restaurants[0]["image_url"] ."\" style=\"width:100%\">"?>
           <div class="middle">
             <div class="restName"><?=$restaurants[0]["name"]?>
             </div>
@@ -89,7 +89,7 @@ $title = "EatKraken";
         </div>
 
         <div class="container">
-          <?= "<img class=\"restImage\" src=\"" . $restaurants[1]["image_url"] ."\" style=\"width:100%\">"?>
+          <?= "<img alt=\"restaurant image\" title=\"restaurant image\" class=\"restImage\" src=\"" . $restaurants[1]["image_url"] ."\" style=\"width:100%\">"?>
           <div class="middle">
             <div class="restName"><?=$restaurants[1]["name"]?>
             </div>
@@ -102,7 +102,7 @@ $title = "EatKraken";
       <div class="column">
         
         <div class="container">
-          <?= "<img class=\"restImage\" src=\"" . $restaurants[2]["image_url"] ."\" style=\"width:100%\">"?>
+          <?= "<img alt=\"restaurant image\" title=\"restaurant image\" class=\"restImage\" src=\"" . $restaurants[2]["image_url"] ."\" style=\"width:100%\">"?>
           <div class="middle">
             <div class="restName"><?=$restaurants[2]["name"]?>
             </div>
@@ -110,7 +110,7 @@ $title = "EatKraken";
         </div>
 
         <div class="container">
-          <?= "<img class=\"restImage\" src=\"" . $restaurants[3]["image_url"] ."\" style=\"width:100%\">"?>
+          <?= "<img alt=\"restaurant image\" title=\"restaurant image\" class=\"restImage\" src=\"" . $restaurants[3]["image_url"] ."\" style=\"width:100%\">"?>
           <div class="middle">
             <div class="restName"><?=$restaurants[3]["name"]?>
             </div>
@@ -118,7 +118,7 @@ $title = "EatKraken";
         </div>
 
         <div class="container">
-          <?= "<img class=\"restImage\" src=\"" . $restaurants[4]["image_url"] ."\" style=\"width:100%\">"?>
+          <?= "<img alt=\"restaurant image\" title=\"restaurant image\" class=\"restImage\" src=\"" . $restaurants[4]["image_url"] ."\" style=\"width:100%\">"?>
           <div class="middle">
             <div class="restName"><?=$restaurants[4]["name"]?>
             </div>
@@ -130,7 +130,7 @@ $title = "EatKraken";
       <div class="column">
 
         <div class="container">
-          <?= "<img class=\"restImage\" src=\"" . $restaurants[5]["image_url"] ."\" style=\"width:100%\">"?>
+          <?= "<img alt=\"restaurant image\" title=\"restaurant image\" class=\"restImage\" src=\"" . $restaurants[5]["image_url"] ."\" style=\"width:100%\">"?>
           <div class="middle">
             <div class="restName"><?=$restaurants[5]["name"]?>
             </div>
@@ -138,7 +138,7 @@ $title = "EatKraken";
         </div>
 
         <div class="container">
-          <?= "<img class=\"restImage\" src=\"" . $restaurants[6]["image_url"] ."\" style=\"width:100%\">"?>
+          <?= "<img alt=\"restaurant image\" title=\"restaurant image\" class=\"restImage\" src=\"" . $restaurants[6]["image_url"] ."\" style=\"width:100%\">"?>
           <div class="middle">
             <div class="restName"><?=$restaurants[6]["name"]?>
             </div>

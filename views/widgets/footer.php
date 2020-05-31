@@ -1,9 +1,9 @@
 <div class="footer-basic">
   <footer>
       <div class="social">
-      <a href="#"><i class="fab fa-facebook-f"></i></a>
-      <a href="#"><i class="fab fa-twitter"></i></a>
-      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i title ="facebook" class="fab fa-facebook-f"></i></a>
+      <a href="#"><i title ="twitter" class="fab fa-twitter"></i></a>
+      <a href="#"><i title ="instagram" class="fab fa-instagram"></i></a>
       </div>
 
       <ul class="list-inline">
