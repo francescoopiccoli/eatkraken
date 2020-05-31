@@ -533,7 +533,7 @@ blockquote .svg-inline--fa {
   text-decoration: none;
 }
 
-.nutriFactsTable, .productInfoTable{
+.table-nutri-facts, .table-product-info{
   tr{
     td{
       padding:10px !important;
@@ -541,16 +541,16 @@ blockquote .svg-inline--fa {
   }
 }
 
-.productInfoTable{
+.table-product-info{
   margin: 0 auto;
 }
 
-.productInfoLogos{
+.product-info-logos{
   width:20px; 
   height:20px;
 }
 
-#restaurant_image_productPage{
+#rest-image{
   width:100%; opacity: 0.7; 
   border: 1px solid; 
   border-radius: 80%;
@@ -619,13 +619,7 @@ blockquote .svg-inline--fa {
   margin-bottom: 0;
 }
 
-.vcenter {
-  display: inline-block;
-  vertical-align: middle;
-  float: none;
-}
-
-//printing accepted orders
+// printing accepted orders only
 @media print {
   .footer-basic {
     display: none;
@@ -641,6 +635,10 @@ blockquote .svg-inline--fa {
   }
 }
 
+.margin-6 {
+  margin-top: 6px;
+}
+
 //navbar animations
 #cart {
   -webkit-transition: -webkit-transform 1s ease-in-out;
@@ -648,7 +646,7 @@ blockquote .svg-inline--fa {
 }
 
 //applied to some pages in order to have the footer at the very bottom
-.allButFooter {
+.main-content {
   min-height: calc(90vh - 40px);
 }
 
@@ -659,13 +657,13 @@ blockquote .svg-inline--fa {
 }
 
 //add dish page
-.addDishSubmitButton{
+.add-dish-btn-submit{
   font-family:'Acme'; 
   color: #73C6A0; 
   border-color: #73C6A0;
 }
 
-.addDishResetButton{
+.add-dish-btn-reset{
   font-family:'Acme'; 
   margin-left:10px; 
   color: #E74C3C; 
@@ -673,58 +671,52 @@ blockquote .svg-inline--fa {
 }
 
 //manage dishes page
-#addDishButton{
+#add-dish-btn{
   font-family: 'Acme'; 
   float:right; 
   margin-top: 20px;
 }
 
-.goToOrdersButton{
+.orders-goto-btn{
   font-family: 'Acme'; 
   float:right; 
   margin-top: 20px; 
   margin-right: 20px;
 }
 
-#yourDishesText{
+#your-dishes{
   display: inline-block;
 }
 
-#nameLink{
+#name-link{
   color:black;
 }
-#nameProductSize{
+#name-product-size{
   font-size:1.1em;
 }
-.removeButton{
+.btn-remove{
   font-family:'Acme'; 
   border-color:#E74C3C; 
   color:#E74C3C;
 }
 
 //orders page
-.printButton{
+.btn-print{
   float:right;
   color:#1F618D;
   border-color:#1F618D;
   font-family:'Acme'
 }
 
-.approveButton{
+.btn-approve{
   font-family:'Acme'; 
   border-color:#73C6A0; 
   color:#73C6A0;
 }
 
-.rejectButton{
+.btn-reject{
   font-family:'Acme'; 
   border-color:#E74C3C; 
   color:#E74C3C;
 }
 
-.rejectButtonTwo{
-  margin-top: 6px; 
-  font-family:'Acme'; 
-  border-color:#E74C3C; 
-  color:#E74C3C;
-}

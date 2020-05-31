@@ -8,7 +8,7 @@
 <body style="background-image: linear-gradient(white, #2e3333); height: 80%;">
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/navbar.php"); ?>
 
-<div class="container text-center allButFooter" style="margin-top:7%">
+<div class="container text-center main-content" style="margin-top:7%">
   <div style="">
     <h1>EATKRAKEN</h1>
     <h2>Enter in your restaurant account</h2>

@@ -420,17 +420,17 @@ blockquote .svg-inline--fa {
   border-color: #bbbbbb;
   text-decoration: none; }
 
-.nutriFactsTable tr td, .productInfoTable tr td {
+.table-nutri-facts tr td, .table-product-info tr td {
   padding: 10px !important; }
 
-.productInfoTable {
+.table-product-info {
   margin: 0 auto; }
 
-.productInfoLogos {
+.product-info-logos {
   width: 20px;
   height: 20px; }
 
-#restaurant_image_productPage {
+#rest-image {
   width: 100%;
   opacity: 0.7;
   border: 1px solid;
@@ -486,11 +486,6 @@ blockquote .svg-inline--fa {
   color: inherit;
   margin-bottom: 0; }
 
-.vcenter {
-  display: inline-block;
-  vertical-align: middle;
-  float: none; }
-
 @media print {
   .footer-basic {
     display: none; }
@@ -503,71 +498,68 @@ blockquote .svg-inline--fa {
 
   .dont-print {
     display: none; } }
+.margin-6 {
+  margin-top: 6px; }
+
 #cart {
   -webkit-transition: -webkit-transform 1s ease-in-out;
   transition: transform 1s ease-in-out; }
 
-.allButFooter {
+.main-content {
   min-height: calc(90vh - 40px); }
 
 .animation-rotate {
   -webkit-transform: rotate(360deg);
   transform: rotate(360deg); }
 
-.addDishSubmitButton {
+.add-dish-btn-submit {
   font-family: 'Acme';
   color: #73C6A0;
   border-color: #73C6A0; }
 
-.addDishResetButton {
+.add-dish-btn-reset {
   font-family: 'Acme';
   margin-left: 10px;
   color: #E74C3C;
   border-color: #E74C3C; }
 
-#addDishButton {
+#add-dish-btn {
   font-family: 'Acme';
   float: right;
   margin-top: 20px; }
 
-.goToOrdersButton {
+.orders-goto-btn {
   font-family: 'Acme';
   float: right;
   margin-top: 20px;
   margin-right: 20px; }
 
-#yourDishesText {
+#your-dishes {
   display: inline-block; }
 
-#nameLink {
+#name-link {
   color: black; }
 
-#nameProductSize {
+#name-product-size {
   font-size: 1.1em; }
 
-.removeButton {
+.btn-remove {
   font-family: 'Acme';
   border-color: #E74C3C;
   color: #E74C3C; }
 
-.printButton {
+.btn-print {
   float: right;
   color: #1F618D;
   border-color: #1F618D;
   font-family: "Acme"; }
 
-.approveButton {
+.btn-approve {
   font-family: 'Acme';
   border-color: #73C6A0;
   color: #73C6A0; }
 
-.rejectButton {
-  font-family: 'Acme';
-  border-color: #E74C3C;
-  color: #E74C3C; }
-
-.rejectButtonTwo {
-  margin-top: 6px;
+.btn-reject {
   font-family: 'Acme';
   border-color: #E74C3C;
   color: #E74C3C; }

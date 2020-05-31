@@ -9,7 +9,7 @@ $isCheckoutPage = true; // for checkout widget
 
     <?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/navbar.php"); ?>
 
-    <div class="allButFooter">
+    <div class="main-content">
 
     <div class="container-fluid text-center mainbody">   
     <?php if(count($cart_items) > 0) { ?>   

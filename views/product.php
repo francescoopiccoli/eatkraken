@@ -61,7 +61,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
 
     <div id="cont-rest" class="container-fluid justify-content-center" >
           <div class="row justify-content-center">
-          <div class="col-xs-12 col-sm-4 text-center"><?php echo "<img id=\"restaurant_image_productPage\"alt=\"restaurant_image\" title=\"restaurant_image\" src=\"$restaurant_image_url\">"?>
+          <div class="col-xs-12 col-sm-4 text-center"><?php echo "<img id=\"rest-image\"alt=\"restaurant_image\" title=\"restaurant_image\" src=\"$restaurant_image_url\">"?>
           </div>
           <div class="col-xs-12 col-sm-8 text-center">
             <h2 id="rest-name"> <?= $restaurant_name?></h2>

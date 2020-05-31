@@ -47,29 +47,29 @@ $product_flag_zero_waste = $product["flag_zero_waste"];
 $product_image_url = $product["image_url"];
 
 function allergenes($gluten_free, $lactose_free, $vegan, $fresh, $zero_waste){
-    $allergene = "<table class=\"productInfoTable\">";
+    $allergene = "<table class=\"table-product-info\">";
     if($gluten_free){
-       $allergene .= "<tr><td>Gluten free</td><td></td><td>&nbsp &nbsp</td><td><img class=\"productInfoLogos\" src=\"images/glutine.png\"</td></tr>";
+       $allergene .= "<tr><td>Gluten free</td><td></td><td>&nbsp &nbsp</td><td><img class=\"product-info-logos\" src=\"images/glutine.png\"</td></tr>";
 
     }
 
     if($lactose_free){
-        $allergene .= "<tr><td>Lactose free</td><td></td><td>&nbsp &nbsp</td><td><img class=\"productInfoLogos\" src=\"images/latte.png\"</td></tr>";
+        $allergene .= "<tr><td>Lactose free</td><td></td><td>&nbsp &nbsp</td><td><img class=\"product-info-logos\" src=\"images/latte.png\"</td></tr>";
 
     }
 
     if($vegan){
-        $allergene .= "<tr><td>Vegan</td><td></td><td>&nbsp &nbsp</td><td><img class=\"productInfoLogos\" src=\"images/vegan.png\"</td></tr>";
+        $allergene .= "<tr><td>Vegan</td><td></td><td>&nbsp &nbsp</td><td><img class=\"product-info-logos\" src=\"images/vegan.png\"</td></tr>";
 
     }
 
     if($fresh){
-       $allergene .= "<tr><td>Fresh</td><td>&nbsp &nbsp</td><td></td><td><img class=\"productInfoLogos\" src=\"images/fresh.jpeg\"</td></tr>";
+       $allergene .= "<tr><td>Fresh</td><td>&nbsp &nbsp</td><td></td><td><img class=\"product-info-logos\" src=\"images/fresh.jpeg\"</td></tr>";
 
     }
 
     if($zero_waste){
-        $allergene .= "<tr><td>Zero waste</td><td>&nbsp  &nbsp</td><td></td><td><img class=\"productInfoLogos\" src=\"images/zero_waste.png\"</td></tr>";
+        $allergene .= "<tr><td>Zero waste</td><td>&nbsp  &nbsp</td><td></td><td><img class=\"product-info-logos\" src=\"images/zero_waste.png\"</td></tr>";
     }
     return $allergene . "</table>";
 }
@@ -77,7 +77,7 @@ function allergenes($gluten_free, $lactose_free, $vegan, $fresh, $zero_waste){
 $product_allergenes = allergenes($product_flag_gluten_free, $product_flag_lactose_free, $product_flag_vegan, $product_flag_fresh, $product_flag_zero_waste);
 
 $product_nutri_facts = "
-<table class=\"table table-bordered nutriFactsTable\">
+<table class=\"table table-bordered table-nutri-facts\">
 <tr><td><b>Calories</b>:</td> <td>$product_nutri_kcal kcal</td> </tr>
 <tr><td><b>Carbs</b>:</td> <td>$product_nutri_carbs g</td> </tr>
 <tr><td><b>Fats</b>:</td>  <td>$product_nutri_fats g</td> </tr>

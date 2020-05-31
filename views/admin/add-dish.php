@@ -72,8 +72,8 @@
       <br>
       <br>
       <div class="text-right">
-        <input type="submit" value="ADD" class="btn btn-default btn-lg addDishSubmitButton" name="submit" onclick="alert('Dish added!')">
-        <input type="reset" value="RESET" class="btn btn-default btn-lg addDishResetButton" name="reset">
+        <input type="submit" value="ADD" class="btn btn-default btn-lg add-dish-btn-submit" name="submit" onclick="alert('Dish added!')">
+        <input type="reset" value="RESET" class="btn btn-default btn-lg add-dish-btn-reset" name="reset">
       </div>
       </form>
     </div>
