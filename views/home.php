@@ -20,20 +20,21 @@ $title = "EatKraken";
 <div class="mainbody"> 
   
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
-  <div class="dropdown"id="selectCity">
-    <button class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <span id="select-city" >SELECT A CITY</span> <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu cityList">
-      <?php 
-            $cities = db_simple_query("select * from cities");
-            foreach($cities as $city){
-            $link = "/list.php?city=" . $city['code'] . "&time=&category=0";
-            echo "<li><a href=\"$link\">" . $city['name'] . "</a></li>";
-            }
-      ?>
-    </ul>
-  </div>
+
+    <div class="dropdown"id="selectCity">
+      <button class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <span id="select-city" >SELECT A CITY</span> <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu cityList">
+        <?php 
+              $cities = db_simple_query("select * from cities");
+              foreach($cities as $city){
+              $link = "/list.php?city=" . $city['code'] . "&time=&category=0";
+              echo "<li><a href=\"$link\">" . $city['name'] . "</a></li>";
+              }
+        ?>
+      </ul>
+    </div>
      <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
       <li data-target="#myCarousel" data-slide-to="1"></li>
