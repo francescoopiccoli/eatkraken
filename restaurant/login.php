@@ -28,7 +28,7 @@
     <br>
     <b style="color: red; font-family: 'Acme'"><?= (isset($_GET['error']) ? "Wrong token, please try again!" : "") ?></b>
     <br><br>
-    <img alt="eatkraken_logo" title="eatkraken_logo" style="width:10%" src="https://icons.iconarchive.com/icons/google/noto-emoji-animals-nature/512/22297-octopus-icon.png">
+    <img alt="eatkraken_logo" title="eatkraken_logo" style="width:10%" src="../images/logo_image.png">
   </div>
 </div>
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/footer.php"); ?>

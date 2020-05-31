@@ -18,7 +18,7 @@ $isCheckoutPage = true; // for checkout widget
 
           <div class="row checkout-total-row">
             <div class="col-sm-3">
-              <b class=".checkout-body" >Deliver to:</b>
+              <b class="checkout-body" >Deliver to:</b>
               <br><br>
               <b id="full_name"><?= $cart_name; ?></b> (<a href="#" onclick="editName()">edit</a>)
               <br>  
@@ -28,7 +28,7 @@ $isCheckoutPage = true; // for checkout widget
 
             </div>
             <div class="col-sm-3">
-              <b class=".checkout-body" >Contacts:</b>
+              <b class="checkout-body" >Contacts:</b>
               <br><br>
               <span id="mail"><?= $cart_email ?></span> (<a href="#" onclick="editMail()">edit</a>)
               <br>
@@ -37,11 +37,11 @@ $isCheckoutPage = true; // for checkout widget
 
            
               <div class="col-sm-2 text-center">
-              <b class=".checkout-body">Shipping</b>
+              <b class="checkout-body">Shipping</b>
                 <h3><?= $cart_shipping_total ?>€</h3>
               </div>
               <div class="col-sm-2 text-center">
-              <b class=".checkout-body" >Total</b>
+              <b class="checkout-body" >Total</b>
 
                 <h3><?= $cart_total ?>€</h3>
               </div>
@@ -138,7 +138,7 @@ $isCheckoutPage = true; // for checkout widget
         </form>
       </div>
     </div><?php } 
-                else{echo "<h1>Your cart is empty</h1><h2>Add something from the list!</h2><br><br><img style=\"width:15%\" src=\"https://icons.iconarchive.com/icons/google/noto-emoji-animals-nature/512/22297-octopus-icon.png\">";}?>  
+                else{echo "<h1>Your cart is empty</h1><h2>Add something from the list!</h2><br><br><img style=\"width:15%\" src=\"../images/logo_image.png\">";}?>  
     </div></div>
 
     <?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/footer.php"); ?>
