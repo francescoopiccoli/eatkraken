@@ -74,7 +74,7 @@ $title = "EatKraken";
 
   <div class="restaurantsDiv">
 
-    <h1 class="centered-h1">We work with...</h1>
+    <h1 class="text-center">We work with...</h1>
     <div class="row"> 
 
       <div class="column">

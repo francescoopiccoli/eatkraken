@@ -1,3 +1,6 @@
+/* EatKraken stylesheet */
+
+
 // main colors
 $aquamarina: #73c6a0;
 $red: #e74c3c;
@@ -9,15 +12,6 @@ body {
 
 h1, h2, h3, h4 {
   font-family: "Acme";
-}
-.text {
-  // ??
-  font-family: "Arial";
-  font-weight: 500;
-}
-
-.centered-h1 { // ??
-  text-align: center;
 }
 
 // remove the navbar's default margin-bottom and rounded borders
@@ -53,10 +47,12 @@ h1, h2, h3, h4 {
   margin-left: 10px;
   font-family: "Acme";
 }
+
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
 .row.content {
   height: 450px;
 }
+
 //navbar widgets
 .checkout-widget {
   color: #fff !important;
@@ -499,11 +495,6 @@ blockquote .svg-inline--fa {
 
 #rest-desc {
   width: 100%;
-  text-align: center;
-}
-
-.centered-h2 {
-  margin-top: 15px;
   text-align: center;
 }
 

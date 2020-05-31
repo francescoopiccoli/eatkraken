@@ -46,15 +46,15 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
     <div class="container-fluid threeColumnsHome">
       <div class="row">
         <div class="col-xs-12 col-sm-4 text-left ">
-          <h2 class="centered-h2" >Product info</h2>
+          <h2 class="text-center" >Product info</h2>
           <?= $product_allergenes ?>
         </div>
         <div class="col-xs-12 col-sm-4 text-center ">
-          <h2  class="centered-h2">Ingredients</h2>
+          <h2  class="text-center">Ingredients</h2>
           <div id="ingredients"><?= $product_ingredients ?></div>
         </div>
         <div class="col-xs-12 col-sm-4 text-left ">
-          <h2 class="centered-h2">Nutritional facts  (x 100g)</h2>
+          <h2 class="text-center">Nutritional facts  (x 100g)</h2>
           <?= $product_nutri_facts ?>
           </div>
       </div>
