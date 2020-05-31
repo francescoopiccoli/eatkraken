@@ -81,7 +81,6 @@ function db_get_items_cost($order){
 
 function db_get_shipping_cost($restaurant, $method) {
     // 1. is $method supported? no -> -1 in db
-    //TODO?
     switch ($method) {
         case 0:
             return db_get_cost_eat_in($restaurant);

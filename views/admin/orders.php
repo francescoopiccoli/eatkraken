@@ -87,26 +87,13 @@ function getTimeLeft($deadline){
           </thead>
           <tbody>
           <?php
-            $orders = db_get_accepted_orders(restaurant_get_logged_id());
+          $orders = db_get_accepted_orders(restaurant_get_logged_id());
 
-
-      if($orders){
-          foreach($orders as $order){ 
-            $shipping_type = "";
-            if($order['shipping_type']==0){
-              $shipping_type ="Eat in";
-              $deliveryCost = $delivery_cost['cost_eat_in'];
-
-            }
-            elseif($order['shipping_type']==1){
-              $shipping_type ="Take away";
-              $deliveryCost = $delivery_cost['cost_takeaway'];
-            }
-            else{
-              $shipping_type = "Home delivery";
-              $deliveryCost = $delivery_cost['cost_home_delivery'];
-
-            }?>
+          if($orders){
+            foreach($orders as $order){ 
+              $shipping_type = shipping_method_name_by_id($order['shipping_type']);
+              $deliveryCost = $delivery_cost[shipping_method_colname_by_id($order['shipping_type'])];
+            ?>
 
             <tr>
               <th scope="row"><?= $order["code"] ?></th>
@@ -166,25 +153,13 @@ function getTimeLeft($deadline){
 
               <!-- pending orders -->
             <?php 
-              $orders = db_get_pending_orders(restaurant_get_logged_id());
+            $orders = db_get_pending_orders(restaurant_get_logged_id());
+
             if($orders){
-              foreach($orders as $order){ 
-                  $shipping_type = "";
-                  if($order['shipping_type']==0){
-                    $shipping_type ="Eat in";
-                    $deliveryCost = $delivery_cost['cost_eat_in'];
-      
-                  }
-                  elseif($order['shipping_type']==1){
-                    $shipping_type ="Take away";
-                    $deliveryCost = $delivery_cost['cost_takeaway'];
-      
-                  }
-                  else{
-                    $shipping_type = "Home delivery";
-                    $deliveryCost = $delivery_cost['cost_home_delivery'];
-      
-                  }?>
+              foreach($orders as $order){   
+                $shipping_type = shipping_method_name_by_id($order['shipping_type']);
+                $deliveryCost = $delivery_cost[shipping_method_colname_by_id($order['shipping_type'])];
+            ?>
                 <tr>
                   <th scope="row"><?= $order["code"] ?></th>
                   <td>
@@ -246,26 +221,12 @@ function getTimeLeft($deadline){
             <tbody>
             <?php 
             
-              $orders = db_get_past_orders(restaurant_get_logged_id());
-          if($orders){
-            foreach($orders as $order){ 
-              // TODO: $shipping_type via libreria!! (su tutti e 3)
-                $shipping_type = "";
-                if($order['shipping_type']==0){
-                  $shipping_type ="Eat in";
-                  $deliveryCost = $delivery_cost['cost_eat_in'];
-    
-                }
-                elseif($order['shipping_type']==1){
-                  $shipping_type ="Take away";
-                  $deliveryCost = $delivery_cost['cost_takeaway'];
-    
-                }
-                else{
-                  $shipping_type = "Home delivery";
-                  $deliveryCost = $delivery_cost['cost_home_delivery'];
-    
-                }?>
+            $orders = db_get_past_orders(restaurant_get_logged_id());
+            if($orders){
+              foreach($orders as $order){ 
+                $shipping_type = shipping_method_name_by_id($order['shipping_type']);
+                $deliveryCost = $delivery_cost[shipping_method_colname_by_id($order['shipping_type'])];
+            ?>
               <tr>
               <th scope="row"><?= $order["code"] ?></th>
                   <td>

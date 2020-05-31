@@ -44,7 +44,6 @@ if(isset($_POST['confirm'])) {
                         $delivery_time = $t;
                 }
 
-                // TODO: cart_get_total($restaurant)!
                 $code = db_insert_empty_order(
                     $restaurant, 
                     cart_get_full_name(), 

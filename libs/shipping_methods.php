@@ -4,8 +4,8 @@
 function shipping_methods() {
     return array(
         array("id" => 0, "col" => "eat_in", "name" => "Eat in"),
-        array("id" => 1, "col" => "eat_in", "name" => "Take away"),
-        array("id" => 2, "col" => "eat_in", "name" => "Home delivery"),
+        array("id" => 1, "col" => "takeaway", "name" => "Take away"),
+        array("id" => 2, "col" => "home_delivery", "name" => "Home delivery"),
     );
 }
 
