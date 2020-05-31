@@ -13,7 +13,7 @@
 
   <div class="text-center mainbody allButFooter">    
     <form id="form" class="row text-center" action="/list.php" method="get">
-      <div class="col-sm-12 bg-secondary sidenav text-left" style="padding-top: 2%; padding-bottom: 2%">
+      <div class="col-xs-12 sidenav text-left" style="padding-top: 2%; padding-bottom: 2%">
       <div class="col-md-2 col-sm-4">
        <h4>Deliverable to:</h4>
         <select name="city" class="form-control form-refresh">
@@ -29,12 +29,12 @@
 
         <div class="col-sm-4 col-md-2">
         <h4>Deliver within:</h4>
-        <input type="number" name="time" id="" class="form-control form-refresh" placeholder="minutes" min="15" max="120" value="<?= htmlentities($deliveryTime); ?>">
+        <input type="number" name="time" class="form-control form-refresh" placeholder="minutes" min="15" max="120" value="<?= htmlentities($deliveryTime); ?>">
         <br>
       </div>
       <div class="col-sm-4 col-md-2">
         <h4>In category</h4>
-        <select name="category" id="" class="form-control form-refresh">
+        <select name="category" class="form-control form-refresh">
           <option value="0" selected>All</option>
           <?php
             foreach ($categories as $category) {
@@ -90,7 +90,6 @@
               </div>
             </div>
           </a>
-        </a>
         <?php
         }
         ?>

@@ -21,7 +21,7 @@ $title = "EatKraken";
   
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
-    <div class="dropdown"id="selectCity">
+    <div class="dropdown" id="selectCity">
       <button class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <span id="select-city" >SELECT A CITY</span> <span class="caret"></span>
       </button>
