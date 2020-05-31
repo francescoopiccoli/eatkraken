@@ -20,7 +20,7 @@
 
 <div class="container-fluid text-center mainbody">    
   <div class="row content">
-    <div class="col-sm-3 .bg-secondary sidenav">
+    <div class="col-sm-3 sidenav">
       <?= $sidebar_content; ?>
     </div>
     <div class="col-sm-9 text-left"> 
