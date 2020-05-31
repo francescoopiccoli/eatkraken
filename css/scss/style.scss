@@ -1,3 +1,6 @@
+/* EatKraken stylesheet */
+
+
 // main colors
 $aquamarina: #73c6a0;
 $red: #e74c3c;
@@ -9,15 +12,6 @@ body {
 
 h1, h2, h3, h4 {
   font-family: "Acme";
-}
-.text {
-  // ??
-  font-family: "Arial";
-  font-weight: 500;
-}
-
-.centered-h1 { // ??
-  text-align: center;
 }
 
 // remove the navbar's default margin-bottom and rounded borders
@@ -44,36 +38,26 @@ h1, h2, h3, h4 {
   background-color: $aquamarina;
 }
 
-.mainbody {
-  height: 80%;
-  width: 100%;
-}
 .navbar-logo {
   font-weight: 900;
   margin-left: 10px;
   font-family: "Acme";
 }
-/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-.row.content {
-  height: 450px;
-}
+
 //navbar widgets
 .checkout-widget {
   color: #fff !important;
   float:left !important;
 }
 
-.fontAwesomeLogos{
-  font-size: 1.2em;
+// bigger font awesome logos
+.fas{
+  font-size: 1.2em !important;
 }
 
 #checkout-items {
   font-family: "acme";
   font-size: 1.2em;
-}
-
-.widgetDimension{
-  font-size: 1.1em;
 }
 
 @media screen and (max-width: 767px) {
@@ -88,6 +72,7 @@ h1, h2, h3, h4 {
     margin-right: 0px !important;
   }
 }
+
 .sidenav {
   background-color: #f1f1f1;
   height: 100%;
@@ -103,12 +88,9 @@ h1, h2, h3, h4 {
   }
 }
 
-.li {
-  color: white;
-}
 //Homepage
 //Homepage dropdown button
-#selectCity {
+#select-city-outer {
   position: absolute;
   display: inline-block;
   left: 50%;
@@ -139,20 +121,17 @@ h1, h2, h3, h4 {
 .caret {
   margin-top: 12px;
   float: right;
-  color: #c98474;
+  color: $red;
 }
 
 @media screen and(width: 1024px) {
-  #selectCity {
+  #select-city-outer {
     top: 20%;
   }
 }
 
 @media screen and(width: 768px) {
-  #selectCity {
-    top: 30%;
-  }
-  #selectCity {
+  #select-city-outer {
     top: 40%;
   }
 }
@@ -161,12 +140,10 @@ h1, h2, h3, h4 {
   width: 300px;
   font-family: "Acme";
   font-size: 1.6em;
-  z-index: 5;
+  z-index: 99;
 }
 
-.cityList,
-.cityList a,
-.cityList li {
+.city-list, .city-list a, .city-list li {
   width: 300px;
   font-family: "Acme";
   font-size: 1.1em;
@@ -206,27 +183,27 @@ h1, h2, h3, h4 {
   margin: 0 auto;
 }
 
-.threeColumnsHome {
+.main-3c-view {
   margin-top: 2em;
   margin-bottom: 2em;
 }
 
 //Homepage black-white grid
-.restaurantsDiv .row .column .container {
+.restaurants-div .row .column .container {
   position: relative;
   width: 100%;
   padding: 3px 3px;
 }
 
-.restaurantsDiv .row .column .container:hover .restImage {
+.restaurants-div .row .column .container:hover .restaurant-image {
   opacity: 0.3;
 }
 
-.restaurantsDiv .row .column .container:hover .middle {
+.restaurants-div .row .column .container:hover .middle {
   opacity: 1;
 }
 
-.restaurantsDiv .row {
+.restaurants-div .row {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
@@ -234,20 +211,20 @@ h1, h2, h3, h4 {
   padding: 0 4px;
 }
 
-.restaurantsDiv .row .column {
+.restaurants-div .row .column {
   -ms-flex: 33%;
   flex: 33%;
   max-width: 33%;
   padding: 0 4px;
 }
 
-.restaurantsDiv .row .column img {
+.restaurants-div .row .column img {
   margin-top: 8px;
   vertical-align: middle;
   width: 100%;
 }
 
-.restImage {
+.restaurant-image {
   -webkit-filter: grayscale(100%);
   filter: grayscale(100%);
   opacity: 1;
@@ -259,14 +236,14 @@ h1, h2, h3, h4 {
 
 }
 
-.ratingRowHomepage{
+.home-ratings{
   margin-bottom:5%;  
   margin-left:0px; 
   margin-right:0px;
 }
 
 @media screen and (max-width: 600px) {
-  .restaurantsDiv {
+  .restaurants-div {
     display: none;
   }
 }
@@ -282,7 +259,7 @@ h1, h2, h3, h4 {
   text-align: center;
 }
 
-.restName {
+.restaurant-name {
   color: black;
   font-size: 26px;
   padding: 16px 32px;
@@ -295,16 +272,16 @@ h1, h2, h3, h4 {
 }
 
 blockquote .svg-inline--fa {
-  color: #a7d2cb;
+  color: $aquamarina;
   margin: 1rem;
 }
 
 .clients-hr {
-  border-top: 0.05rem solid #a7d2cb;
+  border-top: 0.05rem solid $aquamarina;
 }
 
 .fa-quote-left {
-  color: #a7d2cb;
+  color: $aquamarina;
 }
 
 /* Checkout page */
@@ -370,7 +347,7 @@ blockquote .svg-inline--fa {
 .modal-title {
   display: inline;
 }
-#submit-btn {
+#city-dropdown-submit-btn {
   float: right;
 }
 
@@ -402,7 +379,7 @@ blockquote .svg-inline--fa {
   text-decoration: none !important;
 }
 
-.checkoutProductImage {
+.checkout-product-image {
   border: 3px solid white;
   display: inline-block;
   position: relative;
@@ -483,28 +460,22 @@ blockquote .svg-inline--fa {
   background-color: #f0f0f0;
   width: 100%;
 }
+#cont-rest > .row {
+  padding: 30px;
+}
 
 #rest-name {
   margin-top: 30px;
 }
-
-#row-padd {
-  padding: 30px;
-}
-
-#hr1 {
-  border-color: #bbb;
-  width: 30%;
-}
-
 #rest-desc {
   width: 100%;
   text-align: center;
 }
 
-.centered-h2 {
-  margin-top: 15px;
-  text-align: center;
+
+.hr-narrow {
+  border-color: #bbb;
+  width: 30%;
 }
 
 .caption {
@@ -529,20 +500,8 @@ blockquote .svg-inline--fa {
   text-shadow: 0.1rem 0.1rem 0.5rem black;
 }
 
-#buttonID {
-  color: white;
-  font-size: 1.5rem;
-  text-transform: uppercase;
-  font-weight: 700;
-  letter-spacing: 0.1rem;
-  background-color: $aquamarina;
-  width: 14em;
-  height: 3em;
-  border-radius: 5px;
-  margin-top: 0.7rem;
-}
 
-.productPageButton {
+.product-page-button {
   display: inline-block;
   padding: 0.5em 3em;
   border: 0.16em solid white;
@@ -558,7 +517,7 @@ blockquote .svg-inline--fa {
   border-radius: 10px;
 }
 
-.productPageButton:hover {
+.product-page-button:hover {
   background-color: transparent;
   border-radius: 10px;
   color: #dddddd;
@@ -566,7 +525,7 @@ blockquote .svg-inline--fa {
   text-decoration: none;
 }
 
-.productPageButton:active {
+.product-page-button:active {
   background-color: transparent;
   border-radius: 10px;
   color: #bbbbbb;
@@ -574,16 +533,7 @@ blockquote .svg-inline--fa {
   text-decoration: none;
 }
 
-.viewImage{
-  float:right;
-}
-.viewImage a{
-  color:yellow; 
-  font-size:1.2em;
-  font-family: 'Acme'
-}
-
-.nutriFactsTable, .productInfoTable{
+.table-nutri-facts, .table-product-info{
   tr{
     td{
       padding:10px !important;
@@ -591,16 +541,16 @@ blockquote .svg-inline--fa {
   }
 }
 
-.productInfoTable{
+.table-product-info{
   margin: 0 auto;
 }
 
-.productInfoLogos{
+.product-info-logos{
   width:20px; 
   height:20px;
 }
 
-#restaurant_image_productPage{
+#rest-image{
   width:100%; opacity: 0.7; 
   border: 1px solid; 
   border-radius: 80%;
@@ -669,13 +619,7 @@ blockquote .svg-inline--fa {
   margin-bottom: 0;
 }
 
-.vcenter {
-  display: inline-block;
-  vertical-align: middle;
-  float: none;
-}
-
-//printing accepted orders
+// printing accepted orders only
 @media print {
   .footer-basic {
     display: none;
@@ -691,6 +635,10 @@ blockquote .svg-inline--fa {
   }
 }
 
+.margin-6 {
+  margin-top: 6px;
+}
+
 //navbar animations
 #cart {
   -webkit-transition: -webkit-transform 1s ease-in-out;
@@ -698,7 +646,7 @@ blockquote .svg-inline--fa {
 }
 
 //applied to some pages in order to have the footer at the very bottom
-.allButFooter {
+.main-content {
   min-height: calc(90vh - 40px);
 }
 
@@ -709,13 +657,13 @@ blockquote .svg-inline--fa {
 }
 
 //add dish page
-.addDishSubmitButton{
+.add-dish-btn-submit{
   font-family:'Acme'; 
   color: #73C6A0; 
   border-color: #73C6A0;
 }
 
-.addDishResetButton{
+.add-dish-btn-reset{
   font-family:'Acme'; 
   margin-left:10px; 
   color: #E74C3C; 
@@ -723,58 +671,52 @@ blockquote .svg-inline--fa {
 }
 
 //manage dishes page
-#addDishButton{
+#add-dish-btn{
   font-family: 'Acme'; 
   float:right; 
   margin-top: 20px;
 }
 
-.goToOrdersButton{
+.orders-goto-btn{
   font-family: 'Acme'; 
   float:right; 
   margin-top: 20px; 
   margin-right: 20px;
 }
 
-#yourDishesText{
+#your-dishes{
   display: inline-block;
 }
 
-#nameLink{
+#name-link{
   color:black;
 }
-#nameProductSize{
+#name-product-size{
   font-size:1.1em;
 }
-.removeButton{
+.btn-remove{
   font-family:'Acme'; 
   border-color:#E74C3C; 
   color:#E74C3C;
 }
 
 //orders page
-.printButton{
+.btn-print{
   float:right;
   color:#1F618D;
   border-color:#1F618D;
   font-family:'Acme'
 }
 
-.approveButton{
+.btn-approve{
   font-family:'Acme'; 
   border-color:#73C6A0; 
   color:#73C6A0;
 }
 
-.rejectButton{
+.btn-reject{
   font-family:'Acme'; 
   border-color:#E74C3C; 
   color:#E74C3C;
 }
 
-.rejectButtonTwo{
-  margin-top: 6px; 
-  font-family:'Acme'; 
-  border-color:#E74C3C; 
-  color:#E74C3C;
-}

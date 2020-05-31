@@ -21,11 +21,11 @@ $title = "EatKraken";
   
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
-    <div class="dropdown" id="selectCity">
+    <div class="dropdown" id="select-city-outer">
       <button class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <span id="select-city" >SELECT A CITY</span> <span class="caret"></span>
       </button>
-      <ul class="dropdown-menu cityList">
+      <ul class="dropdown-menu city-list">
         <?php 
               $cities = db_simple_query("select * from cities");
               foreach($cities as $city){
@@ -62,7 +62,7 @@ $title = "EatKraken";
   </div>
   </div>
 
-  <div class="container-fluid threeColumnsHome">
+  <div class="container-fluid main-3c-view">
     <div class="row"> 
       <div class="col-xs-12 col-sm-4 text-center "><h1>We Value Your Health...</h1><img title="gluten_free_icon" alt="gluten_free_icon" class="homepageAllergenes" src="https://i.ya-webdesign.com/images/marshmallow-on-stick-free-png-8.png"><div class="text" id="allerg">Do you have some allergies or intollerances? Don't worry! All the products come with a complete list of allergens. You can easily select from the search page the allergenes you want to avoid, and that's it! We offer a great variety of meals, including gluten-free, lactose-free and many others.</div></div>
       <div class="col-xs-12 col-sm-4 text-center "><h1>...Animals' Life...</h1><img title="vegan_icon" alt="vegan_icon" class="homepageAllergenes" src="https://upload.wikimedia.org/wikipedia/commons/2/26/V_de_Vegan.png"> <div class="text" id="veg">The pleasure of food should not compromise other living beings wellness. This is why we decided to implement a vegan option to the meals search. From now on, you can enjoy your meals freely: we put a special effort in involving the best restaurant with a vegan option.</div></div>
@@ -72,25 +72,25 @@ $title = "EatKraken";
 
   <?php $restaurants = db_simple_query("select * from restaurants");?>
 
-  <div class="restaurantsDiv">
+  <div class="restaurants-div">
 
-    <h1 class="centered-h1">We work with...</h1>
+    <h1 class="text-center">We work with...</h1>
     <div class="row"> 
 
       <div class="column">
 
         <div class="container">
-          <?= "<img alt=\"restaurant image\"  title=\"restaurant image\" class=\"restImage\" src=\"" . $restaurants[0]["image_url"] ."\">"?>
+          <?= "<img alt=\"restaurant image\"  title=\"restaurant image\" class=\"restaurant-image\" src=\"" . $restaurants[0]["image_url"] ."\">"?>
           <div class="middle">
-            <div class="restName"><?=$restaurants[0]["name"]?>
+            <div class="restaurant-name"><?=$restaurants[0]["name"]?>
             </div>
           </div>
         </div>
 
         <div class="container">
-          <?= "<img alt=\"restaurant image\" title=\"restaurant image\" class=\"restImage\" src=\"" . $restaurants[1]["image_url"] ."\">"?>
+          <?= "<img alt=\"restaurant image\" title=\"restaurant image\" class=\"restaurant-image\" src=\"" . $restaurants[1]["image_url"] ."\">"?>
           <div class="middle">
-            <div class="restName"><?=$restaurants[1]["name"]?>
+            <div class="restaurant-name"><?=$restaurants[1]["name"]?>
             </div>
           </div>
         </div>
@@ -101,25 +101,25 @@ $title = "EatKraken";
       <div class="column">
         
         <div class="container">
-          <?= "<img alt=\"restaurant image\" title=\"restaurant image\" class=\"restImage\" src=\"" . $restaurants[2]["image_url"] ."\">"?>
+          <?= "<img alt=\"restaurant image\" title=\"restaurant image\" class=\"restaurant-image\" src=\"" . $restaurants[2]["image_url"] ."\">"?>
           <div class="middle">
-            <div class="restName"><?=$restaurants[2]["name"]?>
+            <div class="restaurant-name"><?=$restaurants[2]["name"]?>
             </div>
           </div>
         </div>
 
         <div class="container">
-          <?= "<img alt=\"restaurant image\" title=\"restaurant image\" class=\"restImage\" src=\"" . $restaurants[3]["image_url"] ."\">"?>
+          <?= "<img alt=\"restaurant image\" title=\"restaurant image\" class=\"restaurant-image\" src=\"" . $restaurants[3]["image_url"] ."\">"?>
           <div class="middle">
-            <div class="restName"><?=$restaurants[3]["name"]?>
+            <div class="restaurant-name"><?=$restaurants[3]["name"]?>
             </div>
           </div>
         </div>
 
         <div class="container">
-          <?= "<img alt=\"restaurant image\" title=\"restaurant image\" class=\"restImage\" src=\"" . $restaurants[4]["image_url"] ."\">"?>
+          <?= "<img alt=\"restaurant image\" title=\"restaurant image\" class=\"restaurant-image\" src=\"" . $restaurants[4]["image_url"] ."\">"?>
           <div class="middle">
-            <div class="restName"><?=$restaurants[4]["name"]?>
+            <div class="restaurant-name"><?=$restaurants[4]["name"]?>
             </div>
           </div>
         </div>
@@ -129,17 +129,17 @@ $title = "EatKraken";
       <div class="column">
 
         <div class="container">
-          <?= "<img alt=\"restaurant image\" title=\"restaurant image\" class=\"restImage\" src=\"" . $restaurants[5]["image_url"] ."\">"?>
+          <?= "<img alt=\"restaurant image\" title=\"restaurant image\" class=\"restaurant-image\" src=\"" . $restaurants[5]["image_url"] ."\">"?>
           <div class="middle">
-            <div class="restName"><?=$restaurants[5]["name"]?>
+            <div class="restaurant-name"><?=$restaurants[5]["name"]?>
             </div>
           </div>
         </div>
 
         <div class="container">
-          <?= "<img alt=\"restaurant image\" title=\"restaurant image\" class=\"restImage\" src=\"" . $restaurants[6]["image_url"] ."\">"?>
+          <?= "<img alt=\"restaurant image\" title=\"restaurant image\" class=\"restaurant-image\" src=\"" . $restaurants[6]["image_url"] ."\">"?>
           <div class="middle">
-            <div class="restName"><?=$restaurants[6]["name"]?>
+            <div class="restaurant-name"><?=$restaurants[6]["name"]?>
             </div>
           </div>
         </div>
@@ -149,12 +149,12 @@ $title = "EatKraken";
   </div>
 
   <h1 id="they-say" >They say about us...</h1>
-  <div class="row ratingRowHomepage">
+  <div class="row home-ratings">
     <div class="col-md-4 clients">
       
       <div class="col-md-12">
         <blockquote>
-          <i class="fas fa-quote-left"></i>Just what I needed! Quality food delivered right to my house, at any time I need! 
+          <i class="fas fa-quote-left"></i> Just what I needed! Quality food delivered right to my house, at any time I need! 
           <hr class="clients-hr">
           <cite>TrustPilot user</cite>
         </blockquote>
@@ -175,7 +175,7 @@ $title = "EatKraken";
     <div class="col-md-4 clients">
       <div class="col-md-12">
         <blockquote>
-          <i class="fas fa-quote-left"></i>Eatkraken brings home food delivery to the next level! You can really choose between a wide array of delicacies! 
+          <i class="fas fa-quote-left"></i> Eatkraken brings home food delivery to the next level! You can really choose between a wide array of delicacies! 
           <hr class="clients-hr">
           <cite>Huffington Post</cite>
         </blockquote>

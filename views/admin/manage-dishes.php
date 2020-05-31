@@ -2,7 +2,7 @@
 <html lang="en">
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/common_head.php"); ?>
   <body>
-    <div class="allButFooter">
+    <div class="main-content">
 
       <?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/navbar.php"); ?>
 
@@ -10,9 +10,9 @@
       <div class="container-fluid text-center mainbody">    
         <div class="row content">
           <div class="col-sm-12 text-left"> 
-            <h1 id="yourDishesText">Your dishes</h1>
-            <a href="add-dish.php" class="btn btn-default btn-lg" id="addDishButton">Add dish</a>
-            <a href="orders.php" id ="goToOrders" class="btn btn-default btn-lg goToOrdersButton">Go to orders</a>
+            <h1 id="your-dishes">Your dishes</h1>
+            <a href="add-dish.php" class="btn btn-default btn-lg" id="add-dish-btn">Add dish</a>
+            <a href="orders.php" id ="goToOrders" class="btn btn-default btn-lg orders-goto-btn">Go to orders</a>
             <br>
             <i>To edit a dish, please delete it and insert it again.</i>
             <hr>
@@ -29,8 +29,8 @@
                       
                       </div>
                       <div class="panel-footer text-center">
-                      <a id="nameLink" href="/product.php?code=<?= $dish["code"];?>" target="_blank">
-                        <b id="nameProductSize"><?= $dish["name"] ?></b>                     
+                      <a id="name-link" href="/product.php?code=<?= $dish["code"];?>" target="_blank">
+                        <b id="name-product-size"><?= $dish["name"] ?></b>                     
                       </a>
 
                         <br>
@@ -38,7 +38,7 @@
                         <br>
                         <form method="post" action="/restaurant/manage-dishes.php">
                           <input type="hidden" name="dish" value="<?= $dish['code']; ?>">
-                          <input type="submit" onclick="return confirmAction();" name="remove" value="Remove" class="btn btn-default btn-sm removeButton"/>
+                          <input type="submit" onclick="return confirmAction();" name="remove" value="Remove" class="btn btn-default btn-sm btn-remove"/>
                         </form> 
                       </div>
                     </div>

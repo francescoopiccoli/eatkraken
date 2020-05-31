@@ -13,8 +13,8 @@
     </div>
     <div class="collapse navbar-collapse navbar-right" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="/" title="Homepage"><i class="fas fa-home widgetDimension"></i></a></li>
-        <li><a href="/list.php" title="Check the list"><i class="fas fa-clipboard-list widgetDimension"></i></a></li>
+        <li><a href="/" title="Homepage"><i class="fas fa-home "></i></a></li>
+        <li><a href="/list.php" title="Check the list"><i class="fas fa-clipboard-list "></i></a></li>
 
       </ul>
       <ul class="nav navbar-nav navbar-right">

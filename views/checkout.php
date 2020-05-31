@@ -9,7 +9,7 @@ $isCheckoutPage = true; // for checkout widget
 
     <?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/navbar.php"); ?>
 
-    <div class="allButFooter">
+    <div class="main-content">
 
     <div class="container-fluid text-center mainbody">   
     <?php if(count($cart_items) > 0) { ?>   
@@ -88,7 +88,7 @@ $isCheckoutPage = true; // for checkout widget
           <div class="row checkout-results-row">
            
             <div class="col-sm-3">
-            <img alt="product_image" title="product_image" class="dish-thumbnail checkoutProductImage" src=<?=$item['image_url']?>>
+            <img alt="product_image" title="product_image" class="dish-thumbnail checkout-product-image" src=<?=$item['image_url']?>>
 
             </div>
             <div class="col-sm-7">
@@ -122,7 +122,7 @@ $isCheckoutPage = true; // for checkout widget
         <form class="modal-content" action="checkout.php" method="post">
           <div class="modal-header">
             <h4 class="modal-title">Select delivery city</h4>
-            <input class="btn btn-sm btn-primary" type="submit" id="submit-btn" value="Confirm">
+            <input class="btn btn-sm btn-primary" type="submit" id="city-dropdown-submit-btn" value="Confirm">
             
           </div>
           <div class="modal-body">

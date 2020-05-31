@@ -72,7 +72,7 @@ function getTimeLeft($deadline){
         <h2>Accepted orders</h2>
         <p>
           Deliver as soon as possible. 
-          <a href="javascript:window.print();" class="btn btn-default dont-print printButton" style="">Print</a>
+          <a href="javascript:window.print();" class="btn btn-default dont-print btn-print" style="">Print</a>
         </p>
 
         <table class="table">
@@ -123,7 +123,7 @@ function getTimeLeft($deadline){
                <br>
                 <form method="post" action="orders.php"> 
                 <input type="hidden" name="order" value="<?= $order['code']; ?>">
-                <input type="submit" onclick="return confirmAction();" name="reject" value="Cancel" class="btn btn-default btn-sm dont-print rejectButtonTwo"/>
+                <input type="submit" onclick="return confirmAction();" name="reject" value="Cancel" class="btn btn-default btn-sm dont-print btn-reject margin-6"/>
                 </form> 
 
               </td>
@@ -189,8 +189,8 @@ function getTimeLeft($deadline){
                <br>
                     <form method="post" action="orders.php">
                     <input type="hidden" name="order" value="<?= $order['code']; ?>">
-                    <input type="submit" name="approve" value="Approve" class= "btn btn-default btn-sm approveButton"/> 
-                    <input type="submit" onclick="return confirmAction();" name="reject" value="Reject" class="btn btn-default btn-sm rejectButton"/>
+                    <input type="submit" name="approve" value="Approve" class= "btn btn-default btn-sm btn-approve"/> 
+                    <input type="submit" onclick="return confirmAction();" name="reject" value="Reject" class="btn btn-default btn-sm btn-reject"/>
                     </form> 
 
                   </td>

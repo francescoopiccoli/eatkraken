@@ -14,30 +14,25 @@ date_default_timezone_set('Europe/Rome');
 
 // indices: simple_query(...)[row][column]
 function db_simple_query($query_text) {
-    $connection = new PDO($GLOBALS['db_pdo_data'], $GLOBALS['db_username'], $GLOBALS['db_password'], array(PDO::ATTR_PERSISTENT => true));
-    try {
-        if($query = $connection->query($query_text)) 
-            return $query->fetchAll();
-        else
-            return false;
-    } catch (Exception $e) {
-        print "Error!: " . $e->getMessage() . "<br/>";
-        die();
-    }
-    $connection = null;
+    return db_stmt_query($query_text, array());
 }
 function db_stmt_query($query_text, $params) {
+    // array(PDO::ATTR_PERSISTENT => true) -> cache connections, much faster
     $connection = new PDO($GLOBALS['db_pdo_data'], $GLOBALS['db_username'], $GLOBALS['db_password'], array(PDO::ATTR_PERSISTENT => true));
-    
-    $stmt = $connection->prepare($query_text);
-    $stmt->execute($params);
-    $res = $stmt->fetchAll();
-    $connection = null;
+    try {
+        $stmt = $connection->prepare($query_text);
+        $stmt->execute($params);
+        $res = $stmt->fetchAll();
+        $connection = null;
 
-    if($res)
-        return $res;
-    else
-        return false;
+        if($res)
+            return $res;
+    } catch (Exception $e) {
+        die("Error!: " . $e->getMessage() . "<br/>");
+    }
+    
+    $connection = null;
+    return false;
 }
 
 
