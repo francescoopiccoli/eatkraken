@@ -358,19 +358,19 @@ blockquote .svg-inline--fa {
   background-color: #f0f0f0;
   width: 100%; }
 
-#rest-name {
-  margin-top: 30px; }
-
-#row-padd {
+#cont-rest > .row {
   padding: 30px; }
 
-#hr1 {
-  border-color: #bbb;
-  width: 30%; }
+#rest-name {
+  margin-top: 30px; }
 
 #rest-desc {
   width: 100%;
   text-align: center; }
+
+.hr-narrow {
+  border-color: #bbb;
+  width: 30%; }
 
 .caption {
   color: white;
@@ -391,19 +391,7 @@ blockquote .svg-inline--fa {
   font-size: 2rem;
   text-shadow: 0.1rem 0.1rem 0.5rem black; }
 
-#buttonID {
-  color: white;
-  font-size: 1.5rem;
-  text-transform: uppercase;
-  font-weight: 700;
-  letter-spacing: 0.1rem;
-  background-color: #73c6a0;
-  width: 14em;
-  height: 3em;
-  border-radius: 5px;
-  margin-top: 0.7rem; }
-
-.productPageButton {
+.product-page-button {
   display: inline-block;
   padding: 0.5em 3em;
   border: 0.16em solid white;
@@ -418,27 +406,19 @@ blockquote .svg-inline--fa {
   background-color: transparent;
   border-radius: 10px; }
 
-.productPageButton:hover {
+.product-page-button:hover {
   background-color: transparent;
   border-radius: 10px;
   color: #dddddd;
   border-color: #dddddd;
   text-decoration: none; }
 
-.productPageButton:active {
+.product-page-button:active {
   background-color: transparent;
   border-radius: 10px;
   color: #bbbbbb;
   border-color: #bbbbbb;
   text-decoration: none; }
-
-.viewImage {
-  float: right; }
-
-.viewImage a {
-  color: yellow;
-  font-size: 1.2em;
-  font-family: "Acme"; }
 
 .nutriFactsTable tr td, .productInfoTable tr td {
   padding: 10px !important; }

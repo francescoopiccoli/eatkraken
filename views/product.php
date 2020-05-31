@@ -18,7 +18,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
             <h3><b>€<?= $product_price ?></b><small id="small"> / piece</small></h3>
             <form action="/product.php?code=<?= $product_id; ?>" method="post">
               <input type="hidden" name="add">
-              <button type="submit" class="productPageButton" id="cart-add-btn" onclick="return ajaxAddCart(<?= $product_id; ?>);">
+              <button type="submit" class="product-page-button" id="cart-add-btn" onclick="return ajaxAddCart(<?= $product_id; ?>);">
               <?php
                 if(!$addToCart || !$addSuccess) {
                   echo "Add to cart";
@@ -28,8 +28,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
               ?>
               </button>
             </form>
-            <span class="viewImage"><a target="_blank" href="<?= $product_image_url?>"> View image</a></span>
-
+            
             <br>
             <span id="cart-add-msg">
 
@@ -61,12 +60,12 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
     </div>
 
     <div id="cont-rest" class="container-fluid justify-content-center" >
-          <div id="row-padd" class="row justify-content-center">
+          <div class="row justify-content-center">
           <div class="col-xs-12 col-sm-4 text-center"><?php echo "<img id=\"restaurant_image_productPage\"alt=\"restaurant_image\" title=\"restaurant_image\" src=\"$restaurant_image_url\">"?>
           </div>
           <div class="col-xs-12 col-sm-8 text-center">
             <h2 id="rest-name"> <?= $restaurant_name?></h2>
-            <hr id="hr1">
+            <hr class="hr-narrow">
             <div id="rest-desc">
             <i><?= $restaurant_description ?></i></div>
           </div>
