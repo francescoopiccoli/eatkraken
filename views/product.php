@@ -34,7 +34,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
               ?>
               </button>
             </form>
-            <span style="float:right"><a target="_blank" style="color:yellow; text" href="<?= $product_image_url?>"> View full page image</a></span>
+            <span style="float:right"><a target="_blank" style="color:yellow" href="<?= $product_image_url?>"> View image</a></span>
 
             <br>
             <span id="cart-add-msg">
