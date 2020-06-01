@@ -63,7 +63,7 @@ function getTimeLeft($deadline){
   <?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/navbar.php"); ?>
 
 
-  <div class="container-fluid text-center mainbody">  
+  <div class="container-fluid text-center mainbody main-content">  
     <div class="row content">
       <div class="col-sm-12 text-left"> 
 

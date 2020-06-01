@@ -76,6 +76,7 @@ h1, h2, h3, h4 {
 .sidenav {
   background-color: #f1f1f1;
   height: 100%;
+
 }
 
 @media screen and (max-width: 767px) {
@@ -302,14 +303,14 @@ blockquote .svg-inline--fa {
 
 .btn-ek-confirm {
   font-family: "Acme";
-  color: #73c6a0;
-  border-color: #73c6a0;
+  color: $aquamarina;
+  border-color: $aquamarina;
 }
 
 .btn-ek-danger {
   font-family: "Acme";
-  color: #e74c3c;
-  border-color: #e74c3c;
+  color: $red;
+  border-color:$red;
 }
 
 .checkout-body {
@@ -418,7 +419,7 @@ blockquote .svg-inline--fa {
   background-color: white;
 }
 
-#food-title {
+.food-title-card {
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -638,6 +639,9 @@ blockquote .svg-inline--fa {
 .margin-6 {
   margin-top: 6px;
 }
+.magin-top-7-per-cent{
+  margin-top:7%;
+}
 
 //navbar animations
 #cart {
@@ -659,15 +663,20 @@ blockquote .svg-inline--fa {
 //add dish page
 .add-dish-btn-submit{
   font-family:'Acme'; 
-  color: #73C6A0; 
-  border-color: #73C6A0;
+  color: $aquamarina; 
+  border-color: $aquamarina;
 }
 
 .add-dish-btn-reset{
   font-family:'Acme'; 
   margin-left:10px; 
-  color: #E74C3C; 
-  border-color: #E74C3C;
+  color: $red; 
+  border-color: $red;
+}
+
+.field-titles{
+  font-family: 'Acme';
+  font-size: 1.4em;
 }
 
 //manage dishes page
@@ -688,16 +697,16 @@ blockquote .svg-inline--fa {
   display: inline-block;
 }
 
-#name-link{
+.name-link{
   color:black;
 }
-#name-product-size{
+.name-product-size{
   font-size:1.1em;
 }
 .btn-remove{
   font-family:'Acme'; 
-  border-color:#E74C3C; 
-  color:#E74C3C;
+  border-color:$red; 
+  color:$red;
 }
 
 //orders page
@@ -710,13 +719,35 @@ blockquote .svg-inline--fa {
 
 .btn-approve{
   font-family:'Acme'; 
-  border-color:#73C6A0; 
-  color:#73C6A0;
+  border-color: $aquamarina; 
+  color: $aquamarina;
 }
 
 .btn-reject{
   font-family:'Acme'; 
-  border-color:#E74C3C; 
-  color:#E74C3C;
+  border-color: $red; 
+  color: $red;
 }
 
+.octopus-logo{
+  width:15% !important;
+}
+
+#login-page-elements-centered{
+  width:50% !important; 
+  margin-left:25%;
+}
+
+#token-field-login-page{
+  height:46px;
+}
+
+#login-error-message{
+  color: $red; 
+  font-family: 'Acme';
+}
+
+#login-page-background{
+  background-image: linear-gradient(white, #2e3333);
+  height: 80%;
+}

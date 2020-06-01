@@ -4,16 +4,18 @@
   <body>
     <div class="main-content">
 
-      <?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/navbar.php"); ?>
+      <?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/navbar.php"); 
+       $restaurant_name = db_get_restaurant_name(restaurant_get_logged_id());
+      ?>
 
 
       <div class="container-fluid text-center mainbody">    
         <div class="row content">
           <div class="col-sm-12 text-left"> 
-            <h1 id="your-dishes">Your dishes</h1>
+            <h1 id="your-dishes"><?= $restaurant_name?></h1>
             <a href="add-dish.php" class="btn btn-default btn-lg" id="add-dish-btn">Add dish</a>
             <a href="orders.php" id ="goToOrders" class="btn btn-default btn-lg orders-goto-btn">Go to orders</a>
-            <br>
+            <h3>Your dishes</h3>
             <i>To edit a dish, please delete it and insert it again.</i>
             <hr>
 
@@ -21,16 +23,15 @@
               <?php 
 
                 $dishes = db_get_restaurant_dishes(restaurant_get_logged_id());
-
                   foreach($dishes as $dish) { ?>
-                  <div class="col-md-2 col-sm-4" href="">
-                    <div alt="dish_card" title="dish_card" class="panel panel-default">
+                  <div class="col-md-2 col-sm-4">
+                    <div title="dish_card" class="panel panel-default">
                       <div class="panel-body list-thumb" style="background-image: url('<?= $dish["image_url"]; ?>'); background-size: cover; min-width: 100px; min-height: 120px;">
                       
                       </div>
                       <div class="panel-footer text-center">
-                      <a id="name-link" href="/product.php?code=<?= $dish["code"];?>" target="_blank">
-                        <b id="name-product-size"><?= $dish["name"] ?></b>                     
+                      <a class="name-link" href="/product.php?code=<?= $dish["code"];?>" target="_blank">
+                        <b class="name-product-size"><?= $dish["name"] ?></b>                     
                       </a>
 
                         <br>

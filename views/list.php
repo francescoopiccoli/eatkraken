@@ -13,7 +13,7 @@
 
   <div class="text-center mainbody main-content">    
     <form id="form" class="row text-center" action="/list.php" method="get">
-      <div class="col-xs-12 sidenav text-left" style="padding-top: 2%; padding-bottom: 2%">
+      <div class="col-xs-12 sidenav text-left">
       <div class="col-md-2 col-sm-4">
        <h4>Deliverable to:</h4>
         <select name="city" class="form-control form-refresh">
@@ -78,11 +78,11 @@
           foreach($results as $result) {
           ?>
           <a class="col-md-2 col-sm-4 col-xs-6 food-card" href="/product.php?code=<?= $result["code"] ?>">
-            <div alt="dish_card" title="dish_card" class="panel panel-default">
+            <div title="dish_card" class="panel panel-default">
               <div class="panel-body list-thumb" style="background-image: url('<?= $result["image_url"] ?>'); background-size: cover; min-width: 100px; min-height: 120px;">
               </div>
               <div class="panel-footer">
-                <b id="food-title"><?= $result["name"] ?></b> 
+                <b class="food-title-card"><?= $result["name"] ?></b> 
                 <span class="text-right"><br><?= $result["price"]?>€</span>
                 <br>
                 <small><?= $result["restaurant_name"] ?></small>

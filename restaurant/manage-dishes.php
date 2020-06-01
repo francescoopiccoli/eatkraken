@@ -1,6 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/database.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/session.php");
+$title = "Manage dishes - Eatkraken";
 
 if(!restaurant_is_logged_in()) {
   header("Location: /");

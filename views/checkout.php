@@ -138,7 +138,7 @@ $isCheckoutPage = true; // for checkout widget
         </form>
       </div>
     </div><?php } 
-                else{echo "<h1>Your cart is empty</h1><h2>Add something from the list!</h2><br><br><img style=\"width:15%\" src=\"../images/logo_image.png\">";}?>  
+                else{echo "<h1>Your cart is empty</h1><h2>Add something from the list!</h2><br><br><img alt=\"eatkraken_logo\" class=\"octopus-logo\" src=\"../images/logo_image.png\">";}?>  
     </div></div>
 
     <?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/footer.php"); ?>
