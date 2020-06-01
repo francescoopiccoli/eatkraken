@@ -51,7 +51,7 @@
           <?php
             foreach($options as $option) {
               $checked = (in_array($option['code'], $selectedFlags) ? "checked" : "");
-              echo("<div class=\"options\"><input type=\"checkbox\" name=\"opt_{$option["code"]}\" class=\"form-refresh\" {$checked}> ".
+              echo("<div class=\"options\"><input type=\"checkbox\" id=\"opt_{$option["code"]}\" name=\"opt_{$option["code"]}\" class=\"form-refresh\" {$checked}> ".
               "<label class=\"option-allergenes-labels\" for=\"opt_{$option["code"]}\">{$option["name"]}</label></div>");
             }
           ?>
