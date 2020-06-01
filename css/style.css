@@ -18,6 +18,10 @@ h1, h2, h3, h4 {
   font-family: "Acme";
 }
 
+.navbar-border-none {
+  border: none !important;
+}
+
 .navbar-inverse .navbar-collapse,
 .navbar-inverse .navbar-form {
   border: none;
@@ -376,6 +380,10 @@ blockquote .svg-inline--fa {
 }
 
 /* list page */
+.options {
+  display: inline-block;
+}
+
 @media screen and (max-width: 767px) {
   .options {
     display: block !important;
@@ -410,6 +418,15 @@ blockquote .svg-inline--fa {
 .thumbnail-small {
   width: 100px;
   height: 100px;
+}
+
+.option-allergenes-labels {
+  margin-right: 30px;
+  font-size: 1.1em;
+}
+
+#options-allergenes-height {
+  margin-bottom: 15px;
 }
 
 .home-inner {
@@ -617,7 +634,7 @@ blockquote .svg-inline--fa {
   margin-top: 6px;
 }
 
-.magin-top-7-per-cent {
+.margin-top-7-per-cent {
   margin-top: 7%;
 }
 

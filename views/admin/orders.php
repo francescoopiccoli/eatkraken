@@ -72,7 +72,7 @@ function getTimeLeft($deadline){
         <h2>Accepted orders</h2>
         <p>
           Deliver as soon as possible. 
-          <a href="javascript:window.print();" class="btn btn-default dont-print btn-print" style="">Print</a>
+          <a href="javascript:window.print();" class="btn btn-default dont-print btn-print">Print</a>
         </p>
 
         <table class="table">

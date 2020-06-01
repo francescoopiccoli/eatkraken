@@ -1,7 +1,7 @@
 <nav class="navbar navbar-inverse navbar-custom">
   <div class="container-fluid">
     <div class="navbar-header">
-      <button type="button" style="border:none" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+      <button type="button" class="navbar-toggle navbar-border-none" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        

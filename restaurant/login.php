@@ -8,7 +8,7 @@ $title = "Login - Eatkraken"?>
 <body id="login-page-background">
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/views/widgets/navbar.php"); ?>
 
-<div class="container text-center main-content magin-top-7-per-cent">
+<div class="container text-center main-content margin-top-7-per-cent">
   <div>
     <h1>EATKRAKEN</h1>
     <h2>Enter in your restaurant account</h2>

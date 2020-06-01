@@ -46,13 +46,13 @@
         <br>
         </div>
         <div class="col-sm-12 col-md-6">
-        <div class="options" style="display:inline-block;">
-        <h4 style="margin-bottom: 15px;">Show only</h4>
+        <div class="options">
+        <h4 id="options-allergenes-height">Show only</h4>
           <?php
             foreach($options as $option) {
               $checked = (in_array($option['code'], $selectedFlags) ? "checked" : "");
-              echo("<div class=\"options\" style=\"display:inline-block; \"><input type=\"checkbox\" name=\"opt_{$option["code"]}\" class=\"form-refresh\" {$checked}> ".
-              "<label style=\"margin-right: 30px; font-size: 1.1em\" for=\"opt_{$option["code"]}\">{$option["name"]}</label></div>");
+              echo("<div class=\"options\"><input type=\"checkbox\" name=\"opt_{$option["code"]}\" class=\"form-refresh\" {$checked}> ".
+              "<label class=\"option-allergenes-labels\" for=\"opt_{$option["code"]}\">{$option["name"]}</label></div>");
             }
           ?>
         <br>
@@ -94,8 +94,8 @@
         }
         ?>
       </div>
-    </form>
-  </div>
+  </div>    </form>
+
   </div>
 
 
