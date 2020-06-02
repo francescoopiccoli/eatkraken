@@ -124,7 +124,7 @@ function cart_get_restaurant_shipping($restaurant) {
 }
 function cart_get_restaurant_message($restaurant) {
     if(!isset($_SESSION['restaurant_prefs']) || $_SESSION['restaurant_prefs'] == "")
-        return "No message to the restaurant. ";
+        return " ";
     
     return $_SESSION['restaurant_prefs'][$restaurant];
 }

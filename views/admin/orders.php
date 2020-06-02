@@ -101,7 +101,7 @@ function getTimeLeft($deadline){
                     <?="<b>Name: </b>" . $order["full_name"]?><br>
                     <?="<b>Address:</b> " . $order["address"] ?><br>
                     <?="<b>City: </b>" . db_get_city($order["city"])[0][0]?><br>
-                    <b>Phone: </b> <a href="tel:<?=$order["phone"] ?>"><?= $order["phone"] ?></a>
+                    <b class="telephone-not-to-print">Phone: </b> <a href="tel:<?=$order["phone"] ?>"><span class="telephone-not-to-print"><?= $order["phone"] ?></span></a>
                   </td>
               <td>
               <?php
@@ -118,8 +118,8 @@ function getTimeLeft($deadline){
               <td><?= $order[8] . "€" ?></td>
               <td>
               <b>Time left: </b><i><?= getTimeLeft($order['delivery_deadline'])?><br>
-                Order type:
-                <b> <?= $shipping_type . " (" . $deliveryCost . "€)" ?></b>
+              <b>Order type:</b>
+                <?= $shipping_type . " (" . $deliveryCost . "€)" ?>
                <br>
                 <form method="post" action="orders.php"> 
                 <input type="hidden" name="order" value="<?= $order['code']; ?>">
@@ -183,8 +183,8 @@ function getTimeLeft($deadline){
                   <td><?= $order[8] . "€" ?></td>
                   <td>
                   <b>Time left: </b><i><?= getTimeLeft($order['delivery_deadline'])?><br>
-                  Order type:
-                  <b> <?= $shipping_type . " (" . $deliveryCost . "€)" ?></b>
+                  <b>Order type:</b>
+                  <?= $shipping_type . " (" . $deliveryCost . "€)" ?>
 
                <br>
                     <form method="post" action="orders.php">
@@ -208,6 +208,7 @@ function getTimeLeft($deadline){
 
         <div class="dont-print">
           <h2>Past orders</h2>
+          <p>Past orders include both accepted and rejected orders.</p>
 
           <table class="table">
             <thead class="thead-dark">
@@ -251,8 +252,8 @@ function getTimeLeft($deadline){
                 <td>
                 <b>Expired since: </b><i><?= getTimeLeft($order['delivery_deadline'])?><br>
                   
-                Order type:
-                <b> <?= $shipping_type . " (" . $deliveryCost . "€)" ?></b>
+                <b>Order type:</b>
+                <?= $shipping_type . " (" . $deliveryCost . "€)" ?>
 
                <br>
 
