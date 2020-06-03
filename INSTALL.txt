@@ -1,0 +1,18 @@
+There are two ways to install and test EatKraken: the first is unzipping the ​ eatkraken ​ folder into the Apache server root, the other is ​ cd -ing to the ​ eatkraken ​ folder from terminal and running this command to launch the builtin PHP web server:
+
+php -S localhost:8080
+
+While no local postgreSQL database is required as long as the online hosted one is working, to configure EatKraken to use a different, local database, PDO configuration variables in libs/database.php ​ can be quickly adapted. Full compatibility with local MySQL databases probably exist, but table column types need to be adapted beforehand.
+
+Minimum requirements are a local PHP 7.x installation, an Internet connection for database access and optionally Apache or Nginx. Testing under UNIX environments is recommended, but not strictly mandatory.
+
+For testing purposes, external read/write access to the ​ postgreSQL​ database used in the project is possible using the following credentials:
+
+Host:       balarama.db.elephantsql.com
+Username:   yhqbrujn
+Password:   vTdT4LC9LlOf_rgw6fA-Uz54Q-_xefB5
+Database:   yhqbrujn
+
+An alternative “shortcut” can be using the following terminal command in UNIX-like systems:
+
+psql postgres://yhqbrujn:vTdT4LC9LlOf_rgw6fA-Uz54Q-_xefB5@balarama.db.elephantsql.com:5432/yhqbrujn

@@ -1,0 +1,14 @@
+Glossary of the WebContents structure
+
+/               ->  website public root, accessed by the user
+/api            ->  API endpoints for common features
+/css            ->  compiled stylesheets
+/css/scss       ->  SASS sources for .css stylesheets
+/images         ->  static images
+/js             ->  custom client-side JavaScript files
+/libs           ->  custom libraries and abstraction layers
+/libs/PHPMailer ->  folder for the external PHPMailer library
+/restaurant     ->  root of restaurant admin dashboard
+/views          ->  views and templates used by public pages
+/views/admin    ->  views and templates for restaurant dashboard
+/views/widgets  ->  common widgets embeddable in other views
