@@ -91,8 +91,15 @@ else{
 
   //print_r($stmt->errorInfo());
   $connection = null;
+  
+  header("refresh:0; url=/restaurant/");
+  echo '<script>alert("Dish added!");</script>';
+  exit;
   }
   
+  
+$categories = db_get_categories();
+
 require_once($_SERVER['DOCUMENT_ROOT'] . "/views/admin/add-dish.php");
 
 ?>

@@ -61,7 +61,10 @@ $isCheckoutPage = true; // for checkout widget
               <div class="red-message">As this restaurant cannot deliver to your city, its items will be ignored.</div>
               <?php } ?>
               
-              <i id="notes-<?= $restaurant; ?>"><?= cart_get_restaurant_message($restaurant); ?></i> (<a href="#" onclick="editNotes(<?= $restaurant; ?>)">edit</a>)
+              <i id="notes-<?= $restaurant; ?>">
+                <?= (cart_get_restaurant_message($restaurant) ? cart_get_restaurant_message($restaurant) : "No message to the restaurant") ; ?>
+              </i> 
+              (<a href="#" onclick="editNotes(<?= $restaurant; ?>)">edit</a>)
             </div>
 
             <div class="col-sm-2">

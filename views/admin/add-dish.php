@@ -15,38 +15,46 @@
       <h2 class="text-left">Insert new dish</h2>
       
       <form method="POST">
-        <input type="text" class="form-control" placeholder="Name" name="ProductName" required>
+        <input type="text" maxlength="30" class="form-control" placeholder="Name" name="ProductName" required>
         <br>
-        <input type="text" class="form-control" placeholder="Short description"  name="ProductDescription" required>
+        <input type="text" maxlength="200" class="form-control" placeholder="Short description"  name="ProductDescription" required>
         <br>
-        <input type="text" class="form-control" placeholder="Category"  name="ProductCategory" required>
+        <select name="ProductCategory" class="form-control" required>
+          <option value="">Category</option>
+          <?php
+            foreach ($categories as $category) {
+              $selected = ($category['code'] == $selectedCategory? "selected" : "");
+              echo("<option value=\"{$category['code']}\" {$selected}>{$category['name']}</option>");
+            }
+          ?>
+        </select>
         <br>
-        <input type="text" class="form-control" placeholder="Price" name="ProductPrice" required>
+        <input type="number" min="0" step="0.01" class="form-control" placeholder="Price" name="ProductPrice" required>
         <br>
-        <input type="text" class="form-control" placeholder="Ingredients"  name="ProductIngredients" required>
+        <input type="text" maxlength="300" class="form-control" placeholder="Ingredients"  name="ProductIngredients" required>
         <br>
-        <input type="text" class="form-control" placeholder="image url"  name="imageUrl" required>
+        <input type="url" maxlength="400" class="form-control" placeholder="image url"  name="imageUrl" required>
         <br>
-        <input type="text" class="form-control" placeholder="Estimated delivery time"  name="deliveryTime" required>
+        <input type="number" min="3" class="form-control" placeholder="Estimated delivery time"  name="deliveryTime" required>
         <br>
 
         <label><b class="field-titles">Nutritional facts:</b></label>
         <div class="row text-center">
 
         <div class="col-sm-3">
-          <input type="text" class="form-control" placeholder="kcal" name="nutri_kcal" required>
+          <input type="number" min="0" step="0.01" class="form-control" placeholder="kcal" name="nutri_kcal" required>
         </div>
 
         <div class="col-sm-3">
-         <input type="text" class="form-control" placeholder="carb" name="nutri_carbs" required>
+         <input type="number" min="0" step="0.01" class="form-control" placeholder="carb" name="nutri_carbs" required>
         </div>
 
         <div class="col-sm-3">
-         <input type="text" class="form-control" placeholder="fat" name="nutri_fat" required>
+         <input type="number" min="0" step="0.01" class="form-control" placeholder="fat" name="nutri_fat" required>
         </div>
 
         <div class="col-sm-3">
-         <input type="text" class="form-control" placeholder="protein" name="nutri_protein" required>
+         <input type="number" min="0" step="0.01" class="form-control" placeholder="protein" name="nutri_protein" required>
         </div>
       </div>
 <br>
@@ -72,7 +80,7 @@
       <br>
       <br>
       <div class="text-right">
-        <input type="submit" value="ADD" class="btn btn-default btn-lg add-dish-btn-submit" name="submit" onclick="alert('Dish added!')">
+        <input type="submit" value="ADD" class="btn btn-default btn-lg add-dish-btn-submit" name="submit">
         <input type="reset" value="RESET" class="btn btn-default btn-lg add-dish-btn-reset" name="reset">
       </div>
       </form>

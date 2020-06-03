@@ -101,7 +101,7 @@ function getTimeLeft($deadline){
                     <?="<b>Name: </b>" . $order["full_name"]?><br>
                     <?="<b>Address:</b> " . $order["address"] ?><br>
                     <?="<b>City: </b>" . db_get_city($order["city"])[0][0]?><br>
-                    <b class="telephone-not-to-print">Phone: </b> <a href="tel:<?=$order["phone"] ?>"><span class="telephone-not-to-print"><?= $order["phone"] ?></span></a>
+                    <b>Phone: </b> <a href="tel:<?=$order["phone"] ?>"><?= $order["phone"] ?></a>
                   </td>
               <td>
               <?php
@@ -117,7 +117,7 @@ function getTimeLeft($deadline){
               </td>
               <td><?= $order[8] . "€" ?></td>
               <td>
-              <b>Time left: </b><i><?= getTimeLeft($order['delivery_deadline'])?><br>
+              <b>Time left: </b><i><?= getTimeLeft($order['delivery_deadline'])?></i><br>
               <b>Order type:</b>
                 <?= $shipping_type . " (" . $deliveryCost . "€)" ?>
                <br>
@@ -182,7 +182,7 @@ function getTimeLeft($deadline){
                   </td>
                   <td><?= $order[8] . "€" ?></td>
                   <td>
-                  <b>Time left: </b><i><?= getTimeLeft($order['delivery_deadline'])?><br>
+                  <b>Time left: </b><i><?= getTimeLeft($order['delivery_deadline'])?></i><br>
                   <b>Order type:</b>
                   <?= $shipping_type . " (" . $deliveryCost . "€)" ?>
 
@@ -250,11 +250,11 @@ function getTimeLeft($deadline){
                 </td>
                 <td><?= $order[8]. "€" ?></td>
                 <td>
-                <b>Expired since: </b><i><?= getTimeLeft($order['delivery_deadline'])?><br>
+                <b>Expired: </b><i><?= $order['delivery_deadline'] ?></i><br>
                   
                 <b>Order type:</b>
-                <?= $shipping_type . " (" . $deliveryCost . "€)" ?>
-
+                <?= $shipping_type . " (" . $deliveryCost . "€)" ?><br>
+                <?= ($order['status'] == 2 ? "<i class=\"text-danger\">This order was rejected</i>" : "") ?>
                <br>
 
                 </td>

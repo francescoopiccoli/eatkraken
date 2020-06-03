@@ -649,9 +649,10 @@ blockquote .svg-inline--fa {
   .dont-print {
     display: none;
   }
- .telephone-not-to-print{
-    display: none;
-} 
+  /* Don't print link hrefs */
+  a[href]:after {
+    content: none
+  }
 }
 
 .margin-6 {

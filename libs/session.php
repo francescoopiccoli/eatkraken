@@ -3,9 +3,7 @@
 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/libs/database.php");
 
-// csrf protection
 session_start();
-//session_start(['csrf_rewrite'=>SESSION_CSRF_POST, 'csrf_validate'=>SESSION_CSRF_POST]);
 
 function cart_get_items() {
     if(!isset($_SESSION['cart']))
@@ -124,7 +122,7 @@ function cart_get_restaurant_shipping($restaurant) {
 }
 function cart_get_restaurant_message($restaurant) {
     if(!isset($_SESSION['restaurant_prefs']) || $_SESSION['restaurant_prefs'] == "")
-        return " ";
+        return "";
     
     return $_SESSION['restaurant_prefs'][$restaurant];
 }
