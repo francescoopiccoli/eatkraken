@@ -1,4 +1,4 @@
-Glossary of the WebContents structure
+Glossary of the WebContent structure
 
 /               ->  website public root, accessed by the user
 /api            ->  API endpoints for common features
