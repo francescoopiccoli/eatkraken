@@ -21,21 +21,25 @@ if(isset($_POST['confirm'])) {
     // 1. check phone & email -> failure: show warning msg-danger and go on
     // however address is not mandatory, e.g. if user takes away or eats in
     if(cart_get_phone() == "" || cart_get_email() == "" || cart_get_full_name() == "") {
-        echo '<script>alert("Valid full name, e-mail and phone number must be specified");</script>';
         header("refresh:0; url=/checkout.php");
+        echo '<script>alert("Valid full name, e-mail and phone number must be specified");</script>';
         exit;
 
     } elseif(count(cart_get_items()) == 0) {
-        echo '<script>alert("Cart is empty!");</script>';
         header("refresh:0; url=/");
+        echo '<script>alert("Cart is empty!");</script>';
         exit;
     } else {
         // 2. insert into DB each order
         $orders = cart_get_orders();
         $codes = array();
+
+        $order_empty = true; // if no items can be delivered, the "success" message won't be sent
+
         foreach($orders as $restaurant => $items) {
             // ignore if can't be delivered
             if(cart_get_restaurant_shipping($restaurant) != 2 || db_restaurant_can_deliver($restaurant, cart_get_city())) {
+                $order_empty = false;
                 $delivery_time = 0;
                 // delivery time of order is set to max. of all items
                 foreach($items as $item) {
@@ -86,19 +90,24 @@ if(isset($_POST['confirm'])) {
                 }
             } elseif (cart_get_restaurant_shipping($restaurant) == 2 && !db_restaurant_can_deliver($restaurant, cart_get_city())) {
                 // if delivery to specified city is not possible, show a warning and proceed
-                echo '<script>alert("Restaurant '. db_get_restaurant_name($restaurant) .' can\'t deliver to your city, this order will be ignored");</script>';
+                echo '<script>alert("Restaurant '. db_get_restaurant_name($restaurant) .' can\'t deliver to your city, order will be ignored");</script>';
             }
         }
 
-        // 3. send confirm email
-        simple_email(cart_get_email(), "Your EatKraken order has been placed","We will inform you once it gets approved by the restaurant.");
+        if(!$order_empty) {
+            // 3. send confirm email
+            simple_email(cart_get_email(), "Your EatKraken order has been placed","We will inform you once it gets approved by the restaurant.");
 
-        // 4. clean-up cart
-        cart_empty();
+            // 4. clean-up cart
+            cart_empty();
 
-        // 5. show msg-..., redirect to homepage after 10 seconds
-        header("refresh:0; url=/");
-        die('<script>alert("Your order has been sent!\\nYou will receive a confirmation e-mail shortly");</script>');
+            // 5. show msg-..., redirect to homepage after 10 seconds
+            header("refresh:0; url=/");
+            die('<script>alert("Your order has been sent!\\nYou will receive a confirmation e-mail shortly");</script>');
+        } else {
+            header("refresh:0; url=/");
+            die('<script>alert("No deliverable items!");</script>');
+        }
     }
 }
 
