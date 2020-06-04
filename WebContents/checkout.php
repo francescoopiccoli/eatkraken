@@ -86,7 +86,7 @@ if(isset($_POST['confirm'])) {
                 }
             } elseif (cart_get_restaurant_shipping($restaurant) == 2 && !db_restaurant_can_deliver($restaurant, cart_get_city())) {
                 // if delivery to specified city is not possible, show a warning and proceed
-                echo '<script>alert("Restaurant '. db_get_restaurant_name($restaurant) .' can\'t be delivered to your city, order will be ignored");</script>';
+                echo '<script>alert("Restaurant '. db_get_restaurant_name($restaurant) .' can\'t deliver to your city, this order will be ignored");</script>';
             }
         }
 

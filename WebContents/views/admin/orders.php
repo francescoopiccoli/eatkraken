@@ -36,19 +36,19 @@ function getTimeLeft($deadline){
   elseif(substr($currentTime, 5, -9) == substr($deadlineTime, 5, -9)){
     //if the day is different but the month is the samereturns how many days have passed since the expiration
     if((substr($currentTime, 8, -6) - substr($deadlineTime, 8, -6)) == 1){
-      return (substr($currentTime, 8, -6) - substr($deadlineTime, 8, -6)) . " <i> day<i/>";
+      return (substr($currentTime, 8, -6) - substr($deadlineTime, 8, -6)) . " <i> day</i>";
     }
     else{
-      return (substr($currentTime, 8, -6) - substr($deadlineTime, 8, -6)) . "<i> days<i/>";
+      return (substr($currentTime, 8, -6) - substr($deadlineTime, 8, -6)) . "<i> days</i>";
     }
   }
 
   else{ // if the month is different
     if((substr($currentTime, 5, -9) - substr($currentTime, 5, -9)) == 1){
-      return (substr($currentTime, 5, -9) - substr($deadlineTime, 5, -9)) . " <i> month<i/>";
+      return (substr($currentTime, 5, -9) - substr($deadlineTime, 5, -9)) . " <i> month</i>";
     }
     else{
-      return (substr($currentTime, 5, -9) - substr($deadlineTime, 5, -9)) . " <i> months<i/>";
+      return (substr($currentTime, 5, -9) - substr($deadlineTime, 5, -9)) . " <i> months</i>";
     }
   }
 }
@@ -117,7 +117,7 @@ function getTimeLeft($deadline){
               </td>
               <td><?= $order[8] . "€" ?></td>
               <td>
-              <b>Time left: </b><i><?= getTimeLeft($order['delivery_deadline'])?></i><br>
+              <b>Time left: </b><i> <?= getTimeLeft($order['delivery_deadline'])?></i><br>
               <b>Order type:</b>
                 <?= $shipping_type . " (" . $deliveryCost . "€)" ?>
                <br>
