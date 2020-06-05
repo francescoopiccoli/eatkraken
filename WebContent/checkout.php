@@ -89,7 +89,8 @@ if(isset($_POST['confirm'])) {
                     die("DB error");
                 }
             } elseif (cart_get_restaurant_shipping($restaurant) == 2 && !db_restaurant_can_deliver($restaurant, cart_get_city())) {
-                // if delivery to specified city is not possible, show a warning and proceed
+                // if delivery is not possible, show a warning and proceed
+                header("refresh:0; url=/");
                 echo '<script>alert("Restaurant '. db_get_restaurant_name($restaurant) .' can\'t deliver to your city, order will be ignored");</script>';
             }
         }
@@ -101,11 +102,10 @@ if(isset($_POST['confirm'])) {
             // 4. clean-up cart
             cart_empty();
 
-            // 5. show msg-..., redirect to homepage after 10 seconds
+            // 5. show msg-..., redirect to homepage
             header("refresh:0; url=/");
             die('<script>alert("Your order has been sent!\\nYou will receive a confirmation e-mail shortly");</script>');
         } else {
-            header("refresh:0; url=/");
             die('<script>alert("No deliverable items!");</script>');
         }
     }
