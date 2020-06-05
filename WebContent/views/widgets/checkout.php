@@ -16,7 +16,7 @@ $cart = cart_get_items();
         <span id="checkout-x" <?php if(count($cart) == 0) echo 'style="display: none;"' ?>>
             x&nbsp;&nbsp;
         </span>
-        <i id="cart" title="cart" class="fas fa-shopping-cart "></i>
+        <i id="cart" title="cart" class="fas fa-shopping-cart settingIcon"></i>
     </a>
 </li>
 

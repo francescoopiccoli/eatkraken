@@ -12,9 +12,13 @@
       <div class="container-fluid text-center mainbody">    
         <div class="row content">
           <div class="col-sm-12 text-left"> 
+          
             <h1 id="your-dishes"><?= $restaurant_name?></h1>
-            <div><a href="add-dish.php" class="btn btn-default btn-lg" id="add-dish-btn">Add dish</a>
-            <a href="orders.php" id ="goToOrders" class="btn btn-default btn-lg orders-goto-btn">Go to orders</a></div>
+            <div>
+              <a href="add-dish.php" class="btn btn-default btn-lg" id="add-dish-btn">Add dish</a>
+              <a href="orders.php" id ="goToOrders" class="btn btn-default btn-lg orders-goto-btn">Go to orders</a>
+            </div>
+
             <h3>Your dishes</h3>
             <i>To edit an already existing dish, please delete it and insert it again.</i>
             <hr>
