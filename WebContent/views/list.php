@@ -13,9 +13,9 @@
 
   <div class="text-center mainbody main-content">    
     <form id="form" class="row text-center" action="/list.php" method="get">
-      <div class="col-xs-12 sidenav text-left">
+      <div class="col-sm-12 sidenav text-left">
       <div class="col-md-2 col-sm-4">
-       <h4>Deliverable to:</h4>
+       <h4>Deliverable to</h4>
         <select name="city" class="form-control form-refresh">
           <option value="">Select a city</option>
           <?php
@@ -28,7 +28,7 @@
 </div>
 
         <div class="col-sm-4 col-md-2">
-        <h4>Deliver within:</h4>
+        <h4>Within</h4>
         <input type="number" name="time" class="form-control form-refresh" placeholder="minutes" min="15" max="120" value="<?= htmlentities($deliveryTime); ?>">
         <br>
       </div>
